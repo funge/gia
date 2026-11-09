@@ -628,3 +628,16 @@ tests, while decoder/adapter/finite selection remain explicit trusted contracts.
 The runtime does not yet carry the paper's decorated domain flags; negative-input
 `none` alone is not a proof of absence. This extends, rather than replaces, the
 exact-real milestone and its source caveats recorded above.
+
+## Hardware sine: restricted §3.1.6 counterpart
+
+[SineTaylor.lean](SineTaylor.lean), [HardwareSine.lean](HardwareSine.lean) and
+[the shared program](SineProgram.lean) implement the interval-polynomial method
+on printed pp.48–49 ([PDF pages 64–65](https://www.dgp.toronto.edu/~mooncake/thesis.pdf#page=64)),
+visually checked against the source PDF. This uses [0, 1], rather than [0, π/2),
+and proves P5(x) − x⁷/5040 ≤ sin x ≤ P5(x) via the alternating series.
+It does not assert the author's proof is identical, formalize argument reduction,
+or assume correctly rounded libm sine. [Details and boundaries](HARDWARE_SINE.md).
+The historical chapter-3 table's “missing implementation” does not describe
+these later conditional hardware clients; native implementation verification
+and a certified platform transcendental library still remain open.

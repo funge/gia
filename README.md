@@ -24,7 +24,10 @@ rounded corners under the approved finite min/max contract and has a conditional
 enclosure proof. [Guarded hardware division](HARDWARE_DIVISION.md) reuses that
 assembly and proves denominator nonzero as well as quotient enclosure.
 [Directed hardware square root](HARDWARE_SQUARE_ROOT.md) adds bounds for defined
-roots on nonnegative and mixed-domain intervals. The [architecture assessment](HARDWARE_FLOAT_PLAN.md)
+roots on nonnegative and mixed-domain intervals.
+[Hardware sine on [0, 1]](HARDWARE_SINE.md) composes directed arithmetic with
+proved fifth-degree Taylor bounds; it neither trusts libm sine nor claims correct
+rounding. The [architecture assessment](HARDWARE_FLOAT_PLAN.md)
 records broader choices; it predates this explicitly authorized small milestone.
 
 ## Start here

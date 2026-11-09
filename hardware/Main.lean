@@ -1,4 +1,5 @@
 import HardwareBounds
+import SineProgram
 
 open GeneralizedIntervalArithmetic.HardwareAddition
 
@@ -71,6 +72,13 @@ def subtract (a b : Bounds Float) : IO (Option (Bounds Float)) := do
   let lower ← directedSub a.lo b.hi
   let upper ← directedSub a.hi b.lo
   return assemble lower upper
+
+/-- Restricted-domain Taylor enclosure, using only directed arithmetic. -/
+def sine (a : Bounds Float) : IO (Option (Bounds Float)) := do
+  unless a.lo.isFinite && a.hi.isFinite do return none
+  GeneralizedIntervalArithmetic.HardwareSine.run
+    (GeneralizedIntervalArithmetic.HardwareSine.unitGuard finiteLt 0.0 1.0)
+    add subtract multiply divide 0.0 ⟨6.0, 6.0⟩ ⟨120.0, 120.0⟩ ⟨5040.0, 5040.0⟩ a
 
 def checkWith (op : Bounds Float → Bounds Float → IO (Option (Bounds Float))) (name : String) (a b : Bounds Float) (expected : Option (UInt64 × UInt64)) : IO Unit := do
   let result ← op a b
@@ -166,5 +174,29 @@ def main : IO Unit := do
   let badRoot ← directedSqrt (-1.0)
   unless badRoot.isNone do throw (IO.userError "negative primitive sqrt accepted")
   IO.println "PASS negative primitive sqrt rejected"
+  let sineCheck := checkWith (fun a _ => sine a)
+  sineCheck "sine negative input unknown" ⟨-0.1, 0.5⟩ one none
+  sineCheck "sine above one unknown" ⟨0.5, nextOne⟩ one none
+  sineCheck "sine reversed unknown" ⟨1.0, 0.0⟩ one none
+  sineCheck "sine infinity unknown" ⟨0.0, inf⟩ one none
+  sineCheck "sine NaN unknown" ⟨nan, 1.0⟩ one none
+  sineCheck "sine NaN upper unknown" ⟨0.0, nan⟩ one none
+  let failedSine ← GeneralizedIntervalArithmetic.HardwareSine.run
+    (fun _ => true) add subtract multiply (fun _ _ => pure none)
+    0.0 ⟨6.0, 6.0⟩ ⟨120.0, 120.0⟩ ⟨5040.0, 5040.0⟩ one
+  unless failedSine.isNone do throw (IO.userError "sine primitive failure accepted")
+  IO.println "PASS sine failed division remains unknown"
+  -- Exact binary grids and underflow controls; independent rational checker reads
+  -- these observed bit patterns without trusting a library sine implementation.
+  let mut inputs : Array (Bounds Float) := #[⟨0.0, 0.0⟩, ⟨-0.0, 0.0⟩,
+    ⟨tiny, tiny⟩, ⟨0.0, tiny⟩, ⟨0.0, 1.0⟩, ⟨0.25, 0.75⟩]
+  for k in [:17] do
+    let x := k.toFloat / 16.0
+    inputs := inputs.push ⟨x, x⟩
+    if k < 16 then inputs := inputs.push ⟨x, (k+1).toFloat / 16.0⟩
+  for a in inputs do
+    let some r ← sine a | throw (IO.userError "supported sine returned unknown")
+    IO.println s!"SINE {a.lo.toBits} {a.hi.toBits} {r.lo.toBits} {r.hi.toBits}"
+  IO.println "PASS sine supported native vectors"
   unless (← roundingRestored) do throw (IO.userError "environment restoration failed")
   IO.println "PASS environment restoration"
