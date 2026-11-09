@@ -2398,3 +2398,88 @@ The final full `./check.sh` passed: library build, standalone enforced audit
 tests in 179.180s. Coverage includes 78 library roots and 29 fresh semantic fixtures.
 All mathematical/runtime source changes preceded this full run; subsequent edits
 were documentation only. Final `git diff --check` passed.
+
+## 2026-11-09: directed hardware square root
+
+Fetched and verified main at `7fd4b39dc127dec3be1b96a46cf392d4bcd73d2b`, containing
+merged PRs #70–#73, then branched `proof/hardware-square-root`. Repository and
+ancestor instruction searches found no AGENTS.md or repository `.agents/skills`.
+The resumed cloud runtime was ready; validation stayed on this executor and was
+run sequentially rather than concurrently with a native build or on the Mac.
+
+`HardwareSquareRoot` proves conditional endpoint enclosure after clipping the
+lower input to zero, bridges the actual assembly to `SqrtValues` with unchanged
+witness/domain restrictions, preserves incoming definedness on nonnegative bounds,
+and proves absence from a certified negative upper bound. Runtime `none` still
+means unknown. The existing approved directed IEEE primitive, finite max and zero
+interpretation boundary is explicit; no new global axiom or FP error assumption.
+The runtime returns bounds, not decorated domain flags or a new Expr evaluator.
+
+Focused library compilation passed. An initial independent fixture attempt left
+sqrt(4) normalization goals unresolved; the enforced audit rejected the resulting
+sorryAx. The fixture was corrected with a proved sqrt(4)=2 lemma, then passed its
+19-declaration namespace audit. Final fixtures include nonnegative/mixed assembled
+enclosure, the SqrtValues bridge, retained external holes, negative-domain absence,
+a totalized-root counterexample, wrong-primitive rejection and missing-result
+unknown. Exact binary64 squaring checks independently qualify the sqrt(2), largest
+finite and smallest-subnormal expected native bit patterns, without a sqrt library.
+These rational checks are test oracles, not the executable interval backend.
+
+`./hardware/check.sh` exited 0 with 54 reported native checks (40 regressions plus
+14 square-root controls). The adapter object contains sqrtsd and no unresolved
+library sqrt symbol. Tests include either domain branch and zero boundary, signed
+zero, subnormal input, largest finite value, NaNs, infinities, reversed endpoints
+and negative primitive rejection. Each ambient-mode restoration test first checks
+that sqrt(2) raises INEXACT, then checks restoration of the caller's flags and mode.
+All preceding hardware arithmetic regressions remain enabled.
+
+Compilers: GCC 14.2.0 (Debian 14.2.0-19) for the adapter; leanc Clang 15.0.1
+(`b73d2c8c720a8c8e6e73b11be4e27afa6cb75bdf`), x86_64. Lean 4.19.0 and mathlib pins
+are unchanged. Native flags add `-fno-math-errno` so the guarded sqrt path uses the
+hardware instruction without libm errno handling; this does not verify compilation.
+Logs: `/workspace/lean-tools/sqrt-{build,fixture,native,full-check}.log`.
+
+Review compared the proof and client call arguments (clipped lower, original
+upper), optional-result behavior and signed-zero scope; independently checked
+expected-bit enclosures by exact squaring; and visually checked thesis §3.1,
+printed p.45/PDF p.61, and SIGGRAPH §8, PDF p.4, against the repository source copies.
+C references are pinned to the verified base. C's negative-input empty result and
+other architectures remain outside the proof. No separate reviewer is claimed.
+The five updated scope documents passed checks of 220 local link targets. No
+application code, hosted CI or toolchain changes were made.
+
+Final full `./check.sh` exited 0: library build, standalone audit (702 named
+checks, 1,305 namespace declarations), and all 18 Python tests in 241.928s.
+Integration coverage includes 79 library roots and 30 fresh semantic fixtures.
+All proof/runtime/test sources preceded this full run; only documentation changed
+after it began. Final diff whitespace check passed. No push or merge of unrelated
+work is part of this milestone.
+
+## 2026-11-09: square root on the published standalone GIA baseline
+
+The actual public gia main was fetched and verified at
+`1f67388d6e11a3eb3677900fd9826899433935e1`, with sole parent
+`5205f7794e34d6841b7bd3bd6e9898caaf743ab1`. Compared with the local migration
+baseline, differences were exactly LICENSE, COPYRIGHT, README.md, THIRD_PARTY.md
+and MIGRATION.md, and their diffs matched the owner-applied license/documentation
+changes. The MIT LICENSE blob remains identical to the initial gia commit.
+
+The separate square-root review preserves all 110 Lean source files byte-for-byte
+from relgraph #74 head `f7cfea863529e48dffddc393cb9fb25d41ea9b03`. LICENSE,
+COPYRIGHT and SCOPE.md remain byte-identical to published gia main. No mathematical
+scope or floating-point assumption changes were introduced. Current migration
+framing was corrected without rewriting historical validation receipts. Original
+relgraph #74 is not merged or closed by this transfer.
+
+All 330 local documentation targets passed; explicit optional API comparison
+passed five tests, including changed/missing-header controls. Full qualification
+uses only the existing cloud Lean/mathlib caches, sequentially with native checks;
+no Mac workload or hosted CI is added. Logs are in `/workspace/gia-followup`.
+
+Final full `./check.sh` exited 0: 702 named audits, 1,305 namespace declarations,
+79 roots, 30 fresh semantic fixtures, and 21 tests in 321.856s (only the optional
+checkout comparison skipped; it passed separately when explicitly enabled).
+`./hardware/check.sh` exited 0 with all 54 native checks. GCC 14.2.0
+(Debian 14.2.0-19), leanc Clang 15.0.1, and Lean 4.19.0 remain unchanged.
+All proof/runtime/test changes preceded this run; later edits were documentation
+only. Final diff whitespace checks passed.

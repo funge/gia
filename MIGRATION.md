@@ -1,4 +1,4 @@
-# Local standalone migration preparation
+# Standalone migration provenance
 
 John Funge has applied MIT licensing to the migrated original sources,
 preserving gia's existing MIT LICENSE and initial commit
@@ -7,7 +7,7 @@ the source license until this owner action. Relgraph and dependency licenses
 are unchanged. The steps below record the preparation and handoff; historical
 AGPL references describe provenance, not gia's current license.
 
-## Baseline and pending review
+## Published baseline and separate square-root review
 
 The baseline is relgraph main `7fd4b39dc127dec3be1b96a46cf392d4bcd73d2b`:
 156 files relocated from formalization/lean to this repository root. Earlier
@@ -17,9 +17,12 @@ records, without importing any unrelated private repository history. Original
 source commits remain in private relgraph; mapping is provenance, not rewritten
 original Git ancestry. Historical validation paths remain labeled as history.
 
-Square-root PR #74 (`f7cfea863529e48dffddc393cb9fb25d41ea9b03`) is excluded from
-the baseline and prepared on a separate local pending branch/patch. It has not
-been merged or closed. Migration changes import no proof assumptions, change no
+The published gia baseline is `1f67388d6e11a3eb3677900fd9826899433935e1`,
+whose sole parent is the existing MIT initial commit. Its tree matches the local
+preparation except for the five expected owner-applied license/documentation files.
+Square-root source PR #74 (`f7cfea863529e48dffddc393cb9fb25d41ea9b03`) remains
+open and unmerged in relgraph. This separate gia review carries its proof/runtime
+changes without altering the published MIT license or copyright notice. Migration changes import no proof assumptions, change no
 mathematical theorem, and keep pinned Lean/mathlib versions.
 
 ## Standalone checks
@@ -48,21 +51,18 @@ thesis/paper citations replace private graphing links; no source documents are
 bundled. See [dependency provenance](THIRD_PARTY.md). Local cloud cache symlinks
 used for testing are ignored and must not be published.
 
-## Recorded owner handoff and remaining review steps
+## Completed owner handoff and remaining review
 
-1. Review the baseline snapshot, provenance, validation receipt, and separate #74
-   patch. Decide/apply the final license for John's migrated sources in the public
-   gia checkout; this preparation intentionally retains the old license.
-2. Copy the baseline tracked source files into the existing gia checkout, preserving
-   its initial history and John-approved LICENSE. Do not copy .git, .lake, caches,
-   private relgraph history or Tupper source documents. Resolve the preparation
-   notice and record the licensing decision, then run both checks and publish.
-3. Apply the pending #74 patch as a separate gia review branch, retaining its source
-   commit reference. Review it separately; only then coordinate the disposition
-   of relgraph PR #74. This preparation does neither action.
-4. Once the public baseline is available, review/publish the separate relgraph
-   removal commit: only Lean-owned files are removed and README gains a related
-   gia link. All other tracked blobs/modes, including C/library/build inputs, must
-   match the original baseline. There is no relgraph dependency on gia.
+John completed the MIT licensing decision and published the baseline. The earlier
+private preparation and its AGPL license were historical staging artifacts, not
+this project's current license. No further license change is part of square root.
 
-The sibling migration validation receipt records exact prepared commits and results.
+The separate square-root review preserves the original source commit and existing
+proof assumptions. The relgraph removal/README update is a different review and
+must preserve all retained C/library/build files byte-for-byte. Neither review
+implicitly merges or closes original relgraph PR #74. No relgraph dependency on
+gia is introduced.
+
+Fresh qualification for the published layout is recorded in [VALIDATION.md](VALIDATION.md).
+The local migration receipt and old paths describe the earlier preparation;
+they are not required files or build inputs for this repository.

@@ -1,18 +1,23 @@
 #!/usr/bin/env bash
 set -euo pipefail
 cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.."
-lake build HardwareAddition HardwareSubtraction HardwareMultiplication HardwareDivision HardwareBounds:static
+lake build HardwareAddition HardwareSubtraction HardwareMultiplication HardwareDivision HardwareSquareRoot HardwareBounds:static
 out="$(mktemp -d)"
 trap 'rm -rf "$out"' EXIT
 lake env lean -c "$out/Main.c" hardware/Main.lean
-cc -O2 -frounding-math -fno-fast-math -ffp-contract=off \
+cc -O2 -frounding-math -fno-fast-math -ffp-contract=off -fno-math-errno \
   -I "$(lean --print-prefix)/include" -c hardware/adapter.c -o "$out/adapter.o"
 objdump -d "$out/adapter.o" > "$out/disassembly.txt"
 grep -q addsd "$out/disassembly.txt"
 grep -q subsd "$out/disassembly.txt"
 grep -q mulsd "$out/disassembly.txt"
 grep -q divsd "$out/disassembly.txt"
-printf "Verified hardware addsd, subsd, mulsd and divsd in adapter object\n"
+grep -q sqrtsd "$out/disassembly.txt"
+if nm -u "$out/adapter.o" | grep -q sqrt; then
+  echo "Unexpected library sqrt call" >&2
+  exit 1
+fi
+printf "Verified hardware addsd, subsd, mulsd, divsd and sqrtsd in adapter object\n"
 leanc "$out/Main.c" "$out/adapter.o" .lake/build/lib/libHardwareBounds.a \
   -lm -o "$out/hardware-add"
 "$out/hardware-add"

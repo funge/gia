@@ -616,3 +616,15 @@ The guard proves nonzero denominators and excludes zero-containing intervals
 conservatively. It is narrower than §3.2.26's generalized partial binary functions.
 The adapter and finite ordering remain explicit contracts; this does not verify
 C's reciprocal-then-multiply implementation or unbounded outputs.
+
+### Hardware square root and existing partial semantics
+
+[HardwareSquareRoot](HARDWARE_SQUARE_ROOT.md) supplies conditional hardware endpoint
+enclosure for the directed square root explicitly assumed in thesis §3.1 (printed
+p.45 / PDF p.61). It connects to `SqrtValues` from the exact-real SIGGRAPH §8 model
+without inventing values for negative inputs. Nonnegative and mixed ranges are
+covered; incoming holes are retained. Native binary64 execution is qualified by
+tests, while decoder/adapter/finite selection remain explicit trusted contracts.
+The runtime does not yet carry the paper's decorated domain flags; negative-input
+`none` alone is not a proof of absence. This extends, rather than replaces, the
+exact-real milestone and its source caveats recorded above.

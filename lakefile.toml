@@ -240,3 +240,6 @@ name = "HardwareMultiplication"
 
 [[lean_lib]]
 name = "HardwareDivision"
+
+[[lean_lib]]
+name = "HardwareSquareRoot"

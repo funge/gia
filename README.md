@@ -22,7 +22,9 @@ Lean demos and conditional enclosure proofs. The guide also prioritizes the
 remaining C operations for this path. The [hardware multiplier](HARDWARE_MULTIPLICATION.md) now assembles the four
 rounded corners under the approved finite min/max contract and has a conditional
 enclosure proof. [Guarded hardware division](HARDWARE_DIVISION.md) reuses that
-assembly and proves denominator nonzero as well as quotient enclosure. The [architecture assessment](HARDWARE_FLOAT_PLAN.md)
+assembly and proves denominator nonzero as well as quotient enclosure.
+[Directed hardware square root](HARDWARE_SQUARE_ROOT.md) adds bounds for defined
+roots on nonnegative and mixed-domain intervals. The [architecture assessment](HARDWARE_FLOAT_PLAN.md)
 records broader choices; it predates this explicitly authorized small milestone.
 
 ## Start here
@@ -54,7 +56,10 @@ graphing examples; `Evaluator` is a two-variable client, not the general core. R
 `CellCertification` for consumers. The linked topic notes explain the contracts;
 `tests/` contains independent integration clients.
 
-The merged baseline is relgraph main `7fd4b39`, through PR #73. Square-root PR #74 is kept separately and is not included in this baseline.
+The published gia baseline is `1f67388`, imported from relgraph main `7fd4b39`
+through PR #73. This separate gia review carries the hardware square-root work
+from still-unmerged relgraph PR #74 (`f7cfea8`), preserving its provenance and
+the published MIT notices.
 The earlier [review stack](REVIEW_STACK.md), [merge plan](MERGE_PLAN.md) and
 validation sections are historical snapshots, not current pending-PR lists.
 The [public-operation coverage ledger](OPERATION_COVERAGE.md) distinguishes
