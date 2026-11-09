@@ -16,6 +16,7 @@ _Static_assert(FLT_RADIX == 2 && DBL_MANT_DIG == 53 && DBL_MAX_EXP == 1024 && si
    Hold exceptions, change rounding only within this call, and restore fenv. */
 static int bounds(double a, double b, double *lo, double *hi, int operation) {
     if (!isfinite(a) || !isfinite(b)) return 0;
+    if (operation == 4 && a < 0.0) return 0;
     /* Reject flush-to-zero and denormals-are-zero execution modes. */
     if ((_mm_getcsr() & 0x8040u) != 0) return 0;
     fenv_t saved;
@@ -23,10 +24,10 @@ static int bounds(double a, double b, double *lo, double *hi, int operation) {
     int ok = 0;
     volatile double av = a, bv = b;
     if (fesetround(FE_DOWNWARD) == 0 && fegetround() == FE_DOWNWARD) {
-        volatile double down = operation == 3 ? av / bv : (operation == 2 ? av * bv : (operation == 1 ? av - bv : av + bv));
+        volatile double down = operation == 4 ? sqrt(av) : (operation == 3 ? av / bv : (operation == 2 ? av * bv : (operation == 1 ? av - bv : av + bv)));
         *lo = down;
         if (fesetround(FE_UPWARD) == 0 && fegetround() == FE_UPWARD) {
-            volatile double up = operation == 3 ? av / bv : (operation == 2 ? av * bv : (operation == 1 ? av - bv : av + bv));
+            volatile double up = operation == 4 ? sqrt(av) : (operation == 3 ? av / bv : (operation == 2 ? av * bv : (operation == 1 ? av - bv : av + bv)));
             *hi = up;
             ok = isfinite(*lo) && isfinite(*hi) && *lo <= *hi;
         }
@@ -69,13 +70,18 @@ LEAN_EXPORT lean_obj_res gia_directed_div(double a, double b, lean_obj_arg world
     return boxed_bounds(a, b, 3);
 }
 
+LEAN_EXPORT lean_obj_res gia_directed_sqrt(double a, lean_obj_arg world) {
+    (void)world;
+    return boxed_bounds(a, 0.0, 4);
+}
+
 LEAN_EXPORT lean_obj_res gia_rounding_restored(lean_obj_arg world) {
     (void)world;
     fenv_t saved;
     if (feholdexcept(&saved) != 0) return lean_io_result_mk_ok(lean_box(0));
     int ok = 1;
     const int modes[] = {FE_TONEAREST, FE_DOWNWARD, FE_UPWARD, FE_TOWARDZERO};
-    for (unsigned i = 0; i < 4; ++i) for (int operation = 0; operation < 4; ++operation) {
+    for (unsigned i = 0; i < 4; ++i) for (int operation = 0; operation < 5; ++operation) {
         double lo, hi;
         if (fesetround(modes[i]) != 0) { ok = 0; break; }
         /* Confirm that the multiplication probe really raises fresh flags. */
@@ -94,10 +100,17 @@ LEAN_EXPORT lean_obj_res gia_rounding_restored(lean_obj_arg world) {
             (void)inexact;
             if (!(fetestexcept(FE_INEXACT) & FE_INEXACT)) ok = 0;
         }
+        if (operation == 4) {
+            feclearexcept(FE_ALL_EXCEPT);
+            volatile double two = 2.0;
+            volatile double inexact = sqrt(two);
+            (void)inexact;
+            if (!(fetestexcept(FE_INEXACT) & FE_INEXACT)) ok = 0;
+        }
         feclearexcept(FE_ALL_EXCEPT);
         feraiseexcept(FE_INVALID);
         int flags = fetestexcept(FE_ALL_EXCEPT);
-        double a = operation == 2 ? 0x1p-1074 : 1.0;
+        double a = operation == 4 ? 2.0 : (operation == 2 ? 0x1p-1074 : 1.0);
         double b = operation == 3 ? 3.0 : (operation == 2 ? 0.5 : 0x1p-54);
         if (!bounds(a, b, &lo, &hi, operation) || fegetround() != modes[i] ||
             fetestexcept(FE_ALL_EXCEPT) != flags) ok = 0;
@@ -106,7 +119,7 @@ LEAN_EXPORT lean_obj_res gia_rounding_restored(lean_obj_arg world) {
     unsigned int csr = _mm_getcsr();
     double lo, hi;
     _mm_setcsr(csr | 0x8040u);
-    if (bounds(1.0, 1.0, &lo, &hi, 0) || bounds(1.0, 1.0, &lo, &hi, 1) || bounds(1.0, 1.0, &lo, &hi, 2) || bounds(1.0, 1.0, &lo, &hi, 3)) ok = 0;
+    if (bounds(1.0, 1.0, &lo, &hi, 0) || bounds(1.0, 1.0, &lo, &hi, 1) || bounds(1.0, 1.0, &lo, &hi, 2) || bounds(1.0, 1.0, &lo, &hi, 3) || bounds(1.0, 0.0, &lo, &hi, 4)) ok = 0;
     _mm_setcsr(csr);
     if (fesetenv(&saved) != 0) abort();
     return lean_io_result_mk_ok(lean_box(ok));

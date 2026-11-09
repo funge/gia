@@ -144,7 +144,7 @@ mathematics. A proof over rational intervals alone does not fill that gap.
 | Current | `gi_interval_add`, `gi_interval_sub` | Native demos plus conditional endpoint enclosure; actual decoder and adapter correspondence remain unproved |
 | Current extension | `gi_interval_mul` | [Four-corner native operation and conditional proof](HARDWARE_MULTIPLICATION.md), with the approved finite min/max contract; unknown on exceptional corners. The C sign-section optimization remains separate |
 | Current extension | `gi_interval_div` | [Guarded native division](HARDWARE_DIVISION.md): proved zero-exclusion and four-corner enclosure; exceptional results remain unknown |
-| Next | `gi_interval_sqrt` | Explicit real square-root domain and clipping semantics; prove guard and endpoint selection |
+| Current extension | `gi_interval_sqrt` | [Directed hardware square root](HARDWARE_SQUARE_ROOT.md) encloses defined roots after clipping; partiality retained through SqrtValues |
 | Composition | `gi_interval_pow_nonnegative_integer_exponent`, `gi_interval_factorial` | Iterate certified primitives with exact integer/domain checks and overflow policy. Repeated-input dependence must be preserved in the specification |
 | Representation track | constructors, emptiness/membership, neg/abs/min/max, hull/intersection, comparisons and Boolean intervals, floor/ceil | Many select endpoints or have exact finite semantics rather than needing new rounding modes. Still require verified value interpretation, comparison/NaN behavior, signed-zero and empty/unbounded representation decisions; do not mistake these for completed hardware proofs |
 | Separate domain/error work | remainder/mod, GCD/LCM point APIs, transcendental family including constants and `tan_defined` | Discontinuity and point-domain conditions need explicit treatment. Transcendentals need justified library error and range-reduction contracts; current C uses MPFR in this layer. No new such contract is adopted here |
@@ -156,7 +156,8 @@ would be a representation milestone, not a silent change to `decode`.
 
 Finite four-corner multiplication is now implemented under the approved finite
 selection contract. Guarded division now has a proved zero-exclusion guard and
-conservative unknown results; square root is the next arithmetic slice. Adding a concrete binary64
+conservative unknown results; square root now covers nonnegative and mixed domains.
+A compositional hardware evaluator is the next integration slice. Adding a concrete binary64
 interpretation would separately reduce the remaining representation gap; it would
 not by itself verify the C compiler or processor. Transcendental contracts and
 extended-value behavior should be reviewed before adopting new assumptions.

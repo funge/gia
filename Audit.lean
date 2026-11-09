@@ -1,3 +1,4 @@
+import HardwareSquareRoot
 import HardwareDivision
 import HardwareMultiplication
 import HardwareSubtraction
@@ -806,5 +807,10 @@ import SegmentSearchExamples
 #audit_axioms GeneralizedIntervalArithmetic.HardwareDivision.guarded_nonzero
 #audit_axioms GeneralizedIntervalArithmetic.HardwareDivision.four_quotients
 #audit_axioms GeneralizedIntervalArithmetic.HardwareDivision.assembleGuarded_encloses
+
+#audit_axioms GeneralizedIntervalArithmetic.HardwareSquareRoot.assemble_encloses
+#audit_axioms GeneralizedIntervalArithmetic.HardwareSquareRoot.assemble_sqrtValues
+#audit_axioms GeneralizedIntervalArithmetic.HardwareSquareRoot.nonnegative_defined_iff
+#audit_axioms GeneralizedIntervalArithmetic.HardwareSquareRoot.negative_absent
 
 #audit_namespace GeneralizedIntervalArithmetic

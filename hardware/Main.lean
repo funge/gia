@@ -47,6 +47,18 @@ def divide (a b : Bounds Float) : IO (Option (Bounds Float)) := do
   return GeneralizedIntervalArithmetic.HardwareDivision.assembleGuarded
     finiteLt 0.0 chooseMin chooseMax b ll lh hl hh
 
+@[extern "gia_directed_sqrt"]
+def directedSqrt (_a : Float) : IO (Option (Float × Float)) :=
+  throw (IO.userError "hardware adapter not linked")
+
+/-- Finite partial-domain enclosure; none alone does not classify the domain. -/
+def squareRoot (a : Bounds Float) : IO (Option (Bounds Float)) := do
+  unless a.lo.isFinite && a.hi.isFinite do return none
+  if a.hi < 0.0 || a.hi < a.lo then return none
+  let lower ← directedSqrt (chooseMax a.lo 0.0)
+  let upper ← directedSqrt a.hi
+  return assemble lower upper
+
 @[extern "gia_rounding_restored"]
 def roundingRestored : IO Bool := throw (IO.userError "hardware adapter not linked")
 
@@ -137,5 +149,22 @@ def main : IO Unit := do
   divCheck "div overflow unknown" ⟨largest, largest⟩ ⟨0.5, 1.0⟩ none
   divCheck "div infinite denominator unknown" one ⟨1.0, inf⟩ none
   divCheck "div NaN numerator unknown" ⟨nan, nan⟩ one none
+  let sqrtCheck := checkWith (fun a _ => squareRoot a)
+  sqrtCheck "sqrt nonnegative interval" ⟨1.0, 4.0⟩ one (some (0x3ff0000000000000, 0x4000000000000000))
+  sqrtCheck "sqrt irrational rounding" ⟨2.0, 2.0⟩ one (some (0x3ff6a09e667f3bcc, 0x3ff6a09e667f3bcd))
+  sqrtCheck "sqrt mixed domain" ⟨-1.0, 4.0⟩ one (some (0, 0x4000000000000000))
+  sqrtCheck "sqrt negative to zero" ⟨-1.0, 0.0⟩ one (some (0, 0))
+  sqrtCheck "sqrt negative unknown" ⟨-4.0, -1.0⟩ one none
+  sqrtCheck "sqrt signed zero" ⟨-0.0, 0.0⟩ one (some (0, 0))
+  sqrtCheck "sqrt smallest subnormal" ⟨tiny, tiny⟩ one (some (0x1e60000000000000, 0x1e60000000000000))
+  sqrtCheck "sqrt largest finite" ⟨largest, largest⟩ one (some (0x5fefffffffffffff, 0x5ff0000000000000))
+  sqrtCheck "sqrt infinity unknown" ⟨1.0, inf⟩ one none
+  sqrtCheck "sqrt negative infinity unknown" ⟨-inf, 4.0⟩ one none
+  sqrtCheck "sqrt NaN lower unknown" ⟨nan, 4.0⟩ one none
+  sqrtCheck "sqrt NaN upper unknown" ⟨0.0, nan⟩ one none
+  sqrtCheck "sqrt reversed unknown" ⟨4.0, 1.0⟩ one none
+  let badRoot ← directedSqrt (-1.0)
+  unless badRoot.isNone do throw (IO.userError "negative primitive sqrt accepted")
+  IO.println "PASS negative primitive sqrt rejected"
   unless (← roundingRestored) do throw (IO.userError "environment restoration failed")
   IO.println "PASS environment restoration"
