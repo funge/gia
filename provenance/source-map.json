@@ -1,0 +1,1416 @@
+{
+  "source_repository": "https://github.com/funge/relgraph",
+  "source_commit": "7fd4b39dc127dec3be1b96a46cf392d4bcd73d2b",
+  "historical_paths": [
+    "formalization/lean-pilot",
+    "formalization/lean"
+  ],
+  "files": [
+    {
+      "source_path": "formalization/lean/.gitignore",
+      "destination_path": ".gitignore",
+      "git_blob": "48d7849c123628f6b9aab8e39b97e9fe7bc999fc",
+      "mode": "100644"
+    },
+    {
+      "source_path": "formalization/lean/AUDIT_POLICY.md",
+      "destination_path": "AUDIT_POLICY.md",
+      "git_blob": "0051e7ca40bfd4a35199d2fd50bd1c551057169f",
+      "mode": "100644"
+    },
+    {
+      "source_path": "formalization/lean/AdaptiveCellCertification.lean",
+      "destination_path": "AdaptiveCellCertification.lean",
+      "git_blob": "ef2749eadbe7f56c70c97859cace787d10159ecb",
+      "mode": "100644"
+    },
+    {
+      "source_path": "formalization/lean/AffineDomainGuards.lean",
+      "destination_path": "AffineDomainGuards.lean",
+      "git_blob": "f128af0633b8391bfa3ceca6b51d66ad6bfeb7bc",
+      "mode": "100644"
+    },
+    {
+      "source_path": "formalization/lean/AffineRegionSearch.lean",
+      "destination_path": "AffineRegionSearch.lean",
+      "git_blob": "59a9dce7d3458f97da2ba03c09ab3d3012706f02",
+      "mode": "100644"
+    },
+    {
+      "source_path": "formalization/lean/AffineRegionSubdivision.lean",
+      "destination_path": "AffineRegionSubdivision.lean",
+      "git_blob": "d84565a54af7c77192e89c830192a518c5754699",
+      "mode": "100644"
+    },
+    {
+      "source_path": "formalization/lean/AffineRegions.lean",
+      "destination_path": "AffineRegions.lean",
+      "git_blob": "a2713e4e7e15f7bfcf5f7be096ab26d2d3044179",
+      "mode": "100644"
+    },
+    {
+      "source_path": "formalization/lean/AffineSegmentDomains.lean",
+      "destination_path": "AffineSegmentDomains.lean",
+      "git_blob": "a448895b7c0e250e7736e581ae25f25be5d5a045",
+      "mode": "100644"
+    },
+    {
+      "source_path": "formalization/lean/Audit.lean",
+      "destination_path": "Audit.lean",
+      "git_blob": "584b2eb3caa467dac148912ec0dafd489073eaff",
+      "mode": "100644"
+    },
+    {
+      "source_path": "formalization/lean/AuditPolicy.lean",
+      "destination_path": "AuditPolicy.lean",
+      "git_blob": "057713788384774163ef21f14453591c20b1586a",
+      "mode": "100644"
+    },
+    {
+      "source_path": "formalization/lean/BASIC_OPERATIONS.md",
+      "destination_path": "BASIC_OPERATIONS.md",
+      "git_blob": "93969b64977932a80eae7f0b00a49d344016f544",
+      "mode": "100644"
+    },
+    {
+      "source_path": "formalization/lean/BasicIntervalOps.lean",
+      "destination_path": "BasicIntervalOps.lean",
+      "git_blob": "763d2cf8a2b035bde8cea2d467a2105a00e20373",
+      "mode": "100644"
+    },
+    {
+      "source_path": "formalization/lean/CELL_CERTIFICATION.md",
+      "destination_path": "CELL_CERTIFICATION.md",
+      "git_blob": "11c8c973cf6901da0db8dc2d11794f545495c4a3",
+      "mode": "100644"
+    },
+    {
+      "source_path": "formalization/lean/CELL_CONTINUITY.md",
+      "destination_path": "CELL_CONTINUITY.md",
+      "git_blob": "7515f1fed4eb3fa66ab768590acacf5aa98a8513",
+      "mode": "100644"
+    },
+    {
+      "source_path": "formalization/lean/CONDITIONAL_ARITHMETIC.md",
+      "destination_path": "CONDITIONAL_ARITHMETIC.md",
+      "git_blob": "77866022c5729a15b96e413333fd68c6799b54ea",
+      "mode": "100644"
+    },
+    {
+      "source_path": "formalization/lean/CONDITIONAL_CONTINUITY.md",
+      "destination_path": "CONDITIONAL_CONTINUITY.md",
+      "git_blob": "fd1a2e0740998b26a8050bde2a8ac091f3b330ab",
+      "mode": "100644"
+    },
+    {
+      "source_path": "formalization/lean/CONDITIONAL_COVERS.md",
+      "destination_path": "CONDITIONAL_COVERS.md",
+      "git_blob": "8dcfe2fe4a3f936cc1377fd72be0836bcb87e58b",
+      "mode": "100644"
+    },
+    {
+      "source_path": "formalization/lean/CONDITIONAL_EVALUATOR.md",
+      "destination_path": "CONDITIONAL_EVALUATOR.md",
+      "git_blob": "cab0c7bd4d91b800ab5fa4a4713bf8847b0f93f5",
+      "mode": "100644"
+    },
+    {
+      "source_path": "formalization/lean/COVER_COALESCING.md",
+      "destination_path": "COVER_COALESCING.md",
+      "git_blob": "8048f0c2b6648257b4d0fac64632b55c5598bb01",
+      "mode": "100644"
+    },
+    {
+      "source_path": "formalization/lean/COVER_PRESENCE.md",
+      "destination_path": "COVER_PRESENCE.md",
+      "git_blob": "8f74d5132ada82fe2ed01f178c25694456561f21",
+      "mode": "100644"
+    },
+    {
+      "source_path": "formalization/lean/COVER_RESTRICTION.md",
+      "destination_path": "COVER_RESTRICTION.md",
+      "git_blob": "16cae65200db04f6667730b697cd0419367794b9",
+      "mode": "100644"
+    },
+    {
+      "source_path": "formalization/lean/CellCertification.lean",
+      "destination_path": "CellCertification.lean",
+      "git_blob": "549a6b6da46509626f6aa11267d668a535fd5c73",
+      "mode": "100644"
+    },
+    {
+      "source_path": "formalization/lean/CellContinuity.lean",
+      "destination_path": "CellContinuity.lean",
+      "git_blob": "0074df14728fa21af31842239ac7cf4a7fd09c42",
+      "mode": "100644"
+    },
+    {
+      "source_path": "formalization/lean/CellContinuityExamples.lean",
+      "destination_path": "CellContinuityExamples.lean",
+      "git_blob": "29f50a923f2b8ca09697a99729b84a04939a9c76",
+      "mode": "100644"
+    },
+    {
+      "source_path": "formalization/lean/CellCoverage.lean",
+      "destination_path": "CellCoverage.lean",
+      "git_blob": "33addc8d72ad03201b09a64b857f2011148cbc1f",
+      "mode": "100644"
+    },
+    {
+      "source_path": "formalization/lean/ConditionalArithmetic.lean",
+      "destination_path": "ConditionalArithmetic.lean",
+      "git_blob": "89b4f3b512f9aa768e2a45ae71fff7da3e77f020",
+      "mode": "100644"
+    },
+    {
+      "source_path": "formalization/lean/ConditionalArithmeticExamples.lean",
+      "destination_path": "ConditionalArithmeticExamples.lean",
+      "git_blob": "0cda6ee29c9f28ca5bb63978d0fee4573399b3f3",
+      "mode": "100644"
+    },
+    {
+      "source_path": "formalization/lean/ConditionalContinuity.lean",
+      "destination_path": "ConditionalContinuity.lean",
+      "git_blob": "721df68e9535635427f861f2d064be6898925782",
+      "mode": "100644"
+    },
+    {
+      "source_path": "formalization/lean/ConditionalContinuityExamples.lean",
+      "destination_path": "ConditionalContinuityExamples.lean",
+      "git_blob": "e3912b5fe4f51f388d240551340001be39438c1b",
+      "mode": "100644"
+    },
+    {
+      "source_path": "formalization/lean/ConditionalCoverExamples.lean",
+      "destination_path": "ConditionalCoverExamples.lean",
+      "git_blob": "c9007a3652254b1c8b0670e156e0ee2d2a1b70fd",
+      "mode": "100644"
+    },
+    {
+      "source_path": "formalization/lean/ConditionalCovers.lean",
+      "destination_path": "ConditionalCovers.lean",
+      "git_blob": "12f2f8c84afca23aaa8b43bb42ba1a2d2541da11",
+      "mode": "100644"
+    },
+    {
+      "source_path": "formalization/lean/ConditionalEvaluator.lean",
+      "destination_path": "ConditionalEvaluator.lean",
+      "git_blob": "a90ffc666ae193f8d173e093aa6fc408a966c069",
+      "mode": "100644"
+    },
+    {
+      "source_path": "formalization/lean/ConditionalExamples.lean",
+      "destination_path": "ConditionalExamples.lean",
+      "git_blob": "55a40f6bdea176e1fc1a392a6412b5f15abe9243",
+      "mode": "100644"
+    },
+    {
+      "source_path": "formalization/lean/CoverArithmetic.lean",
+      "destination_path": "CoverArithmetic.lean",
+      "git_blob": "ab1d9656658e89485ced049e78a71355d4dcddc8",
+      "mode": "100644"
+    },
+    {
+      "source_path": "formalization/lean/CoverCoalescing.lean",
+      "destination_path": "CoverCoalescing.lean",
+      "git_blob": "0e219625d41d565d2b4407991e2fc3f344bc2a2a",
+      "mode": "100644"
+    },
+    {
+      "source_path": "formalization/lean/CoverCoalescingExamples.lean",
+      "destination_path": "CoverCoalescingExamples.lean",
+      "git_blob": "18aef7a6e35cefb691e199fd3f372f72d9feebd4",
+      "mode": "100644"
+    },
+    {
+      "source_path": "formalization/lean/CoverPresence.lean",
+      "destination_path": "CoverPresence.lean",
+      "git_blob": "22edfc983996b4a39b3d0e16059967db39104b85",
+      "mode": "100644"
+    },
+    {
+      "source_path": "formalization/lean/CoverPresenceExamples.lean",
+      "destination_path": "CoverPresenceExamples.lean",
+      "git_blob": "c08aaa4fcf936f449405838fe2c6e91d8ae833f5",
+      "mode": "100644"
+    },
+    {
+      "source_path": "formalization/lean/CoverRestriction.lean",
+      "destination_path": "CoverRestriction.lean",
+      "git_blob": "edd231a0cab92eadafbc592f98eec9a6807f0866",
+      "mode": "100644"
+    },
+    {
+      "source_path": "formalization/lean/CoverRestrictionExamples.lean",
+      "destination_path": "CoverRestrictionExamples.lean",
+      "git_blob": "930e708f90d6b36c848670ee38d72d96add9b624",
+      "mode": "100644"
+    },
+    {
+      "source_path": "formalization/lean/DOMAIN_EVALUATOR.md",
+      "destination_path": "DOMAIN_EVALUATOR.md",
+      "git_blob": "76d8aa92dd2eee15a647fd61c2da1f71114d5ee9",
+      "mode": "100644"
+    },
+    {
+      "source_path": "formalization/lean/DivisionExamples.lean",
+      "destination_path": "DivisionExamples.lean",
+      "git_blob": "46152d06d38897a6f7935725b8044f2a041bdc99",
+      "mode": "100644"
+    },
+    {
+      "source_path": "formalization/lean/DomainEvaluator.lean",
+      "destination_path": "DomainEvaluator.lean",
+      "git_blob": "eb128a6b414dc49bc6cb08a1c68f45dd3ca76438",
+      "mode": "100644"
+    },
+    {
+      "source_path": "formalization/lean/DomainEvaluatorExamples.lean",
+      "destination_path": "DomainEvaluatorExamples.lean",
+      "git_blob": "47a0aa9a6a62e83983c4ca57227054f88985ba81",
+      "mode": "100644"
+    },
+    {
+      "source_path": "formalization/lean/DomainQueries.lean",
+      "destination_path": "DomainQueries.lean",
+      "git_blob": "bf0503bc2cab683f4737d7e21677bf911d1697ce",
+      "mode": "100644"
+    },
+    {
+      "source_path": "formalization/lean/EVALUATOR.md",
+      "destination_path": "EVALUATOR.md",
+      "git_blob": "b256b7d2d6e4d61282b1724258481b8abeeab85f",
+      "mode": "100644"
+    },
+    {
+      "source_path": "formalization/lean/Evaluator.lean",
+      "destination_path": "Evaluator.lean",
+      "git_blob": "72c8dc3be5810828e523dd98709ca67a8b4972a8",
+      "mode": "100644"
+    },
+    {
+      "source_path": "formalization/lean/EvaluatorExamples.lean",
+      "destination_path": "EvaluatorExamples.lean",
+      "git_blob": "48d746c1dd4d4885c505f1885fc42665073c9747",
+      "mode": "100644"
+    },
+    {
+      "source_path": "formalization/lean/EvaluatorRounding.lean",
+      "destination_path": "EvaluatorRounding.lean",
+      "git_blob": "c7bdc0c8759df99bf4997662351db220d0d12b45",
+      "mode": "100644"
+    },
+    {
+      "source_path": "formalization/lean/ExpressionContinuity.lean",
+      "destination_path": "ExpressionContinuity.lean",
+      "git_blob": "da60ec55edcd01ec8271f7466c6852320a90eea3",
+      "mode": "100644"
+    },
+    {
+      "source_path": "formalization/lean/FINITE_LINEAR_COVERS.md",
+      "destination_path": "FINITE_LINEAR_COVERS.md",
+      "git_blob": "612e8872aa8bf9376c700b80bd6a01e13a665578",
+      "mode": "100644"
+    },
+    {
+      "source_path": "formalization/lean/FLOATING_POINT_ROADMAP.md",
+      "destination_path": "FLOATING_POINT_ROADMAP.md",
+      "git_blob": "9ded0c24a104d3eb5c82c6fa645d1aec1730fb8e",
+      "mode": "100644"
+    },
+    {
+      "source_path": "formalization/lean/FiniteLinearCoverExamples.lean",
+      "destination_path": "FiniteLinearCoverExamples.lean",
+      "git_blob": "de30ee1dacbc3f5cfe63f01e2d15af8ffb122bca",
+      "mode": "100644"
+    },
+    {
+      "source_path": "formalization/lean/FiniteLinearCovers.lean",
+      "destination_path": "FiniteLinearCovers.lean",
+      "git_blob": "7f6c88b55328831bc2e2f94a4c7a0aed6a774b22",
+      "mode": "100644"
+    },
+    {
+      "source_path": "formalization/lean/GENERALIZED_INTERVALS.md",
+      "destination_path": "GENERALIZED_INTERVALS.md",
+      "git_blob": "38b1d7a5514d18f7ec86ff2c7bf7b8de92601896",
+      "mode": "100644"
+    },
+    {
+      "source_path": "formalization/lean/GUARDED_EVALUATOR.md",
+      "destination_path": "GUARDED_EVALUATOR.md",
+      "git_blob": "56fab1533c30cef3bb5fcedf1456b926189f1c84",
+      "mode": "100644"
+    },
+    {
+      "source_path": "formalization/lean/GeneralizedExamples.lean",
+      "destination_path": "GeneralizedExamples.lean",
+      "git_blob": "f333c589e7ed60e955260ae8ee799eb76865a758",
+      "mode": "100644"
+    },
+    {
+      "source_path": "formalization/lean/GuardedEvaluator.lean",
+      "destination_path": "GuardedEvaluator.lean",
+      "git_blob": "2fec67ddfecbd95751bd67e70ecf3a2e71d9ace2",
+      "mode": "100644"
+    },
+    {
+      "source_path": "formalization/lean/GuardedEvaluatorExamples.lean",
+      "destination_path": "GuardedEvaluatorExamples.lean",
+      "git_blob": "91845de7d96bb24d3db8e4f64798fd9ceb3299ba",
+      "mode": "100644"
+    },
+    {
+      "source_path": "formalization/lean/GuardedSimplification.lean",
+      "destination_path": "GuardedSimplification.lean",
+      "git_blob": "862e89dde631b6a13826886a6092854d992b9606",
+      "mode": "100644"
+    },
+    {
+      "source_path": "formalization/lean/HARDWARE_ADDITION.md",
+      "destination_path": "HARDWARE_ADDITION.md",
+      "git_blob": "2ac48167cc50e4bd98a0e3dfe5231ed6e564be98",
+      "mode": "100644"
+    },
+    {
+      "source_path": "formalization/lean/HARDWARE_DIVISION.md",
+      "destination_path": "HARDWARE_DIVISION.md",
+      "git_blob": "8fbae9bae34d942b615bf6edb0aeb04c87168eee",
+      "mode": "100644"
+    },
+    {
+      "source_path": "formalization/lean/HARDWARE_FLOAT_PLAN.md",
+      "destination_path": "HARDWARE_FLOAT_PLAN.md",
+      "git_blob": "0a20853bfb18478f1590042bae823ba400729cd8",
+      "mode": "100644"
+    },
+    {
+      "source_path": "formalization/lean/HARDWARE_MULTIPLICATION.md",
+      "destination_path": "HARDWARE_MULTIPLICATION.md",
+      "git_blob": "b48178a09adde4b3fca505131af9b4d005253ea7",
+      "mode": "100644"
+    },
+    {
+      "source_path": "formalization/lean/HardwareAddition.lean",
+      "destination_path": "HardwareAddition.lean",
+      "git_blob": "416dae4eec7a8bdb516f0f37e8a11396cab5d0f7",
+      "mode": "100644"
+    },
+    {
+      "source_path": "formalization/lean/HardwareBounds.lean",
+      "destination_path": "HardwareBounds.lean",
+      "git_blob": "22c597e8420eb0b6718aee9c1aec4720fb62e321",
+      "mode": "100644"
+    },
+    {
+      "source_path": "formalization/lean/HardwareDivision.lean",
+      "destination_path": "HardwareDivision.lean",
+      "git_blob": "6041e1b156a5e63d89b99548027016d7c9703e0f",
+      "mode": "100644"
+    },
+    {
+      "source_path": "formalization/lean/HardwareMultiplication.lean",
+      "destination_path": "HardwareMultiplication.lean",
+      "git_blob": "a9b769ebc84fa325a2c773011fe853c549b6dbce",
+      "mode": "100644"
+    },
+    {
+      "source_path": "formalization/lean/HardwareSubtraction.lean",
+      "destination_path": "HardwareSubtraction.lean",
+      "git_blob": "f36418885a9bc66c6efb27330041516fb854becd",
+      "mode": "100644"
+    },
+    {
+      "source_path": "formalization/lean/INTEGRATION_ASSESSMENT.md",
+      "destination_path": "INTEGRATION_ASSESSMENT.md",
+      "git_blob": "34c009541405be3289613c884e8337369739cdf8",
+      "mode": "100644"
+    },
+    {
+      "source_path": "formalization/lean/IntervalOps.lean",
+      "destination_path": "IntervalOps.lean",
+      "git_blob": "4d06e463a35f19810c920050ecb78e809399afc3",
+      "mode": "100644"
+    },
+    {
+      "source_path": "formalization/lean/Intervals.lean",
+      "destination_path": "Intervals.lean",
+      "git_blob": "ad87698ce107d501c8d9c6cfedd2cfc893adb20d",
+      "mode": "100644"
+    },
+    {
+      "source_path": "formalization/lean/LINEAR_DIVISION.md",
+      "destination_path": "LINEAR_DIVISION.md",
+      "git_blob": "8913496b1a967d29c71c014ff8df6b68d32f14b2",
+      "mode": "100644"
+    },
+    {
+      "source_path": "formalization/lean/LINEAR_EVALUATOR.md",
+      "destination_path": "LINEAR_EVALUATOR.md",
+      "git_blob": "39579ddd05778962882441c7b26f2204d94daafc",
+      "mode": "100644"
+    },
+    {
+      "source_path": "formalization/lean/LINEAR_MULTIPLICATION.md",
+      "destination_path": "LINEAR_MULTIPLICATION.md",
+      "git_blob": "3dd44e70e84beb18f05680a7ac9d25f980d98721",
+      "mode": "100644"
+    },
+    {
+      "source_path": "formalization/lean/LinearDivision.lean",
+      "destination_path": "LinearDivision.lean",
+      "git_blob": "5fcaed5c37ff0b8c2a4e82b57bc3e10ce837bc51",
+      "mode": "100644"
+    },
+    {
+      "source_path": "formalization/lean/LinearEvaluator.lean",
+      "destination_path": "LinearEvaluator.lean",
+      "git_blob": "3305ce275cb06cefc80141ec228d681a4aa16183",
+      "mode": "100644"
+    },
+    {
+      "source_path": "formalization/lean/LinearEvaluatorExamples.lean",
+      "destination_path": "LinearEvaluatorExamples.lean",
+      "git_blob": "65ca7f8d7983d43400e80f4bcd0845de5387dde8",
+      "mode": "100644"
+    },
+    {
+      "source_path": "formalization/lean/LinearIntervals.lean",
+      "destination_path": "LinearIntervals.lean",
+      "git_blob": "26298130136264a303eab9b4733ea57bfc88db4b",
+      "mode": "100644"
+    },
+    {
+      "source_path": "formalization/lean/LinearMultiplication.lean",
+      "destination_path": "LinearMultiplication.lean",
+      "git_blob": "0ac86f63c38ac0ae304528f78194b123d65d64a6",
+      "mode": "100644"
+    },
+    {
+      "source_path": "formalization/lean/MERGE_PLAN.md",
+      "destination_path": "MERGE_PLAN.md",
+      "git_blob": "7ab9d878456b42e060c13676aa03df2a9bdbaca5",
+      "mode": "100644"
+    },
+    {
+      "source_path": "formalization/lean/MONOTONE_INTEGER_BOUNDS.md",
+      "destination_path": "MONOTONE_INTEGER_BOUNDS.md",
+      "git_blob": "15e34b6c82bcb375bf147809e60735257e8b55d8",
+      "mode": "100644"
+    },
+    {
+      "source_path": "formalization/lean/MonotoneIntegerBounds.lean",
+      "destination_path": "MonotoneIntegerBounds.lean",
+      "git_blob": "dca01bbbcdbdb8ee5358803d20ac9f416e482ecc",
+      "mode": "100644"
+    },
+    {
+      "source_path": "formalization/lean/MultiplicationExamples.lean",
+      "destination_path": "MultiplicationExamples.lean",
+      "git_blob": "e9779c36c52e121a557c9eceab07a28725d6d63d",
+      "mode": "100644"
+    },
+    {
+      "source_path": "formalization/lean/NonzeroDomains.lean",
+      "destination_path": "NonzeroDomains.lean",
+      "git_blob": "030d95d3233f7bdb680612a2cad8c04c8c2f5274",
+      "mode": "100644"
+    },
+    {
+      "source_path": "formalization/lean/OPERATION_COVERAGE.md",
+      "destination_path": "OPERATION_COVERAGE.md",
+      "git_blob": "4bf0f37b0a56755298f8579559bb2bf61feaf5ea",
+      "mode": "100644"
+    },
+    {
+      "source_path": "formalization/lean/PARAMETER_RESTRICTION.md",
+      "destination_path": "PARAMETER_RESTRICTION.md",
+      "git_blob": "65d60a2d9fbfb46adeddb020552362f4c06a347a",
+      "mode": "100644"
+    },
+    {
+      "source_path": "formalization/lean/PIECEWISE_SELECTION.md",
+      "destination_path": "PIECEWISE_SELECTION.md",
+      "git_blob": "d8c98819e70246c5cec6e65c6f5f45bdf081c960",
+      "mode": "100644"
+    },
+    {
+      "source_path": "formalization/lean/PRESENCE.md",
+      "destination_path": "PRESENCE.md",
+      "git_blob": "754365430a707a1a03f01901f23e8add80130053",
+      "mode": "100644"
+    },
+    {
+      "source_path": "formalization/lean/ParameterRestriction.lean",
+      "destination_path": "ParameterRestriction.lean",
+      "git_blob": "66575f18b391ac83a873a44e8fc35f0ed2daa7d4",
+      "mode": "100644"
+    },
+    {
+      "source_path": "formalization/lean/ParameterRestrictionExamples.lean",
+      "destination_path": "ParameterRestrictionExamples.lean",
+      "git_blob": "fcc3ae69e96a4eaa1f89f8c49376c1e9cae20066",
+      "mode": "100644"
+    },
+    {
+      "source_path": "formalization/lean/PartialEnclosures.lean",
+      "destination_path": "PartialEnclosures.lean",
+      "git_blob": "dfe7dfd4c0e64351a77b43af43a8198f168933b1",
+      "mode": "100644"
+    },
+    {
+      "source_path": "formalization/lean/PiecewiseExamples.lean",
+      "destination_path": "PiecewiseExamples.lean",
+      "git_blob": "12272a740939e192e558fbb3eb3e255ba28eb042",
+      "mode": "100644"
+    },
+    {
+      "source_path": "formalization/lean/PiecewiseSelection.lean",
+      "destination_path": "PiecewiseSelection.lean",
+      "git_blob": "b39aa10ce8a92dac4e127dc352ed6e4023b488bc",
+      "mode": "100644"
+    },
+    {
+      "source_path": "formalization/lean/PointDomains.lean",
+      "destination_path": "PointDomains.lean",
+      "git_blob": "7819927ac5cee508ac16967908acb938f66ee415",
+      "mode": "100644"
+    },
+    {
+      "source_path": "formalization/lean/Presence.lean",
+      "destination_path": "Presence.lean",
+      "git_blob": "d29b5dd3678bd6341e75a28251725efca4ee3938",
+      "mode": "100644"
+    },
+    {
+      "source_path": "formalization/lean/PresenceChecker.lean",
+      "destination_path": "PresenceChecker.lean",
+      "git_blob": "b91562fc64974a2965a2054e0fcfc198e9c6fd94",
+      "mode": "100644"
+    },
+    {
+      "source_path": "formalization/lean/PresenceCheckerExamples.lean",
+      "destination_path": "PresenceCheckerExamples.lean",
+      "git_blob": "225b31341babe285d05621164a15879a1660cfe9",
+      "mode": "100644"
+    },
+    {
+      "source_path": "formalization/lean/PresenceExamples.lean",
+      "destination_path": "PresenceExamples.lean",
+      "git_blob": "d297e11994ed2fd796df1ad609583a25e97fc023",
+      "mode": "100644"
+    },
+    {
+      "source_path": "formalization/lean/QuotientDomains.lean",
+      "destination_path": "QuotientDomains.lean",
+      "git_blob": "ab81765f5c90949cd6768624648bac9d13078c3b",
+      "mode": "100644"
+    },
+    {
+      "source_path": "formalization/lean/README.md",
+      "destination_path": "README.md",
+      "git_blob": "beaf2f6261511468da33c006e17d1ca5a115c49a",
+      "mode": "100644"
+    },
+    {
+      "source_path": "formalization/lean/REVIEW_STACK.md",
+      "destination_path": "REVIEW_STACK.md",
+      "git_blob": "528e789f38dc98cadebe5956a03dd2fb98a11df9",
+      "mode": "100644"
+    },
+    {
+      "source_path": "formalization/lean/RoundedAddition.lean",
+      "destination_path": "RoundedAddition.lean",
+      "git_blob": "2753d2bba4a21d7a7211ebdd18747524e5a19c58",
+      "mode": "100644"
+    },
+    {
+      "source_path": "formalization/lean/SEGMENT_SEARCH.md",
+      "destination_path": "SEGMENT_SEARCH.md",
+      "git_blob": "38e03e256f2cfd05fcc752a08469da59932d5604",
+      "mode": "100644"
+    },
+    {
+      "source_path": "formalization/lean/SEMANTIC_CONTINUITY.md",
+      "destination_path": "SEMANTIC_CONTINUITY.md",
+      "git_blob": "05fa9094591583cbafa2bc6047f33a84a7e99ec7",
+      "mode": "100644"
+    },
+    {
+      "source_path": "formalization/lean/SUBDIVISION.md",
+      "destination_path": "SUBDIVISION.md",
+      "git_blob": "c2b0737ca615c7990be96a04c03200d32ba560d9",
+      "mode": "100644"
+    },
+    {
+      "source_path": "formalization/lean/SegmentSearch.lean",
+      "destination_path": "SegmentSearch.lean",
+      "git_blob": "a29945148bb7a65f5658641668bfc00e3f00fded",
+      "mode": "100644"
+    },
+    {
+      "source_path": "formalization/lean/SegmentSearchExamples.lean",
+      "destination_path": "SegmentSearchExamples.lean",
+      "git_blob": "914df2c455a59ee15030080ee93196d5f0f2da3d",
+      "mode": "100644"
+    },
+    {
+      "source_path": "formalization/lean/SemanticContinuity.lean",
+      "destination_path": "SemanticContinuity.lean",
+      "git_blob": "40cfb095d90da855495e0a516039a7c3f618e944",
+      "mode": "100644"
+    },
+    {
+      "source_path": "formalization/lean/SemanticContinuityExamples.lean",
+      "destination_path": "SemanticContinuityExamples.lean",
+      "git_blob": "8d2fdb17dd22bc473a5320096447ddd1a831aa3a",
+      "mode": "100644"
+    },
+    {
+      "source_path": "formalization/lean/SquareRootDomains.lean",
+      "destination_path": "SquareRootDomains.lean",
+      "git_blob": "944f64691d7926484a2ab96b9fb3335d32c75c9e",
+      "mode": "100644"
+    },
+    {
+      "source_path": "formalization/lean/Subdivision.lean",
+      "destination_path": "Subdivision.lean",
+      "git_blob": "7783ca94e1d8d67bd5cf9588a3343c91b6c5f4f1",
+      "mode": "100644"
+    },
+    {
+      "source_path": "formalization/lean/SubdivisionExamples.lean",
+      "destination_path": "SubdivisionExamples.lean",
+      "git_blob": "0deedd38371d5e3e5c0bfc32efea41b3fc954c45",
+      "mode": "100644"
+    },
+    {
+      "source_path": "formalization/lean/THESIS_CONCORDANCE.md",
+      "destination_path": "THESIS_CONCORDANCE.md",
+      "git_blob": "e3301acd9f05c0697d365355d564f0ad0054a88f",
+      "mode": "100644"
+    },
+    {
+      "source_path": "formalization/lean/ThresholdCertification.lean",
+      "destination_path": "ThresholdCertification.lean",
+      "git_blob": "23f9b20d8f1794f4b5610cc16865d235308a9839",
+      "mode": "100644"
+    },
+    {
+      "source_path": "formalization/lean/UniversalDomains.lean",
+      "destination_path": "UniversalDomains.lean",
+      "git_blob": "134b7587e19e6b662f7a4659c430e569fb9bb2da",
+      "mode": "100644"
+    },
+    {
+      "source_path": "formalization/lean/VALIDATION.md",
+      "destination_path": "VALIDATION.md",
+      "git_blob": "9258bfc8d21bd5df29630a8b92d0f10ce2e011ba",
+      "mode": "100644"
+    },
+    {
+      "source_path": "formalization/lean/check.sh",
+      "destination_path": "check.sh",
+      "git_blob": "3593ef142f92e9bcdd4fd27bc21527f764857e60",
+      "mode": "100755"
+    },
+    {
+      "source_path": "formalization/lean/hardware/Main.lean",
+      "destination_path": "hardware/Main.lean",
+      "git_blob": "9a64fedd8ad3578f96f0f828168968f0890eee35",
+      "mode": "100644"
+    },
+    {
+      "source_path": "formalization/lean/hardware/adapter.c",
+      "destination_path": "hardware/adapter.c",
+      "git_blob": "58d4f1c11cf401ea3fee839721b7cf305a62dc5c",
+      "mode": "100644"
+    },
+    {
+      "source_path": "formalization/lean/hardware/check.sh",
+      "destination_path": "hardware/check.sh",
+      "git_blob": "18d7a117871dd88eaf635c6860196e8035ef1a96",
+      "mode": "100755"
+    },
+    {
+      "source_path": "formalization/lean/lake-manifest.json",
+      "destination_path": "lake-manifest.json",
+      "git_blob": "aa1e35d0b2379b686e79d7f6c63776ea4b983574",
+      "mode": "100644"
+    },
+    {
+      "source_path": "formalization/lean/lakefile.toml",
+      "destination_path": "lakefile.toml",
+      "git_blob": "6447b9aa8a4e8a71fc7c8767e22cda4d412c8e01",
+      "mode": "100644"
+    },
+    {
+      "source_path": "formalization/lean/lean-toolchain",
+      "destination_path": "lean-toolchain",
+      "git_blob": "7aca1d8a939cc24c413eddd793671cdce7070b74",
+      "mode": "100644"
+    },
+    {
+      "source_path": "formalization/lean/tests/AffineCorrespondence.lean",
+      "destination_path": "tests/AffineCorrespondence.lean",
+      "git_blob": "4321d3cb3e973c0b5f7c610ae9b481caa265a355",
+      "mode": "100644"
+    },
+    {
+      "source_path": "formalization/lean/tests/AffineDomainGuards.lean",
+      "destination_path": "tests/AffineDomainGuards.lean",
+      "git_blob": "cd2757c753616080693a5b82fbf694dce3e0c68b",
+      "mode": "100644"
+    },
+    {
+      "source_path": "formalization/lean/tests/AffineRegionSearch.lean",
+      "destination_path": "tests/AffineRegionSearch.lean",
+      "git_blob": "97957448ac0fce37f1c8e72eaea137dd5ef65d07",
+      "mode": "100644"
+    },
+    {
+      "source_path": "formalization/lean/tests/AffineRegionSubdivision.lean",
+      "destination_path": "tests/AffineRegionSubdivision.lean",
+      "git_blob": "042a4fda080d623886367eb78e910204271c492a",
+      "mode": "100644"
+    },
+    {
+      "source_path": "formalization/lean/tests/AffineRegions.lean",
+      "destination_path": "tests/AffineRegions.lean",
+      "git_blob": "04d21fd1b34cb4d78356958f436de207a291df16",
+      "mode": "100644"
+    },
+    {
+      "source_path": "formalization/lean/tests/AffineSegmentDomains.lean",
+      "destination_path": "tests/AffineSegmentDomains.lean",
+      "git_blob": "48d97ef38da1500fda5f9a4e35667f2383ed7afb",
+      "mode": "100644"
+    },
+    {
+      "source_path": "formalization/lean/tests/BasicIntervalOps.lean",
+      "destination_path": "tests/BasicIntervalOps.lean",
+      "git_blob": "24d2934d910c71b2c780efab0deacedb83432837",
+      "mode": "100644"
+    },
+    {
+      "source_path": "formalization/lean/tests/CellCertificates.lean",
+      "destination_path": "tests/CellCertificates.lean",
+      "git_blob": "680a96428766ea551f2ce1588a876ac26991bf60",
+      "mode": "100644"
+    },
+    {
+      "source_path": "formalization/lean/tests/ConstantEmbedding.lean",
+      "destination_path": "tests/ConstantEmbedding.lean",
+      "git_blob": "959f7ef49600e979173fe7ff4a06bc74fc76dc4a",
+      "mode": "100644"
+    },
+    {
+      "source_path": "formalization/lean/tests/CoverPipeline.lean",
+      "destination_path": "tests/CoverPipeline.lean",
+      "git_blob": "0dd6ce003a8392d20c066ef67b834d4d85b5c7ba",
+      "mode": "100644"
+    },
+    {
+      "source_path": "formalization/lean/tests/DomainQueries.lean",
+      "destination_path": "tests/DomainQueries.lean",
+      "git_blob": "7d006b584a09779cc634e21f31e16b314899a452",
+      "mode": "100644"
+    },
+    {
+      "source_path": "formalization/lean/tests/DomainSearchIntegration.lean",
+      "destination_path": "tests/DomainSearchIntegration.lean",
+      "git_blob": "5abd623c137fc07cfbd506548f21e0bf0dc3b17d",
+      "mode": "100644"
+    },
+    {
+      "source_path": "formalization/lean/tests/HardwareAddition.lean",
+      "destination_path": "tests/HardwareAddition.lean",
+      "git_blob": "422dd9b805f8337580320f952dc1e0a76b419bfa",
+      "mode": "100644"
+    },
+    {
+      "source_path": "formalization/lean/tests/HardwareDivision.lean",
+      "destination_path": "tests/HardwareDivision.lean",
+      "git_blob": "2a8dbaa72a21813e9f87db494a884007a278a5ff",
+      "mode": "100644"
+    },
+    {
+      "source_path": "formalization/lean/tests/HardwareMultiplication.lean",
+      "destination_path": "tests/HardwareMultiplication.lean",
+      "git_blob": "70b58b11284e488933e10100bb60aad01dfff0a7",
+      "mode": "100644"
+    },
+    {
+      "source_path": "formalization/lean/tests/HardwareSubtraction.lean",
+      "destination_path": "tests/HardwareSubtraction.lean",
+      "git_blob": "f16b4b7a00e4b2ed6ada0bba7bae5d6fe415ac5c",
+      "mode": "100644"
+    },
+    {
+      "source_path": "formalization/lean/tests/Integration.lean",
+      "destination_path": "tests/Integration.lean",
+      "git_blob": "91d30dd7c21dbf1943246fe38561c1573cdd5300",
+      "mode": "100644"
+    },
+    {
+      "source_path": "formalization/lean/tests/MonotoneIntegerBounds.lean",
+      "destination_path": "tests/MonotoneIntegerBounds.lean",
+      "git_blob": "ca19778ecdbb88dab4b81c1b7285f2300d31da5b",
+      "mode": "100644"
+    },
+    {
+      "source_path": "formalization/lean/tests/NonzeroDomains.lean",
+      "destination_path": "tests/NonzeroDomains.lean",
+      "git_blob": "8b0e9b9fdae4314b84488f24ed04dc4a5a6fdefc",
+      "mode": "100644"
+    },
+    {
+      "source_path": "formalization/lean/tests/OptionalRangePrototype.lean",
+      "destination_path": "tests/OptionalRangePrototype.lean",
+      "git_blob": "83e2562bc6dac7f0fccbffb894d0c64ebaae3811",
+      "mode": "100644"
+    },
+    {
+      "source_path": "formalization/lean/tests/PointDomains.lean",
+      "destination_path": "tests/PointDomains.lean",
+      "git_blob": "1417a9ea3d84bc904827ee364780b3c7b1689bbb",
+      "mode": "100644"
+    },
+    {
+      "source_path": "formalization/lean/tests/PropertyComposition.lean",
+      "destination_path": "tests/PropertyComposition.lean",
+      "git_blob": "0d0598df04adf5f75b8446abc32c8d5d581d00ff",
+      "mode": "100644"
+    },
+    {
+      "source_path": "formalization/lean/tests/QuadraticChord.lean",
+      "destination_path": "tests/QuadraticChord.lean",
+      "git_blob": "5faad9d1afb5db9b7278d525d33e45b57d3f7c1f",
+      "mode": "100644"
+    },
+    {
+      "source_path": "formalization/lean/tests/QuotientDomains.lean",
+      "destination_path": "tests/QuotientDomains.lean",
+      "git_blob": "ff78a84a88fee2594a6b9ae17bfe2c19eb2fc4fc",
+      "mode": "100644"
+    },
+    {
+      "source_path": "formalization/lean/tests/SquareRootDomains.lean",
+      "destination_path": "tests/SquareRootDomains.lean",
+      "git_blob": "d011495e261a72d0c03877261b5a1140fe4d3f98",
+      "mode": "100644"
+    },
+    {
+      "source_path": "formalization/lean/tests/ThresholdCertificates.lean",
+      "destination_path": "tests/ThresholdCertificates.lean",
+      "git_blob": "47f3c6efb3e24d59fb9353c8b59d7561342d16fc",
+      "mode": "100644"
+    },
+    {
+      "source_path": "formalization/lean/tests/TwoParameterBounds.lean",
+      "destination_path": "tests/TwoParameterBounds.lean",
+      "git_blob": "c33311d54bf8c9900996ce812ae220cf7086a820",
+      "mode": "100644"
+    },
+    {
+      "source_path": "formalization/lean/tests/UncertainDomains.lean",
+      "destination_path": "tests/UncertainDomains.lean",
+      "git_blob": "9230b8e28b225412f75c98f3c1259218b9200050",
+      "mode": "100644"
+    },
+    {
+      "source_path": "formalization/lean/tests/UniversalDomains.lean",
+      "destination_path": "tests/UniversalDomains.lean",
+      "git_blob": "c5f06c8eb0e1d730c0f1be807e6c988f4bcf8b15",
+      "mode": "100644"
+    },
+    {
+      "source_path": "formalization/lean/tests/test_axiom_audit.py",
+      "destination_path": "tests/test_axiom_audit.py",
+      "git_blob": "b737dd9c58c11cec88e28dea4e792fba622543f5",
+      "mode": "100644"
+    },
+    {
+      "source_path": "formalization/lean/tests/test_operation_coverage.py",
+      "destination_path": "tests/test_operation_coverage.py",
+      "git_blob": "ca0ce9a0582ad687a27bbd510b74acdf19043d23",
+      "mode": "100644"
+    },
+    {
+      "source_path": "formalization/lean/tests/test_project_integration.py",
+      "destination_path": "tests/test_project_integration.py",
+      "git_blob": "fbc3568a868785edde4c936be6d4a12a14e47f2c",
+      "mode": "100644"
+    }
+  ],
+  "path_history_commits": [
+    {
+      "commit": "7a802634c24c2f18fbc3b4f63bdce775f091a07c",
+      "author": "John Funge",
+      "email": "jfunge@gmail.com",
+      "date": "2026-11-08T02:53:32Z"
+    },
+    {
+      "commit": "fe224414b060c17f2949e626368201caa0f67854",
+      "author": "John Funge",
+      "email": "jfunge@gmail.com",
+      "date": "2026-11-08T02:53:19Z"
+    },
+    {
+      "commit": "a8190fbff7f7d131f8068a1f8c29c960a8434f77",
+      "author": "John Funge",
+      "email": "jfunge@gmail.com",
+      "date": "2026-11-08T02:42:37Z"
+    },
+    {
+      "commit": "d0513b9865d15be72491ef39b66b5b9966ea9a95",
+      "author": "John Funge",
+      "email": "jfunge@gmail.com",
+      "date": "2026-11-08T02:37:07Z"
+    },
+    {
+      "commit": "9e00e6de77d67ab4a3b1244e357652e28cb4f569",
+      "author": "John Funge",
+      "email": "jfunge@gmail.com",
+      "date": "2026-11-08T02:16:32Z"
+    },
+    {
+      "commit": "f636155806a16ba8b0b02f8b32790ad2b36cded3",
+      "author": "John Funge",
+      "email": "jfunge@gmail.com",
+      "date": "2026-11-08T02:03:05Z"
+    },
+    {
+      "commit": "65c952eaf038d4d691e55912b2af0783e3889507",
+      "author": "John Funge",
+      "email": "jfunge@gmail.com",
+      "date": "2026-11-08T00:54:53Z"
+    },
+    {
+      "commit": "81c857a06f4d0a56f073dd3452fdbf1ab9ad7f83",
+      "author": "John Funge",
+      "email": "jfunge@gmail.com",
+      "date": "2026-11-08T00:47:55Z"
+    },
+    {
+      "commit": "368073e76ba394f111dcd3238b22d4374b3db75a",
+      "author": "John Funge",
+      "email": "jfunge@gmail.com",
+      "date": "2026-11-08T00:06:07Z"
+    },
+    {
+      "commit": "bb363632581a79259dba29790c2e57701cce48a3",
+      "author": "John Funge",
+      "email": "jfunge@gmail.com",
+      "date": "2026-11-07T23:50:07Z"
+    },
+    {
+      "commit": "d4646774960990b0c516ab8102199072536e2a05",
+      "author": "John Funge",
+      "email": "jfunge@gmail.com",
+      "date": "2026-11-07T15:20:41Z"
+    },
+    {
+      "commit": "ba5cca617235818b5e7b077cdcfc9171265f44f3",
+      "author": "John Funge",
+      "email": "jfunge@gmail.com",
+      "date": "2026-11-07T15:20:12Z"
+    },
+    {
+      "commit": "ea03873385e144f54bfb86324ad6785b71d0b02d",
+      "author": "John Funge",
+      "email": "jfunge@gmail.com",
+      "date": "2026-11-07T05:34:53Z"
+    },
+    {
+      "commit": "59d376a668e142b69051ab6cd46bfbff9b30df94",
+      "author": "John Funge",
+      "email": "jfunge@gmail.com",
+      "date": "2026-11-07T05:28:37Z"
+    },
+    {
+      "commit": "39ed7701a8a02a268cc9b2e2e5ffe09c47e1c242",
+      "author": "John Funge",
+      "email": "jfunge@gmail.com",
+      "date": "2026-11-07T05:26:12Z"
+    },
+    {
+      "commit": "35eec824008be8f9bd9510431f74f4c94b1a0bf2",
+      "author": "John Funge",
+      "email": "jfunge@gmail.com",
+      "date": "2026-11-07T05:14:54Z"
+    },
+    {
+      "commit": "e2c806c09b043cda292c1b176cfe0db35bacf902",
+      "author": "John Funge",
+      "email": "jfunge@gmail.com",
+      "date": "2026-11-07T05:02:36Z"
+    },
+    {
+      "commit": "d8b7352aa8bc7e203e1142a4719c3f259ed346de",
+      "author": "John Funge",
+      "email": "jfunge@gmail.com",
+      "date": "2026-11-07T04:51:43Z"
+    },
+    {
+      "commit": "4845d6bd2f2d53ea1fa44ed65b9500c456c54d70",
+      "author": "John Funge",
+      "email": "jfunge@gmail.com",
+      "date": "2026-11-07T04:41:46Z"
+    },
+    {
+      "commit": "3b317c38df9cbeb482df7e18db3670bd23f01898",
+      "author": "John Funge",
+      "email": "jfunge@gmail.com",
+      "date": "2026-11-07T04:30:16Z"
+    },
+    {
+      "commit": "be6fc0b2f4b438aa391597f5585bc77b1a0b6e6d",
+      "author": "John Funge",
+      "email": "jfunge@gmail.com",
+      "date": "2026-11-07T04:20:36Z"
+    },
+    {
+      "commit": "7c1997d5b785bf7b5cf9d3063b9a0cabb4706cc1",
+      "author": "John Funge",
+      "email": "jfunge@gmail.com",
+      "date": "2026-11-07T04:06:33Z"
+    },
+    {
+      "commit": "050ffd22c9ae0e4374045bbf599514966516c6d1",
+      "author": "John Funge",
+      "email": "jfunge@gmail.com",
+      "date": "2026-11-07T04:02:43Z"
+    },
+    {
+      "commit": "7ea8ab5ad52f84209159f461cccb057a5f230b5c",
+      "author": "John Funge",
+      "email": "jfunge@gmail.com",
+      "date": "2026-11-07T03:55:47Z"
+    },
+    {
+      "commit": "7b375e95ab5ff311f2c87759d78e9ac79b33194e",
+      "author": "John Funge",
+      "email": "jfunge@gmail.com",
+      "date": "2026-11-07T03:43:38Z"
+    },
+    {
+      "commit": "ad579edf1a378a6dde1264770cca6f1373ba99cc",
+      "author": "John Funge",
+      "email": "jfunge@gmail.com",
+      "date": "2026-11-07T03:34:29Z"
+    },
+    {
+      "commit": "e7c60ee7fd295ebe4630ff44bee400b0edced30a",
+      "author": "John Funge",
+      "email": "jfunge@gmail.com",
+      "date": "2026-11-07T03:25:20Z"
+    },
+    {
+      "commit": "8739adff1b4fd8169c03cc1634017d3fee88555c",
+      "author": "John Funge",
+      "email": "jfunge@gmail.com",
+      "date": "2026-11-07T03:17:17Z"
+    },
+    {
+      "commit": "ba976a57f4060352efa1c1d0f283e2e8438e186e",
+      "author": "John Funge",
+      "email": "jfunge@gmail.com",
+      "date": "2026-11-07T03:05:52Z"
+    },
+    {
+      "commit": "4482b93ac0f9926dcb531223353788a60afeb3de",
+      "author": "John Funge",
+      "email": "jfunge@gmail.com",
+      "date": "2026-11-07T03:02:50Z"
+    },
+    {
+      "commit": "213b6c84388ac04bef579d77b0c8e6fe342fde03",
+      "author": "John Funge",
+      "email": "jfunge@gmail.com",
+      "date": "2026-11-07T02:58:38Z"
+    },
+    {
+      "commit": "9efa154bd09e8a9a2198974da6aaf1e37102746c",
+      "author": "John Funge",
+      "email": "jfunge@gmail.com",
+      "date": "2026-11-07T02:53:45Z"
+    },
+    {
+      "commit": "c385d0e08284c82429eca53beedde64edd2efdaf",
+      "author": "John Funge",
+      "email": "jfunge@gmail.com",
+      "date": "2026-11-07T02:41:14Z"
+    },
+    {
+      "commit": "ee23e8e49965bd474237806f55a9327467ed9de0",
+      "author": "John Funge",
+      "email": "jfunge@gmail.com",
+      "date": "2026-11-07T02:30:15Z"
+    },
+    {
+      "commit": "a68996dfac7b4036d674e9d4327039221199e76f",
+      "author": "John Funge",
+      "email": "jfunge@gmail.com",
+      "date": "2026-11-07T02:21:08Z"
+    },
+    {
+      "commit": "404271d5b6e19c2df89825e4446afb5671c28548",
+      "author": "John Funge",
+      "email": "jfunge@gmail.com",
+      "date": "2026-11-07T02:12:47Z"
+    },
+    {
+      "commit": "00d1a4914e816da96ccee9449b05610602194556",
+      "author": "John Funge",
+      "email": "jfunge@gmail.com",
+      "date": "2026-11-07T02:00:45Z"
+    },
+    {
+      "commit": "5af426f12b2dd6686524479633a2bc178332125f",
+      "author": "John Funge",
+      "email": "jfunge@gmail.com",
+      "date": "2026-11-07T01:48:36Z"
+    },
+    {
+      "commit": "9fb779e8843c317b30bdcca5097949c98083d43b",
+      "author": "John Funge",
+      "email": "jfunge@gmail.com",
+      "date": "2026-11-07T01:38:39Z"
+    },
+    {
+      "commit": "a3c38161bcba9a5b8c176f0551a6db6f94758ad4",
+      "author": "John Funge",
+      "email": "jfunge@gmail.com",
+      "date": "2026-11-07T01:11:33Z"
+    },
+    {
+      "commit": "a3500ad86bd41c529f4415fa12bf04c0164ebaf6",
+      "author": "John Funge",
+      "email": "jfunge@gmail.com",
+      "date": "2026-11-07T01:02:34Z"
+    },
+    {
+      "commit": "ed5a624f75bda7a12e39e68414eb4c334211c0bd",
+      "author": "John Funge",
+      "email": "jfunge@gmail.com",
+      "date": "2026-11-07T00:53:55Z"
+    },
+    {
+      "commit": "316364ccbd8636053619e1d2a84f091e4e143bfd",
+      "author": "John Funge",
+      "email": "jfunge@gmail.com",
+      "date": "2026-11-07T00:41:28Z"
+    },
+    {
+      "commit": "3b210953451fbc21d4b6174b5341b01e2bca2b0b",
+      "author": "John Funge",
+      "email": "jfunge@gmail.com",
+      "date": "2026-11-07T00:33:47Z"
+    },
+    {
+      "commit": "ddd65eb52a4dadf976392440ef8bc87d7162406e",
+      "author": "John Funge",
+      "email": "jfunge@gmail.com",
+      "date": "2026-11-07T00:26:00Z"
+    },
+    {
+      "commit": "0a8582f2dc76c8dc1637d389df274e80ecda6b44",
+      "author": "John Funge",
+      "email": "jfunge@gmail.com",
+      "date": "2026-11-07T00:12:01Z"
+    },
+    {
+      "commit": "df385da2b43fae124b22d9087764a87bf6a123a7",
+      "author": "John Funge",
+      "email": "jfunge@gmail.com",
+      "date": "2026-11-07T00:02:19Z"
+    },
+    {
+      "commit": "b63f1da0d91ac4eae10c17531362b3796cde1c0f",
+      "author": "John Funge",
+      "email": "jfunge@gmail.com",
+      "date": "2026-11-06T23:50:30Z"
+    },
+    {
+      "commit": "a72069e083f465a414773743002516673b867255",
+      "author": "John Funge",
+      "email": "jfunge@gmail.com",
+      "date": "2026-11-06T23:41:15Z"
+    },
+    {
+      "commit": "7ba5b92ed92b791265ee75d657ffbca87794d99b",
+      "author": "John Funge",
+      "email": "jfunge@gmail.com",
+      "date": "2026-11-06T23:32:46Z"
+    },
+    {
+      "commit": "c7264ffdaad4773f4510a92c8e57eeed245cf192",
+      "author": "John Funge",
+      "email": "jfunge@gmail.com",
+      "date": "2026-11-06T23:24:31Z"
+    },
+    {
+      "commit": "37e6dd5d8a5e95ce55af39e8e118f826edf2d3e0",
+      "author": "John Funge",
+      "email": "jfunge@gmail.com",
+      "date": "2026-11-06T23:13:52Z"
+    },
+    {
+      "commit": "f409ade72890cf2263fa9a262824a3693bfe296a",
+      "author": "John Funge",
+      "email": "jfunge@gmail.com",
+      "date": "2026-11-06T23:04:20Z"
+    },
+    {
+      "commit": "013c2c6afca031cce626bd52d048b2a3c61b725c",
+      "author": "John Funge",
+      "email": "jfunge@gmail.com",
+      "date": "2026-11-06T22:52:36Z"
+    },
+    {
+      "commit": "6cfa21c15d6743275ea103b4bbc7860e290c36d3",
+      "author": "John Funge",
+      "email": "jfunge@gmail.com",
+      "date": "2026-11-06T22:42:30Z"
+    },
+    {
+      "commit": "58693da381567f2ce8f2b8f60fca720c724974c4",
+      "author": "John Funge",
+      "email": "jfunge@gmail.com",
+      "date": "2026-11-06T22:34:18Z"
+    },
+    {
+      "commit": "796cc60d733c0e287cd87cc013d51ea2cd00b200",
+      "author": "John Funge",
+      "email": "jfunge@gmail.com",
+      "date": "2026-11-06T22:26:55Z"
+    },
+    {
+      "commit": "8f6a7b45a5056d986d96d099994fa9b30b811d2f",
+      "author": "John Funge",
+      "email": "jfunge@gmail.com",
+      "date": "2026-11-06T22:18:40Z"
+    },
+    {
+      "commit": "2f98daf614c14a44b5a32b7247ff13feae083605",
+      "author": "John Funge",
+      "email": "jfunge@gmail.com",
+      "date": "2026-11-06T22:11:36Z"
+    },
+    {
+      "commit": "3adad1af5e7546842701bfc94ef1a5fe4ccf1361",
+      "author": "John Funge",
+      "email": "jfunge@gmail.com",
+      "date": "2026-11-06T22:03:43Z"
+    },
+    {
+      "commit": "91db4d70ba67e79708e7e2c1d206af71a64ba830",
+      "author": "John Funge",
+      "email": "jfunge@gmail.com",
+      "date": "2026-11-06T21:52:14Z"
+    },
+    {
+      "commit": "df548a08a9f1118ab2edd5355877e378d324e5b1",
+      "author": "John Funge",
+      "email": "jfunge@gmail.com",
+      "date": "2026-11-06T21:43:32Z"
+    },
+    {
+      "commit": "d6355f047026cd93bbfdf2a67524c16bf21912cc",
+      "author": "John Funge",
+      "email": "jfunge@gmail.com",
+      "date": "2026-11-06T21:36:03Z"
+    },
+    {
+      "commit": "e8b4d033f1947f09c695d56def122b491b2e8f43",
+      "author": "John Funge",
+      "email": "jfunge@gmail.com",
+      "date": "2026-11-06T21:34:05Z"
+    },
+    {
+      "commit": "22817a358800c7dc65df3b4fc386d42a1a218621",
+      "author": "John Funge",
+      "email": "jfunge@gmail.com",
+      "date": "2026-11-06T21:28:11Z"
+    },
+    {
+      "commit": "602ddb82de853b5854c78faff124706fa8a024b5",
+      "author": "John Funge",
+      "email": "jfunge@gmail.com",
+      "date": "2026-11-06T21:24:33Z"
+    },
+    {
+      "commit": "97c6ddaff3ed1ac800557bd83e9196cc02b80bd9",
+      "author": "John Funge",
+      "email": "jfunge@gmail.com",
+      "date": "2026-11-06T21:14:37Z"
+    },
+    {
+      "commit": "892e35025fbe2297e90d5307baed416b88b26d47",
+      "author": "John Funge",
+      "email": "jfunge@gmail.com",
+      "date": "2026-11-06T21:09:15Z"
+    },
+    {
+      "commit": "56cf5b90866147a4088fdca227270aea79926c70",
+      "author": "John Funge",
+      "email": "jfunge@gmail.com",
+      "date": "2026-11-06T21:03:50Z"
+    },
+    {
+      "commit": "b750c95f4c33eca8767d8ca745556e3b73359b71",
+      "author": "John Funge",
+      "email": "jfunge@gmail.com",
+      "date": "2026-11-06T20:55:23Z"
+    },
+    {
+      "commit": "f0ede151037f1ba59ab9ae99778b2d9c3f7b416b",
+      "author": "John Funge",
+      "email": "jfunge@gmail.com",
+      "date": "2026-11-06T20:48:34Z"
+    },
+    {
+      "commit": "6a00fffa3b6222592ee799db02e60639eb2d2b4b",
+      "author": "John Funge",
+      "email": "jfunge@gmail.com",
+      "date": "2026-11-06T20:46:14Z"
+    },
+    {
+      "commit": "923bf4fedcd049fb39c6be309df77de45a6e7ee6",
+      "author": "John Funge",
+      "email": "jfunge@gmail.com",
+      "date": "2026-11-06T19:41:13Z"
+    },
+    {
+      "commit": "b23aca4d293821275d8684fae2677b858275c70f",
+      "author": "John Funge",
+      "email": "jfunge@gmail.com",
+      "date": "2026-11-06T19:38:54Z"
+    },
+    {
+      "commit": "16fc1d2b2f2ff88ddbeae8ef9e224c09171c2b9b",
+      "author": "John Funge",
+      "email": "jfunge@gmail.com",
+      "date": "2026-11-06T19:23:14Z"
+    },
+    {
+      "commit": "121a221e0016ec321160223745d37ed94c6b0f70",
+      "author": "John Funge",
+      "email": "jfunge@gmail.com",
+      "date": "2026-11-06T18:38:48Z"
+    },
+    {
+      "commit": "7d1218644551bb32952c8211f96bfddb96eb1156",
+      "author": "John Funge",
+      "email": "jfunge@gmail.com",
+      "date": "2026-11-06T18:32:23Z"
+    }
+  ],
+  "pending_review": {
+    "pr": 74,
+    "commit": "f7cfea863529e48dffddc393cb9fb25d41ea9b03",
+    "excluded_from_baseline": true
+  },
+  "target_initial_commit": "5205f7794e34d6841b7bd3bd6e9898caaf743ab1"
+}

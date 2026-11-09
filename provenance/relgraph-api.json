@@ -1,0 +1,92 @@
+{
+  "repository": "https://github.com/funge/relgraph",
+  "commit": "7fd4b39dc127dec3be1b96a46cf392d4bcd73d2b",
+  "headers": [
+    {
+      "path": "include/graphing/common_factor.h",
+      "git_blob": "6b4a1fbcf77bfe5451f8d8fc5b865119ea58138e",
+      "sha256": "8b05c79aa90dfaee371bbeb4eabbbf44095fdbfdfc3a58eb098978d259659581",
+      "symbols": [
+        "gi_common_factor_gcd_point",
+        "gi_common_factor_lcm_point",
+        "gi_common_factor_gcd_unit_upper"
+      ]
+    },
+    {
+      "path": "include/graphing/interval.h",
+      "git_blob": "1262407da61c679a92bf58efba6b02d641f83012",
+      "sha256": "2b44739d4886f44882b499135bc658e201d936941f94ecf094c671b3056b6ef0",
+      "symbols": [
+        "gi_kernel_abi_descriptor",
+        "gi_kernel_numeric_contract_check",
+        "gi_interval_make",
+        "gi_interval_point",
+        "gi_interval_empty",
+        "gi_interval_whole",
+        "gi_interval_is_empty",
+        "gi_interval_contains",
+        "gi_interval_add",
+        "gi_interval_sub",
+        "gi_interval_mul",
+        "gi_interval_div",
+        "gi_interval_min",
+        "gi_interval_max",
+        "gi_interval_sqrt",
+        "gi_interval_neg",
+        "gi_interval_abs",
+        "gi_interval_floor",
+        "gi_interval_ceil",
+        "gi_interval_factorial",
+        "gi_interval_pow_nonnegative_integer_exponent",
+        "gi_interval_hull",
+        "gi_interval_intersect",
+        "gi_interval_gt",
+        "gi_interval_ge",
+        "gi_interval_lt",
+        "gi_interval_le",
+        "gi_interval_eq",
+        "gi_bool_make",
+        "gi_bool_not",
+        "gi_bool_and",
+        "gi_bool_or"
+      ]
+    },
+    {
+      "path": "include/graphing/remainder.h",
+      "git_blob": "65dac903d9427b4ffe8f2c0b0ba4f756ccb09c98",
+      "sha256": "a2482284b2adae477afbf6480628eb5724a4689d1e928ae7812a00622ca6c5c6",
+      "symbols": [
+        "gi_remainder_mod_point",
+        "gi_remainder_fmod_point"
+      ]
+    },
+    {
+      "path": "include/graphing/transcendental.h",
+      "git_blob": "3c2155e6bb8dfe37c35cb6d48b61ba4f1367a348",
+      "sha256": "d0ed143cbb531ab63580b6c428b765d290e3ef0f2f68449d8824753889e409c8",
+      "symbols": [
+        "gi_trans_pi_multiple",
+        "gi_trans_pow_positive_integer_base",
+        "gi_trans_cbrt",
+        "gi_trans_atan",
+        "gi_trans_exp",
+        "gi_trans_ln",
+        "gi_trans_log10",
+        "gi_trans_sinh",
+        "gi_trans_cosh",
+        "gi_trans_tanh",
+        "gi_trans_asin",
+        "gi_trans_acos",
+        "gi_trans_asinh",
+        "gi_trans_acosh",
+        "gi_trans_atanh",
+        "gi_trans_atan2",
+        "gi_trans_log2",
+        "gi_trans_sin",
+        "gi_trans_cos",
+        "gi_trans_tan",
+        "gi_trans_tan_defined"
+      ]
+    }
+  ]
+}

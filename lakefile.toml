@@ -1,0 +1,242 @@
+name = "generalized_interval_arithmetic"
+version = "0.1.0"
+defaultTargets = ["Intervals", "RoundedAddition", "EvaluatorExamples", "PresenceCheckerExamples", "SubdivisionExamples", "GeneralizedExamples", "MultiplicationExamples", "Audit", "LinearEvaluatorExamples", "DivisionExamples", "DomainEvaluatorExamples", "GuardedEvaluatorExamples", "PiecewiseExamples", "ConditionalExamples", "ConditionalArithmeticExamples", "ParameterRestrictionExamples", "SemanticContinuityExamples", "CellContinuityExamples", "ConditionalContinuityExamples", "FiniteLinearCoverExamples", "ConditionalCoverExamples", "CoverPresenceExamples", "CoverCoalescingExamples", "CoverRestrictionExamples"]
+
+[[require]]
+name = "mathlib"
+git = "https://github.com/leanprover-community/mathlib4.git"
+rev = "c44e0c8ee63ca166450922a373c7409c5d26b00b"
+
+[[lean_lib]]
+name = "Intervals"
+
+[[lean_lib]]
+name = "RoundedAddition"
+
+[[lean_lib]]
+name = "IntervalOps"
+
+[[lean_lib]]
+name = "Evaluator"
+
+[[lean_lib]]
+name = "EvaluatorRounding"
+
+[[lean_lib]]
+name = "EvaluatorExamples"
+
+[[lean_lib]]
+name = "Presence"
+
+[[lean_lib]]
+name = "ExpressionContinuity"
+
+[[lean_lib]]
+name = "PresenceExamples"
+
+[[lean_lib]]
+name = "PresenceChecker"
+
+[[lean_lib]]
+name = "PresenceCheckerExamples"
+
+[[lean_lib]]
+name = "SegmentSearch"
+
+[[lean_lib]]
+name = "SegmentSearchExamples"
+
+[[lean_lib]]
+name = "Subdivision"
+
+[[lean_lib]]
+name = "SubdivisionExamples"
+
+[[lean_lib]]
+name = "LinearIntervals"
+
+[[lean_lib]]
+name = "PartialEnclosures"
+
+[[lean_lib]]
+name = "GeneralizedExamples"
+
+[[lean_lib]]
+name = "LinearMultiplication"
+
+[[lean_lib]]
+name = "MultiplicationExamples"
+
+[[lean_lib]]
+name = "AuditPolicy"
+
+[[lean_lib]]
+name = "Audit"
+
+[[lean_lib]]
+name = "LinearEvaluator"
+
+[[lean_lib]]
+name = "LinearEvaluatorExamples"
+
+[[lean_lib]]
+name = "LinearDivision"
+
+[[lean_lib]]
+name = "DivisionExamples"
+
+[[lean_lib]]
+name = "DomainEvaluator"
+
+[[lean_lib]]
+name = "DomainEvaluatorExamples"
+
+[[lean_lib]]
+name = "GuardedEvaluator"
+
+[[lean_lib]]
+name = "GuardedEvaluatorExamples"
+
+[[lean_lib]]
+name = "PiecewiseSelection"
+
+[[lean_lib]]
+name = "PiecewiseExamples"
+
+[[lean_lib]]
+name = "ConditionalEvaluator"
+
+[[lean_lib]]
+name = "ConditionalExamples"
+
+[[lean_lib]]
+name = "ConditionalArithmetic"
+
+[[lean_lib]]
+name = "ConditionalArithmeticExamples"
+
+[[lean_lib]]
+name = "ParameterRestriction"
+
+[[lean_lib]]
+name = "ParameterRestrictionExamples"
+
+[[lean_lib]]
+name = "SemanticContinuity"
+
+[[lean_lib]]
+name = "SemanticContinuityExamples"
+
+[[lean_lib]]
+name = "CellContinuity"
+
+[[lean_lib]]
+name = "CellContinuityExamples"
+
+[[lean_lib]]
+name = "ConditionalContinuity"
+
+[[lean_lib]]
+name = "ConditionalContinuityExamples"
+
+[[lean_lib]]
+name = "FiniteLinearCovers"
+
+[[lean_lib]]
+name = "FiniteLinearCoverExamples"
+
+[[lean_lib]]
+name = "ConditionalCovers"
+
+[[lean_lib]]
+name = "ConditionalCoverExamples"
+
+[[lean_lib]]
+name = "CoverPresence"
+
+[[lean_lib]]
+name = "CoverPresenceExamples"
+
+[[lean_lib]]
+name = "CoverCoalescing"
+
+[[lean_lib]]
+name = "CoverCoalescingExamples"
+
+[[lean_lib]]
+name = "CoverRestriction"
+
+[[lean_lib]]
+name = "CoverRestrictionExamples"
+
+[[lean_lib]]
+name = "CellCertification"
+
+[[lean_lib]]
+name = "CellCoverage"
+
+[[lean_lib]]
+name = "AdaptiveCellCertification"
+
+[[lean_lib]]
+name = "CoverArithmetic"
+
+[[lean_lib]]
+name = "ThresholdCertification"
+
+[[lean_lib]]
+name = "DomainQueries"
+
+[[lean_lib]]
+name = "NonzeroDomains"
+
+[[lean_lib]]
+name = "QuotientDomains"
+
+[[lean_lib]]
+name = "PointDomains"
+
+[[lean_lib]]
+name = "AffineDomainGuards"
+
+[[lean_lib]]
+name = "AffineSegmentDomains"
+
+[[lean_lib]]
+name = "AffineRegions"
+
+[[lean_lib]]
+name = "AffineRegionSearch"
+
+[[lean_lib]]
+name = "AffineRegionSubdivision"
+
+[[lean_lib]]
+name = "UniversalDomains"
+
+[[lean_lib]]
+name = "SquareRootDomains"
+
+[[lean_lib]]
+name = "GuardedSimplification"
+
+[[lean_lib]]
+name = "BasicIntervalOps"
+
+[[lean_lib]]
+name = "MonotoneIntegerBounds"
+
+[[lean_lib]]
+name = "HardwareAddition"
+
+[[lean_lib]]
+name = "HardwareBounds"
+
+[[lean_lib]]
+name = "HardwareSubtraction"
+
+[[lean_lib]]
+name = "HardwareMultiplication"
+
+[[lean_lib]]
+name = "HardwareDivision"
