@@ -25,9 +25,9 @@ enclosure proof. [Guarded hardware division](HARDWARE_DIVISION.md) reuses that
 assembly and proves denominator nonzero as well as quotient enclosure.
 [Directed hardware square root](HARDWARE_SQUARE_ROOT.md) adds bounds for defined
 roots on nonnegative and mixed-domain intervals.
-[Hardware sine on [0, 1]](HARDWARE_SINE.md) composes directed arithmetic with
-proved fifth-degree Taylor bounds; it neither trusts libm sine nor claims correct
-rounding. The [architecture assessment](HARDWARE_FLOAT_PLAN.md)
+[Hardware sine on [-1, 1]](HARDWARE_SINE.md) composes directed arithmetic with
+proved fifth-degree Taylor bounds, monotone endpoints and odd symmetry; it neither
+trusts libm sine nor claims correct rounding. The [architecture assessment](HARDWARE_FLOAT_PLAN.md)
 records broader choices; it predates this explicitly authorized small milestone.
 
 ## Start here
@@ -60,9 +60,10 @@ graphing examples; `Evaluator` is a two-variable client, not the general core. R
 `tests/` contains independent integration clients.
 
 The published gia baseline is `1f67388`, imported from relgraph main `7fd4b39`
-through PR #73. This separate gia review carries the hardware square-root work
-from still-unmerged relgraph PR #74 (`f7cfea8`), preserving its provenance and
-the published MIT notices.
+through PR #73. Hardware square root, originating in relgraph PR #74
+(`f7cfea8`), merged as gia #1 (`a6cb4c8`). The positive-domain sine milestone
+merged as gia #2 (`bb937fa`). This review adds signed monotone endpoint bounds
+on [-1, 1], retaining the same adapter trust boundary and MIT notices.
 The earlier [review stack](REVIEW_STACK.md), [merge plan](MERGE_PLAN.md) and
 validation sections are historical snapshots, not current pending-PR lists.
 The [public-operation coverage ledger](OPERATION_COVERAGE.md) distinguishes
@@ -70,7 +71,7 @@ merged mathematical proofs, evaluator integration, domain limits and gaps.
 The [basic interval operations](BASIC_OPERATIONS.md) were merged in PR #69.
 [Monotone endpoint bounds and floor/ceiling](MONOTONE_INTEGER_BOUNDS.md) and the
 first hardware-addition milestone were merged in PR #70.
-The coverage ledger distinguishes these review milestones from the merged baseline.
+The coverage ledger distinguishes current review work from merged milestones.
 
 The core supports enclosure, partial-domain and conditional semantics, finite
 covers, and conservative presence/absence certificates. It does not provide

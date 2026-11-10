@@ -1,10 +1,10 @@
-# Hardware sine enclosure on [0, 1]
+# Hardware sine enclosure on [-1, 1]
 
 This milestone implements a restricted sine enclosure by composing the existing
 hardware-backed directed addition, subtraction, multiplication and division.
 It is general arithmetic, with no graphing, pixel or rendering assumptions.
 It does not call or trust a system `sin`, and it does **not** compute correctly
-rounded sine. Argument reduction, negative inputs and inputs above one remain
+rounded sine. Argument reduction and inputs outside [-1, 1] remain
 unsupported; returning `none` means unknown, not an undefined sine value.
 
 ## Source and precise mathematical claim
@@ -16,8 +16,9 @@ then evaluates these with interval arithmetic. The equations on both pages were
 visually checked against the repository PDF copy; the Markdown transcription is
 not the authority. The thesis allows [0, π/2); this implementation deliberately
 uses the smaller [0, 1] domain and no π approximation or reduction.
-The native client also accepts nonsingleton intervals wholly inside that domain,
-extending the displayed singleton construction by interval inclusion.
+The original positive evaluator also accepts nonsingleton intervals in [0, 1].
+The current endpoint client extends support to [-1, 1] using odd symmetry and
+monotonicity, rather than extending the Taylor theorem beyond its proved domain.
 
 [SineTaylor.lean](SineTaylor.lean) proves, for 0 ≤ x ≤ 1,
 
@@ -32,6 +33,31 @@ bounds; it proves the remainder inequalities rather than assuming the thesis's
 existential ξ representation. This is a narrower-domain counterpart of the
 source result, not a literal transcription of its proof. No Taylor remainder
 or transcendental-correctness axiom is added.
+
+## Monotone endpoints and odd symmetry
+
+[SineEndpoints.lean](SineEndpoints.lean) proves sine monotone on [-1, 1] from
+mathlib's theorem on [-π/2, π/2] and 2 ≤ π. This specializes the monotone endpoint
+bounding principle in Tupper §3.2.10 and lower-bound construction in §3.2.12,
+printed pp.56–57
+([PDF page 72](https://www.dgp.toronto.edu/~mooncake/thesis.pdf#page=72)); the
+original pages were visually checked. We do not claim to formalize that section's
+full generalized real/domain construction here.
+
+The native `sineEndpoints` client evaluates the two endpoints separately and
+assembles the lower bound of the lower endpoint with the upper bound of the
+upper endpoint. A negative point is reflected by directed `0 - [x,x]`, evaluated
+with the positive Taylor program, and reflected back by directed subtraction.
+`Real.sin_neg` justifies this mathematically. No exact native negation, libm sine
+or additional floating-point assumption is introduced. The constant -1 uses the
+same explicit exact-decoding obligation as 0 and 1. The input guard rejects
+nonfinite, reversed or out-of-range inputs. Any operation failure returns unknown.
+
+`positive_run_sound`, `signedPoint_encloses` and `signed_endpoints_enclose` connect
+the existing primitive contracts to the new complete path. The proofs quantify
+over every enclosed real input. They do not infer domain existence from successful
+numeric calculation. The original positive natural-interval client is retained
+for comparison, not silently replaced or generalized.
 
 ## Execution and proof boundary
 
@@ -66,7 +92,14 @@ interval width. Hardware rounding adds error, and a nonsingleton interval also
 incurs dependency overestimation from repeated occurrences of X. For example,
 the ideal natural interval on [0, 1] is [-841/5040, 121/120], of width
 5923/5040 (about 1.1752); a Lean regression checks this nonsingleton case.
-This first implementation does not exploit sine monotonicity to narrow that range.
+The endpoint client reduces the ideal [0, 1] result to [0, 101/120], of width
+101/120 (about 0.84167). `ideal_endpoint_bounds` proves this construction for
+all nonnegative subintervals; `ideal_endpoint_improves_natural` proves inclusion
+in the ideal natural-interval bounds. At a point, the analytic approximation
+width remains |x|⁷/5040. This change removes interval dependency overestimation;
+it does not increase the polynomial degree. General native subset/width claims
+do not follow from enclosure-only contracts, which permit loose adapters; native
+precision comparisons below are observed tests, not a universal refinement proof.
 No quantitative IEEE rounding-error theorem is claimed by these enclosure-only
 contracts. The native test records actual widths separately.
 
@@ -83,10 +116,15 @@ The unchanged [demo FFI adapter](hardware/adapter.c) is GIA support code.
 Run `./check.sh` for the pinned Lean build, enforced axiom audits and independent
 semantic fixtures; run `./hardware/check.sh` for actual native execution.
 The native suite checks unsupported inputs, signed zero, subnormal inputs,
-point intervals and nonsingleton intervals. Its 39 supported sine vectors are
+point intervals and nonsingleton intervals. Its 39 positive natural-interval vectors and 73 signed endpoint vectors are
 checked by [an independent exact-arithmetic oracle](hardware/check_sine.py),
 including both directed-rounding simulation and analytic bounds. It never calls
-libm sine. Rational arithmetic is confined to this independent **test oracle**,
+libm sine. The signed oracle checks nine analytic samples per input interval,
+exact simulated directed operation results, and observed inclusion in the old
+natural-interval bounds on nonnegative test inputs. Lean controls include signed
+composition through an independent real oracle, failed reflection/upper endpoint,
+external holes, and the counterexample sin(π/2) > sin(π) prohibiting global
+monotone extrapolation. Rational arithmetic is confined to this independent **test oracle**,
 not the executable interval algorithm. Neither finite test coverage nor the
 object-code instruction checks prove the adapter contract universally.
 

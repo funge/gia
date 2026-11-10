@@ -36,6 +36,47 @@ def reference(a):
     return op(p, (Q(0), div(x7, 5040)[1]), lambda x, y: x-y)
 
 
+def signed_point(x):
+    zero = (Q(0), Q(0))
+    if x < 0:
+        reflected = op(zero, (x, x), lambda a, b: a-b)
+        return op(zero, reference(reflected), lambda a, b: a-b)
+    return reference((x, x))
+
+
+def analytic(x):
+    t = abs(x)
+    terms = [(-1)**k*t**(2*k+1)/math.factorial(2*k+1) for k in range(9)]
+    high = sum(terms)
+    low = high-t**19/math.factorial(19)
+    return (-high, -low) if x < 0 else (low, high)
+
+
+def check_endpoints(path):
+    count = 0
+    unit_width = None
+    for line in open(path):
+        if not line.startswith('SINE_ENDPOINTS '):
+            continue
+        a, b, lo, hi = map(decode, line.split()[1:])
+        assert -1 <= a <= b <= 1
+        assert (lo, hi) == (signed_point(a)[0], signed_point(b)[1]), (a, b, lo, hi)
+        for k in range(9):
+            low, high = analytic(a+(b-a)*Q(k, 8))
+            assert lo <= low <= high <= hi, (a, b, k)
+        if 0 <= a:
+            old = reference((a, b))
+            assert old[0] <= lo <= hi <= old[1], (a, b)
+            if a == 0 and b == 1:
+                assert hi-lo < old[1]-old[0]
+                unit_width = (float(old[1]-old[0]), float(hi-lo))
+        count += 1
+    assert count == 73, count
+    assert unit_width is not None
+    print(f'PASS {count} signed endpoint vectors: directed oracle and 9 analytic samples each')
+    print(f'Observed [0,1] widths: natural={unit_width[0]}, endpoints={unit_width[1]}')
+
+
 def check(path):
     count = 0
     widths = {}
@@ -63,3 +104,4 @@ def check(path):
 
 if __name__ == '__main__':
     check(sys.argv[1])
+    check_endpoints(sys.argv[1])

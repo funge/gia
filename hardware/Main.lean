@@ -80,6 +80,13 @@ def sine (a : Bounds Float) : IO (Option (Bounds Float)) := do
     (GeneralizedIntervalArithmetic.HardwareSine.unitGuard finiteLt 0.0 1.0)
     add subtract multiply divide 0.0 ⟨6.0, 6.0⟩ ⟨120.0, 120.0⟩ ⟨5040.0, 5040.0⟩ a
 
+/-- Monotone endpoint enclosure on [-1,1], with subtraction-based reflection. -/
+def sineEndpoints (a : Bounds Float) : IO (Option (Bounds Float)) := do
+  unless a.lo.isFinite && a.hi.isFinite do return none
+  GeneralizedIntervalArithmetic.HardwareSine.endpoints
+    (GeneralizedIntervalArithmetic.HardwareSine.unitGuard finiteLt (-1.0) 1.0)
+    (GeneralizedIntervalArithmetic.HardwareSine.signedPoint finiteLt 0.0 subtract sine) a
+
 def checkWith (op : Bounds Float → Bounds Float → IO (Option (Bounds Float))) (name : String) (a b : Bounds Float) (expected : Option (UInt64 × UInt64)) : IO Unit := do
   let result ← op a b
   let bits := result.map fun r => (r.lo.toBits, r.hi.toBits)
@@ -198,5 +205,34 @@ def main : IO Unit := do
     let some r ← sine a | throw (IO.userError "supported sine returned unknown")
     IO.println s!"SINE {a.lo.toBits} {a.hi.toBits} {r.lo.toBits} {r.hi.toBits}"
   IO.println "PASS sine supported native vectors"
+  let endpointCheck := checkWith (fun a _ => sineEndpoints a)
+  endpointCheck "sine endpoints below minus one unknown" ⟨-nextOne, 0.0⟩ one none
+  endpointCheck "sine endpoints above one unknown" ⟨0.0, nextOne⟩ one none
+  endpointCheck "sine endpoints reversed unknown" ⟨0.5, -0.5⟩ one none
+  endpointCheck "sine endpoints infinity unknown" ⟨-inf, 1.0⟩ one none
+  endpointCheck "sine endpoints NaN lower unknown" ⟨nan, 1.0⟩ one none
+  endpointCheck "sine endpoints NaN upper unknown" ⟨-1.0, nan⟩ one none
+  let failedReflection ← GeneralizedIntervalArithmetic.HardwareSine.signedPoint
+    finiteLt 0.0 (fun _ _ => pure none) sine (-1.0)
+  unless failedReflection.isNone do throw (IO.userError "failed reflection accepted")
+  let failedPositive ← GeneralizedIntervalArithmetic.HardwareSine.signedPoint
+    finiteLt 0.0 subtract (fun _ => pure none) (-1.0)
+  unless failedPositive.isNone do throw (IO.userError "failed positive evaluator accepted")
+  let failedUpper ← GeneralizedIntervalArithmetic.HardwareSine.endpoints
+    (fun _ => true) (fun x => if finiteLt x 0.5 then pure (some (⟨0.0, 0.0⟩ : Bounds Float))
+      else pure none) (⟨0.0, 1.0⟩ : Bounds Float)
+  unless failedUpper.isNone do throw (IO.userError "failed upper endpoint accepted")
+  IO.println "PASS sine endpoint reflection, positive and upper failure propagation"
+  let mut signedInputs : Array (Bounds Float) := #[⟨-0.0, 0.0⟩, ⟨-tiny, tiny⟩,
+    ⟨-tiny, -tiny⟩, ⟨0.0, tiny⟩, ⟨-1.0, 1.0⟩, ⟨-0.75, -0.25⟩,
+    ⟨-0.5, 0.75⟩, ⟨0.0, 1.0⟩]
+  for k in [:33] do
+    let x := k.toFloat / 16.0 - 1.0
+    signedInputs := signedInputs.push ⟨x, x⟩
+    if k < 32 then signedInputs := signedInputs.push ⟨x, (k+1).toFloat / 16.0 - 1.0⟩
+  for a in signedInputs do
+    let some r ← sineEndpoints a | throw (IO.userError "supported endpoints returned unknown")
+    IO.println s!"SINE_ENDPOINTS {a.lo.toBits} {a.hi.toBits} {r.lo.toBits} {r.hi.toBits}"
+  IO.println "PASS sine monotone/symmetric native vectors"
   unless (← roundingRestored) do throw (IO.userError "environment restoration failed")
   IO.println "PASS environment restoration"
