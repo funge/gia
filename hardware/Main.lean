@@ -1,3 +1,4 @@
+import SineReductionProgram
 import HardwareBounds
 import SineProgram
 
@@ -86,6 +87,17 @@ def sineEndpoints (a : Bounds Float) : IO (Option (Bounds Float)) := do
   GeneralizedIntervalArithmetic.HardwareSine.endpoints
     (GeneralizedIntervalArithmetic.HardwareSine.unitGuard finiteLt (-1.0) 1.0)
     (GeneralizedIntervalArithmetic.HardwareSine.signedPoint finiteLt 0.0 subtract sine) a
+
+/-- Adjacent binary64 endpoints whose exact dyadic values bracket pi in Lean. -/
+def piBounds : Bounds Float :=
+  ⟨Float.ofBits 0x400921fb54442d18, Float.ofBits 0x400921fb54442d19⟩
+
+/-- Try certified whole-period shifts; no guessed quotient is treated as exact. -/
+def sineReduced (a : Bounds Float) : IO (Option (Bounds Float)) := do
+  unless a.lo.isFinite && a.hi.isFinite do return none
+  if finiteLt a.hi a.lo then return none
+  GeneralizedIntervalArithmetic.HardwareSine.searchPeriods multiply subtract sineEndpoints
+    piBounds a (GeneralizedIntervalArithmetic.HardwareSine.periodCandidates 0.0 2.0 (-2.0) 4.0 (-4.0))
 
 def checkWith (op : Bounds Float → Bounds Float → IO (Option (Bounds Float))) (name : String) (a b : Bounds Float) (expected : Option (UInt64 × UInt64)) : IO Unit := do
   let result ← op a b
@@ -234,5 +246,30 @@ def main : IO Unit := do
     let some r ← sineEndpoints a | throw (IO.userError "supported endpoints returned unknown")
     IO.println s!"SINE_ENDPOINTS {a.lo.toBits} {a.hi.toBits} {r.lo.toBits} {r.hi.toBits}"
   IO.println "PASS sine monotone/symmetric native vectors"
+  IO.println s!"PI_BOUNDS {piBounds.lo.toBits} {piBounds.hi.toBits}"
+  let reducedCheck := checkWith (fun a _ => sineReduced a)
+  reducedCheck "reduction near extremum unknown" ⟨1.5, 1.5⟩ one none
+  reducedCheck "reduction crosses periods unknown" ⟨0.0, 7.0⟩ one none
+  reducedCheck "reduction exhausted unknown" ⟨100.0, 100.0⟩ one none
+  reducedCheck "reduction huge finite unknown" ⟨largest, largest⟩ one none
+  reducedCheck "reduction infinity unknown" ⟨-inf, inf⟩ one none
+  reducedCheck "reduction NaN unknown" ⟨nan, 0.0⟩ one none
+  reducedCheck "reduction reversed unknown" ⟨7.0, 6.0⟩ one none
+  let failedReduction ← GeneralizedIntervalArithmetic.HardwareSine.searchPeriods
+    (fun _ _ => pure none) subtract sineEndpoints piBounds one
+    (GeneralizedIntervalArithmetic.HardwareSine.periodCandidates 0.0 2.0 (-2.0) 4.0 (-4.0))
+  unless failedReduction.isNone do throw (IO.userError "failed period multiplication accepted")
+  IO.println "PASS failed period search remains unknown"
+  let mut reducedInputs : Array (Bounds Float) := #[⟨0.0, 0.0⟩, ⟨-1.0, 1.0⟩,
+    ⟨-tiny, tiny⟩, ⟨6.0, 6.5⟩, ⟨-6.5, -6.0⟩, ⟨12.25, 12.75⟩, ⟨-12.75, -12.25⟩]
+  for center in #[0.0, 6.25, -6.25, 12.5, -12.5] do
+    for k in [:9] do
+      let x := center + k.toFloat / 8.0 - 0.5
+      reducedInputs := reducedInputs.push ⟨x, x⟩
+      if k < 8 then reducedInputs := reducedInputs.push ⟨x, x + 0.125⟩
+  for a in reducedInputs do
+    let some r ← sineReduced a | throw (IO.userError "supported reduction returned unknown")
+    IO.println s!"SINE_REDUCED {a.lo.toBits} {a.hi.toBits} {r.lo.toBits} {r.hi.toBits}"
+  IO.println "PASS finite whole-period sine reduction vectors"
   unless (← roundingRestored) do throw (IO.userError "environment restoration failed")
   IO.println "PASS environment restoration"

@@ -255,3 +255,12 @@ name = "HardwareSine"
 
 [[lean_lib]]
 name = "SineEndpoints"
+
+[[lean_lib]]
+name = "PiBounds"
+
+[[lean_lib]]
+name = "SineReductionProgram"
+
+[[lean_lib]]
+name = "SineReduction"

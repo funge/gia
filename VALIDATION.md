@@ -2575,3 +2575,57 @@ small-constant decoding obligation. Finite decoding, ordering, primitive roundin
 and IO/FFI/compiler/hardware refinement remain explicit assumptions. Unsupported
 ranges and failures remain unknown; no argument reduction, general transcendental
 library, C-implementation verification or hosted CI is added.
+
+## Certified pi and finite period reduction — 2026-11-10
+
+Base: merged gia main `9ea7d9d13035805a4b3a9f382b4310b808b8f4e9` (PR #3).
+The merge was head-guarded at `a36efb893f807c002784a4764f2fced8b8341cca`;
+its resulting tree matched the qualified PR head exactly.
+
+- Full `RELGRAPH_CHECKOUT=/workspace/gia-followup/relgraph-removal ./check.sh`
+  exited 0. All 21 tests passed in 212.221s with no skips, including explicit
+  C header/inventory comparison, all 86 registered library roots and 33 fresh
+  semantic fixtures.
+- Enforced audits passed 728 named checks and 1,347 project-namespace
+  theorem/axiom declarations (including generated program helper theorems).
+  The new fixture separately passed its 16-declaration namespace audit. Only
+  `propext`, `Classical.choice` and `Quot.sound` are allowed; no custom axiom,
+  `sorry` or native proof evaluation was introduced.
+- Final `./hardware/check.sh` exited 0. It retained the 39 original sine and
+  73 signed-endpoint vectors and all previous primitive checks, and added
+  92 period-reduction vectors, seven rejection controls and an injected
+  multiplication failure. The adapter instruction and environment-restoration
+  checks passed.
+- The independent oracle checked the actual pi bit patterns against rational
+  Machin-formula bounds and the exact width 2^-51. Every reduced native result
+  matched an exact directed-operation simulation. Nine samples per interval
+  were independently checked using a sine series at the ORIGINAL input, not
+  the reduced argument; this check does not depend on pi or the runtime
+  reduction formula. Test-only rational arithmetic is not used by the runtime.
+- Lean proved strict dyadic pi containment from pinned mathlib bounds,
+  successful integer-period reduction, finite-search soundness, the concrete
+  candidate list and the existing signed kernel's contract. Controls cover
+  an independent exact-real composed client, retry/exhaustion/failure,
+  external holes and the invalid exact-singleton pi approximation.
+- A separate local specification/diff review checked propagation of pi
+  uncertainty, the common input witness, integer candidate certificates,
+  native/pure shared control flow, exceptional handling and documented scope.
+  Tupper §3.1.5, printed pp.47–48, was visually checked in the authorized
+  repository PDF. The Markdown quarter/half-offset transcription defect is
+  documented; this implementation uses whole-period search, not that formula.
+  This local review and oracle testing do not replace independent human PR
+  review or verification of the compiled implementation.
+- Local Markdown links and `git diff --check` passed. FFI adapter C, toolchain,
+  dependency lockfile, license and copyright files are byte-for-byte unchanged.
+  No hosted CI was added. Missing pi-bound dependencies were built from pinned
+  local mathlib source; the previously denied cache endpoint was not retried.
+- Lean 4.19.0; mathlib `c44e0c8ee63ca166450922a373c7409c5d26b00b`;
+  GCC `cc (Debian 14.2.0-19) 14.2.0`; leanc Clang 15.0.1; x86_64.
+
+The runtime tries only periods 0, +1, -1, +2, -2 and requires each successful
+residual interval to fit [-1, 1]. For example, [6, 6.5] and [12.25, 12.75] pass;
+1.5, [0, 7] and 100 remain unknown. Coverage is not continuous across the full
+span, and no all-finite-argument reduction or correctly rounded sine is claimed.
+There is no new FP contract: exact decoding is instantiated for the two specified
+pi dyadics and small integer coefficients; ordering, directed primitives and
+IO/FFI/compiler/hardware refinement retain their existing trusted status.

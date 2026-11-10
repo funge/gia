@@ -1,5 +1,9 @@
 # Hardware sine enclosure on [-1, 1]
 
+This is the local kernel. The [finite period-reduction layer](HARDWARE_SINE_REDUCTION.md)
+uses it after certified whole-period shifts; its restricted coverage is documented
+separately.
+
 This milestone implements a restricted sine enclosure by composing the existing
 hardware-backed directed addition, subtraction, multiplication and division.
 It is general arithmetic, with no graphing, pixel or rendering assumptions.
