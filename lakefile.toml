@@ -252,3 +252,6 @@ name = "SineTaylor"
 
 [[lean_lib]]
 name = "HardwareSine"
+
+[[lean_lib]]
+name = "SineEndpoints"

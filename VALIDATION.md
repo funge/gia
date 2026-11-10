@@ -2526,3 +2526,52 @@ unchanged. Mathematical bounds and enclosure composition are kernel-checked;
 finite decoding, directed primitives, comparison and native refinement remain
 explicit adapter obligations. No correctly rounded sine, argument reduction,
 full IEEE verification or correspondence to relgraph's MPFR sine is claimed.
+
+## Signed sine endpoints — 2026-11-10
+
+Based on gia main `bb937fa47b22ebb10a77a97fdbb1b10843cf6a35`, which already
+contains merged PR #2. This milestone adds `SineEndpoints.lean`, the shared
+`signedPoint` / `endpoints` programs, the native client and independent controls.
+
+- Full `RELGRAPH_CHECKOUT=/workspace/gia-followup/relgraph-removal ./check.sh`
+  exited 0. All 21 tests passed in 193.893s, with no skips, including the explicit
+  C API-header comparison, 83 registered library roots, and 32 independently
+  compiled semantic fixtures. The rejected-axiom controls remain enabled.
+- Enforced audits passed 720 named checks and all 1,328 project-namespace
+  theorem/axiom declarations. Only `propext`, `Classical.choice` and `Quot.sound`
+  are allowed. No `sorry`, custom axiom or native proof evaluation is introduced.
+- Final `./hardware/check.sh` exited 0. All baseline checks passed, plus six new
+  unsupported-input controls and three injected failures (reflection, positive
+  evaluator, upper endpoint). The oracle checked 39 original natural-interval
+  vectors and 73 signed endpoint vectors. Each signed vector matched independent
+  exact directed-operation simulation and enclosed nine analytic samples from
+  a distinct higher-order alternating-series bound, without calling libm sine.
+- Observed [0, 1] native widths: natural interval 1.175198412698413;
+  monotone endpoints 0.8416666666666668. Nonnegative signed-vector cases were
+  also checked for inclusion in the old native bounds. This is finite test
+  evidence, not a universal native precision theorem. The pointwise analytic
+  Taylor width remains |x|^7/5040; no correctly rounded sine is claimed.
+- A separate specification/diff review checked the pure/IO shared control flow,
+  comparison guard, directed reflection, endpoint ordering, partial-domain
+  semantics, and source correspondence. Lean controls include signed composition
+  through an independent exact-real oracle, an external hole, failure cases and
+  the counterexample to global monotonicity. This local review and independent
+  oracle testing do not replace independent human PR review or FFI verification.
+- Tupper's original PDF printed pp.56–57 was visually checked for §3.2.10's
+  monotone endpoint argument and §3.2.12's lower-bound construction. The existing
+  §3.1.6 Taylor correspondence remains unchanged. The present claim is restricted
+  to real sine on [-1, 1], not the full generalized-domain source treatment.
+- Local links in the four edited entry/topic/concordance documents were checked;
+  `git diff --check` passed. The FFI adapter, toolchain pin, dependency manifest,
+  license and copyright files are byte-for-byte unchanged.
+- Lean 4.19.0; mathlib `c44e0c8ee63ca166450922a373c7409c5d26b00b`;
+  GCC `cc (Debian 14.2.0-19) 14.2.0`; leanc Clang 15.0.1; x86_64.
+  Missing trigonometric dependencies were built from the pinned local source.
+  The previously denied cache endpoint was not retried or bypassed.
+
+No floating-point trust-boundary change: negative reflection uses existing
+directed subtraction. Exact decoding of -1 is another instance of the existing
+small-constant decoding obligation. Finite decoding, ordering, primitive rounding,
+and IO/FFI/compiler/hardware refinement remain explicit assumptions. Unsupported
+ranges and failures remain unknown; no argument reduction, general transcendental
+library, C-implementation verification or hosted CI is added.

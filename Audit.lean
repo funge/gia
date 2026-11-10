@@ -1,3 +1,4 @@
+import SineEndpoints
 import HardwareSine
 import HardwareSquareRoot
 import HardwareDivision
@@ -825,5 +826,14 @@ import SegmentSearchExamples
 #audit_axioms GeneralizedIntervalArithmetic.HardwareSine.sinValues_defined_iff
 
 #audit_axioms GeneralizedIntervalArithmetic.HardwareSine.sinValues_enclosed
+
+#audit_axioms GeneralizedIntervalArithmetic.HardwareSine.sin_monotone
+#audit_axioms GeneralizedIntervalArithmetic.HardwareSine.ideal_endpoint_bounds
+#audit_axioms GeneralizedIntervalArithmetic.HardwareSine.ideal_endpoint_improves_natural
+#audit_axioms GeneralizedIntervalArithmetic.HardwareSine.positive_run_sound
+#audit_axioms GeneralizedIntervalArithmetic.HardwareSine.signedPoint_encloses
+#audit_axioms GeneralizedIntervalArithmetic.HardwareSine.signed_guard_sound
+#audit_axioms GeneralizedIntervalArithmetic.HardwareSine.endpoints_enclose
+#audit_axioms GeneralizedIntervalArithmetic.HardwareSine.signed_endpoints_enclose
 
 #audit_namespace GeneralizedIntervalArithmetic

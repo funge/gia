@@ -641,3 +641,18 @@ or assume correctly rounded libm sine. [Details and boundaries](HARDWARE_SINE.md
 The historical chapter-3 table's “missing implementation” does not describe
 these later conditional hardware clients; native implementation verification
 and a certified platform transcendental library still remain open.
+
+
+### Signed monotone endpoint extension (current review milestone)
+
+[SineEndpoints.lean](SineEndpoints.lean) combines the restricted §3.1.6 Taylor
+construction with the endpoint principle of §3.2.10, printed pp.56–57
+([original PDF page 72](https://www.dgp.toronto.edu/~mooncake/thesis.pdf#page=72)).
+The original printed pp.56–57 were visually checked for the monotonicity and
+endpoint hypotheses and §3.2.12 lower-bound construction. The Lean statement specializes to ordinary real sine on [-1, 1],
+proves monotonicity from mathlib, and uses proved odd symmetry. It does not cover
+the source's full generalized domains, argument reduction or periodic extrema.
+The executable path uses only existing directed primitives and finite ordering;
+no floating-point contract is added. Ideal endpoint tightening is proved, while
+native precision improvements are independently measured, not inferred from
+loose enclosure contracts. See [scope and tests](HARDWARE_SINE.md).
