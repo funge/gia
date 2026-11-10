@@ -243,3 +243,12 @@ name = "HardwareDivision"
 
 [[lean_lib]]
 name = "HardwareSquareRoot"
+
+[[lean_lib]]
+name = "SineProgram"
+
+[[lean_lib]]
+name = "SineTaylor"
+
+[[lean_lib]]
+name = "HardwareSine"

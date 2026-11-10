@@ -4,6 +4,9 @@ The goal is proved interval arithmetic executing with hardware floating point.
 The subsequent [hardware addition milestone](HARDWARE_ADDITION.md) demonstrates
 native execution under an explicit adapter contract; it does not close the
 representation or runtime-refinement gaps listed below.
+[Restricted-domain hardware sine](HARDWARE_SINE.md) now implements the §3.1.6
+Taylor construction on [0, 1], under those primitive contracts, with a proved
+analytic remainder. It does not supply a correctly rounded transcendental operation.
 See the [hardware architecture assessment](HARDWARE_FLOAT_PLAN.md), prepared after
 John clarified this goal; its decision points supersede the next-step suggestions
 below. Exact rational execution is supporting groundwork, not the runtime target.

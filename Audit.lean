@@ -1,3 +1,4 @@
+import HardwareSine
 import HardwareSquareRoot
 import HardwareDivision
 import HardwareMultiplication
@@ -812,5 +813,17 @@ import SegmentSearchExamples
 #audit_axioms GeneralizedIntervalArithmetic.HardwareSquareRoot.assemble_sqrtValues
 #audit_axioms GeneralizedIntervalArithmetic.HardwareSquareRoot.nonnegative_defined_iff
 #audit_axioms GeneralizedIntervalArithmetic.HardwareSquareRoot.negative_absent
+
+#audit_axioms GeneralizedIntervalArithmetic.SineTaylor.bounds
+#audit_axioms GeneralizedIntervalArithmetic.SineTaylor.remainder_width
+#audit_axioms GeneralizedIntervalArithmetic.HardwareSine.unitGuard_sound
+#audit_axioms GeneralizedIntervalArithmetic.HardwareSine.add_op_sound
+#audit_axioms GeneralizedIntervalArithmetic.HardwareSine.sub_op_sound
+#audit_axioms GeneralizedIntervalArithmetic.HardwareSine.mul_op_sound
+#audit_axioms GeneralizedIntervalArithmetic.HardwareSine.div_op_sound
+#audit_axioms GeneralizedIntervalArithmetic.HardwareSine.run_encloses
+#audit_axioms GeneralizedIntervalArithmetic.HardwareSine.sinValues_defined_iff
+
+#audit_axioms GeneralizedIntervalArithmetic.HardwareSine.sinValues_enclosed
 
 #audit_namespace GeneralizedIntervalArithmetic

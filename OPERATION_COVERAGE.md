@@ -13,8 +13,9 @@ native #31). The pinned [API symbol inventory](provenance/relgraph-api.json) is 
 rows were subsequently merged in PR #69 (`4e8a8f4`), beyond that inventory baseline.
 Floor/ceiling, monotone endpoint results and conditional hardware addition were
 merged in PR #70 (`ee964e6`). Hardware subtraction, multiplication and guarded
-division are merged through #73 (main `7fd4b39`). Hardware square root is the
-current review milestone. All other proved rows refer to merged Lean code. This table includes constructors,
+division are merged through #73 (main `7fd4b39`). Hardware square root was merged
+as GIA #1 (main `a6cb4c8`). Restricted-domain hardware sine is the current review
+milestone. All other proved rows refer to merged Lean code. This table includes constructors,
 queries and the two infrastructure calls so no public function is silently omitted.
 The local test `tests/test_operation_coverage.py` enforces exact header/row coverage.
 
@@ -115,7 +116,7 @@ precise correspondence. A missing source proof is stated rather than invented.
 | [`gi_trans_atanh`](https://github.com/funge/relgraph/blob/3975a5e1696e59c337093435ffce0748f074a057/src/transcendental.c#L462) | Gap: operation-specific interval/domain theorem | No | Real domain (-1,1); open boundaries and infinite limits. | Generic method lead: [T §§3.2.10–3.2.17](https://www.dgp.toronto.edu/~mooncake/thesis.pdf); no operation-specific correspondence claimed. |
 | [`gi_trans_atan2`](https://github.com/funge/relgraph/blob/3975a5e1696e59c337093435ffce0748f074a057/src/transcendental.c#L586) | Gap: operation-specific interval/domain theorem | No | Origin undefined; negative-axis convention and branch-cut widening need explicit semantics. | Angle/domain lead: [T §3.2.22](https://www.dgp.toronto.edu/~mooncake/thesis.pdf); source theta(x,y) corresponds to atan2(y,x). |
 | [`gi_trans_log2`](https://github.com/funge/relgraph/blob/3975a5e1696e59c337093435ffce0748f074a057/src/transcendental.c#L501) | Gap: operation-specific interval/domain theorem | No | Positive real inputs only; base-2 logarithm. | Generic method lead: [T §§3.2.10–3.2.17](https://www.dgp.toronto.edu/~mooncake/thesis.pdf); no operation-specific correspondence claimed. |
-| [`gi_trans_sin`](https://github.com/funge/relgraph/blob/3975a5e1696e59c337093435ffce0748f074a057/src/transcendental.c#L644) | Gap: operation-specific interval/domain theorem | No | Total real sine; periodic extrema and argument reduction. | Periodic/domain lead: [T §§3.2.15–3.2.16](https://www.dgp.toronto.edu/~mooncake/thesis.pdf). |
+| [`gi_trans_sin`](https://github.com/funge/relgraph/blob/3975a5e1696e59c337093435ffce0748f074a057/src/transcendental.c#L644) | Restricted: [Taylor enclosure and conditional hardware composition](HARDWARE_SINE.md) on [0, 1] | Standalone native client; not Expr | Total real sine with external domains retained; unsupported inputs return unknown. Wider ranges, periodic extrema and argument reduction remain gaps. | Verified construction: [T §3.1.6, pp.48–49](https://www.dgp.toronto.edu/~mooncake/thesis.pdf#page=64); periodic extension remains separate. |
 | [`gi_trans_cos`](https://github.com/funge/relgraph/blob/3975a5e1696e59c337093435ffce0748f074a057/src/transcendental.c#L737) | Gap: operation-specific interval/domain theorem | No | Total real cosine; periodic extrema and argument reduction. | Periodic/domain lead: [T §§3.2.15–3.2.16](https://www.dgp.toronto.edu/~mooncake/thesis.pdf). |
 | [`gi_trans_tan`](https://github.com/funge/relgraph/blob/3975a5e1696e59c337093435ffce0748f074a057/src/transcendental.c#L830) | Gap: operation-specific interval/domain theorem | No | Undefined at π/2+kπ; pole detection and unbounded ranges. | Periodic/domain lead: [T §§3.2.15–3.2.16](https://www.dgp.toronto.edu/~mooncake/thesis.pdf). |
 | [`gi_trans_tan_defined`](https://github.com/funge/relgraph/blob/3975a5e1696e59c337093435ffce0748f074a057/src/transcendental.c#L860) | Gap: operation-specific interval/domain theorem | No | Definite/possible definedness, not numeric range; uncertain pole detection remains unknown. | Periodic/domain lead: [T §§3.2.15–3.2.16](https://www.dgp.toronto.edu/~mooncake/thesis.pdf). |

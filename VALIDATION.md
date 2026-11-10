@@ -2483,3 +2483,46 @@ checkout comparison skipped; it passed separately when explicitly enabled).
 (Debian 14.2.0-19), leanc Clang 15.0.1, and Lean 4.19.0 remain unchanged.
 All proof/runtime/test changes preceded this run; later edits were documentation
 only. Final diff whitespace checks passed.
+
+## 2026-11-09: hardware sine on [0, 1]
+
+Base: GIA main `a6cb4c8b5d1dd00dc836b3f98eb91409d60efd9e`.
+The milestone is described in [HARDWARE_SINE.md](HARDWARE_SINE.md).
+
+- Full `RELGRAPH_CHECKOUT=/workspace/gia-followup/relgraph-removal ./check.sh`
+  exited 0. The pinned Lean build and fresh audit passed. All 21 Python tests
+  passed in 348.820s, with no skips; the explicitly supplied C checkout matched
+  the pinned header inventory. All 82 library roots and 31 fresh semantic
+  fixtures were covered.
+- Enforced axiom audits passed 712 named checks and 1,320 theorem/axiom
+  declarations in the project namespace. Only `propext`, `Classical.choice`
+  and `Quot.sound` are permitted. New sine fixtures passed their own audit
+  of 28 declarations. No `sorry` or new axiom is used.
+- `./hardware/check.sh` exited 0: the 54 prior native checks passed, together
+  with six unsupported-input controls, one injected division-failure control,
+  and 39 supported sine vectors. The independent exact-arithmetic oracle
+  checked the observed binary64 results against directed arithmetic and
+  analytic enclosures; it did not call libm sine. The adapter disassembly
+  retained the checked hardware arithmetic/square-root instructions.
+- Observed native point widths, including rounding: 0 at x=0;
+  1.5500992064931829e-6 at x=1/2; 0.00019841269841303077 at x=1.
+  The proved analytic width is x^7/5040, at most 1/5040; this is not a bound
+  on the final interval width, which also includes rounding and dependency.
+- A separate source/specification review compared the PDF's printed pp.48–49,
+  the partial-domain relation, the range guard, all primitive-to-interval
+  contracts, and the shared pure/IO program. An exact-real Lean client checks
+  both point 1 and the whole [0, 1] interval. This does not replace independent
+  PR review or prove native IO/FFI/compiler refinement.
+- Lean 4.19.0; mathlib remains pinned at
+  `c44e0c8ee63ca166450922a373c7409c5d26b00b`.
+  Native compiler: GCC `cc (Debian 14.2.0-19) 14.2.0`;
+  `leanc` uses Clang 15.0.1, on x86_64.
+- The public mathlib cache endpoint returned HTTP 403 under the environment's
+  network policy. It was not retried or bypassed; the missing dependencies
+  were successfully built from the pinned local source instead.
+
+The adapter C file, toolchain pin, dependency manifest and license files are
+unchanged. Mathematical bounds and enclosure composition are kernel-checked;
+finite decoding, directed primitives, comparison and native refinement remain
+explicit adapter obligations. No correctly rounded sine, argument reduction,
+full IEEE verification or correspondence to relgraph's MPFR sine is claimed.
