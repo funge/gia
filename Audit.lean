@@ -1,3 +1,4 @@
+import DyadicReduction
 import SineQuadrants
 import SineReduction
 import SineEndpoints
@@ -875,4 +876,8 @@ import SegmentSearchExamples
 #audit_axioms GeneralizedIntervalArithmetic.HardwareSine.globalFallback_sound
 #audit_axioms GeneralizedIntervalArithmetic.HardwareSine.globalFallback_defined
 #audit_axioms GeneralizedIntervalArithmetic.HardwareQuadrants.period_quadrants_sound
+#audit_axioms GeneralizedIntervalArithmetic.HardwareSine.doubledPeriods_sound
+#audit_axioms GeneralizedIntervalArithmetic.HardwareSine.sweepPeriods_sound
+#audit_axioms GeneralizedIntervalArithmetic.HardwareSine.reverse_append_periods
+#audit_axioms GeneralizedIntervalArithmetic.HardwareSine.dyadicRun_sound
 #audit_namespace GeneralizedIntervalArithmetic
