@@ -2712,3 +2712,46 @@ Final complete `./check.sh` result: **21 tests passed in 352.166 seconds**, no
 skips, including the explicit relgraph checkout comparison, 92 registered library
 roots, all 34 fresh semantic fixtures and negative audit controls. Final local
 Markdown checks covered 229 links; `git diff --check` passed.
+
+## Bounded automatic dyadic sine reduction (2026-11-11)
+
+Base: merged GIA #6, `0192ef203e059e2b8886bd22615d8ffa6adb922c`.
+Its merge tree was verified identical to qualified head
+`d6cef1618823922d938b168a794bd7b29ff7fa33`; no hosted checks were configured.
+
+- The full build accepted 759 named audits and 1,455 namespace declarations
+  with only the existing standard axiom allowlist. Four new soundness theorems
+  cover generation, reversal/concatenation, the sweep, and their shared program.
+- The final native suite passed every earlier vector and 138 new dyadic vectors.
+  All outputs matched independent exact directed-operation simulation. A separate
+  Machin-pi/series oracle checked nine samples per bounded interval, independent
+  of the runtime pi bracket and greedy choices. All 134 tested narrow cases had
+  width below 0.5; the maximum tested bounded point width was
+  3.0241384796125814e-05. At x = 1,000,000 the observed result was
+  [-0.3499936502722049, -0.34999350187179934], width 1.4840040557517753e-07.
+- Huge inputs, a wide interval, unsupported representations and environment
+  restoration passed. Lean controls cover coefficient generation, failure,
+  skipped shifts and deliberately unhelpful period selection. The new fixture
+  audits five declarations. These are empirical controls, not a universal
+  native-refinement or accuracy theorem.
+- An initial oracle run was stopped because uncompressed Machin rational
+  denominators made its series evaluation unnecessarily expensive. Exact
+  outward compression to 160-bit dyadics retained containment and made the
+  independent oracle practical. The complete native suite was then rerun on
+  the final shared-program implementation and passed.
+- Local proof/specification review checked integer witnesses under inexact
+  doubling, both shift signs, residual witnesses, failure propagation and
+  composition with the previous global fallback. Selection correctness is
+  deliberately not needed for soundness. No new FP assumptions were introduced.
+- Source correspondence remains Tupper §3.1.5's interval-periodicity principle,
+  not the fractional-part formula or high-precision full-range reduction.
+  Adapter C, compiler flags, toolchain, dependency pins and licenses are unchanged.
+  No hosted CI was added. Lean 4.19.0, pinned mathlib, GCC 14.2.0 and leanc
+  Clang 15.0.1 remain the qualification environment.
+
+See [algorithm, source comparison and limitations](HARDWARE_SINE_DYADIC.md).
+
+Final full `./check.sh`: **21 tests passed in 232.377 seconds**, no skips,
+including both audit passes, 94 registered library roots, 35 fresh semantic
+fixtures, negative audit enforcement and the explicit pinned C API checkout
+comparison. All 233 local Markdown links and `git diff --check` passed.

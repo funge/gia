@@ -1,3 +1,4 @@
+import DyadicReductionProgram
 import CosineProgram
 import QuadrantProgram
 import SineReductionProgram
@@ -131,6 +132,18 @@ def sineGlobal (a : Bounds Float) : IO (Option (Bounds Float)) :=
       (GeneralizedIntervalArithmetic.HardwareSine.periodCandidates 0.0 2.0 (-2.0) 4.0 (-4.0)))
     (-1.0) 1.0 a
 
+/-- Heuristic selection only; all proposed shifts have certified integer witnesses. -/
+def acceptShift (I S : Bounds Float) : Bool :=
+  (!(finiteLt S.lo 0.0) && !(finiteLt I.lo S.hi)) ||
+  (!(finiteLt 0.0 S.hi) && !(finiteLt S.lo I.hi))
+
+def sineDyadic (I : Bounds Float) : IO (Option (Bounds Float)) :=
+  GeneralizedIntervalArithmetic.HardwareSine.globalFallback
+    (fun I => I.lo.isFinite && I.hi.isFinite && !(finiteLt I.hi I.lo))
+    (GeneralizedIntervalArithmetic.HardwareSine.dyadicRun add multiply subtract
+      acceptShift sineGlobal piBounds ⟨2.0,2.0⟩ ⟨-2.0,-2.0⟩ 20)
+    (-1.0) 1.0 I
+
 def checkWith (op : Bounds Float → Bounds Float → IO (Option (Bounds Float))) (name : String) (a b : Bounds Float) (expected : Option (UInt64 × UInt64)) : IO Unit := do
   let result ← op a b
   let bits := result.map fun r => (r.lo.toBits, r.hi.toBits)
@@ -213,6 +226,25 @@ def checkGlobal (one : Bounds Float) (nan inf : Float) : IO Unit := do
       some (0xbff0000000000000,0x3ff0000000000000) do
     throw (IO.userError "failed refinement did not return certified global bound")
   IO.println "PASS global fallback and unsupported controls"
+
+def checkDyadic (one : Bounds Float) (nan inf : Float) : IO Unit := do
+  let test := checkWith (fun a _ => sineDyadic a)
+  test "dyadic NaN unknown" ⟨nan,0.0⟩ one none
+  test "dyadic infinity unknown" ⟨0.0,inf⟩ one none
+  test "dyadic reversed unknown" ⟨1.0,0.0⟩ one none
+  let huge := Float.ofBits 0x7fefffffffffffff
+  let mut inputs : Array (Bounds Float) := #[⟨huge,huge⟩,⟨-huge,huge⟩,
+    ⟨1000000.0,1000000.0⟩,⟨-1000000.0,-1000000.0⟩,
+    ⟨1000000.0,1000000.25⟩,⟨-1000000.25,-1000000.0⟩,
+    ⟨0.0,1000000.0⟩,⟨10000000.0,10000000.0⟩]
+  for k in [:65] do
+    let x := k.toFloat * 32768.0 - 1048576.0
+    inputs := inputs.push ⟨x,x⟩
+    inputs := inputs.push ⟨x,x+0.25⟩
+  for a in inputs do
+    let some r ← sineDyadic a | throw (IO.userError "dyadic finite call failed")
+    IO.println s!"DYADIC {a.lo.toBits} {a.hi.toBits} {r.lo.toBits} {r.hi.toBits}"
+  IO.println "PASS dyadic reduction vectors"
 
 def main : IO Unit := do
   let one : Bounds Float := ⟨1.0, 1.0⟩
@@ -380,5 +412,6 @@ def main : IO Unit := do
   IO.println "PASS finite whole-period sine reduction vectors"
   checkCosineQuadrants one tiny nan inf nextOne
   checkGlobal one nan inf
+  checkDyadic one nan inf
   unless (← roundingRestored) do throw (IO.userError "environment restoration failed")
   IO.println "PASS environment restoration"

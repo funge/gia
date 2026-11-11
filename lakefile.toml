@@ -282,3 +282,9 @@ name = "HardwareCover"
 
 [[lean_lib]]
 name = "SineQuadrants"
+
+[[lean_lib]]
+name = "DyadicReductionProgram"
+
+[[lean_lib]]
+name = "DyadicReduction"

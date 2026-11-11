@@ -699,3 +699,13 @@ when refinement fails. It follows the interval-reduction principle of §3.1.5,
 not the exact fractional-part algorithm. Conservative full finite-input handling
 is distinct from precise full-range reduction, which remains unformalized.
 No new FP assumptions or C implementation equivalence are claimed.
+
+### Bounded automatic dyadic reduction
+
+[Dyadic reduction](HARDWARE_SINE_DYADIC.md) derives integer-period witnesses
+from directed doubling and proves a finite descending sweep sound. It extends
+the §3.1.5 periodicity/interval method to automatically selected larger shifts
+without a new FP contract. It is not the source fractional-part algorithm or
+a formalization of accurate all-binary64 argument reduction. Native refinement
+is tested near magnitude one million; precision and success are not universal
+consequences of the enclosure-only primitive contracts.
