@@ -709,3 +709,14 @@ without a new FP contract. It is not the source fractional-part algorithm or
 a formalization of accurate all-binary64 argument reduction. Native refinement
 is tested near magnitude one million; precision and success are not universal
 consequences of the enclosure-only primitive contracts.
+
+### Certified split pi and deferred corrections
+
+[Split pi](HARDWARE_SINE_SPLIT_PI.md) uses pinned mathlib's proved twenty-decimal
+pi bounds to enclose the residual after a dyadic high part. A separately proved
+accumulator keeps that residual through large cancellations. This is a bounded
+construction following §3.1.5's high-precision/interval-reduction principle, not
+the printed fractional-part algorithm. It introduces no error-free-transform
+or new FP assumption and does not claim full double-double precision or accurate
+all-binary64 argument reduction. Native comparisons cover narrow inputs near
+magnitude one trillion; enclosure soundness and tested precision are distinct.

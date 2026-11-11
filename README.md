@@ -45,6 +45,10 @@ accurate full-range reduction.
 period shifts to improve narrow-input bounds near magnitude one million, with
 no trusted quotient-to-integer conversion or new floating-point assumptions.
 
+[Certified split pi](HARDWARE_SINE_SPLIT_PI.md) keeps small reduction corrections
+separate until coarse cancellation finishes, improving tested narrow-input
+bounds near magnitude one trillion under the same floating-point contract.
+
 ## Start here
 
 | Question | Read |
@@ -81,8 +85,9 @@ merged as gia #2 (`bb937fa`). Signed monotone endpoint bounds on [-1, 1] merged
 as gia #3 (`9ea7d9d`).
 Certified pi and finite whole-period reduction merged as gia #4 (`eef2d07`).
 Cosine and quadrant coverage merged as GIA #5 (`d1caaaf`); composed period
-reduction and global fallback merged as GIA #6 (`0192ef2`). This review adds
-bounded automatic dyadic reduction, retaining the same
+reduction and global fallback merged as GIA #6 (`0192ef2`); bounded dyadic
+reduction merged as GIA #7 (`1ba0723`). This review adds certified split pi
+and deferred small corrections, retaining the same
 adapter trust boundary and MIT notices.
 The earlier [review stack](REVIEW_STACK.md), [merge plan](MERGE_PLAN.md) and
 validation sections are historical snapshots, not current pending-PR lists.

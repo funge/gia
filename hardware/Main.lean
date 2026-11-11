@@ -1,3 +1,4 @@
+import SplitReductionProgram
 import DyadicReductionProgram
 import CosineProgram
 import QuadrantProgram
@@ -144,6 +145,23 @@ def sineDyadic (I : Bounds Float) : IO (Option (Bounds Float)) :=
       acceptShift sineGlobal piBounds ⟨2.0,2.0⟩ ⟨-2.0,-2.0⟩ 20)
     (-1.0) 1.0 I
 
+def piTail : Bounds Float :=
+  ⟨Float.ofBits 0x3ca1a60d3bc55bea, Float.ofBits 0x3ca1a66bae498e34⟩
+
+def sineSplit (I : Bounds Float) : IO (Option (Bounds Float)) :=
+  GeneralizedIntervalArithmetic.HardwareSine.globalFallback
+    (fun I => I.lo.isFinite && I.hi.isFinite && !(finiteLt I.hi I.lo))
+    (GeneralizedIntervalArithmetic.HardwareSine.splitRun add multiply subtract
+      acceptShift sineGlobal ⟨piBounds.lo,piBounds.lo⟩ piTail ⟨2.0,2.0⟩ ⟨-2.0,-2.0⟩ 0.0 40)
+    (-1.0) 1.0 I
+
+def sineUnsplit40 (I : Bounds Float) : IO (Option (Bounds Float)) :=
+  GeneralizedIntervalArithmetic.HardwareSine.globalFallback
+    (fun I => I.lo.isFinite && I.hi.isFinite && !(finiteLt I.hi I.lo))
+    (GeneralizedIntervalArithmetic.HardwareSine.dyadicRun add multiply subtract
+      acceptShift sineGlobal piBounds ⟨2.0,2.0⟩ ⟨-2.0,-2.0⟩ 40)
+    (-1.0) 1.0 I
+
 def checkWith (op : Bounds Float → Bounds Float → IO (Option (Bounds Float))) (name : String) (a b : Bounds Float) (expected : Option (UInt64 × UInt64)) : IO Unit := do
   let result ← op a b
   let bits := result.map fun r => (r.lo.toBits, r.hi.toBits)
@@ -245,6 +263,27 @@ def checkDyadic (one : Bounds Float) (nan inf : Float) : IO Unit := do
     let some r ← sineDyadic a | throw (IO.userError "dyadic finite call failed")
     IO.println s!"DYADIC {a.lo.toBits} {a.hi.toBits} {r.lo.toBits} {r.hi.toBits}"
   IO.println "PASS dyadic reduction vectors"
+
+def checkSplit (one : Bounds Float) (nan inf : Float) : IO Unit := do
+  let test := checkWith (fun a _ => sineSplit a)
+  test "split NaN unknown" ⟨nan,0.0⟩ one none
+  test "split infinity unknown" ⟨0.0,inf⟩ one none
+  test "split reversed unknown" ⟨1.0,0.0⟩ one none
+  IO.println s!"PI_TAIL {piTail.lo.toBits} {piTail.hi.toBits}"
+  let huge := Float.ofBits 0x7fefffffffffffff
+  let mut inputs : Array (Bounds Float) := #[⟨huge,huge⟩,⟨-huge,huge⟩,
+    ⟨1000000000000.0,1000000000000.0⟩,⟨-1000000000000.0,-1000000000000.0⟩,
+    ⟨1000000000000.0,1000000000000.25⟩,⟨-1000000000000.25,-1000000000000.0⟩,
+    ⟨0.0,1000000000000.0⟩,⟨1000000000000000.0,1000000000000000.0⟩]
+  for k in [:65] do
+    let x := k.toFloat * 34359738368.0 - 1099511627776.0
+    inputs := inputs.push ⟨x,x⟩
+    inputs := inputs.push ⟨x,x+0.25⟩
+  for a in inputs do
+    let some r ← sineSplit a | throw (IO.userError "split finite call failed")
+    let some old ← sineUnsplit40 a | throw (IO.userError "unsplit comparison failed")
+    IO.println s!"SPLIT {a.lo.toBits} {a.hi.toBits} {r.lo.toBits} {r.hi.toBits} {old.lo.toBits} {old.hi.toBits}"
+  IO.println "PASS split reduction vectors"
 
 def main : IO Unit := do
   let one : Bounds Float := ⟨1.0, 1.0⟩
@@ -413,5 +452,6 @@ def main : IO Unit := do
   checkCosineQuadrants one tiny nan inf nextOne
   checkGlobal one nan inf
   checkDyadic one nan inf
+  checkSplit one nan inf
   unless (← roundingRestored) do throw (IO.userError "environment restoration failed")
   IO.println "PASS environment restoration"
