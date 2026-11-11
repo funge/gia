@@ -86,5 +86,22 @@ theorem external_hole :
     ¬ ∃ z, SinValues (fun (_ : Unit) (_ x : ℝ) => x ≠ 0 ∧ x = 0) () 0 z := by
   simp [sinValues_defined_iff]
 
+theorem failed_search_global : globalFallback (m := Id) (fun _ => true)
+    (fun _ => none) (-1 : ℝ) 1 ⟨100,100⟩ = some ⟨-1,1⟩ := rfl
+
+theorem unsupported_stays_unknown : globalFallback (m := Id) (fun _ => false)
+    (fun _ => some (⟨0,0⟩ : Bounds ℝ)) (-1) 1 ⟨0,0⟩ = none := rfl
+
+theorem refined_preserved : globalFallback (m := Id) (fun _ => true)
+    (fun _ => some (⟨0,0⟩ : Bounds ℝ)) (-1) 1 ⟨0,0⟩ = some ⟨0,0⟩ := rfl
+
+/-- A failed refinement still has a sound global bound at every real input. -/
+theorem failed_search_sound (x : ℝ) :
+    Contains some (⟨-1,1⟩ : Bounds ℝ) (Real.sin x) := by
+  apply globalFallback_sound (fun _ => true)
+    (search := fun _ => none) (by intro I O y h; contradiction)
+    (by rfl) (by rfl) ⟨x,x⟩ ⟨-1,1⟩ x rfl
+  exact ⟨x,x,rfl,rfl,le_rfl,le_rfl⟩
+
 end GeneralizedIntervalArithmetic.SineReductionChecks
 #audit_namespace GeneralizedIntervalArithmetic.SineReductionChecks

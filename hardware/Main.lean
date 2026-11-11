@@ -123,6 +123,14 @@ def sineQuadrants (a : Bounds Float) : IO (Option (Bounds Float)) := do
       multiply subtract sineEndpoints cosine 0.0 piBounds)
     (GeneralizedIntervalArithmetic.HardwareQuadrants.table markFloat) a
 
+def sineGlobal (a : Bounds Float) : IO (Option (Bounds Float)) :=
+  GeneralizedIntervalArithmetic.HardwareSine.globalFallback
+    (fun I => I.lo.isFinite && I.hi.isFinite && !(finiteLt I.hi I.lo))
+    (fun I => GeneralizedIntervalArithmetic.HardwareSine.searchPeriods multiply subtract
+      sineQuadrants piBounds I
+      (GeneralizedIntervalArithmetic.HardwareSine.periodCandidates 0.0 2.0 (-2.0) 4.0 (-4.0)))
+    (-1.0) 1.0 a
+
 def checkWith (op : Bounds Float → Bounds Float → IO (Option (Bounds Float))) (name : String) (a b : Bounds Float) (expected : Option (UInt64 × UInt64)) : IO Unit := do
   let result ← op a b
   let bits := result.map fun r => (r.lo.toBits, r.hi.toBits)
@@ -182,6 +190,29 @@ def checkCosineQuadrants (one : Bounds Float) (tiny nan inf nextOne : Float) : I
     (GeneralizedIntervalArithmetic.HardwareQuadrants.table markFloat) ⟨0.0,4.0⟩
   unless failedLater.isNone do throw (IO.userError "later failed cell was discarded")
   IO.println "PASS cosine and quadrant failure controls"
+
+def checkGlobal (one : Bounds Float) (nan inf : Float) : IO Unit := do
+  let test := checkWith (fun a _ => sineGlobal a)
+  test "global sine NaN unknown" ⟨nan,0.0⟩ one none
+  test "global sine infinity unknown" ⟨-inf,inf⟩ one none
+  test "global sine reversed unknown" ⟨2.0,1.0⟩ one none
+  let huge := Float.ofBits 0x7fefffffffffffff
+  let mut inputs : Array (Bounds Float) := #[⟨-huge,huge⟩,⟨huge,huge⟩,
+    ⟨-huge,-huge⟩,⟨100.0,100.0⟩,⟨-20.0,20.0⟩,⟨0.0,7.0⟩,
+    ⟨7.5,8.0⟩,⟨-8.0,-7.5⟩,⟨13.5,14.0⟩,⟨-14.0,-13.5⟩]
+  for k in [:129] do
+    let x := k.toFloat / 4.0 - 16.0
+    inputs := inputs.push ⟨x,x⟩
+    if k < 128 then inputs := inputs.push ⟨x,x+0.25⟩
+  for I in inputs do
+    let some O ← sineGlobal I | throw (IO.userError "finite global sine failed")
+    IO.println s!"GLOBAL {I.lo.toBits} {I.hi.toBits} {O.lo.toBits} {O.hi.toBits}"
+  let failed ← GeneralizedIntervalArithmetic.HardwareSine.globalFallback
+    (fun _ => true) (fun _ => pure none) (-1.0) 1.0 one
+  unless failed.map (fun O => (O.lo.toBits,O.hi.toBits)) ==
+      some (0xbff0000000000000,0x3ff0000000000000) do
+    throw (IO.userError "failed refinement did not return certified global bound")
+  IO.println "PASS global fallback and unsupported controls"
 
 def main : IO Unit := do
   let one : Bounds Float := ⟨1.0, 1.0⟩
@@ -348,5 +379,6 @@ def main : IO Unit := do
     IO.println s!"SINE_REDUCED {a.lo.toBits} {a.hi.toBits} {r.lo.toBits} {r.hi.toBits}"
   IO.println "PASS finite whole-period sine reduction vectors"
   checkCosineQuadrants one tiny nan inf nextOne
+  checkGlobal one nan inf
   unless (← roundingRestored) do throw (IO.userError "environment restoration failed")
   IO.println "PASS environment restoration"

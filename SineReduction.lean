@@ -80,4 +80,33 @@ theorem signed_kernel_sound {F : Type} {decode : F → Option ℝ}
   intro I O x hr hx
   exact signed_endpoints_enclose hc hz hn ho hs hp hr hx
 
+/-- Global sine bounds are proved, not a transcendental adapter assumption. -/
+theorem global_enclosure {F : Type} {decode : F → Option ℝ} {negOne one : F}
+    (hn : decode negOne = some (-1)) (ho : decode one = some 1) (x : ℝ) :
+    Contains decode (⟨negOne,one⟩ : Bounds F) (Real.sin x) :=
+  ⟨-1,1,hn,ho,Real.neg_one_le_sin x,Real.sin_le_one x⟩
+
+theorem globalFallback_sound {F : Type} {decode : F → Option ℝ}
+    (supported : Bounds F → Bool) {search : Bounds F → Option (Bounds F)}
+    (hs : RangeSound decode search) {negOne one : F}
+    (hn : decode negOne = some (-1)) (ho : decode one = some 1) :
+    RangeSound decode (globalFallback (m := Id) supported search negOne one) := by
+  intro I O x hr hx
+  unfold globalFallback at hr
+  simp only [bind,pure] at hr
+  split at hr
+  · contradiction
+  · split at hr
+    next R he => cases hr; exact hs I _ x he hx
+    next he => cases hr; exact global_enclosure hn ho x
+
+/-- Unlike enclosure-only primitive contracts, the pure fallback wrapper has a
+success guarantee whenever its input guard accepts. This is not an IO theorem. -/
+theorem globalFallback_defined {F : Type} (supported : Bounds F → Bool)
+    (search : Bounds F → Option (Bounds F)) (negOne one : F) (I : Bounds F)
+    (hg : supported I = true) :
+    ∃ O, globalFallback (m := Id) supported search negOne one I = some O := by
+  simp only [globalFallback,hg,Bool.not_true, Bool.false_eq_true,if_false,bind,pure]
+  cases search I <;> simp
+
 end GeneralizedIntervalArithmetic.HardwareSine
