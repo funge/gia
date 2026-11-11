@@ -7,9 +7,9 @@ from check_global import reference as local_reference
 from check_reduction import pi_bounds, analytic
 
 
-def reference(a):
+def reference(a, levels=20):
     for sign in (1,-1):
-        for k in reversed(range(20)):
+        for k in reversed(range(levels)):
             c = Q(sign*2**(k+1))
             shift = op((c,c), PI, lambda x,y:x*y)
             accept = ((shift[0] >= 0 and a[0] >= shift[1]) or

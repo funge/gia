@@ -1,3 +1,4 @@
+import SplitReduction
 import DyadicReduction
 import SineQuadrants
 import SineReduction
@@ -880,4 +881,9 @@ import SegmentSearchExamples
 #audit_axioms GeneralizedIntervalArithmetic.HardwareSine.sweepPeriods_sound
 #audit_axioms GeneralizedIntervalArithmetic.HardwareSine.reverse_append_periods
 #audit_axioms GeneralizedIntervalArithmetic.HardwareSine.dyadicRun_sound
+#audit_axioms GeneralizedIntervalArithmetic.HardwarePi.tail_bounds
+#audit_axioms GeneralizedIntervalArithmetic.HardwarePi.tail_width
+#audit_axioms GeneralizedIntervalArithmetic.HardwarePi.tail_contains
+#audit_axioms GeneralizedIntervalArithmetic.HardwareSine.sweepSplit_sound
+#audit_axioms GeneralizedIntervalArithmetic.HardwareSine.splitRun_sound
 #audit_namespace GeneralizedIntervalArithmetic

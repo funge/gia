@@ -2755,3 +2755,46 @@ Final full `./check.sh`: **21 tests passed in 232.377 seconds**, no skips,
 including both audit passes, 94 registered library roots, 35 fresh semantic
 fixtures, negative audit enforcement and the explicit pinned C API checkout
 comparison. All 233 local Markdown links and `git diff --check` passed.
+
+## Certified split pi and deferred sine corrections (2026-11-11)
+
+Base: merged GIA #7, `1ba072376faa2d9ebe0b5496d587673a7ae99795`.
+The merge tree was verified identical to qualified head
+`3fbf6bb6d38b10a2ff79d5a97ea3500a35dcbcca`; no hosted checks were configured.
+
+- The full build accepted 764 named checks and 1,469 namespace declarations.
+  New proofs establish the tail bounds/width, decoded tail enclosure, split
+  state invariant, and complete generated-coefficient program. No new axioms
+  or floating-point contract assumptions were introduced.
+- Final complete native suite passed all old vectors plus 138 split/unsplit
+  comparisons at the same 40-level search depth. Exact directed-operation
+  simulation checked both paths. Independent Machin-pi bounds checked the
+  actual tail constants and nine analytic samples per bounded interval.
+  All 134 tested narrow cases had width below 0.5. Huge-input fallback,
+  unsupported inputs and environment restoration passed.
+- At x = 10^12, the split output was
+  [-0.6112491950731197, -0.611238638566634], width 1.0556506485737138e-05.
+  The unsplit 40-level comparison width was 0.00012243988747917545.
+  These observations isolate representation/correction handling at equal
+  search depth; they do not imply universal accuracy or success guarantees.
+- The new independent Lean fixture audits six declarations: multiple
+  corrections, skipped shifts, correction/final-subtraction failures,
+  dropping-tail counterexample and more-than-40,000-fold pi-width comparison.
+- Local specification review checked the common integer witness in both
+  products, the sin(x-y) state invariant, arbitrary selector soundness,
+  failure propagation and zero-correction initialization. No assumption of
+  exact cancellation, error-free transforms, FMA or integer conversion is used.
+- Tupper §3.1.5 supplies the high-precision/interval-reduction motivation.
+  The deferred split accumulator is our construction, not a transcription
+  of his fractional-part algorithm. The actual pi precision is limited by
+  pinned mathlib's proved twenty-decimal bounds, not full double-double precision.
+- Adapter C, compiler flags, toolchain, dependency pins and licenses are
+  unchanged. No hosted CI was added. Lean 4.19.0, pinned mathlib, GCC 14.2.0
+  and leanc Clang 15.0.1 remain the qualification environment.
+
+See [construction, assumptions and limits](HARDWARE_SINE_SPLIT_PI.md).
+
+Final complete `./check.sh`: **21 tests passed in 248.449 seconds**, no skips,
+including both audit passes, 97 registered library roots, all 36 fresh semantic
+fixtures, negative axiom controls and the explicit pinned C API comparison.
+All 237 local Markdown links and `git diff --check` passed.

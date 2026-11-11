@@ -288,3 +288,12 @@ name = "DyadicReductionProgram"
 
 [[lean_lib]]
 name = "DyadicReduction"
+
+[[lean_lib]]
+name = "SplitPi"
+
+[[lean_lib]]
+name = "SplitReductionProgram"
+
+[[lean_lib]]
+name = "SplitReduction"
