@@ -2629,3 +2629,44 @@ span, and no all-finite-argument reduction or correctly rounded sine is claimed.
 There is no new FP contract: exact decoding is instantiated for the two specified
 pi dyadics and small integer coefficients; ordering, directed primitives and
 IO/FFI/compiler/hardware refinement retain their existing trusted status.
+
+## Certified cosine and quadrant cover (2026-11-11)
+
+Qualified against merged main `eef2d07b34edfcd6dad9e41a302092c2179c01bd`.
+
+- Full `./check.sh`, with the optional pinned relgraph checkout comparison,
+  passed: 21 tests in 223.868 seconds, no skips. Both audit passes accepted
+  751 named checks and 1,440 project namespace declarations, using only
+  `propext`, `Classical.choice` and `Quot.sound`. Inventory checks cover 92
+  library roots and 34 semantic fixtures; the new fixture audits 19 declarations.
+- Final `./hardware/check.sh` passed all prior 204 sine vectors, 68 cosine
+  vectors and 149 quadrant vectors. The new independent exact directed-operation
+  oracle matched native results; 17 original-input analytic samples per new
+  vector passed. Whole [-4,4] returned exactly [-1,1]. Controls cover extrema,
+  shared boundaries, adjacent floats, subnormals, unsupported inputs, late
+  failure after earlier success, and environment restoration.
+- The observed cosine point width at x = 1 was 2.4801587301892525e-05,
+  including rounding, compared with the proved analytic budget 1/40320.
+  Interval dependency and directed rounding may increase widths.
+- A local specification review checked common witnesses, all-cell coverage,
+  disjointness versus failure, negative phases, endpoint extrema and partiality.
+  Independent Lean controls include the cosine endpoint-only counterexample,
+  a composed exact-real client, and failure/external-hole controls. This is
+  local review plus independent test oracles, not a second-agent or human review.
+- Tupper §3.1.6 (printed p.48/PDF p.64) and §3.2.6 (printed p.54/PDF p.70)
+  were visually checked in the authorized repository PDF. This construction
+  follows the Taylor and cover methods; it is not a verbatim thesis formula
+  or a claim of proper/minimal monotonicity partitioning.
+- Local documentation links and `git diff --check` passed. Adapter C,
+  toolchain, dependency lockfile, LICENSE and COPYRIGHT are unchanged.
+  No hosted CI was added, and no denied source/cache access was retried.
+- Lean 4.19.0; mathlib `c44e0c8ee63ca166450922a373c7409c5d26b00b`;
+  GCC `cc (Debian 14.2.0-19) 14.2.0`; leanc Clang 15.0.1; x86_64.
+
+There are no new floating-point contract assumptions. Exact literal decoding,
+finite comparisons/min/max, directed primitives and IO/FFI/compiler/hardware
+refinement remain the existing trusted boundary. Lean proves geometric coverage
+and enclosure on success, not unconditional success of every implementation
+satisfying enclosure-only contracts. Unsupported inputs or primitive failures
+remain unknown. No correctly rounded transcendental or full-range sine claim
+is made. See [construction and limitations](HARDWARE_COSINE_QUADRANTS.md).

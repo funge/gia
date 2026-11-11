@@ -30,7 +30,10 @@ proved fifth-degree Taylor bounds, monotone endpoints and odd symmetry; it neith
 trusts libm sine nor claims correct rounding.
 [Certified pi and finite period reduction](HARDWARE_SINE_REDUCTION.md) extend it
 to intervals near a bounded set of whole-period shifts, with explicit unknown
-when no reduced interval fits. The [architecture assessment](HARDWARE_FLOAT_PLAN.md)
+when no reduced interval fits.
+[Hardware cosine and quadrant coverage](HARDWARE_COSINE_QUADRANTS.md) add a cosine
+kernel and a closed sine cover on [-4,4], including intervals crossing extrema.
+The [architecture assessment](HARDWARE_FLOAT_PLAN.md)
 records broader choices; it predates this explicitly authorized small milestone.
 
 ## Start here
@@ -67,8 +70,9 @@ through PR #73. Hardware square root, originating in relgraph PR #74
 (`f7cfea8`), merged as gia #1 (`a6cb4c8`). The positive-domain sine milestone
 merged as gia #2 (`bb937fa`). Signed monotone endpoint bounds on [-1, 1] merged
 as gia #3 (`9ea7d9d`).
-This review adds certified pi and finite whole-period reduction, retaining the
-same adapter trust boundary and MIT notices.
+Certified pi and finite whole-period reduction merged as gia #4 (`eef2d07`).
+This review adds cosine and quadrant coverage on [-4,4], retaining the same
+adapter trust boundary and MIT notices.
 The earlier [review stack](REVIEW_STACK.md), [merge plan](MERGE_PLAN.md) and
 validation sections are historical snapshots, not current pending-PR lists.
 The [public-operation coverage ledger](OPERATION_COVERAGE.md) distinguishes
