@@ -264,3 +264,21 @@ name = "SineReductionProgram"
 
 [[lean_lib]]
 name = "SineReduction"
+
+[[lean_lib]]
+name = "CosineTaylor"
+
+[[lean_lib]]
+name = "CosineProgram"
+
+[[lean_lib]]
+name = "HardwareCosine"
+
+[[lean_lib]]
+name = "QuadrantProgram"
+
+[[lean_lib]]
+name = "HardwareCover"
+
+[[lean_lib]]
+name = "SineQuadrants"

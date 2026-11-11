@@ -658,7 +658,7 @@ native precision improvements are independently measured, not inferred from
 loose enclosure contracts. See [scope and tests](HARDWARE_SINE.md).
 
 
-### Certified pi and restricted argument reduction (current review milestone)
+### Certified pi and restricted argument reduction (merged GIA #4)
 
 [PiBounds.lean](PiBounds.lean) and [SineReduction.lean](SineReduction.lean) implement
 a bounded counterpart of the periodicity/interval principle in §3.1.5, printed
@@ -671,3 +671,22 @@ dyadic pi bounds derived from mathlib. It retains the existing local kernel and
 returns unknown for gaps, wide intervals and search exhaustion. No general
 large-argument reduction, cosine/quadrant handling, native integer-conversion
 contract or full source equivalence is claimed. See [details](HARDWARE_SINE_REDUCTION.md).
+
+
+### Cosine and fixed quadrant cover (current review milestone)
+
+[CosineTaylor.lean](CosineTaylor.lean) proves C6(x) ≤ cos x ≤ C6(x)+x⁸/40320
+on [-1,1] by alternating series and even symmetry. This instantiates the similar
+cosine/basic-methods construction described in §3.1.6, printed p.48
+([PDF page 64](https://www.dgp.toronto.edu/~mooncake/thesis.pdf#page=64)); the exact
+polynomial and proof here are not a verbatim source result.
+[HardwareCover.lean](HardwareCover.lean) and [SineQuadrants.lean](SineQuadrants.lean)
+prove clipping, hull inclusion, phase identities and a complete closed cover of
+[-4,4], connecting both hardware kernels. The cover/hull method is related to
+§3.2.6, printed p.54 ([PDF page 70](https://www.dgp.toronto.edu/~mooncake/thesis.pdf#page=70)),
+visually checked against the original PDF. Minimal/proper-cover properties and
+monotonicity-class membership are not claimed: cosine cells may contain extrema.
+The certified claim is geometric coverage and enclosure on successful execution,
+not unconditional native success under enclosure-only contracts. No full-range
+reduction, correctly rounded transcendental or new FP contract is claimed.
+See [implementation and limits](HARDWARE_COSINE_QUADRANTS.md).

@@ -1,3 +1,5 @@
+import CosineProgram
+import QuadrantProgram
 import SineReductionProgram
 import HardwareBounds
 import SineProgram
@@ -99,6 +101,28 @@ def sineReduced (a : Bounds Float) : IO (Option (Bounds Float)) := do
   GeneralizedIntervalArithmetic.HardwareSine.searchPeriods multiply subtract sineEndpoints
     piBounds a (GeneralizedIntervalArithmetic.HardwareSine.periodCandidates 0.0 2.0 (-2.0) 4.0 (-4.0))
 
+def cosine (a : Bounds Float) : IO (Option (Bounds Float)) := do
+  unless a.lo.isFinite && a.hi.isFinite do return none
+  GeneralizedIntervalArithmetic.HardwareCosine.run
+    (GeneralizedIntervalArithmetic.HardwareSine.unitGuard finiteLt (-1.0) 1.0)
+    add subtract multiply divide chooseMin 0.0 1.0
+    ⟨2.0,2.0⟩ ⟨24.0,24.0⟩ ⟨720.0,720.0⟩ ⟨40320.0,40320.0⟩ a
+
+def markFloat : GeneralizedIntervalArithmetic.HardwareQuadrants.Mark → Float
+  | .neg4 => -4.0 | .neg375 => -3.75 | .neg225 => -2.25 | .neg075 => -0.75
+  | .pos075 => 0.75 | .pos225 => 2.25 | .pos375 => 3.75 | .pos4 => 4.0
+  | .neg15 => -1.5 | .neg1 => -1.0 | .neg05 => -0.5 | .zero => 0.0
+  | .pos05 => 0.5 | .pos1 => 1.0 | .pos15 => 1.5
+
+def sineQuadrants (a : Bounds Float) : IO (Option (Bounds Float)) := do
+  unless a.lo.isFinite && a.hi.isFinite do return none
+  GeneralizedIntervalArithmetic.HardwareQuadrants.run
+    (GeneralizedIntervalArithmetic.HardwareSine.unitGuard finiteLt (-4.0) 4.0)
+    finiteLt chooseMin chooseMax
+    (GeneralizedIntervalArithmetic.HardwareQuadrants.evaluate
+      multiply subtract sineEndpoints cosine 0.0 piBounds)
+    (GeneralizedIntervalArithmetic.HardwareQuadrants.table markFloat) a
+
 def checkWith (op : Bounds Float → Bounds Float → IO (Option (Bounds Float))) (name : String) (a b : Bounds Float) (expected : Option (UInt64 × UInt64)) : IO Unit := do
   let result ← op a b
   let bits := result.map fun r => (r.lo.toBits, r.hi.toBits)
@@ -106,6 +130,58 @@ def checkWith (op : Bounds Float → Bounds Float → IO (Option (Bounds Float))
   IO.println s!"PASS {name}: {repr bits}"
 
 def check := checkWith add
+
+def checkCosineQuadrants (one : Bounds Float) (tiny nan inf nextOne : Float) : IO Unit := do
+  let cosCheck := checkWith (fun a _ => cosine a)
+  cosCheck "cosine at zero" ⟨0.0,0.0⟩ one (some (0x3ff0000000000000,0x3ff0000000000000))
+  cosCheck "cosine outside domain unknown" ⟨-1.0,nextOne⟩ one none
+  cosCheck "cosine reversed unknown" ⟨1.0,-1.0⟩ one none
+  cosCheck "cosine NaN unknown" ⟨nan,0.0⟩ one none
+  let mut cosInputs : Array (Bounds Float) := #[⟨-1.0,1.0⟩,⟨-tiny,tiny⟩,⟨-0.5,0.75⟩]
+  for k in [:33] do
+    let x := k.toFloat / 16.0 - 1.0
+    cosInputs := cosInputs.push ⟨x,x⟩
+    if k < 32 then cosInputs := cosInputs.push ⟨x,x+0.0625⟩
+  for a in cosInputs do
+    let some r ← cosine a | throw (IO.userError "supported cosine failed")
+    IO.println s!"COSINE {a.lo.toBits} {a.hi.toBits} {r.lo.toBits} {r.hi.toBits}"
+  let qCheck := checkWith (fun a _ => sineQuadrants a)
+  qCheck "quadrants outside domain unknown" ⟨-4.0,4.5⟩ one none
+  qCheck "quadrants reversed unknown" ⟨4.0,-4.0⟩ one none
+  qCheck "quadrants infinity unknown" ⟨-inf,inf⟩ one none
+  qCheck "quadrants NaN unknown" ⟨nan,0.0⟩ one none
+  let mut qInputs : Array (Bounds Float) := #[⟨-4.0,4.0⟩,⟨1.5,1.75⟩,⟨-1.75,-1.5⟩,
+    ⟨-tiny,tiny⟩,⟨0.0,4.0⟩,⟨-4.0,0.0⟩]
+  for k in [:65] do
+    let x := k.toFloat / 8.0 - 4.0
+    qInputs := qInputs.push ⟨x,x⟩
+    if k < 64 then qInputs := qInputs.push ⟨x,x+0.125⟩
+  for boundary in #[-3.75,-2.25,-0.75,0.75,2.25,3.75] do
+    qInputs := qInputs.push ⟨boundary-0.0625,boundary+0.0625⟩
+  for bits in #[0x3fe8000000000000,0x4002000000000000,0x400e000000000000] do
+    let l := Float.ofBits (bits-1)
+    let u := Float.ofBits (bits+1)
+    qInputs := qInputs.push ⟨l,u⟩
+    qInputs := qInputs.push ⟨-u,-l⟩
+  qInputs := qInputs.push ⟨piBounds.lo/2.0,piBounds.hi/2.0⟩
+  qInputs := qInputs.push ⟨-piBounds.hi/2.0,-piBounds.lo/2.0⟩
+  for a in qInputs do
+    let some r ← sineQuadrants a | throw (IO.userError "supported quadrant cover failed")
+    IO.println s!"QUADRANTS {a.lo.toBits} {a.hi.toBits} {r.lo.toBits} {r.hi.toBits}"
+  let failedCos ← GeneralizedIntervalArithmetic.HardwareCosine.run
+    (fun _ => true) add subtract multiply (fun _ _ => pure none) chooseMin 0.0 1.0
+    one one one one one
+  unless failedCos.isNone do throw (IO.userError "cosine failure accepted")
+  let failedCover ← GeneralizedIntervalArithmetic.HardwareQuadrants.run
+    (fun _ => true) finiteLt chooseMin chooseMax (fun _ _ => pure none)
+    (GeneralizedIntervalArithmetic.HardwareQuadrants.table markFloat) one
+  unless failedCover.isNone do throw (IO.userError "cover lost a failed cell")
+  let failedLater ← GeneralizedIntervalArithmetic.HardwareQuadrants.run
+    (fun _ => true) finiteLt chooseMin chooseMax
+    (fun c _ => if c.coefficient == 0.0 then pure (some one) else pure none)
+    (GeneralizedIntervalArithmetic.HardwareQuadrants.table markFloat) ⟨0.0,4.0⟩
+  unless failedLater.isNone do throw (IO.userError "later failed cell was discarded")
+  IO.println "PASS cosine and quadrant failure controls"
 
 def main : IO Unit := do
   let one : Bounds Float := ⟨1.0, 1.0⟩
@@ -271,5 +347,6 @@ def main : IO Unit := do
     let some r ← sineReduced a | throw (IO.userError "supported reduction returned unknown")
     IO.println s!"SINE_REDUCED {a.lo.toBits} {a.hi.toBits} {r.lo.toBits} {r.hi.toBits}"
   IO.println "PASS finite whole-period sine reduction vectors"
+  checkCosineQuadrants one tiny nan inf nextOne
   unless (← roundingRestored) do throw (IO.userError "environment restoration failed")
   IO.println "PASS environment restoration"
