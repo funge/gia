@@ -30,6 +30,29 @@ theorem clip_point {F : Type} {decode : F → Option ℝ} {lt : F → F → Bool
     max_le hl jl, le_min hu ju⟩
   simp [clip,hfalse]
 
+/-- Intersecting valid enclosures cannot add a represented real value. -/
+theorem clip_subset {F : Type} {decode : F → Option ℝ} {lt : F → F → Bool}
+    {mn mx : F → F → F}
+    (hn : HardwareMultiplication.SelectSound decode mn min)
+    (hm : HardwareMultiplication.SelectSound decode mx max)
+    {I J K : Bounds F} (hi : Valid decode I) (hj : Valid decode J)
+    (hr : clip lt mn mx I J = some K) {x : ℝ} (hx : Contains decode K x) :
+    Contains decode I x ∧ Contains decode J x := by
+  rcases hi with ⟨a,b,ha,hb⟩
+  rcases hj with ⟨c,d,hc,hd⟩
+  have hlo := hm _ _ _ _ ha hc
+  have hhi := hn _ _ _ _ hb hd
+  simp only [clip] at hr
+  split at hr <;> try contradiction
+  next hg =>
+    cases hr
+    rcases hx with ⟨l,u,hl,hu,hxl,hxu⟩
+    have el : l = max a c := Option.some.inj (hl.symm.trans hlo)
+    have eu : u = min b d := Option.some.inj (hu.symm.trans hhi)
+    subst l; subst u
+    exact ⟨⟨a,b,ha,hb,(le_max_left a c).trans hxl,hxu.trans (min_le_left b d)⟩,
+      ⟨c,d,hc,hd,(le_max_right a c).trans hxl,hxu.trans (min_le_right b d)⟩⟩
+
 theorem clip_nonempty {F : Type} {decode : F → Option ℝ} {lt : F → F → Bool}
     {mn mx : F → F → F} (hc : HardwareDivision.CompareSound decode lt)
     (hn : HardwareMultiplication.SelectSound decode mn min)

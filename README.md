@@ -49,6 +49,10 @@ no trusted quotient-to-integer conversion or new floating-point assumptions.
 separate until coarse cancellation finishes, improving tested narrow-input
 bounds near magnitude one trillion under the same floating-point contract.
 
+[Smaller-angle refinement](HARDWARE_SINE_HALVING.md) reconstructs sine/cosine
+with proved double-angle identities and intersects with the previous result,
+improving tested narrow-input accuracy without widening existing enclosures.
+
 ## Start here
 
 | Question | Read |
@@ -86,8 +90,9 @@ as gia #3 (`9ea7d9d`).
 Certified pi and finite whole-period reduction merged as gia #4 (`eef2d07`).
 Cosine and quadrant coverage merged as GIA #5 (`d1caaaf`); composed period
 reduction and global fallback merged as GIA #6 (`0192ef2`); bounded dyadic
-reduction merged as GIA #7 (`1ba0723`). This review adds certified split pi
-and deferred small corrections, retaining the same
+reduction merged as GIA #7 (`1ba0723`); split pi and deferred corrections
+merged as GIA #8 (`278fbe0`). This review adds smaller-angle reconstruction
+and safe intersection refinement, retaining the same
 adapter trust boundary and MIT notices.
 The earlier [review stack](REVIEW_STACK.md), [merge plan](MERGE_PLAN.md) and
 validation sections are historical snapshots, not current pending-PR lists.
