@@ -29,4 +29,14 @@ def searchPeriods {F : Type} {m : Type → Type} [Monad m]
 def periodCandidates {F : Type} (zero two negTwo four negFour : F) : List (Bounds F) :=
   [⟨zero, zero⟩, ⟨two, two⟩, ⟨negTwo, negTwo⟩, ⟨four, four⟩, ⟨negFour, negFour⟩]
 
+/-- A proved global enclosure is distinct from failure of a refinement search.
+The caller still rejects unsupported representations before invoking the search. -/
+def globalFallback {F : Type} {m : Type → Type} [Monad m]
+    (supported : Bounds F → Bool) (search : Bounds F → m (Option (Bounds F)))
+    (negOne one : F) (I : Bounds F) : m (Option (Bounds F)) := do
+  if !supported I then return none
+  match ← search I with
+  | some O => return some O
+  | none => return some ⟨negOne, one⟩
+
 end GeneralizedIntervalArithmetic.HardwareSine

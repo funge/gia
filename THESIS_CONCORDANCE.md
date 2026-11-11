@@ -690,3 +690,12 @@ The certified claim is geometric coverage and enclosure on successful execution,
 not unconditional native success under enclosure-only contracts. No full-range
 reduction, correctly rounded transcendental or new FP contract is claimed.
 See [implementation and limits](HARDWARE_COSINE_QUADRANTS.md).
+
+### Composed period reduction and global fallback
+
+[Global sine fallback](HARDWARE_SINE_GLOBAL.md) composes the already proved
+integer-period and quadrant methods, then uses the proved global range [-1,1]
+when refinement fails. It follows the interval-reduction principle of §3.1.5,
+not the exact fractional-part algorithm. Conservative full finite-input handling
+is distinct from precise full-range reduction, which remains unformalized.
+No new FP assumptions or C implementation equivalence are claimed.

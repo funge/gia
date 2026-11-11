@@ -36,6 +36,11 @@ kernel and a closed sine cover on [-4,4], including intervals crossing extrema.
 The [architecture assessment](HARDWARE_FLOAT_PLAN.md)
 records broader choices; it predates this explicitly authorized small milestone.
 
+[Global sine fallback](HARDWARE_SINE_GLOBAL.md) composes period reduction with
+that quadrant kernel and supplies the proved [-1,1] bound when refinement fails.
+It handles arbitrary finite input magnitudes conservatively, without claiming
+accurate full-range reduction.
+
 ## Start here
 
 | Question | Read |
@@ -71,7 +76,8 @@ through PR #73. Hardware square root, originating in relgraph PR #74
 merged as gia #2 (`bb937fa`). Signed monotone endpoint bounds on [-1, 1] merged
 as gia #3 (`9ea7d9d`).
 Certified pi and finite whole-period reduction merged as gia #4 (`eef2d07`).
-This review adds cosine and quadrant coverage on [-4,4], retaining the same
+Cosine and quadrant coverage merged as GIA #5 (`d1caaaf`). This review adds
+composed period reduction and a global sine fallback, retaining the same
 adapter trust boundary and MIT notices.
 The earlier [review stack](REVIEW_STACK.md), [merge plan](MERGE_PLAN.md) and
 validation sections are historical snapshots, not current pending-PR lists.

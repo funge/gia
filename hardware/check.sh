@@ -24,3 +24,4 @@ leanc "$out/Main.c" "$out/adapter.o" .lake/build/lib/libHardwareBounds.a .lake/b
 python3 hardware/check_sine.py "$out/native-output.txt"
 python3 hardware/check_reduction.py "$out/native-output.txt"
 python3 hardware/check_quadrants.py "$out/native-output.txt"
+python3 hardware/check_global.py "$out/native-output.txt"

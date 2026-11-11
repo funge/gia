@@ -2670,3 +2670,45 @@ and enclosure on success, not unconditional success of every implementation
 satisfying enclosure-only contracts. Unsupported inputs or primitive failures
 remain unknown. No correctly rounded transcendental or full-range sine claim
 is made. See [construction and limitations](HARDWARE_COSINE_QUADRANTS.md).
+
+## Composed sine reduction and global fallback (2026-11-11)
+
+Base: merged GIA #5, `d1caaafb7511d3fc3487e77c9600cc557d1224ee`.
+The merge was verified against qualified head `56ee86126799e6bb0b42d32346baf9cdffa8995a`;
+there were no tree changes or hosted checks.
+
+- The full project build and both axiom-audit passes accepted 755 named checks
+  and 1,445 namespace declarations with the existing standard axiom allowlist.
+  No new axioms, `sorry`, or native proof evaluation were added.
+- Final `./hardware/check.sh` passed all previous vectors and 267 new global
+  sine vectors: 261 refined through period/quadrant composition, 6 used the
+  proved global bound. The independent oracle matched directed operations and
+  checked nine original-input series samples per interval inside [-16,16].
+  Maximum-finite and huge intervals were checked against the exact fallback,
+  not a huge-angle numerical oracle. NaNs, infinities, reversed inputs,
+  injected refinement failure and environment restoration passed.
+- The independent oracle needed explicit nonfinite-rounding rejection for the
+  maximum-finite tests; its initial attempt raised Python OverflowError. That
+  test harness limitation was corrected, then the complete native suite passed.
+- Lean controls preserve refined results, reject unsupported input and prove
+  the fallback sound for every real input. The updated independent reduction
+  fixture audits 20 declarations. Source/diff review checked both reduction
+  levels, common input witnesses, guards and fallback semantics.
+- Tupper §3.1.5, printed p.47/PDF p.63, was visually rechecked in the repository
+  PDF. The implementation composes certified integer shifts; it does not claim
+  to implement the source's fractional-part formula. The damaged Markdown
+  quarter-versus-half transcription was not used as authority.
+- Adapter C, toolchain, dependency pins, LICENSE and COPYRIGHT are unchanged.
+  No hosted CI or new FP assumptions were added. Lean 4.19.0 and pinned mathlib
+  remain unchanged, as do GCC 14.2.0 and leanc Clang 15.0.1 on x86_64.
+
+This is conservative all-finite-input handling, not precise full-range argument
+reduction or correctly rounded sine. The global fallback has width 2. Pure
+wrapper success is proved after an accepted guard; native IO termination and
+refinement remain outside the proof. External domains are not enlarged.
+See [scope and limitations](HARDWARE_SINE_GLOBAL.md).
+
+Final complete `./check.sh` result: **21 tests passed in 352.166 seconds**, no
+skips, including the explicit relgraph checkout comparison, 92 registered library
+roots, all 34 fresh semantic fixtures and negative audit controls. Final local
+Markdown checks covered 229 links; `git diff --check` passed.

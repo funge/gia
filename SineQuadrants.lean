@@ -1,6 +1,7 @@
 import HardwareCover
 import HardwareCosine
 import PiBounds
+import SineReduction
 
 namespace GeneralizedIntervalArithmetic.HardwareQuadrants
 open HardwareAddition HardwareSine
@@ -158,5 +159,26 @@ theorem quadrants_enclose {F : Type} {decode : F → Option ℝ} {lt : F → F �
     exact evaluate_encloses hm hs hsin hcos (hv .zero) hp ha hi hr hx
   · intro hg x hx
     exact table_cover hv (guard_four hc hv hg hx)
+
+/-- Composition of the actual quadrant kernel with certified whole periods.
+This supplies the search contract required by the global fallback theorem. -/
+theorem period_quadrants_sound {F : Type} {decode : F → Option ℝ} {lt : F → F → Bool}
+    {mn mx : F → F → F} (hc : HardwareDivision.CompareSound decode lt)
+    (hmin : HardwareMultiplication.SelectSound decode mn min)
+    (hmax : HardwareMultiplication.SelectSound decode mx max)
+    {mul sub : Bounds F → Bounds F → Option (Bounds F)}
+    (hm : OpSound decode mul (· * ·)) (hs : OpSound decode sub (· - ·))
+    {sin cos : Bounds F → Option (Bounds F)} (hsin : RangeSound decode sin)
+    (hcos : ∀ I O x, cos I = some O → Contains decode I x → Contains decode O (Real.cos x))
+    {v : Mark → F} (hv : ∀ m, decode (v m) = some (markValue m))
+    {P : Bounds F} (hp : Contains decode P Real.pi)
+    {cs : List (Bounds F)} (hcs : PeriodsSound decode cs) :
+    RangeSound decode (fun I => searchPeriods (m := Id) mul sub
+      (run (m := Id) (unitGuard lt (v .neg4) (v .pos4)) lt mn mx
+        (evaluate (m := Id) mul sub sin cos (v .zero) P) (table v)) P I cs) := by
+  intro I O x hr hx
+  apply searchPeriods_encloses hm hs ?_ hp hcs hr hx
+  intro J R y hj hy
+  exact quadrants_enclose hc hmin hmax hm hs hsin hcos hv hp hj hy
 
 end GeneralizedIntervalArithmetic.HardwareQuadrants
