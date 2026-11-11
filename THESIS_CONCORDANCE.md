@@ -643,7 +643,7 @@ these later conditional hardware clients; native implementation verification
 and a certified platform transcendental library still remain open.
 
 
-### Signed monotone endpoint extension (current review milestone)
+### Signed monotone endpoint extension (merged GIA #3)
 
 [SineEndpoints.lean](SineEndpoints.lean) combines the restricted §3.1.6 Taylor
 construction with the endpoint principle of §3.2.10, printed pp.56–57
@@ -656,3 +656,18 @@ The executable path uses only existing directed primitives and finite ordering;
 no floating-point contract is added. Ideal endpoint tightening is proved, while
 native precision improvements are independently measured, not inferred from
 loose enclosure contracts. See [scope and tests](HARDWARE_SINE.md).
+
+
+### Certified pi and restricted argument reduction (current review milestone)
+
+[PiBounds.lean](PiBounds.lean) and [SineReduction.lean](SineReduction.lean) implement
+a bounded counterpart of the periodicity/interval principle in §3.1.5, printed
+pp.47–48 ([PDF page 63](https://www.dgp.toronto.edu/~mooncake/thesis.pdf#page=63)).
+The original PDF was visually checked: it uses the half-offset in the fractional
+part formula, whereas the repository Markdown has damaged quarter-offset text.
+This implementation does not use that fractional-part formula: it searches five
+whole-period candidates and proves every successful reduction sound, with certified
+dyadic pi bounds derived from mathlib. It retains the existing local kernel and
+returns unknown for gaps, wide intervals and search exhaustion. No general
+large-argument reduction, cosine/quadrant handling, native integer-conversion
+contract or full source equivalence is claimed. See [details](HARDWARE_SINE_REDUCTION.md).

@@ -27,7 +27,10 @@ assembly and proves denominator nonzero as well as quotient enclosure.
 roots on nonnegative and mixed-domain intervals.
 [Hardware sine on [-1, 1]](HARDWARE_SINE.md) composes directed arithmetic with
 proved fifth-degree Taylor bounds, monotone endpoints and odd symmetry; it neither
-trusts libm sine nor claims correct rounding. The [architecture assessment](HARDWARE_FLOAT_PLAN.md)
+trusts libm sine nor claims correct rounding.
+[Certified pi and finite period reduction](HARDWARE_SINE_REDUCTION.md) extend it
+to intervals near a bounded set of whole-period shifts, with explicit unknown
+when no reduced interval fits. The [architecture assessment](HARDWARE_FLOAT_PLAN.md)
 records broader choices; it predates this explicitly authorized small milestone.
 
 ## Start here
@@ -62,8 +65,10 @@ graphing examples; `Evaluator` is a two-variable client, not the general core. R
 The published gia baseline is `1f67388`, imported from relgraph main `7fd4b39`
 through PR #73. Hardware square root, originating in relgraph PR #74
 (`f7cfea8`), merged as gia #1 (`a6cb4c8`). The positive-domain sine milestone
-merged as gia #2 (`bb937fa`). This review adds signed monotone endpoint bounds
-on [-1, 1], retaining the same adapter trust boundary and MIT notices.
+merged as gia #2 (`bb937fa`). Signed monotone endpoint bounds on [-1, 1] merged
+as gia #3 (`9ea7d9d`).
+This review adds certified pi and finite whole-period reduction, retaining the
+same adapter trust boundary and MIT notices.
 The earlier [review stack](REVIEW_STACK.md), [merge plan](MERGE_PLAN.md) and
 validation sections are historical snapshots, not current pending-PR lists.
 The [public-operation coverage ledger](OPERATION_COVERAGE.md) distinguishes

@@ -1,3 +1,4 @@
+import SineReduction
 import SineEndpoints
 import HardwareSine
 import HardwareSquareRoot
@@ -835,5 +836,14 @@ import SegmentSearchExamples
 #audit_axioms GeneralizedIntervalArithmetic.HardwareSine.signed_guard_sound
 #audit_axioms GeneralizedIntervalArithmetic.HardwareSine.endpoints_enclose
 #audit_axioms GeneralizedIntervalArithmetic.HardwareSine.signed_endpoints_enclose
+
+#audit_axioms GeneralizedIntervalArithmetic.HardwarePi.bounds
+#audit_axioms GeneralizedIntervalArithmetic.HardwarePi.width
+#audit_axioms GeneralizedIntervalArithmetic.HardwarePi.decoded_contains
+#audit_axioms GeneralizedIntervalArithmetic.HardwarePi.lower_singleton_misses
+#audit_axioms GeneralizedIntervalArithmetic.HardwareSine.reduce_encloses
+#audit_axioms GeneralizedIntervalArithmetic.HardwareSine.searchPeriods_encloses
+#audit_axioms GeneralizedIntervalArithmetic.HardwareSine.periodCandidates_sound
+#audit_axioms GeneralizedIntervalArithmetic.HardwareSine.signed_kernel_sound
 
 #audit_namespace GeneralizedIntervalArithmetic
