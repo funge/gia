@@ -2846,3 +2846,44 @@ Both audit passes accepted 769 named checks and 1,482 namespace declarations
 with the standard allowlist. All 99 library roots, 37 fresh semantic fixtures,
 negative audit controls and the pinned C API checkout comparison passed.
 All 240 local Markdown links and `git diff --check` passed.
+
+## Hardware affine forms — 2026-11-12
+
+Base: merged main `b3ff033fd37c08bdd6d76bc6a759c59116f9d64c` (PR #9).
+This is a separate shared-parameter arithmetic milestone, not further sine work.
+
+- Proved addition, subtraction and common-scalar multiplication enclosure,
+  the full existing `LinearInterval` semantic bridge, the exact affine bridge,
+  convex endpoint containment and hull enclosure on [0,1].
+- Native `./hardware/check.sh` passed. The new independent exact-rational oracle
+  checked **102** finite binary64 operation results, all endpoint witnesses at
+  five shared parameters, and exact directed endpoint rounding. Runtime uses
+  hardware arithmetic; rational arithmetic is confined to the independent test.
+- Cancellation control: `(2+t)−(1+t)` returned endpoint bounds `[1,1]`, whereas
+  ordinary hull subtraction returned `[0,2]`. A separately rounded input
+  self-subtraction retained nonzero uncertainty. Negative/zero/subnormal scalars,
+  malformed/nonfinite inputs, nonfinite scalar, and overflow after a successful
+  first endpoint were exercised.
+- All prior native suites passed: primitive arithmetic, square root, environment
+  restoration, sine Taylor/endpoints, period/quadrant/global/dyadic/split-pi and
+  smaller-angle oracles. Adapter disassembly retained `addsd`, `subsd`, `mulsd`,
+  `divsd`, `sqrtsd`; no external sqrt call was introduced.
+- Local specification review compared the repository thesis PDF, printed pp.28–29,
+  to pointwise witnesses and the unit-parameter hull restriction; checked both
+  endpoint failure paths, the common scalar and primitive-contract composition.
+  This review and independent numerical oracles are not an independent human
+  proof review or compiler/hardware verification.
+- Adapter C, toolchain, dependency pins, licenses and compiler flags are unchanged.
+  No new FP assumptions or axioms, hosted CI, or source-library dependency.
+  Qualification uses Lean 4.19.0, pinned mathlib, GCC 14.2.0 and leanc Clang 15.0.1.
+- Documentation links and `git diff --check` passed (429 local Markdown links).
+
+See [scope and source correspondence](HARDWARE_AFFINE.md).
+
+Final complete `./check.sh`: **21 tests passed in 297.686 seconds**, no skips.
+Both audit passes accepted **776 named checks** and **1,495 namespace declarations**
+using the standard allowlist (`propext`, `Classical.choice`, `Quot.sound`). All
+**102 library roots**, **38 fresh semantic fixtures**, negative audit controls
+and the explicitly supplied pinned C API checkout comparison passed. Full logs
+were retained in the cloud workspace as `gia-affine-full.log` and
+`gia-affine-native.log`; this receipt records their qualified results.

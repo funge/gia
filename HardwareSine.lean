@@ -1,3 +1,4 @@
+import HardwareIntervalOps
 import SineProgram
 import SineTaylor
 import HardwareDivision
@@ -6,12 +7,8 @@ import HardwareSubtraction
 namespace GeneralizedIntervalArithmetic.HardwareSine
 open HardwareAddition
 
-/-- Conditional interval-operation contract. It is discharged by the existing
-assembly theorems from directed primitive contracts, not a new hardware axiom. -/
-def OpSound {F : Type} (decode : F → Option ℝ)
-    (op : Bounds F → Bounds F → Option (Bounds F)) (f : ℝ → ℝ → ℝ) : Prop :=
-  ∀ I J O x y, op I J = some O → Contains decode I x → Contains decode J y →
-    Contains decode O (f x y)
+/-- Compatibility name for the shared hardware interval-operation contract. -/
+abbrev OpSound := @HardwareIntervalOps.OpSound
 
 /-- The range guard is justified by the existing finite comparison contract. -/
 theorem unitGuard_sound {F : Type} {decode : F → Option ℝ} {lt : F → F → Bool}

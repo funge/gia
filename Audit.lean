@@ -1,3 +1,4 @@
+import HardwareAffine
 import TrigHalving
 import SplitReduction
 import DyadicReduction
@@ -892,4 +893,11 @@ import SegmentSearchExamples
 #audit_axioms GeneralizedIntervalArithmetic.HardwareHalving.refine_sound
 #audit_axioms GeneralizedIntervalArithmetic.HardwareQuadrants.clip_subset
 #audit_axioms GeneralizedIntervalArithmetic.HardwareHalving.cosine_sound
+#audit_axioms GeneralizedIntervalArithmetic.HardwareAffine.add_sound
+#audit_axioms GeneralizedIntervalArithmetic.HardwareAffine.sub_sound
+#audit_axioms GeneralizedIntervalArithmetic.HardwareAffine.scale_sound
+#audit_axioms GeneralizedIntervalArithmetic.HardwareAffine.bounds_convex
+#audit_axioms GeneralizedIntervalArithmetic.HardwareAffine.linear_bridge
+#audit_axioms GeneralizedIntervalArithmetic.HardwareAffine.exact_affine_bridge
+#audit_axioms GeneralizedIntervalArithmetic.HardwareAffine.hull_sound
 #audit_namespace GeneralizedIntervalArithmetic

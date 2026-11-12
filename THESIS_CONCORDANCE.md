@@ -731,3 +731,13 @@ the previous sound result handles the demonstrated wide-interval dependency
 regression. It introduces no FP assumptions and does not prove universal accuracy
 or correct rounding. Measured gains are documented at unchanged pi constants
 and period-search depth.
+
+## Hardware realization of finite linear forms
+
+[Hardware affine forms](HARDWARE_AFFINE.md) extend the finite §2.9.3 correspondence
+with conditional directed-binary64 addition, subtraction and scalar multiplication.
+The full existing linear-interval semantics is enclosed at a common parameter in
+[0,1]; endpoint uncertainty preserves rounding error. This realizes the p.29
+pointwise inclusion principle and cancellation example in a narrower finite
+endpoint representation. It is not full extended-real linear arithmetic or an
+optimal-demotion theorem. The adapter/compiler/hardware boundary is unchanged.

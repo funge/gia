@@ -153,3 +153,11 @@ hull/intersection results are ordinary set bounds, not generalized branch-cut
 identity maps or a claim that an interval hull preserves disjoint possibilities.
 See [the concordance](THESIS_CONCORDANCE.md) and
 [the basic-operations guide](BASIC_OPERATIONS.md) for exact scope and controls.
+
+## Shared-parameter hardware composition
+
+[Hardware affine forms](HARDWARE_AFFINE.md) compose the already listed directed
+addition, subtraction and multiplication paths for finite one-parameter forms.
+The existing rational linear model has a proved semantic enclosure bridge. This
+is a representation/composition milestone, not a newly verified C API symbol,
+a general expression evaluator, or proof of the C implementation.

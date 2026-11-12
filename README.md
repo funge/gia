@@ -53,6 +53,10 @@ bounds near magnitude one trillion under the same floating-point contract.
 with proved double-angle identities and intersects with the previous result,
 improving tested narrow-input accuracy without widening existing enclosures.
 
+[Hardware affine forms](HARDWARE_AFFINE.md) connect the shared-parameter linear
+model to directed binary64 addition, subtraction and scalar multiplication,
+retaining endpoint rounding uncertainty and useful shared-parameter cancellation.
+
 ## Start here
 
 | Question | Read |

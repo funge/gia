@@ -1,3 +1,4 @@
+import HardwareAffineProgram
 import TrigHalvingProgram
 import SplitReductionProgram
 import DyadicReductionProgram
@@ -349,7 +350,70 @@ def checkFine (one : Bounds Float) (nan inf : Float) : IO Unit := do
   unless failed.isNone do throw (IO.userError "halving failure hidden")
   IO.println "PASS angle halving vectors and failure"
 
+namespace AffineNative
+open GeneralizedIntervalArithmetic.HardwareAffine
+
+def valid (a : Bounds Float) : Bool :=
+  a.lo.isFinite && a.hi.isFinite && decide (a.lo ≤ a.hi)
+
+def validForm (a : Form Float) : Bool := valid a.atZero && valid a.atOne
+
+def binary (op : Bounds Float → Bounds Float → IO (Option (Bounds Float)))
+    (a b : Form Float) : IO (Option (Form Float)) := do
+  unless validForm a && validForm b do return none
+  combine op a b
+
+def scalar (c : Float) (a : Form Float) : IO (Option (Form Float)) := do
+  unless c.isFinite && validForm a do return none
+  scale multiply ⟨c,c⟩ a
+
+def bits (a : Form Float) : String :=
+  s!"{a.atZero.lo.toBits} {a.atZero.hi.toBits} {a.atOne.lo.toBits} {a.atOne.hi.toBits}"
+
+def check : IO Unit := do
+  let forms : Array (Form Float) := #[
+    ⟨⟨2,2⟩,⟨3,3⟩⟩, ⟨⟨1,1⟩,⟨2,2⟩⟩,
+    ⟨⟨-3,-2⟩,⟨4,5⟩⟩, ⟨⟨0.1,0.2⟩,⟨-0.7,-0.6⟩⟩,
+    ⟨⟨Float.ofBits 1,Float.ofBits 2⟩,⟨0,Float.ofBits 1⟩⟩,
+    ⟨⟨1,Float.ofBits 0x3ff0000000000001⟩,⟨2,2⟩⟩]
+  for a in forms do
+    for b in forms do
+      for (name,op) in [("add",add),("sub",subtract)] do
+        let some o ← binary op a b | throw (IO.userError "affine finite operation failed")
+        let h := hull chooseMin chooseMax o
+        IO.println s!"AFFINE {name} {bits a} {bits b} {bits o} {h.lo.toBits} {h.hi.toBits}"
+    for c in #[-2.0,0.0,0.1,1.0,Float.ofBits 1] do
+      let some o ← scalar c a | throw (IO.userError "affine scalar failed")
+      let h := hull chooseMin chooseMax o
+      IO.println s!"AFFINE scale {bits a} {c.toBits} {c.toBits} {c.toBits} {c.toBits} {bits o} {h.lo.toBits} {h.hi.toBits}"
+  let a : Form Float := ⟨⟨2,2⟩,⟨3,3⟩⟩
+  let b : Form Float := ⟨⟨1,1⟩,⟨2,2⟩⟩
+  let some o ← binary subtract a b | throw (IO.userError "cancellation failed")
+  let h := hull chooseMin chooseMax o
+  let some ordinary ← subtract (hull chooseMin chooseMax a) (hull chooseMin chooseMax b)
+    | throw (IO.userError "ordinary subtraction failed")
+  unless h.lo == 1 && h.hi == 1 && ordinary.lo == 0 && ordinary.hi == 2 do
+    throw (IO.userError "shared cancellation regression")
+  let some rounded ← binary add b ⟨⟨Float.ofBits 0x3ca0000000000000,Float.ofBits 0x3ca0000000000000⟩,⟨0,0⟩⟩
+    | throw (IO.userError "rounding test failed")
+  let some uncertain ← binary subtract rounded rounded | throw (IO.userError "uncertainty test failed")
+  unless uncertain.atZero.lo < 0 && 0 < uncertain.atZero.hi do
+    throw (IO.userError "rounding uncertainty was erased")
+  let huge := Float.ofBits 0x7fefffffffffffff
+  let overflow : Form Float := ⟨⟨1,1⟩,⟨huge,huge⟩⟩
+  unless (← binary add overflow overflow).isNone && (← scalar 2 overflow).isNone do
+    throw (IO.userError "second endpoint overflow accepted")
+  for bad in #[⟨⟨2,1⟩,⟨0,0⟩⟩, ⟨⟨0,0⟩,⟨Float.ofBits 0x7ff0000000000000,0⟩⟩,
+      ⟨⟨Float.ofBits 0x7ff8000000000000,0⟩,⟨0,0⟩⟩] do
+    unless (← binary add bad a).isNone && (← scalar 1 bad).isNone do
+      throw (IO.userError "invalid affine input accepted")
+  unless (← scalar (Float.ofBits 0x7ff0000000000000) a).isNone do
+    throw (IO.userError "nonfinite scalar accepted")
+  IO.println "Affine cancellation, uncertainty, invalid inputs and overflow controls passed"
+end AffineNative
+
 def main : IO Unit := do
+  AffineNative.check
   let one : Bounds Float := ⟨1.0, 1.0⟩
   -- 2^-53: halfway between 1 and its next binary64 neighbor when added to 1.
   let half := Float.ofBits 0x3ca0000000000000
