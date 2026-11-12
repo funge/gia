@@ -720,3 +720,14 @@ the printed fractional-part algorithm. It introduces no error-free-transform
 or new FP assumption and does not claim full double-double precision or accurate
 all-binary64 argument reduction. Native comparisons cover narrow inputs near
 magnitude one trillion; enclosure soundness and tested precision are distinct.
+
+### Smaller-angle reconstruction and refinement
+
+[Angle halving](HARDWARE_SINE_HALVING.md) reduces the arguments passed to the
+existing Taylor kernels and reconstructs via proved double-angle identities.
+This is an extension motivated by §3.1.6's small-argument approximation/reduction
+principle, not a claimed transcription of a thesis algorithm. Intersection with
+the previous sound result handles the demonstrated wide-interval dependency
+regression. It introduces no FP assumptions and does not prove universal accuracy
+or correct rounding. Measured gains are documented at unchanged pi constants
+and period-search depth.

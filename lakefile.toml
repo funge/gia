@@ -297,3 +297,9 @@ name = "SplitReductionProgram"
 
 [[lean_lib]]
 name = "SplitReduction"
+
+[[lean_lib]]
+name = "TrigHalvingProgram"
+
+[[lean_lib]]
+name = "TrigHalving"

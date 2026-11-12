@@ -2798,3 +2798,51 @@ Final complete `./check.sh`: **21 tests passed in 248.449 seconds**, no skips,
 including both audit passes, 97 registered library roots, all 36 fresh semantic
 fixtures, negative axiom controls and the explicit pinned C API comparison.
 All 237 local Markdown links and `git diff --check` passed.
+
+## Smaller-angle kernels and safe sine refinement (2026-11-11)
+
+Base: merged GIA #8, `278fbe0c65098ab745956b7ae0d9142430f58a9e`.
+Its tree was verified identical to qualified head
+`072364319f11283c1c3c17ef30db542ca36088c4`; no hosted checks were configured.
+
+- The final native suite passed every previous vector plus 138 new comparisons
+  at unchanged split-pi constants and period-search depth. Exact directed
+  simulation and the independent Machin-pi/series oracle passed. Sixty of the
+  67 bounded point inputs improved strictly, and no final output widened.
+- At x = 10^12 the final result was
+  [-0.6112387047008164, -0.6112387012771158], width 3.4237006563131445e-09,
+  versus the previous split width 1.0556506485737138e-05. This is measured
+  improvement, not a universal accuracy guarantee or correct-rounding theorem.
+- An initial integration before quadrant reduction improved only 38 of the
+  67 points and failed the intended improvement-count control. Halving was
+  moved inside the existing quadrant kernels, where ideal arguments are at
+  most 1 before three halvings. The superseded full-check run was stopped;
+  qualification below is a fresh complete run on the final integration.
+- Wide-interval dependency is a real counterexample to uniform raw improvement.
+  The final regression uses [-3/4,3/4], where raw reconstruction widens the
+  previous result. The proved intersection retains the old enclosure exactly.
+  Failure/zero-depth controls, unsupported inputs, huge fallbacks and hardware
+  environment restoration passed. Both paths are evaluated; no speedup claimed.
+- Lean proves both double-angle outputs with one real witness, their projections,
+  refinement soundness and reusable intersection subset preservation. The new
+  fixture audits six declarations, including exact real reconstruction and
+  failed/wider/tighter refinement. No exact-halving or cancellation assumption,
+  FMA, libm or new FP contract was added.
+- Local specification review checked shared witnesses, division at denominator
+  2, actual reconstruction order, old-result preservation and composition with
+  existing quadrant, period and split-reduction proofs. This local review and
+  independent oracles do not replace human review or compiled-code verification.
+- The construction is an extension motivated by Tupper §3.1.6's small-angle
+  approximation/reduction method, not a claimed verbatim thesis algorithm.
+  Twenty-decimal pi, operation rounding and approximation error remain limits.
+  Adapter C, compiler flags, toolchain, pins and licenses are unchanged;
+  no hosted CI added. Lean 4.19.0, pinned mathlib, GCC 14.2.0 and leanc
+  Clang 15.0.1 remain the qualification environment.
+
+See [construction, costs and limits](HARDWARE_SINE_HALVING.md).
+
+Final complete `./check.sh`: **21 tests passed in 276.240 seconds**, no skips.
+Both audit passes accepted 769 named checks and 1,482 namespace declarations
+with the standard allowlist. All 99 library roots, 37 fresh semantic fixtures,
+negative audit controls and the pinned C API checkout comparison passed.
+All 240 local Markdown links and `git diff --check` passed.

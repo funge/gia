@@ -1,3 +1,4 @@
+import TrigHalving
 import SplitReduction
 import DyadicReduction
 import SineQuadrants
@@ -886,4 +887,9 @@ import SegmentSearchExamples
 #audit_axioms GeneralizedIntervalArithmetic.HardwarePi.tail_contains
 #audit_axioms GeneralizedIntervalArithmetic.HardwareSine.sweepSplit_sound
 #audit_axioms GeneralizedIntervalArithmetic.HardwareSine.splitRun_sound
+#audit_axioms GeneralizedIntervalArithmetic.HardwareHalving.run_sound
+#audit_axioms GeneralizedIntervalArithmetic.HardwareHalving.sine_sound
+#audit_axioms GeneralizedIntervalArithmetic.HardwareHalving.refine_sound
+#audit_axioms GeneralizedIntervalArithmetic.HardwareQuadrants.clip_subset
+#audit_axioms GeneralizedIntervalArithmetic.HardwareHalving.cosine_sound
 #audit_namespace GeneralizedIntervalArithmetic

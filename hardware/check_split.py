@@ -10,7 +10,7 @@ H = PI[0]
 T = (Q(2483825185828341,2**104),Q(1242014004962189,2**103))
 
 
-def reference(a):
+def reference(a, kernel=local_reference):
     low = (Q(0),Q(0))
     for sign in (1,-1):
         for k in reversed(range(40)):
@@ -29,7 +29,7 @@ def reference(a):
         residual = op(a,low,lambda x,y:x-y)
     except OverflowError:
         return Q(-1),Q(1)
-    return local_reference(residual)[0]
+    return kernel(residual)[0]
 
 
 def check(path):

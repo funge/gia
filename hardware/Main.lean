@@ -1,3 +1,4 @@
+import TrigHalvingProgram
 import SplitReductionProgram
 import DyadicReductionProgram
 import CosineProgram
@@ -162,6 +163,46 @@ def sineUnsplit40 (I : Bounds Float) : IO (Option (Bounds Float)) :=
       acceptShift sineGlobal piBounds ⟨2.0,2.0⟩ ⟨-2.0,-2.0⟩ 40)
     (-1.0) 1.0 I
 
+def sineFineLocal (I : Bounds Float) : IO (Option (Bounds Float)) := do
+  unless I.lo.isFinite && I.hi.isFinite do return none
+  unless GeneralizedIntervalArithmetic.HardwareSine.unitGuard finiteLt (-1.0) 1.0 I do return none
+  GeneralizedIntervalArithmetic.HardwareHalving.sine multiply subtract divide
+    sineEndpoints cosine ⟨2.0,2.0⟩ ⟨1.0,1.0⟩ 3 I
+
+def cosineFineLocal (I : Bounds Float) : IO (Option (Bounds Float)) := do
+  unless I.lo.isFinite && I.hi.isFinite do return none
+  unless GeneralizedIntervalArithmetic.HardwareSine.unitGuard finiteLt (-1.0) 1.0 I do return none
+  GeneralizedIntervalArithmetic.HardwareHalving.cosine multiply subtract divide
+    sineEndpoints cosine ⟨2.0,2.0⟩ ⟨1.0,1.0⟩ 3 I
+
+def sineFineQuadrants (I : Bounds Float) : IO (Option (Bounds Float)) := do
+  unless I.lo.isFinite && I.hi.isFinite do return none
+  GeneralizedIntervalArithmetic.HardwareQuadrants.run
+    (GeneralizedIntervalArithmetic.HardwareSine.unitGuard finiteLt (-4.0) 4.0)
+    finiteLt chooseMin chooseMax
+    (GeneralizedIntervalArithmetic.HardwareQuadrants.evaluate
+      multiply subtract sineFineLocal cosineFineLocal 0.0 piBounds)
+    (GeneralizedIntervalArithmetic.HardwareQuadrants.table markFloat) I
+
+def sineFineGlobal (I : Bounds Float) : IO (Option (Bounds Float)) :=
+  GeneralizedIntervalArithmetic.HardwareSine.globalFallback
+    (fun I => I.lo.isFinite && I.hi.isFinite && !(finiteLt I.hi I.lo))
+    (fun I => GeneralizedIntervalArithmetic.HardwareSine.searchPeriods multiply subtract
+      sineFineQuadrants piBounds I
+      (GeneralizedIntervalArithmetic.HardwareSine.periodCandidates 0.0 2.0 (-2.0) 4.0 (-4.0)))
+    (-1.0) 1.0 I
+
+def sineSplitFineRaw (I : Bounds Float) : IO (Option (Bounds Float)) :=
+  GeneralizedIntervalArithmetic.HardwareSine.globalFallback
+    (fun I => I.lo.isFinite && I.hi.isFinite && !(finiteLt I.hi I.lo))
+    (GeneralizedIntervalArithmetic.HardwareSine.splitRun add multiply subtract
+      acceptShift sineFineGlobal ⟨piBounds.lo,piBounds.lo⟩ piTail ⟨2.0,2.0⟩ ⟨-2.0,-2.0⟩ 0.0 40)
+    (-1.0) 1.0 I
+
+def sineSplitFine (I : Bounds Float) : IO (Option (Bounds Float)) :=
+  GeneralizedIntervalArithmetic.HardwareHalving.refine sineSplit sineSplitFineRaw
+    finiteLt chooseMin chooseMax I
+
 def checkWith (op : Bounds Float → Bounds Float → IO (Option (Bounds Float))) (name : String) (a b : Bounds Float) (expected : Option (UInt64 × UInt64)) : IO Unit := do
   let result ← op a b
   let bits := result.map fun r => (r.lo.toBits, r.hi.toBits)
@@ -284,6 +325,29 @@ def checkSplit (one : Bounds Float) (nan inf : Float) : IO Unit := do
     let some old ← sineUnsplit40 a | throw (IO.userError "unsplit comparison failed")
     IO.println s!"SPLIT {a.lo.toBits} {a.hi.toBits} {r.lo.toBits} {r.hi.toBits} {old.lo.toBits} {old.hi.toBits}"
   IO.println "PASS split reduction vectors"
+
+def checkFine (one : Bounds Float) (nan inf : Float) : IO Unit := do
+  let test := checkWith (fun a _ => sineSplitFine a)
+  test "fine NaN unknown" ⟨nan,0.0⟩ one none
+  test "fine infinity unknown" ⟨0.0,inf⟩ one none
+  test "fine reversed unknown" ⟨1.0,0.0⟩ one none
+  let huge := Float.ofBits 0x7fefffffffffffff
+  let mut inputs : Array (Bounds Float) := #[⟨huge,huge⟩,⟨-huge,huge⟩,
+    ⟨1000000000000.0,1000000000000.0⟩,⟨-1000000000000.0,-1000000000000.0⟩,
+    ⟨1000000000000.0,1000000000000.25⟩,⟨-1000000000000.25,-1000000000000.0⟩,
+    ⟨-0.75,0.75⟩,⟨1000000000000000.0,1000000000000000.0⟩]
+  for k in [:65] do
+    let x := k.toFloat * 34359738368.0 - 1099511627776.0
+    inputs := inputs.push ⟨x,x⟩
+    inputs := inputs.push ⟨x,x+0.25⟩
+  for a in inputs do
+    let some r ← sineSplitFine a | throw (IO.userError "fine finite call failed")
+    let some old ← sineSplit a | throw (IO.userError "split comparison failed")
+    IO.println s!"FINE {a.lo.toBits} {a.hi.toBits} {r.lo.toBits} {r.hi.toBits} {old.lo.toBits} {old.hi.toBits}"
+  let failed ← GeneralizedIntervalArithmetic.HardwareHalving.run multiply subtract
+    (fun _ _ => pure none) sineEndpoints cosine ⟨2.0,2.0⟩ one 3 one
+  unless failed.isNone do throw (IO.userError "halving failure hidden")
+  IO.println "PASS angle halving vectors and failure"
 
 def main : IO Unit := do
   let one : Bounds Float := ⟨1.0, 1.0⟩
@@ -453,5 +517,6 @@ def main : IO Unit := do
   checkGlobal one nan inf
   checkDyadic one nan inf
   checkSplit one nan inf
+  checkFine one nan inf
   unless (← roundingRestored) do throw (IO.userError "environment restoration failed")
   IO.println "PASS environment restoration"
