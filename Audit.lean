@@ -1,3 +1,4 @@
+import HardwareAffineProduct
 import HardwareAffine
 import TrigHalving
 import SplitReduction
@@ -900,4 +901,8 @@ import SegmentSearchExamples
 #audit_axioms GeneralizedIntervalArithmetic.HardwareAffine.linear_bridge
 #audit_axioms GeneralizedIntervalArithmetic.HardwareAffine.exact_affine_bridge
 #audit_axioms GeneralizedIntervalArithmetic.HardwareAffine.hull_sound
+#audit_axioms GeneralizedIntervalArithmetic.HardwareAffine.product_identity
+#audit_axioms GeneralizedIntervalArithmetic.HardwareAffine.product_sound
+#audit_axioms GeneralizedIntervalArithmetic.HardwareAffine.bubble_contains
+#audit_axioms GeneralizedIntervalArithmetic.HardwareAffine.product_hull_sound
 #audit_namespace GeneralizedIntervalArithmetic
