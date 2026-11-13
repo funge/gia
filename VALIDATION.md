@@ -2887,3 +2887,49 @@ using the standard allowlist (`propext`, `Classical.choice`, `Quot.sound`). All
 and the explicitly supplied pinned C API checkout comparison passed. Full logs
 were retained in the cloud workspace as `gia-affine-full.log` and
 `gia-affine-native.log`; this receipt records their qualified results.
+
+## Hardware shared-parameter multiplication — 2026-11-13
+
+Base: merged main `ce041d26c969c38e0af16cc7f91a13b97237680f` (PR #10).
+
+- Added a shared pure/IO program that returns a composable affine form by
+  enclosing the quadratic chord residual with directed subtraction and
+  multiplication. The proof covers full pointwise uncertain-endpoint semantics,
+  with one shared parameter in [0,1], and composes with the existing hull theorem.
+- Native `./hardware/check.sh` passed, including every prior arithmetic,
+  square-root, affine and trigonometric suite. No existing algorithm changed.
+- New independent oracle: **64 products and 64 repeated-product compositions**
+  matched exact directed rational simulation. Exact quadratic-extrema checks
+  verified both affine output bounds continuously over [0,1] for all 16 endpoint
+  witness combinations per pair. Compositions were additionally sampled at five
+  shared parameters. Runtime remains hardware binary64; rational arithmetic is
+  test-only.
+- `t(1−t)` produced exact range hull `[0,1/4]`, compared with ordinary `[0,1]`:
+  four times narrower, 75% width reduction. Of 64 pairs, **32** hulls were tighter,
+  **20** wider and **12** equal. No universal precision improvement is claimed.
+- Native controls passed for invalid/nonfinite inputs on either side, subnormal
+  and rounded/uncertain mixed-sign inputs, endpoint product overflow, slope
+  overflow despite a mathematically zero product, and injected failure at each
+  of eight operations with exact short-circuit counts.
+- Local specification review checked the same-parameter and same-residual
+  witnesses, the unit-domain restriction, full uncertain semantics and repeated
+  composition. Source review visually checked the authorized repository PDF,
+  printed p.30, against the existing §§2.9.3/2.9.5 concordance. The construction
+  is derived, not a claim to reproduce a particular chapter-3 algorithm or the
+  full extended-real quadratic interval system. Independent numerical oracles
+  and local review do not replace independent human proof review.
+- No new FP assumptions or axioms. Adapter C, compiler flags, toolchain, pins and
+  licenses unchanged; no hosted CI. Lean 4.19.0, pinned mathlib, GCC 14.2.0 and
+  leanc Clang 15.0.1 remain the qualification environment.
+
+See [construction and limitations](HARDWARE_AFFINE_PRODUCT.md).
+
+Final complete `./check.sh`: **21 tests passed in 301.649 seconds**, no skips.
+Both audit passes accepted **780 named checks** and **1,500 namespace declarations**
+under the standard allowlist (`propext`, `Classical.choice`, `Quot.sound`). All
+**104 library roots**, **39 fresh semantic fixtures**, negative audit controls
+and the explicit pinned C API checkout comparison passed. All **443 local
+Markdown links** and `git diff --check` passed. Full logs are retained locally as
+`/workspace/gia-affine-product-full.log` and
+`/workspace/gia-affine-product-native.log`; the results are recorded here so
+review does not depend on access to the executor.

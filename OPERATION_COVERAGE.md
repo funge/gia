@@ -20,8 +20,9 @@ Certified pi and finite whole-period reduction merged in GIA #4 (`eef2d07`).
 Cosine and quadrant coverage merged in GIA #5 (`d1caaaf`); composed period
 reduction and global fallback merged in GIA #6 (`0192ef2`); bounded dyadic
 reduction merged in GIA #7 (`1ba0723`); split pi and deferred corrections
-merged in GIA #8 (`278fbe0`). Smaller-angle reconstruction and safe
-intersection refinement are the current review milestone.
+merged in GIA #8 (`278fbe0`); smaller-angle refinement merged in GIA #9
+(`b3ff033`); hardware affine addition/subtraction/scaling merged in GIA #10
+(`ce041d2`). Shared-parameter multiplication is the current review milestone.
 All other proved rows refer to merged Lean code. This table includes constructors,
 queries and the two infrastructure calls so no public function is silently omitted.
 The local test `tests/test_operation_coverage.py` enforces exact header/row coverage.
@@ -161,3 +162,8 @@ addition, subtraction and multiplication paths for finite one-parameter forms.
 The existing rational linear model has a proved semantic enclosure bridge. This
 is a representation/composition milestone, not a newly verified C API symbol,
 a general expression evaluator, or proof of the C implementation.
+
+[Shared-parameter multiplication](HARDWARE_AFFINE_PRODUCT.md) now returns a
+composable form by enclosing a quadratic residual with existing directed
+operations. It is additional arithmetic composition, not another public C
+symbol or verification of relgraph implementation behavior.

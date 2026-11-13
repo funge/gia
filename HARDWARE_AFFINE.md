@@ -6,6 +6,10 @@ It supports finite forms, addition, subtraction, scalar multiplication, and a
 conservative interval hull. It does not implement nonlinear affine multiplication
 or a general affine expression evaluator.
 
+The subsequent [multiplication milestone](HARDWARE_AFFINE_PRODUCT.md) adds a
+composable quadratic-residual enclosure under the same contracts. The limits
+below describe this original addition/subtraction/scaling milestone.
+
 ## Source correspondence
 
 Tupper's [thesis](https://www.dgp.toronto.edu/~mooncake/thesis.pdf), §2.9.3,

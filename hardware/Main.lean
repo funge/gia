@@ -1,3 +1,4 @@
+import HardwareAffineProductProgram
 import HardwareAffineProgram
 import TrigHalvingProgram
 import SplitReductionProgram
@@ -410,10 +411,61 @@ def check : IO Unit := do
   unless (← scalar (Float.ofBits 0x7ff0000000000000) a).isNone do
     throw (IO.userError "nonfinite scalar accepted")
   IO.println "Affine cancellation, uncertainty, invalid inputs and overflow controls passed"
+/-- A composable form, not merely its hull. Invalid inputs or failed
+intermediates conservatively return unknown. -/
+def productForm (a b : Form Float) : IO (Option (Form Float)) := do
+  unless validForm a && validForm b do return none
+  product subtract multiply ⟨0.0,0.25⟩ a b
+
+def checkProduct : IO Unit := do
+  let forms : Array (Form Float) := #[
+    ⟨⟨0,0⟩,⟨1,1⟩⟩, ⟨⟨1,1⟩,⟨0,0⟩⟩,
+    ⟨⟨-1,-1⟩,⟨1,1⟩⟩, ⟨⟨-3,-2⟩,⟨4,5⟩⟩,
+    ⟨⟨0.1,0.2⟩,⟨-0.7,-0.6⟩⟩,
+    ⟨⟨Float.ofBits 1,Float.ofBits 2⟩,⟨0,Float.ofBits 1⟩⟩,
+    ⟨⟨1,Float.ofBits 0x3ff0000000000001⟩,⟨2,2⟩⟩,
+    ⟨⟨-0.25,0.25⟩,⟨0.75,1.25⟩⟩]
+  let third : Form Float := ⟨⟨1,1⟩,⟨2,2⟩⟩
+  for a in forms do
+    for b in forms do
+      let some o ← productForm a b | throw (IO.userError "affine product unexpectedly failed")
+      let some chained ← productForm o third | throw (IO.userError "affine product composition failed")
+      let h := hull chooseMin chooseMax o
+      let some ordinary ← multiply (hull chooseMin chooseMax a) (hull chooseMin chooseMax b)
+        | throw (IO.userError "ordinary product failed")
+      IO.println s!"AFFINE_PRODUCT {bits a} {bits b} {bits o} {h.lo.toBits} {h.hi.toBits} {ordinary.lo.toBits} {ordinary.hi.toBits} {bits chained}"
+  let t : Form Float := ⟨⟨0,0⟩,⟨1,1⟩⟩
+  let oneMinusT : Form Float := ⟨⟨1,1⟩,⟨0,0⟩⟩
+  let some tight ← productForm t oneMinusT | throw (IO.userError "bubble product failed")
+  let h := hull chooseMin chooseMax tight
+  unless h.lo == 0 && h.hi == 0.25 do throw (IO.userError "bubble tightening lost")
+  let huge := Float.ofBits 0x7fefffffffffffff
+  let extreme : Form Float := ⟨⟨-huge,-huge⟩,⟨huge,huge⟩⟩
+  let zero : Form Float := ⟨⟨0,0⟩,⟨0,0⟩⟩
+  unless (← productForm extreme extreme).isNone && (← productForm extreme zero).isNone do
+    throw (IO.userError "product or slope overflow accepted")
+  for bad in #[⟨⟨2,1⟩,⟨0,0⟩⟩, ⟨⟨0,0⟩,⟨Float.ofBits 0x7ff0000000000000,0⟩⟩,
+      ⟨⟨Float.ofBits 0x7ff8000000000000,0⟩,⟨0,0⟩⟩] do
+    unless (← productForm bad t).isNone && (← productForm t bad).isNone do
+      throw (IO.userError "invalid product input accepted")
+  -- Inject a failure at each of the eight interval operations, including the last.
+  for failure in [:8] do
+    let counter ← IO.mkRef (0 : Nat)
+    let gate := fun (op : Bounds Float → Bounds Float → IO (Option (Bounds Float))) a b => do
+      let n ← counter.get
+      counter.set (n+1)
+      if n == failure then return none
+      op a b
+    let out ← product (gate subtract) (gate multiply) ⟨0,0.25⟩ t oneMinusT
+    unless out.isNone && (← counter.get) == failure+1 do
+      throw (IO.userError "product failure did not short circuit")
+  IO.println "PASS affine product: bubble width 0.25 versus ordinary 1; eight failure stages, overflow and invalid controls"
+
 end AffineNative
 
 def main : IO Unit := do
   AffineNative.check
+  AffineNative.checkProduct
   let one : Bounds Float := ⟨1.0, 1.0⟩
   -- 2^-53: halfway between 1 and its next binary64 neighbor when added to 1.
   let half := Float.ofBits 0x3ca0000000000000

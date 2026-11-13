@@ -741,3 +741,12 @@ The full existing linear-interval semantics is enclosed at a common parameter in
 pointwise inclusion principle and cancellation example in a narrower finite
 endpoint representation. It is not full extended-real linear arithmetic or an
 optimal-demotion theorem. The adapter/compiler/hardware boundary is unchanged.
+
+### Hardware quadratic-residual multiplication
+
+[Shared-parameter multiplication](HARDWARE_AFFINE_PRODUCT.md) realizes the finite
+quadratic chord identity using directed hardware interval operations. Its
+composable linear output encloses full pointwise uncertain-endpoint witnesses
+on [0,1]. This is a derived construction linked to §§2.9.3 and 2.9.5, not a
+transcription of a chapter-3 algorithm or a full quadratic interval API. It
+retains the explicit adapter boundary and documents wider-than-ordinary cases.
