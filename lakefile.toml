@@ -303,3 +303,12 @@ name = "TrigHalvingProgram"
 
 [[lean_lib]]
 name = "TrigHalving"
+
+[[lean_lib]]
+name = "HardwareAffineProgram"
+
+[[lean_lib]]
+name = "HardwareAffine"
+
+[[lean_lib]]
+name = "HardwareIntervalOps"
