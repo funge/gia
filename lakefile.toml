@@ -318,3 +318,9 @@ name = "HardwareAffineProductProgram"
 
 [[lean_lib]]
 name = "HardwareAffineProduct"
+
+[[lean_lib]]
+name = "HardwareEvaluatorProgram"
+
+[[lean_lib]]
+name = "HardwareEvaluator"
