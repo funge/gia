@@ -57,6 +57,10 @@ improving tested narrow-input accuracy without widening existing enclosures.
 model to directed binary64 addition, subtraction and scalar multiplication,
 retaining endpoint rounding uncertainty and useful shared-parameter cancellation.
 
+[Shared-parameter hardware multiplication](HARDWARE_AFFINE_PRODUCT.md) encloses
+the quadratic residual and returns a composable affine form. It tightens
+`t(1−t)` from ordinary `[0,1]` to `[0,1/4]`, without a universal precision claim.
+
 ## Start here
 
 | Question | Read |
@@ -95,8 +99,9 @@ Certified pi and finite whole-period reduction merged as gia #4 (`eef2d07`).
 Cosine and quadrant coverage merged as GIA #5 (`d1caaaf`); composed period
 reduction and global fallback merged as GIA #6 (`0192ef2`); bounded dyadic
 reduction merged as GIA #7 (`1ba0723`); split pi and deferred corrections
-merged as GIA #8 (`278fbe0`). This review adds smaller-angle reconstruction
-and safe intersection refinement, retaining the same
+merged as GIA #8 (`278fbe0`); smaller-angle reconstruction merged as GIA #9
+(`b3ff033`); hardware affine addition/subtraction/scaling merged as GIA #10
+(`ce041d2`). This review adds shared-parameter multiplication, retaining the same
 adapter trust boundary and MIT notices.
 The earlier [review stack](REVIEW_STACK.md), [merge plan](MERGE_PLAN.md) and
 validation sections are historical snapshots, not current pending-PR lists.

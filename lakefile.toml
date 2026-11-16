@@ -312,3 +312,9 @@ name = "HardwareAffine"
 
 [[lean_lib]]
 name = "HardwareIntervalOps"
+
+[[lean_lib]]
+name = "HardwareAffineProductProgram"
+
+[[lean_lib]]
+name = "HardwareAffineProduct"
