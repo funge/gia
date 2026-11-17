@@ -324,3 +324,9 @@ name = "HardwareEvaluatorProgram"
 
 [[lean_lib]]
 name = "HardwareEvaluator"
+
+[[lean_lib]]
+name = "HardwareQuotientProgram"
+
+[[lean_lib]]
+name = "HardwareQuotient"

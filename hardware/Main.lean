@@ -1,3 +1,4 @@
+import HardwareQuotientProgram
 import HardwareEvaluatorProgram
 import HardwareAffineProductProgram
 import HardwareAffineProgram
@@ -562,7 +563,80 @@ def check : IO Unit := do
       IO.println s!"DUAL_TIME {index} {trial} 1000 {p} {d}"
 end EvaluatorNative
 
-def main : IO Unit := do
+namespace QuotientNative
+open GeneralizedIntervalArithmetic.HardwareEvaluator
+open GeneralizedIntervalArithmetic.HardwareQuotient
+
+def leaf (I : Bounds Float) (p : Polynomial Float) : IO (Tracks Float) := do
+  let O ← EvaluatorNative.ordinary I p
+  let A ← EvaluatorNative.affine I p
+  return polynomialTracks finiteLt chooseMin chooseMax O A
+
+def operation : Operation → Bounds Float → Bounds Float → IO (Option (Bounds Float))
+  | .add => add
+  | .sub => subtract
+  | .mul => multiply
+  | .div => divide
+
+def evaluate (I : Bounds Float) (e : Expression Float) : IO (Tracks Float) :=
+  eval (leaf I) operation finiteLt chooseMin chooseMax e
+
+def expressions : Array (Expression Float) := Id.run do
+  let x : Polynomial Float := .var
+  let one : Expression Float := .polynomial (.const 1)
+  let zero : Expression Float := .polynomial (.const 0)
+  let den : Expression Float := .polynomial (.sub (.const 0.5) (.mul x (.sub (.const 1) x)))
+  let safe := Expression.binary .div one den
+  let pole := Expression.binary .div one (.polynomial (.sub (.const 0.5) x))
+  return #[safe,pole,.binary .div one (.binary .sub zero den),
+    .binary .add safe one,.binary .div one safe,.binary .sub safe safe,
+    .binary .mul safe den,.binary .div one (.polynomial x),
+    .binary .div zero zero,
+    .binary .div (.polynomial (.const (Float.ofBits 0x7fefffffffffffff)))
+      (.polynomial (.const (Float.ofBits 1))),
+    .binary .div (.polynomial (.mul x (.const 0))) one,
+    .binary .div (.polynomial (.sub x x)) one]
+
+def check : IO Unit := do
+  let huge := Float.ofBits 0x7fefffffffffffff
+  let inputs : Array (Bounds Float) := #[⟨0,1⟩,⟨0,0⟩,⟨0.5,0.5⟩,⟨1,1⟩,
+    ⟨0,0.5⟩,⟨-1,0⟩,⟨-huge,huge⟩]
+  for i in [:expressions.size] do
+    for I in inputs do
+      let out ← evaluate I expressions[i]!
+      IO.println s!"QUOTIENT {i} {I.lo.toBits} {I.hi.toBits} {EvaluatorNative.showBounds out.ordinary} {EvaluatorNative.showResult out.refined}"
+      match out.refined,out.ordinary with
+      | .conflict,_ => throw (IO.userError "certified quotient tracks conflicted")
+      | .unknown,some _ => throw (IO.userError "ordinary quotient lost")
+      | .bound R,some O =>
+        unless O.lo ≤ R.lo && R.hi ≤ O.hi do throw (IO.userError "ordinary quotient widened")
+      | _,_ => pure ()
+  let accepted ← evaluate ⟨0,1⟩ expressions[0]!
+  unless accepted.ordinary.isNone do throw (IO.userError "naive denominator unexpectedly certified")
+  match accepted.refined with
+  | .bound R => unless R.lo == 2 && R.hi == 4 do throw (IO.userError "acceptance range mismatch")
+  | _ => throw (IO.userError "safe quotient not certified")
+  let pole ← evaluate ⟨0,1⟩ expressions[1]!
+  match pole.refined with
+  | .unknown => pure ()
+  | _ => throw (IO.userError "pole classified as defined")
+  let conflicted : Tracks Float := ⟨some ⟨1,1⟩,.conflict⟩
+  let good : Tracks Float := ⟨some ⟨1,1⟩,.bound ⟨1,1⟩⟩
+  let c ← step divide finiteLt chooseMin chooseMax conflicted good
+  match c.refined with
+  | .conflict => pure ()
+  | _ => throw (IO.userError "child conflict masked by ordinary quotient")
+  let badOp := fun (I _ : Bounds Float) =>
+    pure (some (if I.lo == 0 then ⟨0.0,0.0⟩ else ⟨2.0,2.0⟩))
+  let c ← step badOp finiteLt chooseMin chooseMax
+    ⟨some ⟨0,2⟩,.bound ⟨1,1⟩⟩ good
+  match c.refined with
+  | .conflict => pure ()
+  | _ => throw (IO.userError "contradictory quotient outputs masked")
+  IO.println "PASS guarded quotient acceptance [2,4], pole unknown, non-widening and conflict propagation"
+end QuotientNative
+
+def checkExisting : IO Unit := do
   EvaluatorNative.check
   AffineNative.check
   AffineNative.checkProduct
@@ -736,3 +810,7 @@ def main : IO Unit := do
   checkFine one nan inf
   unless (← roundingRestored) do throw (IO.userError "environment restoration failed")
   IO.println "PASS environment restoration"
+
+def main : IO Unit := do
+  QuotientNative.check
+  checkExisting

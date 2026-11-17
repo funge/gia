@@ -760,3 +760,15 @@ root intersection and explicit unknown/conflict policy are project integration,
 not an exact thesis algorithm. Compositional enclosure and ordinary-track
 non-widening are proved under the existing hardware contracts; general function
 syntax, domain inference and execution-resource guarantees remain outside scope.
+
+### Guarded hardware quotient composition
+
+[Partial quotient composition](HARDWARE_GUARDED_QUOTIENT.md) connects the existing
+finite linear/ordinary polynomial evaluator to guarded hardware division.
+Tupper §3.2.22 (printed p.64 / PDF p.80) and §3.2.26 (printed p.68 / PDF p.84)
+provide the division and partial-binary-function correspondence. This is a
+restricted derived integration, not the full generalized charts: denominators
+must be strictly separated from zero and every returned endpoint finite.
+Successful bounds certify defined relational values under explicit leaf and
+operation contracts. Unknown is inconclusive; no quotient correlation, external
+domain inference, extended-real range or new IEEE assumption is introduced.
