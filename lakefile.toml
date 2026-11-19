@@ -342,3 +342,6 @@ name = "AffineUnary"
 
 [[lean_lib]]
 name = "Binary64"
+
+[[lean_lib]]
+name = "PartialRealArithmetic"

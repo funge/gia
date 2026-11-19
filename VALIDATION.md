@@ -3315,3 +3315,32 @@ Native Float/ofBits/toBits correspondence remains trusted/empirical. Rational
 arithmetic here is a pure proof/reference decoder, never the native hot path.
 Only documentation was added after the complete gate began; mathematical source
 and test registration were included in its successful run.
+
+## 2026-11-19 — shared partial-real arithmetic, local qualification
+
+Based on decoder merge `7d1c781272de10fa730ed7d69d67ffe19e5e311f`, local branch
+`refactor/partial-real-arithmetic`. No publication of this refactor is included.
+
+- Focused builds of `ConditionalArithmeticExamples` and `HardwareQuotient` pass.
+  The new parity fixture passes with **16 audited theorem/axiom declarations**.
+  It checks original constructor reductions, both dependent recursors and dependent
+  patterns, cross-interface correspondence, and zero/nonzero quotient domains.
+- The first downstream build exposed a simp-automation compatibility issue in an
+  unchanged example. Shared unfolding attributes resolved it; no caller proof or
+  evaluator algorithm was changed. The complete gate was rerun after this fix.
+- Final complete `./check.sh`: **29 tests in 275.043 seconds**, no skips;
+  **851 named audits**, **1,647 namespace declarations**, **113 library roots**,
+  **46 fresh semantic fixtures**, rejection controls and explicit pinned C API
+  comparison. Both audit passes use the unchanged allowlist.
+- Complete Linux x86 `./hardware/check.sh` passes through the real Lean FFI:
+  **59,520 shared-core calls**, instruction/fault controls, all prior native
+  oracles, **66 dual-evaluator cases** and **84 guarded-quotient cases** (42
+  ordinary successes preserved, 55 refined results, 29 unknown). Mac end-to-end
+  Lean/FFI qualification is not asserted by these Linux runs.
+- **522 local Markdown links** and diff checks pass. Local source/scope review
+  confirms no AST/program, native core, batching, startup, rounding, dependency
+  pin or axiom-policy change. Both public operation inductives are unchanged.
+  No separate independent review of this refactor is claimed.
+
+No new floating-point assumptions or hosted CI. Only this validation receipt was
+added after the successful complete runs; proof and fixture content is unchanged.

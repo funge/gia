@@ -53,6 +53,10 @@ bounds near magnitude one trillion under the same floating-point contract.
 enclosures for the four raw constant words. Native Float bit conversions remain
 trusted/empirical; no rational arithmetic is added to the hardware runtime.
 
+[Shared partial-real semantics](PARTIAL_REAL_ARITHMETIC.md) centralizes the proof-side
+operation meanings and division guard while preserving both public operation
+inductives, their reductions and all existing evaluator algorithms.
+
 [Smaller-angle refinement](HARDWARE_SINE_HALVING.md) reconstructs sine/cosine
 with proved double-angle identities and intersects with the previous result,
 improving tested narrow-input accuracy without widening existing enclosures.

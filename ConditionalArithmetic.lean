@@ -1,3 +1,4 @@
+import PartialRealArithmetic
 import ConditionalEvaluator
 
 namespace GeneralizedIntervalArithmetic
@@ -79,10 +80,10 @@ def ArithmeticOp.expr : ArithmeticOp → Expr → Expr → Expr
 
 /-- Division has an explicit nonzero premise, independent of totalized real division. -/
 def ArithmeticOp.Rel : ArithmeticOp → ℝ → ℝ → ℝ → Prop
-  | .add, u,v,z => z = u+v
-  | .sub, u,v,z => z = u-v
-  | .mul, u,v,z => z = u*v
-  | .div, u,v,z => v ≠ 0 ∧ z = u/v
+  | .add => PartialRealArithmetic.addRel
+  | .sub => PartialRealArithmetic.subRel
+  | .mul => PartialRealArithmetic.mulRel
+  | .div => PartialRealArithmetic.divRel
 
 theorem arithmeticOp_value_iff (op : ArithmeticOp) (x y : ℝ) (e d : Expr) (z : ℝ) :
     Value x y (op.expr e d) z ↔
