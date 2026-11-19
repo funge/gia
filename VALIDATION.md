@@ -3462,3 +3462,50 @@ above, with documentation-only sanitation and current review status. Private
 study aggregates and corpus inventory metadata are excluded, including from the
 publication branch history. Public/derived control counts are distinguished from
 unmeasured application efficacy. No proof or runtime behavior changed.
+
+## 2026-11-19 — local split-quotient expression/enclosure bridge
+
+Based on merged main `b89c7f6d406e82570ed69444455c31bf942cc44e`, independently
+of the separate residue-inference branch. This milestone remains local for review.
+
+- `lake build SplitQuotient` and `lake env lean tests/SplitQuotient.lean` pass;
+  the focused fixture audits **19 theorem/axiom declarations**.
+- Full `./check.sh`: **29 tests in 378.823 seconds**, no skips;
+  **884 named audits**, **1,706 namespace declarations**, **116 library roots**,
+  **49 fresh semantic fixtures**, audit rejection controls and explicit pinned
+  C API inventory comparison. The axiom allowlist is unchanged.
+- **545 local Markdown links** and `git diff --check` pass.
+- Controls cover both denominator signs, zero-only empty domain, both zero-touching
+  sides, closed attained tips, external holes, existing and nested expression
+  semantics, and the difference between a ray enclosure and an exact image.
+- For reciprocal on `[-2,1]`, the closed nonzero window `[1/4,3/4]` is excluded;
+  every convex enclosure of the actual image contains `1/2` and therefore cannot
+  exclude that window. Exact scalar image and arbitrary expression enclosure are
+  separate theorems.
+
+The original repository thesis PDF at printed pp.59–60 and paper PDF p.6 were
+visually inspected. Documentation claims only that verified source correspondence,
+not an unverified reciprocal-pseudocode transcription. No C/FFI, evaluator, AST,
+renderer, rounding or widening implementation changed; no new FP assumption.
+The native suite was not rerun for this proof-only module. This receipt is the
+only addition after the successful complete gate.
+
+## 2026-11-19 — split quotient qualification after residue integration
+
+Merged sanitized main `cc68aba8e577d3626a0bc203b93361e23da9f42f` into the
+reviewed split branch without rewriting history. Reconciliation commit
+`fad9b8448fc0d891921bf946ed45eff5c95a9ecd` retains both modules and all imports,
+audits, fixtures, Lake registrations and historical receipts. Independent review
+confirmed the split proof and fixture are byte-identical to the reviewed versions
+and the delta from main is limited to the split milestone. Documentation now
+explicitly distinguishes one-sided bounds from exact-image iff theorems.
+
+- Complete combined `./check.sh` passes: **29 tests in 414.963 seconds**, no skips;
+  **888 named audits**, **1,740 namespace declarations**, **117 library roots**,
+  **50 fresh semantic fixtures**, rejection controls and pinned API comparison.
+- **551 local Markdown links** and diff checks pass.
+- Public history contains the sanitized residue ancestry, without private corpus
+  assets or private-study aggregates. No runtime, native, renderer, rounding
+  assumption or widening changes. No hosted CI was triggered.
+
+This receipt is the only addition after the successful combined gate.

@@ -61,6 +61,10 @@ inductives, their reductions and all existing evaluator algorithms.
 Down/Up requests reassemble to the scalar result under the same per-request
 denotation, including failures. It is a proof model, not production batching.
 
+[Split quotient semantics](SPLIT_QUOTIENT.md) preserves both sides of a pole in
+proof-side real ray enclosures, with exact scalar reciprocal images distinguished
+from arbitrary expression enclosures. It does not change a runtime evaluator.
+
 [Integer residue certificates](INTEGER_RESIDUE.md) retain discrete information
 alongside real enclosures. This proof foundation excludes closed windows
 using certified integer provenance; it does not change runtime or ASTs.
