@@ -761,6 +761,30 @@ not an exact thesis algorithm. Compositional enclosure and ordinary-track
 non-widening are proved under the existing hardware contracts; general function
 syntax, domain inference and execution-resource guarantees remain outside scope.
 
+
+### Finite closed-domain endpoint chords (§§3.3.10, 3.3.12, 3.3.14)
+
+[EndpointChords.lean](EndpointChords.lean) proves the convex upper chord and concave
+lower dual with normalized interpolation, including singleton domains without
+division. `convex_optimal` / `concave_optimal` prove existence and pointwise
+least/greatest affine bounds over the whole interval. Outward endpoint certificates
+retain soundness but carry no exact optimality claim; QAffine bridges reuse the
+existing endpoint representation.
+
+**Restricted source counterpart.** The PDF's printed pp.78–79 (PDF 94–95) gives
+the §3.3.10 endpoint and optimality argument; §3.3.12 is on printed p.80 (PDF 96).
+The formalization uses mathlib convexity on a finite real closed interval, not a
+proved equivalence with the source's relational ψ₂ charts or its missing-endpoint
+completion. Tangent bounds, infinite endpoints and weighted approximation choices
+remain outside this result. See [precise scope](ENDPOINT_CHORDS.md).
+
+**Verified source example.** On printed p.80 / PDF 96, §3.3.14's lower cubic branch
+is concave and upper branch convex (the PDF resolves damaged Markdown curvature
+annotations). Both curvature facts are proved, then used with the chord results
+and cube monotonicity to establish `-8+7α ≤ x³ ≤ 64-37α` for α∈[0,1] and
+x∈[-2+α,4-α]. This is independent of hardware and renderer integration and adds
+no floating-point assumption.
+
 ### Guarded hardware quotient composition
 
 [Partial quotient composition](HARDWARE_GUARDED_QUOTIENT.md) connects the existing

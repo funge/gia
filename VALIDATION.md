@@ -2994,6 +2994,44 @@ final `@[nospecialize]` runtime. **458 local Markdown links** and
 `/workspace/gia-evaluator-native-qualified.log`. These receipts provide the
 results without requiring access to the executor.
 
+## 2026-11-19 — finite convex/concave endpoint chords
+
+Local branch `proof/convex-affine-chords` starts directly from merged main
+`de4e1a2fe5d3a586c82d173f0aa4b5acf7239313`, independently of guarded-division PR #13.
+No publication, renderer integration or native-path change is included.
+
+- The original graphing repository thesis PDF was visually checked at PDF pages
+  94–96 (printed 78–80): §3.3.10's upper chord and endpoint optimality argument,
+  §3.3.12's lower-bound dual, and §3.3.14's cubic example. Source SHA-256:
+  `bbee0580e763bf793f04a28fc7cac98bd5de1dffc452f5c3e7463f0d42fbecfb`.
+  The PDF confirms the lower cubic branch concave and upper branch convex;
+  Markdown curvature annotations are not relied upon.
+- Focused `lake build EndpointChords` and fresh `tests/EndpointChords.lean` passed.
+  The fixture namespace audited **12 declarations**. The local pinned mathlib
+  `Analysis.Convex.Mul` dependency was built from source already present; no
+  download, package change or new assumption was needed.
+- Complete `./check.sh` passed: **21 tests in 253.158 seconds**, no skips;
+  **807 named audits**, **1,563 namespace declarations**, **107 library roots**,
+  **41 fresh semantic fixtures**, negative audit controls and the explicit pinned
+  C API comparison (`RELGRAPH_CHECKOUT=/workspace/gia-followup/relgraph-removal`).
+  The axiom allowlist remains `propext`, `Classical.choice`, `Quot.sound`.
+- Local proof/specification review checked endpoint inclusion, nonnegative
+  interpolation weights, the division-free singleton branch, pointwise affine
+  optimality over every point of the interval, and sound outward certificates
+  without optimality. The cubic enclosure uses proved branch curvature, the
+  general chord results and cube monotonicity. Controls reject extrapolation and
+  the wrong bound direction, demonstrate outward slack, and check cubic endpoint
+  sharpness and interior slack. No separate human or agent review is claimed.
+- Native sources, hardware contracts, compiler flags, toolchain, dependency pins,
+  axiom policy and licenses are unchanged. No new FP assumptions or axioms. The
+  native suite was not rerun: this milestone adds only real mathematical proofs
+  and semantic fixtures, with no executable native path change. No hosted CI.
+  **466 local Markdown links** and `git diff --check` passed.
+
+See [scope, exact hypotheses and source correspondence](ENDPOINT_CHORDS.md).
+Full log: `/workspace/gia-endpoint-chords-full.log`. Subsequent changes only add
+this validation receipt; the complete proof and fixture files were in the run.
+
 ## 2026-11-17 — local guarded hardware quotient composition
 
 Based on evaluator commit `05b5f32ae1db36f3efc8678928437e9146c8e746`
@@ -3070,3 +3108,49 @@ Logs: `/workspace/gia-quotient-rebased-full.log` and
 `/workspace/gia-quotient-rebased-native.log`. This receipt supplements rather than
 rewrites the November 17 local-only qualification above. The executable code was
 unchanged after these runs; subsequent edits only record publication readiness.
+
+## 2026-11-19 — local reconciliation of guarded division with merged chords
+
+Branch `reconcile/guarded-division-on-chords` applies guarded-division PR #13's
+remote head `a3ad540476f9d8d23d46669d3e07c2cdf234bc72` to merged chord main
+`e05f18c0c8e153023dc03467eb9cbd0a4ac5e34d`. This is local preparation only:
+no push, PR update or merge. The separate tangent branch remains untouched at
+`f03d117f9335c1dbf5a9fdfe922066b28e61bf2b` and is not included in this tree.
+
+Six shared files conflicted, all because both milestones added material in the
+same locations. Resolutions retain both sides:
+
+- `Audit.lean`: both imports and both named audit lists, followed by the common
+  namespace audit. This was essential to retain enforcement for both modules.
+- `lakefile.toml`: all three additional libraries, with separate valid table
+  headers and no duplicate registrations (109 total roots).
+- `tests/test_project_integration.py`: both fresh semantic fixture registrations.
+- `README.md`, `THESIS_CONCORDANCE.md`, `VALIDATION.md`: both descriptions,
+  scope/source qualifications and historical validation receipts, unchanged.
+
+There were no conflicts in mathematical proofs, runtime algorithms or independent
+fixtures. Blob comparisons confirm both milestones' proof and fixture files
+match their respective qualified inputs; the native code and quotient oracle
+match #13 exactly. Line-preservation checks confirmed that every substantive line
+from both versions of the shared audit, fixture registry and documentation files
+was retained. An initial overbroad conflict-marker replacement accidentally
+truncated trailing text; diff review caught it and the initial gate failed.
+The resolution was rebuilt from the original three-way inputs, checked line by
+line for preservation, then the full qualification below was restarted.
+
+- Complete `./check.sh`: **21 tests in 245.940 seconds**, no skips;
+  **819 named audits**, **1,603 namespace declarations**, **109 library roots**,
+  **42 fresh semantic fixtures**, rejection controls and explicit pinned C API
+  comparison passed. No changes to the axiom allowlist.
+- Complete `./hardware/check.sh` passed, including all existing suites and the
+  **84 quotient cases**: **42 ordinary successes preserved**, **55 refined
+  successes**, **29 unknown**. Independent oracles confirmed [2,4] acceptance,
+  genuine pole, partial-domain samples and the [-2,2] correlation-loss control.
+- **480 local Markdown links** and diff checks passed. No new FP assumptions,
+  adapter/toolchain/license changes, hosted CI or inclusion of tangent work.
+  Local resolution review and automated preservation checks completed; no
+  separate human or agent review is claimed.
+
+Final qualification logs: `/workspace/gia-reconcile13-final-full.log` and
+`/workspace/gia-reconcile13-native.log`. The earlier failed run is retained at
+`/workspace/gia-reconcile13-full.log`. Subsequent edits only append this receipt.

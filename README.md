@@ -65,6 +65,10 @@ the quadratic residual and returns a composable affine form. It tightens
 tracks through one traversal, intersects successful bounds, and preserves a
 surviving track while exposing contradictory outputs explicitly.
 
+[Convex and concave endpoint chords](ENDPOINT_CHORDS.md) formalize the finite
+closed-domain chord bounds, exact affine optimality and Tupper’s cubing example.
+Outward-certified endpoint soundness is kept separate from optimality.
+
 [Guarded hardware quotient composition](HARDWARE_GUARDED_QUOTIENT.md) reuses those
 polynomial blocks and adds partial division and interval arithmetic around them.
 Successful bounds certify defined values; zero-crossing guards remain unknown.
