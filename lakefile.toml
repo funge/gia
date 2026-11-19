@@ -324,3 +324,6 @@ name = "HardwareEvaluatorProgram"
 
 [[lean_lib]]
 name = "HardwareEvaluator"
+
+[[lean_lib]]
+name = "EndpointChords"
