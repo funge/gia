@@ -3489,3 +3489,23 @@ not an unverified reciprocal-pseudocode transcription. No C/FFI, evaluator, AST,
 renderer, rounding or widening implementation changed; no new FP assumption.
 The native suite was not rerun for this proof-only module. This receipt is the
 only addition after the successful complete gate.
+
+## 2026-11-19 — split quotient qualification after residue integration
+
+Merged sanitized main `cc68aba8e577d3626a0bc203b93361e23da9f42f` into the
+reviewed split branch without rewriting history. Reconciliation commit
+`fad9b8448fc0d891921bf946ed45eff5c95a9ecd` retains both modules and all imports,
+audits, fixtures, Lake registrations and historical receipts. Independent review
+confirmed the split proof and fixture are byte-identical to the reviewed versions
+and the delta from main is limited to the split milestone. Documentation now
+explicitly distinguishes one-sided bounds from exact-image iff theorems.
+
+- Complete combined `./check.sh` passes: **29 tests in 414.963 seconds**, no skips;
+  **888 named audits**, **1,740 namespace declarations**, **117 library roots**,
+  **50 fresh semantic fixtures**, rejection controls and pinned API comparison.
+- **551 local Markdown links** and diff checks pass.
+- Public history contains the sanitized residue ancestry, without private corpus
+  assets or private-study aggregates. No runtime, native, renderer, rounding
+  assumption or widening changes. No hosted CI was triggered.
+
+This receipt is the only addition after the successful combined gate.
