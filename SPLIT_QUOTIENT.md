@@ -35,7 +35,9 @@ denominator `-c ≤ y ≤ d`, `y ≠ 0`,
 The proof uses the negative or positive branch actually witnessed and does not
 assume both branches are nonempty. Positive `c,d` keep the numerical ray-tip
 divisions defined. The separate one-sided branch bounds cover zero-touching
-domains without evaluating an absent side's tip at zero. The `rays` set contains
+domains without evaluating an absent side's tip at zero. Touching-zero coverage
+is one-sided enclosure plus endpoint witnesses; separate one-sided exact-image
+iff theorems are not included. The `rays` set contains
 only real numbers; infinity is notation for unboundedness, not an endpoint value
 assigned to any expression. For a useful nonempty gap, choose positive `a` as
 well. With `a=0`, no central exclusion is promised.
@@ -103,5 +105,5 @@ remain outside this milestone. No bounded cover is widened or rewritten, and no
 defined value is dropped to make a finite representation succeed.
 
 Run `lake build SplitQuotient`, `lake env lean tests/SplitQuotient.lean` and
-`./check.sh`. See [validation receipts](VALIDATION.md). This branch remains local
-for review and has no dependency on the separate residue-inference work.
+`./check.sh`. See [validation receipts](VALIDATION.md). Independent semantic review found no blocking defect. The proof has no
+mathematical dependency on residue inference.

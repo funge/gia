@@ -3431,6 +3431,38 @@ The proof and tests are unchanged from the complete qualification above. Only
 current documentation status and this receipt changed afterward. Local links
 and diff checks pass; there is still no runtime or hardware integration.
 
+## 2026-11-19 — local residue inference qualification
+
+Independent branch from merged main `b89c7f6d406e82570ed69444455c31bf942cc44e`;
+no dependency on parallel split-division work and no publication.
+
+- Focused library build and fixture pass; **23 fixture theorem/axiom declarations**.
+- Complete `./check.sh`: **29 tests in 385.156 seconds**, no skips;
+  **878 named audits**, **1,730 namespace declarations**, **116 library roots**,
+  **49 fresh semantic fixtures**, rejection controls and pinned API comparison.
+  Unchanged axiom allowlist; no new axioms or `native_decide`.
+- **540 local Markdown links** and diff checks pass. Documentation-only study
+  details were added during the gate; proof/test contents remained fixed.
+- Controls include the real-input falsifier, distinct terms and opaque branches,
+  floor/scaling order, and undefined zero-times-floor-of-reciprocal at the pole.
+- The local matched exact-arithmetic study reports limited applicability as
+  described in RESIDUE_INFERENCE.md. It is not an application-prover, hardware or
+  renderer benchmark, and its counting harness is not formally verified.
+
+No C/native suite was run for this proof-only change. No rounding assumptions,
+production AST/runtime changes, renderer integration or timing claims. This
+receipt is the only change after the successful full gate. Independent review
+is pending; the branch remains local.
+
+## 2026-11-19 — residue inference publication preparation
+
+Independent semantic review checked the exact proof diff and finite-image oracle.
+The publication candidate keeps all proof/test content from the qualification
+above, with documentation-only sanitation and current review status. Private
+study aggregates and corpus inventory metadata are excluded, including from the
+publication branch history. Public/derived control counts are distinguished from
+unmeasured application efficacy. No proof or runtime behavior changed.
+
 ## 2026-11-19 — local split-quotient expression/enclosure bridge
 
 Based on merged main `b89c7f6d406e82570ed69444455c31bf942cc44e`, independently

@@ -1,4 +1,5 @@
 import SplitQuotient
+import ResidueInference
 import IntegerResidue
 import DirectedScheduling
 import PartialRealArithmetic
@@ -1019,4 +1020,8 @@ import SegmentSearchExamples
 #audit_axioms GeneralizedIntervalArithmetic.SplitQuotient.expression_iff
 #audit_axioms GeneralizedIntervalArithmetic.SplitQuotient.expression_rays
 #audit_axioms GeneralizedIntervalArithmetic.SplitQuotient.reciprocal_image
+#audit_axioms GeneralizedIntervalArithmetic.ResidueInference.integer_sound
+#audit_axioms GeneralizedIntervalArithmetic.ResidueInference.infer_sound
+#audit_axioms GeneralizedIntervalArithmetic.ResidueInference.exclude
+#audit_axioms GeneralizedIntervalArithmetic.ResidueInference.exclude_enclosure
 #audit_namespace GeneralizedIntervalArithmetic

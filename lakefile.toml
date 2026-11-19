@@ -353,4 +353,7 @@ name = "DirectedScheduling"
 name = "IntegerResidue"
 
 [[lean_lib]]
+name = "ResidueInference"
+
+[[lean_lib]]
 name = "SplitQuotient"
