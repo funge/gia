@@ -3419,3 +3419,14 @@ No C/FFI, AST, evaluator algorithm, renderer or widening changes. No new FP
 assumptions. The native hardware suite and benchmarks were not run: this is a
 pure mathematical certificate layer, not qualification of a native checker.
 This validation receipt is the only addition after the successful full gate.
+
+## 2026-11-19 — integer-residue independent semantic review
+
+Independent read-only review of `b084f8c5a9da8992241f2357621739edc0336ac1`
+found no blockers: same-value/domain use, strict closed-window boundaries,
+integer provenance and the least-hull comparison are sound. Audit and fixture
+registration were checked. The reviewer did not repeat the full gate.
+
+The proof and tests are unchanged from the complete qualification above. Only
+current documentation status and this receipt changed afterward. Local links
+and diff checks pass; there is still no runtime or hardware integration.

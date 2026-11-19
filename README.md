@@ -62,7 +62,7 @@ Down/Up requests reassemble to the scalar result under the same per-request
 denotation, including failures. It is a proof model, not production batching.
 
 [Integer residue certificates](INTEGER_RESIDUE.md) retain discrete information
-alongside real enclosures. This local proof foundation excludes closed windows
+alongside real enclosures. This proof foundation excludes closed windows
 using certified integer provenance; it does not change runtime or ASTs.
 
 [Smaller-angle refinement](HARDWARE_SINE_HALVING.md) reconstructs sine/cosine

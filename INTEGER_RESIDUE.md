@@ -1,6 +1,6 @@
 # Integer residues alongside real enclosures
 
-[IntegerResidue.lean](IntegerResidue.lean) is a local proof-first research
+[IntegerResidue.lean](IntegerResidue.lean) is a proof-first research
 foundation. A real interval can be the least interval hull while losing enough
 discrete information to prevent exclusion. The new propositions retain that
 information without changing any AST, evaluator, renderer or runtime.
@@ -75,5 +75,5 @@ speed, renderer or Bilevel applicability claims.
 
 Run `lake build IntegerResidue`, `lake env lean tests/IntegerResidue.lean`, and
 `./check.sh`. Named and namespace audits cover the library; the fixture has its
-own namespace audit. See [validation receipts](VALIDATION.md). This milestone
-remains local pending review.
+own namespace audit. See [validation receipts](VALIDATION.md). Independent semantic review found no blocking defects; the certificate layer
+remains separate from runtime integration.
