@@ -1,3 +1,4 @@
+import SplitQuotient
 import IntegerResidue
 import DirectedScheduling
 import PartialRealArithmetic
@@ -1008,4 +1009,14 @@ import SegmentSearchExamples
 #audit_axioms GeneralizedIntervalArithmetic.IntegerResidue.window_exclusion
 #audit_axioms GeneralizedIntervalArithmetic.IntegerResidue.relation_exclusion
 #audit_axioms GeneralizedIntervalArithmetic.IntegerResidue.enclosure_window_exclusion
+#audit_axioms GeneralizedIntervalArithmetic.SplitQuotient.sign_split
+#audit_axioms GeneralizedIntervalArithmetic.SplitQuotient.restrict_iff
+#audit_axioms GeneralizedIntervalArithmetic.SplitQuotient.zero_only_absent
+#audit_axioms GeneralizedIntervalArithmetic.SplitQuotient.negative_bound
+#audit_axioms GeneralizedIntervalArithmetic.SplitQuotient.positive_bound
+#audit_axioms GeneralizedIntervalArithmetic.SplitQuotient.quotient_rays
+#audit_axioms GeneralizedIntervalArithmetic.SplitQuotient.gap_exclusion
+#audit_axioms GeneralizedIntervalArithmetic.SplitQuotient.expression_iff
+#audit_axioms GeneralizedIntervalArithmetic.SplitQuotient.expression_rays
+#audit_axioms GeneralizedIntervalArithmetic.SplitQuotient.reciprocal_image
 #audit_namespace GeneralizedIntervalArithmetic

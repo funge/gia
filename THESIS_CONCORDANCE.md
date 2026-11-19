@@ -835,3 +835,18 @@ explicit raw-word representation and kernel-checked pi/split-tail constants. It
 is a derived implementation foundation, not a thesis theorem or a formalization
 of all IEEE 754. Native Float conversion and arithmetic refinement remain open;
 no additional adapter assumptions are introduced.
+
+### Local split quotient bridge across zero
+
+[SplitQuotient.lean](SplitQuotient.lean) adds an exact sign decomposition of
+existing partial quotient semantics and an enclosure bridge for `Expr.Value`.
+For positive numerator lower bounds it retains two unbounded real rays; it
+separately proves the exact scalar reciprocal image of `[l,u]` when `l<0<u`.
+The original thesis §3.2.14 (printed pp.59–60, PDF pp.75–76) was visually checked:
+its ordinary interval example splits reciprocal pieces and then demotes to one
+hull. Retaining the union is a derived interval-set refinement, motivated by
+thesis §2.13 and the paper §11/Figure 10(b), not a direct implementation of the
+ordinary hull algorithm. The repository paper PDF page6 was inspected and gives
+the general interval-set cover discussion and floor pseudocode; no unverified
+reciprocal pseudocode attribution is used. Domain/continuity flags, extended-real
+values and concrete FP execution remain separate. See [scope and controls](SPLIT_QUOTIENT.md).
