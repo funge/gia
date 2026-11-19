@@ -345,3 +345,6 @@ name = "Binary64"
 
 [[lean_lib]]
 name = "PartialRealArithmetic"
+
+[[lean_lib]]
+name = "DirectedScheduling"

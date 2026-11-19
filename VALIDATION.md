@@ -3344,3 +3344,55 @@ Based on decoder merge `7d1c781272de10fa730ed7d69d67ffe19e5e311f`, local branch
 
 No new floating-point assumptions or hosted CI. Only this validation receipt was
 added after the successful complete runs; proof and fixture content is unchanged.
+
+## 2026-11-19 — independent directed scheduling, proof-only qualification
+
+Local branch `proof/directed-scheduling`, based on post-#19 main
+`3677ffc5c3a4882248a80f355fa0045086116ef5`. No push, PR or production adoption.
+
+- `lake build DirectedScheduling` and its focused fixture pass. The fixture audits
+  **16 theorem/axiom declarations**. The seven named module theorems establish
+  indexed same-denotation routing/reassembly, observed-outcome assembly equality,
+  all-slot failure propagation, conditional enclosure and environmental failure.
+- Complete `./check.sh`: **29 tests in 263.210 seconds**, no skips;
+  **858 named audits**, **1,676 namespace declarations**, **114 library roots**,
+  **47 fresh semantic fixtures**, audit rejection controls and explicit pinned C
+  API comparison. Both audit passes retain the unchanged allowlist.
+- Fixtures cover all four arithmetic opcodes, all four directed addition outcomes,
+  executed failure versus skipped slots, dependency boundaries, batch environment
+  failure versus scalar availability, and counterexamples to inferring equality
+  or availability from enclosure soundness alone.
+- **528 local Markdown links** and diff checks pass. Local proof/scope review
+  confirms exact equivalence is parametric over the same outcomes; the existing
+  observed-pair contract is used only for enclosure. No independent review of
+  this new module is claimed.
+
+No C/FFI, AST, runtime, rounding or environment-management implementation changes.
+The native suite and benchmark were not run: this is a pure proof model, not
+qualification of a concrete fused executor. The deferred archive was not used.
+Actual phase execution, buffer/slot correctness and native error/fenv behavior
+still require refinement evidence. No new hardware assumption, axiom or hosted CI.
+Only documentation was added after launching the successful full gate.
+
+## 2026-11-19 — finite directed traversal after independent review
+
+The earlier scheduling receipt above describes the original indexed model.
+Independent semantic review identified its missing finite traversal layer. The
+strengthened module now explicitly filters a finite slot enumeration by direction,
+executes sequential stable-slot writes and proves their lookup/reassembly result.
+A second independent review found no blocking defect in the strengthened model.
+
+- Focused module build and fixture pass; **26 fixture theorem/axiom declarations**.
+- Full `./check.sh` passes: **29 tests in 267.114 seconds**, no skips;
+  **862 named audits**, **1,684 namespace declarations**, **114 library roots**,
+  **47 fresh semantic fixtures**, audit rejection controls and pinned C inventory
+  comparison. The axiom allowlist is unchanged.
+- **528 local Markdown links** and `git diff --check` pass.
+- Added direction-sensitive interleaved slots, repeated operands, failures in both
+  phases and duplicate-slot controls. All four addition results remain required.
+
+Finite scheduling equivalence is now proved, rather than assumed. Refinement of
+an actual C executor, storage and environmental behavior remains outside scope.
+No C integration, benchmark, runtime changes or new FP assumptions. The native
+suite was not rerun for this proof-only change. This receipt is the only addition
+following the successful full gate.
