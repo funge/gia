@@ -1,46 +1,12 @@
 #include <lean/lean.h>
-#include <fenv.h>
-#include <float.h>
-#include <math.h>
-#include <stdlib.h>
-#include <stdint.h>
-#include <xmmintrin.h>
-#if !defined(__x86_64__)
-#error "This first adapter is tested and supported only on x86_64"
-#endif
-#pragma STDC FENV_ACCESS ON
-_Static_assert(FLT_RADIX == 2 && DBL_MANT_DIG == 53 && DBL_MAX_EXP == 1024 && sizeof(double) == 8,
-               "This demo requires binary64 double");
+#include "directed_core.h"
 
-/* This adapter is not verified. Failure returns unknown, never absence.
-   Hold exceptions, change rounding only within this call, and restore fenv. */
-static int bounds(double a, double b, double *lo, double *hi, int operation) {
-    if (!isfinite(a) || !isfinite(b)) return 0;
-    if (operation == 4 && a < 0.0) return 0;
-    /* Reject flush-to-zero and denormals-are-zero execution modes. */
-    if ((_mm_getcsr() & 0x8040u) != 0) return 0;
-    fenv_t saved;
-    if (feholdexcept(&saved) != 0) return 0;
-    int ok = 0;
-    volatile double av = a, bv = b;
-    if (fesetround(FE_DOWNWARD) == 0 && fegetround() == FE_DOWNWARD) {
-        volatile double down = operation == 4 ? sqrt(av) : (operation == 3 ? av / bv : (operation == 2 ? av * bv : (operation == 1 ? av - bv : av + bv)));
-        *lo = down;
-        if (fesetround(FE_UPWARD) == 0 && fegetround() == FE_UPWARD) {
-            volatile double up = operation == 4 ? sqrt(av) : (operation == 3 ? av / bv : (operation == 2 ? av * bv : (operation == 1 ? av - bv : av + bv)));
-            *hi = up;
-            ok = isfinite(*lo) && isfinite(*hi) && *lo <= *hi;
-        }
-    }
-    /* Restoration failure cannot safely return into Lean with altered state. */
-    if (fesetenv(&saved) != 0) abort();
-    return ok;
-}
+#pragma STDC FENV_ACCESS ON
 
 static lean_obj_res boxed_bounds(double a, double b, int operation) {
     double lo, hi;
     lean_object *option = lean_box(0);
-    if (bounds(a, b, &lo, &hi, operation)) {
+    if (gia_bounds(a, b, &lo, &hi, operation)) {
         lean_object *pair = lean_alloc_ctor(0, 2, 0);
         lean_ctor_set(pair, 0, lean_box_float(lo));
         lean_ctor_set(pair, 1, lean_box_float(hi));
@@ -112,15 +78,28 @@ LEAN_EXPORT lean_obj_res gia_rounding_restored(lean_obj_arg world) {
         int flags = fetestexcept(FE_ALL_EXCEPT);
         double a = operation == 4 ? 2.0 : (operation == 2 ? 0x1p-1074 : 1.0);
         double b = operation == 3 ? 3.0 : (operation == 2 ? 0.5 : 0x1p-54);
-        if (!bounds(a, b, &lo, &hi, operation) || fegetround() != modes[i] ||
+        if (!gia_bounds(a, b, &lo, &hi, operation) || fegetround() != modes[i] ||
             fetestexcept(FE_ALL_EXCEPT) != flags) ok = 0;
     }
-    /* Unsupported flush modes must yield unknown, not a false finite bound. */
-    unsigned int csr = _mm_getcsr();
-    double lo, hi;
-    _mm_setcsr(csr | 0x8040u);
-    if (bounds(1.0, 1.0, &lo, &hi, 0) || bounds(1.0, 1.0, &lo, &hi, 1) || bounds(1.0, 1.0, &lo, &hi, 2) || bounds(1.0, 1.0, &lo, &hi, 3) || bounds(1.0, 0.0, &lo, &hi, 4)) ok = 0;
-    _mm_setcsr(csr);
+    /* Check each flush mode independently; never infer rejection from an
+       ignored control write or from the other enabled flush mode. */
+    uint64_t csr = gia_fp_control();
+#if defined(__x86_64__)
+    const uint64_t flushes[] = {UINT64_C(1) << 6, UINT64_C(1) << 15};
+#else
+    const uint64_t flushes[] = {UINT64_C(1) << 24};
+#endif
+    for (unsigned i = 0; i < sizeof(flushes) / sizeof(*flushes); ++i) {
+        gia_set_fp_control(csr | flushes[i]);
+        uint64_t rejected_control = gia_fp_control();
+        if (!(rejected_control & flushes[i])) ok = 0;
+        for (int operation = 0; operation < 5; ++operation) {
+            double lo, hi;
+            if (gia_bounds(1.0, 1.0, &lo, &hi, operation) ||
+                gia_fp_control() != rejected_control) ok = 0;
+        }
+        gia_set_fp_control(csr);
+    }
     if (fesetenv(&saved) != 0) abort();
     return lean_io_result_mk_ok(lean_box(ok));
 }
