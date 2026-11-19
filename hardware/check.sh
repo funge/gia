@@ -5,20 +5,10 @@ lake build HardwareQuotientProgram:static HardwareEvaluatorProgram:static Hardwa
 out="$(mktemp -d)"
 trap 'rm -rf "$out"' EXIT
 lake env lean -c "$out/Main.c" hardware/Main.lean
-cc -O2 -frounding-math -fno-fast-math -ffp-contract=off -fno-math-errno \
+bash hardware/build_core.sh "$out"
+"${CC:-cc}" -O2 -frounding-math -fno-fast-math -ffp-contract=off -fno-math-errno \
   -I "$(lean --print-prefix)/include" -c hardware/adapter.c -o "$out/adapter.o"
-objdump -d "$out/adapter.o" > "$out/disassembly.txt"
-grep -q addsd "$out/disassembly.txt"
-grep -q subsd "$out/disassembly.txt"
-grep -q mulsd "$out/disassembly.txt"
-grep -q divsd "$out/disassembly.txt"
-grep -q sqrtsd "$out/disassembly.txt"
-if nm -u "$out/adapter.o" | grep -q sqrt; then
-  echo "Unexpected library sqrt call" >&2
-  exit 1
-fi
-printf "Verified hardware addsd, subsd, mulsd, divsd and sqrtsd in adapter object\n"
-leanc "$out/Main.c" "$out/adapter.o" .lake/build/lib/libHardwareQuotientProgram.a .lake/build/lib/libHardwareEvaluatorProgram.a .lake/build/lib/libHardwareAffineProductProgram.a .lake/build/lib/libHardwareAffineProgram.a .lake/build/lib/libHardwareBounds.a .lake/build/lib/libSineProgram.a .lake/build/lib/libSineReductionProgram.a .lake/build/lib/libCosineProgram.a .lake/build/lib/libQuadrantProgram.a .lake/build/lib/libDyadicReductionProgram.a .lake/build/lib/libSplitReductionProgram.a .lake/build/lib/libTrigHalvingProgram.a \
+leanc "$out/Main.c" "$out/adapter.o" "$out/directed_core.o" .lake/build/lib/libHardwareQuotientProgram.a .lake/build/lib/libHardwareEvaluatorProgram.a .lake/build/lib/libHardwareAffineProductProgram.a .lake/build/lib/libHardwareAffineProgram.a .lake/build/lib/libHardwareBounds.a .lake/build/lib/libSineProgram.a .lake/build/lib/libSineReductionProgram.a .lake/build/lib/libCosineProgram.a .lake/build/lib/libQuadrantProgram.a .lake/build/lib/libDyadicReductionProgram.a .lake/build/lib/libSplitReductionProgram.a .lake/build/lib/libTrigHalvingProgram.a \
   -lm -o "$out/hardware-add"
 "$out/hardware-add" | tee "$out/native-output.txt"
 python3 hardware/check_sine.py "$out/native-output.txt"

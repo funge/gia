@@ -15,8 +15,11 @@ Run from this directory with the pinned Lean/Lake on PATH:
 ```
 
 The second command is local and opt-in; neither the application build nor hosted
-CI calls it. It currently supports x86_64 with binary64 C double, a C compiler,
-`objdump`, and the usual fenv facilities. No toolchain change is needed.
+CI calls it. The shared C core supports x86_64 and AArch64 compilation with binary64
+C double, a C compiler, `objdump`, and the usual fenv facilities. See
+[platform qualification](HARDWARE_PLATFORMS.md) for exact tested targets, the
+standalone no-Lean command, and the distinct unqualified Apple Silicon FFI boundary.
+No toolchain change is needed.
 
 [hardware/Main.lean](hardware/Main.lean) calls an IO extern twice: lower endpoints
 are added together, then upper endpoints. Each call returns optional downward and
