@@ -1,3 +1,4 @@
+import DirectedScheduling
 import PartialRealArithmetic
 import Binary64
 import AffineUnary
@@ -983,4 +984,11 @@ import SegmentSearchExamples
 #audit_axioms GeneralizedIntervalArithmetic.Binary64.tail_contains
 #audit_axioms GeneralizedIntervalArithmetic.PartialRealArithmetic.div_domain_iff
 #audit_axioms GeneralizedIntervalArithmetic.PartialRealArithmetic.div_zero
+#audit_axioms GeneralizedIntervalArithmetic.DirectedScheduling.scheduled_eq
+#audit_axioms GeneralizedIntervalArithmetic.DirectedScheduling.reassemble_eq_of_outcomes
+#audit_axioms GeneralizedIntervalArithmetic.DirectedScheduling.batchAdd_eq
+#audit_axioms GeneralizedIntervalArithmetic.DirectedScheduling.observed_add_eq
+#audit_axioms GeneralizedIntervalArithmetic.DirectedScheduling.any_failure
+#audit_axioms GeneralizedIntervalArithmetic.DirectedScheduling.batchAdd_encloses
+#audit_axioms GeneralizedIntervalArithmetic.DirectedScheduling.environment_failure
 #audit_namespace GeneralizedIntervalArithmetic

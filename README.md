@@ -57,6 +57,10 @@ trusted/empirical; no rational arithmetic is added to the hardware runtime.
 operation meanings and division guard while preserving both public operation
 inductives, their reductions and all existing evaluator algorithms.
 
+[Directed scheduling equivalence](DIRECTED_SCHEDULING.md) proves that independent
+Down/Up requests reassemble to the scalar result under the same per-request
+denotation, including failures. It is a proof model, not production batching.
+
 [Smaller-angle refinement](HARDWARE_SINE_HALVING.md) reconstructs sine/cosine
 with proved double-angle identities and intersects with the previous result,
 improving tested narrow-input accuracy without widening existing enclosures.
