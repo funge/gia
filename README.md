@@ -534,3 +534,6 @@ bounds. See the [domain certificate scope](GENERALIZED_INTERVALS.md#numerical-no
 
 The integration rehearsal recorded in [MERGE_PLAN.md](MERGE_PLAN.md) was merged
 with the exact validated tree in `d464677`; its original receipts remain historical.
+
+[Local residue inference foundation](RESIDUE_INFERENCE.md) describes a narrow
+proof-side syntax and conditional provenance inference, separate from runtime.
