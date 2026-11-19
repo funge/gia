@@ -3234,3 +3234,54 @@ among all tangents. These remain explicit scope limitations, not failed checks.
 Logs: `/workspace/gia-tangent-readiness-full.log` and
 `/workspace/gia-tangent-readiness-native.log`. Only this receipt was added after
 the successful complete runs; proof, native and fixture files are unchanged.
+
+## 2026-11-19 — portable unary affine propagation
+
+Local milestone on merged tangent main
+`afb77070f210275b349d8d64f2c693ef6b6e53bc`, branch
+`proof/affine-unary-propagation`. No push, PR creation or merge.
+
+- Focused `lake build AffineUnary` and `lake env lean tests/AffineUnary.lean`
+  passed; the new fixture audits 34 theorem/axiom declarations.
+- Complete `./check.sh` passed: **21 tests in 264.203 seconds**, no skips,
+  **838 named audits**, **1,629 namespace declarations**, **111 library roots**,
+  and **44 fresh semantic fixtures**. Both audit passes retain the unchanged
+  `propext`, `Classical.choice`, `Quot.sound` allowlist. Rejection controls and
+  explicit pinned C API comparison passed with `RELGRAPH_CHECKOUT` supplied.
+- Local proof/source review checked signed affine propagation, all contained
+  witnesses, ordinary non-widening, nested composition, unchanged-domain totality,
+  external holes and the partial reciprocal counterexample. No independent
+  human/agent review is claimed. Original PDF printed p.79 was re-inspected;
+  this is derived composition, not a full generalized unary chart formalization.
+- **500 local Markdown links** and `git diff --check` passed. Hardware/native
+  sources, existing hardware proof contracts, toolchain/dependency pins and audit
+  policy are unchanged. No native execution path changed, so the native suite was
+  not rerun. No hosted CI or additional floating-point assumptions.
+
+The example's width comparison (1/8 versus 3/4 at the midpoint) is an exact
+semantic fixture, not a hardware or speed measurement. Whole-hull selection is
+conservative and may discard local improvements. See [scope](AFFINE_UNARY.md).
+Full gate log: `/workspace/gia-affine-unary-full.log`. Only documentation and this
+receipt were added after launching the complete gate; mathematical code and test
+registration were included in the successful run.
+
+## 2026-11-19 — unary propagation integrated after platform qualification
+
+The unary milestone applied without conflicts to merged platform PR #16 at
+`31d13c238a2571cf15e657d4c492504a29d10444`. Mathematical source and fixtures are
+unchanged from the preceding unary receipt; both milestones are retained.
+
+- Complete `./check.sh`: **29 tests in 257.558 seconds**, no skips; **838 named
+  audits**, **1,629 namespace declarations**, **111 library roots**, **44 fresh
+  semantic fixtures**, native-oracle negative controls and pinned C API comparison.
+- Complete Linux x86 `./hardware/check.sh`: passed through the actual Lean FFI,
+  including **59,520 shared-core calls**, fault/instruction controls, all existing
+  trigonometric and affine suites, 66 dual-evaluator and 84 guarded-quotient cases.
+- Focused independent source review found no blocking issue. Whole-hull totality
+  and conservative selection remain explicit limitations. No new FP assumptions.
+- **502 local Markdown links** and diff checks passed. Hardware, native contracts,
+  dependency pins and axiom policy are unchanged from merged #16. The Mac
+  end-to-end Lean/FFI path remains unqualified; this run is Linux x86 evidence.
+
+Only this documentation receipt was added after validation. No hosted CI was
+introduced or manually dispatched.

@@ -336,3 +336,6 @@ name = "HardwareQuotient"
 
 [[lean_lib]]
 name = "TangentBounds"
+
+[[lean_lib]]
+name = "AffineUnary"
