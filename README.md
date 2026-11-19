@@ -61,6 +61,10 @@ retaining endpoint rounding uncertainty and useful shared-parameter cancellation
 the quadratic residual and returns a composable affine form. It tightens
 `t(1−t)` from ordinary `[0,1]` to `[0,1/4]`, without a universal precision claim.
 
+[One-variable hardware evaluation](HARDWARE_EVALUATOR.md) runs ordinary and affine
+tracks through one traversal, intersects successful bounds, and preserves a
+surviving track while exposing contradictory outputs explicitly.
+
 ## Start here
 
 | Question | Read |
@@ -101,7 +105,8 @@ reduction and global fallback merged as GIA #6 (`0192ef2`); bounded dyadic
 reduction merged as GIA #7 (`1ba0723`); split pi and deferred corrections
 merged as GIA #8 (`278fbe0`); smaller-angle reconstruction merged as GIA #9
 (`b3ff033`); hardware affine addition/subtraction/scaling merged as GIA #10
-(`ce041d2`). This review adds shared-parameter multiplication, retaining the same
+(`ce041d2`); shared-parameter multiplication merged as GIA #11 (`8906100`).
+This local milestone adds dual-track polynomial evaluation, retaining the same
 adapter trust boundary and MIT notices.
 The earlier [review stack](REVIEW_STACK.md), [merge plan](MERGE_PLAN.md) and
 validation sections are historical snapshots, not current pending-PR lists.

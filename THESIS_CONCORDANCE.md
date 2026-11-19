@@ -750,3 +750,13 @@ composable linear output encloses full pointwise uncertain-endpoint witnesses
 on [0,1]. This is a derived construction linked to §§2.9.3 and 2.9.5, not a
 transcription of a chapter-3 algorithm or a full quadratic interval API. It
 retains the explicit adapter boundary and documents wider-than-ordinary cases.
+
+### Dual-track polynomial hardware evaluator
+
+[One-variable evaluation](HARDWARE_EVALUATOR.md) composes the existing finite
+ordinary and linear arithmetic under shared real semantics. The relationship
+to §§2.9.3–2.9.5 is the representation/inclusion principle. The dual traversal,
+root intersection and explicit unknown/conflict policy are project integration,
+not an exact thesis algorithm. Compositional enclosure and ordinary-track
+non-widening are proved under the existing hardware contracts; general function
+syntax, domain inference and execution-resource guarantees remain outside scope.

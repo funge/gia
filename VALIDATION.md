@@ -2933,3 +2933,63 @@ Markdown links** and `git diff --check` passed. Full logs are retained locally a
 `/workspace/gia-affine-product-full.log` and
 `/workspace/gia-affine-product-native.log`; the results are recorded here so
 review does not depend on access to the executor.
+
+## Dual-track hardware polynomial evaluation — 2026-11-16
+
+Base: merged main `8906100577838419c25674a896b3769cd8251685` (PR #11).
+Prepared locally; publication is not part of this milestone authorization.
+
+- One generic traversal evaluates finite one-variable polynomial syntax with
+  ordinary intervals and shared-parameter affine forms. Root combination uses
+  the existing intersection code, independent-track fallback, both-failed
+  unknown and explicit contradictory-output conflict.
+- Proved generic compositional enclosure, both backend instantiations, coherent
+  variable seeding and full input-interval coverage (including singletons),
+  constant lifting, combined enclosure, common-value
+  conflict impossibility, and successful ordinary-track survival with semantic
+  subset/non-widening of the final result. The fresh integrated fixture connects
+  expression semantics through both backends and root intersection.
+- Focused Lean build and new fixture audit passed. The first full audit rejected
+  a compiler-generated opaque specialization declaration. Marking the shared
+  traversal `@[nospecialize]` removed it; the focused namespace audit then
+  accepted all 39 then-present declarations without changing the allowlist. Native
+  qualification and timing were repeated after this compiler-policy change,
+  with no concurrent Lean compilation during measurement. All
+  prior primitive, affine, square-root and trigonometric suites remained passing.
+- Independent exact-rational oracle checked **66** expressions/input combinations,
+  both complete directed-operation tracks and the merge result, plus nine real
+  semantic samples per successful result. Availability: **44 both**, **1 ordinary
+  only**, **3 affine only**, **18 unknown**. A separate native synthetic conflict
+  is explicitly rejected instead of falling back. Both overflow survival
+  directions, invalid leaves, shared boundary and both-failure controls pass.
+- On [0,1], combined widths: `x*(1-x)` **0.25** (ordinary **1**), `x*x` **1**
+  (affine alone **1.25**), `x-x` **0** (ordinary **2**), and nested
+  `x*(1-x)*(1+x)` **0.5625** (ordinary **2**, affine **0.625**).
+- Timing method: same ASTs/input, 100 warmups, five alternating paired trials of
+  1,000 evaluations/path, `IO.monoNanosNow`, no timed-loop printing, success
+  checks retained. Final cloud x86_64 Xeon Platinum 8573C medians in ns/evaluation:
+  bubble **5280.8 / 24662.4** (ordinary/combined, **4.670×**); square
+  **3415.6 / 18925.6** (**5.541×**); nested cubic **8755.9 / 48378.7** (**5.525×**).
+  Host scheduling remains uncontrolled; no speedup or portable performance claim.
+- Local specification review checked common real/parameter witnesses, constant
+  interpretation, structural induction, both fallback directions, conflict
+  handling and successful-ordinary subset inclusion. Independent numerical
+  oracles supplement the proof; no separate human or agent review is claimed.
+- No new FP assumption or axiom. Adapter C, compiler flags, toolchain, pins and
+  licenses unchanged; no hosted CI. Lean 4.19.0, pinned mathlib, GCC 14.2.0 and
+  leanc Clang 15.0.1; no C implementation or IO/compiler/hardware refinement proof.
+
+See [scope, source correspondence and measurement method](HARDWARE_EVALUATOR.md).
+
+Final complete `./check.sh`: **21 tests passed in 265.275 seconds**, no skips.
+Both audit passes accepted **791 named checks** and **1,540 namespace declarations**
+under the unchanged standard allowlist (`propext`, `Classical.choice`, `Quot.sound`).
+All **106 library roots**, **40 fresh semantic fixtures**, negative controls and
+explicit pinned C API comparison passed. The final whole-input coverage proof
+was added after an earlier passing full run and is included in this final run.
+It changes no executable path; native results and timings above are from the
+final `@[nospecialize]` runtime. **458 local Markdown links** and
+`git diff --check` passed. Final logs are retained at
+`/workspace/gia-evaluator-final.log` and
+`/workspace/gia-evaluator-native-qualified.log`. These receipts provide the
+results without requiring access to the executor.

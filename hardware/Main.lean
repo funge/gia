@@ -1,3 +1,4 @@
+import HardwareEvaluatorProgram
 import HardwareAffineProductProgram
 import HardwareAffineProgram
 import TrigHalvingProgram
@@ -463,7 +464,106 @@ def checkProduct : IO Unit := do
 
 end AffineNative
 
+namespace EvaluatorNative
+open GeneralizedIntervalArithmetic.HardwareEvaluator
+open GeneralizedIntervalArithmetic.HardwareAffine
+
+def constant (c : Float) : IO (Option (Bounds Float)) :=
+  pure (if c.isFinite then some ⟨c,c⟩ else none)
+
+def constantForm (c : Float) : IO (Option (Form Float)) := do
+  let some I ← constant c | return none
+  return some ⟨I,I⟩
+
+def ordinary (I : Bounds Float) (e : Polynomial Float) : IO (Option (Bounds Float)) :=
+  eval constant (if AffineNative.valid I then some I else none) add subtract multiply e
+
+def affine (I : Bounds Float) (e : Polynomial Float) : IO (Option (Form Float)) :=
+  affineEval constantForm (if AffineNative.valid I then some (seed I) else none)
+    add subtract multiply ⟨0,0.25⟩ e
+
+def combined (I : Bounds Float) (e : Polynomial Float) : IO (Result Float) :=
+  run (ordinary I) (affine I) finiteLt chooseMin chooseMax e
+
+def showBounds : Option (Bounds Float) → String
+  | none => "none"
+  | some a => s!"{a.lo.toBits}:{a.hi.toBits}"
+
+def showResult : Result Float → String
+  | .unknown => "unknown"
+  | .conflict => "conflict"
+  | .bound a => showBounds (some a)
+
+def expressions : Array (Polynomial Float) := Id.run do
+  let x : Polynomial Float := .var
+  let one : Polynomial Float := .const 1
+  let huge : Polynomial Float := .const (Float.ofBits 0x7fefffffffffffff)
+  let bubble := Polynomial.mul x (.sub one x)
+  return #[bubble, .mul x x, .sub x x, .mul bubble (.add one x),
+    .mul (.add x one) (.sub x one), .mul x (.const 0),
+    .sub (.mul x x) (.mul x x), .add x (.const (Float.ofBits 0x3ca0000000000000)),
+    .mul huge huge, .mul (.sub x x) huge, .const (Float.ofBits 0x7ff8000000000000)]
+
+def check : IO Unit := do
+  let huge := Float.ofBits 0x7fefffffffffffff
+  let inputs : Array (Bounds Float) := #[⟨0,1⟩,⟨-1,1⟩,⟨1,2⟩,⟨0.1,0.2⟩,
+    ⟨Float.ofBits 1,Float.ofBits 2⟩,⟨-huge,huge⟩]
+  for i in [:expressions.size] do
+    let e := expressions[i]!
+    for I in inputs do
+      let o ← ordinary I e
+      let a ← affine I e
+      let r ← combined I e
+      IO.println s!"DUAL {i} {I.lo.toBits} {I.hi.toBits} {showBounds o} {showBounds (a.map (hull chooseMin chooseMax))} {showResult r}"
+      match r,o with
+      | .bound b,some old =>
+        unless old.lo ≤ b.lo && b.hi ≤ old.hi do throw (IO.userError "ordinary result widened")
+      | .conflict,_ => throw (IO.userError "sound tracks contradicted")
+      | .unknown,some _ => throw (IO.userError "ordinary result lost")
+      | _,_ => pure ()
+  for bad in #[⟨2,1⟩,⟨0,Float.ofBits 0x7ff0000000000000⟩,⟨Float.ofBits 0x7ff8000000000000,0⟩] do
+    match ← combined bad .var with
+    | .unknown => pure ()
+    | _ => throw (IO.userError "invalid variable input accepted")
+  -- This synthetic disagreement is not sent through sound arithmetic contracts.
+  match merge finiteLt chooseMin chooseMax (some ⟨0.0,1.0⟩) (some ⟨2.0,3.0⟩) with
+  | .conflict => pure ()
+  | _ => throw (IO.userError "contradiction masked by fallback")
+  IO.println "PASS dual evaluator availability, non-widening, malformed variable and contradiction controls"
+  -- Same ASTs/input and compiled adapter, 100 warmups then five alternating
+  -- paired runs of 1000 evaluations. No output occurs in a timed loop.
+  for index in [0,1,3] do
+    let e := expressions[index]!
+    let I : Bounds Float := ⟨0,1⟩
+    for _ in [:100] do
+      let _ ← ordinary I e
+      let _ ← combined I e
+    for trial in [:5] do
+      let plain : IO Nat := do
+        let start ← IO.monoNanosNow
+        for _ in [:1000] do
+          let some _ ← ordinary I e | throw (IO.userError "benchmark ordinary failed")
+        return (← IO.monoNanosNow)-start
+      let dual : IO Nat := do
+        let start ← IO.monoNanosNow
+        for _ in [:1000] do
+          match ← combined I e with
+          | .bound _ => pure ()
+          | _ => throw (IO.userError "benchmark combined failed")
+        return (← IO.monoNanosNow)-start
+      let (p,d) ← if trial % 2 == 0 then do
+        let p ← plain
+        let d ← dual
+        pure (p,d)
+        else do
+          let d ← dual
+          let p ← plain
+          pure (p,d)
+      IO.println s!"DUAL_TIME {index} {trial} 1000 {p} {d}"
+end EvaluatorNative
+
 def main : IO Unit := do
+  EvaluatorNative.check
   AffineNative.check
   AffineNative.checkProduct
   let one : Bounds Float := ⟨1.0, 1.0⟩
