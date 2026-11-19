@@ -3031,3 +3031,126 @@ No publication, renderer integration or native-path change is included.
 See [scope, exact hypotheses and source correspondence](ENDPOINT_CHORDS.md).
 Full log: `/workspace/gia-endpoint-chords-full.log`. Subsequent changes only add
 this validation receipt; the complete proof and fixture files were in the run.
+
+## 2026-11-17 — local guarded hardware quotient composition
+
+Based on evaluator commit `05b5f32ae1db36f3efc8678928437e9146c8e746`
+(reviewed separately in draft GIA PR #12), branch
+`proof/hardware-guarded-quotients`. This increment is prepared locally only.
+
+- Focused `lake build HardwareQuotient` passed. The new semantic fixture passed
+  with **14** audited declarations; the focused quotient namespace audit passed
+  with **40** declarations. The fixture proves the pole undefined at its midpoint
+  and defined elsewhere, conservative zero guards, fallback/conflict behavior,
+  and that a certified evaluation at the pole must return unknown.
+- Complete `./check.sh` passed: **21 tests in 313.960 seconds**, no skips.
+  The full audits accepted **803 named checks** and **1,580 namespace declarations**
+  under the unchanged `propext`, `Classical.choice`, `Quot.sound` allowlist.
+  All **108 library roots**, **41 fresh semantic fixtures**, audit negative controls,
+  and the explicit pinned C API comparison passed. The comparison used
+  `RELGRAPH_CHECKOUT=/workspace/gia-followup/relgraph-removal`.
+- Complete `./hardware/check.sh` passed, including all existing primitive,
+  square-root, sine, affine and evaluator suites. The new independent directed
+  exact-rational oracle checked **84** expression/input cases: **42** ordinary
+  successes preserved without widening, **55** refined successes and **29**
+  unknown results. Each successful result was checked against defined real
+  rational semantics at **17** sample points. Native synthetic controls confirmed
+  propagation of child conflicts and rejection of disjoint operation outputs.
+- On [0,1], `1/(1/2-t(1-t))` returned **[2,4]**, while its naive ordinary path
+  remained unknown; the negative-denominator control returned **[-4,-2]**.
+  `1/(1/2-t)` remained unknown. Repeated safe quotients subtract to **[-2,2]**,
+  explicitly demonstrating that quotient correlation is not retained. Nested
+  quotients/arithmetic, zero endpoints/singletons, overflow and both fallback
+  directions passed. This milestone makes no runtime optimization claim.
+- Local specification/diff review checked single-valued partial semantics,
+  definedness construction at quotient nodes, per-point polynomial leaf premises,
+  ordinary survival, contradiction handling and the shared implementation path.
+  The numerical oracle is independent of native evaluation; no separate human
+  or agent review is claimed. The enlarged native harness was split into
+  `QuotientNative.check` and `checkExisting` after hitting elaborator recursion
+  depth, without changing the old checks or raising the recursion limit.
+- No new FP assumption or axiom; adapter C, compiler flags, toolchain, pins,
+  audit policy and licenses unchanged. Lean 4.19.0, pinned mathlib, GCC 14.2.0,
+  leanc Clang 15.0.1. No IO/compiler/hardware or C implementation verification.
+  **472 local Markdown links** and `git diff --check` passed. No hosted CI.
+
+See [scope and source correspondence](HARDWARE_GUARDED_QUOTIENT.md).
+Full/native logs: `/workspace/gia-quotient-full.log` and
+`/workspace/gia-quotient-native.log`. The successful full run includes the final
+proof and executable files; subsequent edits only add this documentation receipt.
+
+## 2026-11-19 — guarded quotient rebase and publication qualification
+
+Evaluator PR #12 was squash-merged as
+`de4e1a2fe5d3a586c82d173f0aa4b5acf7239313`. Its tree
+`174dd6d544e9338986b4309b3b2824061f1a02d1` exactly matches the qualified evaluator
+head `05b5f32ae1db36f3efc8678928437e9146c8e746`. The original local guarded-division
+commit `92baac32e2bd254ab156a0d9254ce6a32f6ba451` rebased cleanly onto that main;
+proof, runtime and test files remain byte-for-byte identical to that qualification.
+Only publication framing and this appended receipt were updated afterward.
+
+- Complete `./check.sh` passed again: **21 tests in 239.929 seconds**, no skips;
+  **803 named audits**, **1,580 namespace declarations**, **108 library roots**,
+  **41 fresh semantic fixtures**, all rejection controls and explicit pinned C API
+  comparison. Both full audit passes retained the existing allowlist.
+- Complete `./hardware/check.sh` passed again, including prior primitive,
+  transcendental, affine and evaluator checks and all **84** quotient cases:
+  **42** ordinary successes preserved, **55** refined successes, **29** unknown.
+  Independent directed and partial-semantic oracles, [2,4] acceptance, genuine
+  pole, correlation-loss and conflict/fallback controls all passed.
+- **472 local Markdown links** and `git diff --check` passed. The 14-file review
+  diff is confined to quotient composition and supporting qualification/docs.
+  Adapter C, compiler flags, toolchain, dependency pins, axiom policy and license
+  files are unchanged. No thesis PDFs, caches, key files or hosted workflows are
+  introduced. No new FP assumptions, merge of this change, or hosted CI trigger.
+
+Logs: `/workspace/gia-quotient-rebased-full.log` and
+`/workspace/gia-quotient-rebased-native.log`. This receipt supplements rather than
+rewrites the November 17 local-only qualification above. The executable code was
+unchanged after these runs; subsequent edits only record publication readiness.
+
+## 2026-11-19 — local reconciliation of guarded division with merged chords
+
+Branch `reconcile/guarded-division-on-chords` applies guarded-division PR #13's
+remote head `a3ad540476f9d8d23d46669d3e07c2cdf234bc72` to merged chord main
+`e05f18c0c8e153023dc03467eb9cbd0a4ac5e34d`. This is local preparation only:
+no push, PR update or merge. The separate tangent branch remains untouched at
+`f03d117f9335c1dbf5a9fdfe922066b28e61bf2b` and is not included in this tree.
+
+Six shared files conflicted, all because both milestones added material in the
+same locations. Resolutions retain both sides:
+
+- `Audit.lean`: both imports and both named audit lists, followed by the common
+  namespace audit. This was essential to retain enforcement for both modules.
+- `lakefile.toml`: all three additional libraries, with separate valid table
+  headers and no duplicate registrations (109 total roots).
+- `tests/test_project_integration.py`: both fresh semantic fixture registrations.
+- `README.md`, `THESIS_CONCORDANCE.md`, `VALIDATION.md`: both descriptions,
+  scope/source qualifications and historical validation receipts, unchanged.
+
+There were no conflicts in mathematical proofs, runtime algorithms or independent
+fixtures. Blob comparisons confirm both milestones' proof and fixture files
+match their respective qualified inputs; the native code and quotient oracle
+match #13 exactly. Line-preservation checks confirmed that every substantive line
+from both versions of the shared audit, fixture registry and documentation files
+was retained. An initial overbroad conflict-marker replacement accidentally
+truncated trailing text; diff review caught it and the initial gate failed.
+The resolution was rebuilt from the original three-way inputs, checked line by
+line for preservation, then the full qualification below was restarted.
+
+- Complete `./check.sh`: **21 tests in 245.940 seconds**, no skips;
+  **819 named audits**, **1,603 namespace declarations**, **109 library roots**,
+  **42 fresh semantic fixtures**, rejection controls and explicit pinned C API
+  comparison passed. No changes to the axiom allowlist.
+- Complete `./hardware/check.sh` passed, including all existing suites and the
+  **84 quotient cases**: **42 ordinary successes preserved**, **55 refined
+  successes**, **29 unknown**. Independent oracles confirmed [2,4] acceptance,
+  genuine pole, partial-domain samples and the [-2,2] correlation-loss control.
+- **480 local Markdown links** and diff checks passed. No new FP assumptions,
+  adapter/toolchain/license changes, hosted CI or inclusion of tangent work.
+  Local resolution review and automated preservation checks completed; no
+  separate human or agent review is claimed.
+
+Final qualification logs: `/workspace/gia-reconcile13-final-full.log` and
+`/workspace/gia-reconcile13-native.log`. The earlier failed run is retained at
+`/workspace/gia-reconcile13-full.log`. Subsequent edits only append this receipt.

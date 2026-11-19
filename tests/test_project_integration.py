@@ -12,6 +12,7 @@ PROJECT = pathlib.Path(__file__).resolve().parents[1]
 EXECUTABLE_CLIENTS = {"hardware/Main.lean"}
 SEMANTIC_FIXTURES = {
     "EndpointChords.lean": "GeneralizedIntervalArithmetic.EndpointChordChecks",
+    "HardwareQuotient.lean": "GeneralizedIntervalArithmetic.HardwareQuotientChecks",
     "HardwareEvaluator.lean": "GeneralizedIntervalArithmetic.HardwareEvaluatorChecks",
     "HardwareAffineProduct.lean": "GeneralizedIntervalArithmetic.HardwareAffineProductChecks",
     "HardwareAffine.lean": "GeneralizedIntervalArithmetic.HardwareAffineChecks",

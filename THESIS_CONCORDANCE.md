@@ -784,3 +784,15 @@ annotations). Both curvature facts are proved, then used with the chord results
 and cube monotonicity to establish `-8+7α ≤ x³ ≤ 64-37α` for α∈[0,1] and
 x∈[-2+α,4-α]. This is independent of hardware and renderer integration and adds
 no floating-point assumption.
+
+### Guarded hardware quotient composition
+
+[Partial quotient composition](HARDWARE_GUARDED_QUOTIENT.md) connects the existing
+finite linear/ordinary polynomial evaluator to guarded hardware division.
+Tupper §3.2.22 (printed p.64 / PDF p.80) and §3.2.26 (printed p.68 / PDF p.84)
+provide the division and partial-binary-function correspondence. This is a
+restricted derived integration, not the full generalized charts: denominators
+must be strictly separated from zero and every returned endpoint finite.
+Successful bounds certify defined relational values under explicit leaf and
+operation contracts. Unknown is inconclusive; no quotient correlation, external
+domain inference, extended-real range or new IEEE assumption is introduced.
