@@ -26,6 +26,35 @@ theorem four_opcodes : scheduled arithmetic mixed .lowerDown = some 5 ∧
 theorem skipped_vs_failed : phase arithmetic mixed .down .upperUp = some none ∧
     phase arithmetic mixed .up .upperUp = none := by constructor <;> rfl
 
+def slots : List AddSlot := [.lowerUp,.upperDown,.lowerDown,.upperUp]
+theorem slots_complete : ∀ s, s ∈ slots := by intro s; cases s <;> simp [slots]
+theorem slots_unique : slots.Nodup := by decide
+
+def directed (r : Request Nat) : Option Nat :=
+  if r.left = 99 then none else
+  match r.direction with | .down => some r.left | .up => some (r.right+100)
+
+def interleaved : AddSlot → Request Nat
+  | .lowerDown => ⟨.add,.down,1,2⟩
+  | .lowerUp => ⟨.add,.up,1,2⟩
+  | .upperDown => ⟨.add,.down,99,2⟩
+  | .upperUp => ⟨.add,.up,99,2⟩
+
+theorem finite_direction_sensitive :
+    reassemble interleaved (groupedPhase directed interleaved slots .down)
+      (groupedPhase directed interleaved slots .up) .lowerDown = some 1 ∧
+    reassemble interleaved (groupedPhase directed interleaved slots .down)
+      (groupedPhase directed interleaved slots .up) .lowerUp = some 102 ∧
+    groupedPhase directed interleaved slots .down .upperDown = some none ∧
+    groupedPhase directed interleaved slots .up .upperUp = some none := by
+  simp [groupedPhase_eq directed interleaved slots slots_complete,
+    reassemble,phase,interleaved,directed]
+
+theorem repeated_slots_safe :
+    reassemble interleaved (groupedPhase directed interleaved (slots++slots) .down)
+      (groupedPhase directed interleaved (slots++slots) .up) = fun s => directed (interleaved s) :=
+  grouped_reassembly_eq _ _ _ (fun s => List.mem_append_left _ (slots_complete s))
+
 -- Each failure survives assembly, including lower-Up and upper-Down.
 theorem four_failure_slots (slot : AddSlot) :
     assembleSlots (fun s => if s=slot then none else some (5:Nat)) = none :=

@@ -3373,3 +3373,26 @@ qualification of a concrete fused executor. The deferred archive was not used.
 Actual phase execution, buffer/slot correctness and native error/fenv behavior
 still require refinement evidence. No new hardware assumption, axiom or hosted CI.
 Only documentation was added after launching the successful full gate.
+
+## 2026-11-19 — finite directed traversal after independent review
+
+The earlier scheduling receipt above describes the original indexed model.
+Independent semantic review identified its missing finite traversal layer. The
+strengthened module now explicitly filters a finite slot enumeration by direction,
+executes sequential stable-slot writes and proves their lookup/reassembly result.
+A second independent review found no blocking defect in the strengthened model.
+
+- Focused module build and fixture pass; **26 fixture theorem/axiom declarations**.
+- Full `./check.sh` passes: **29 tests in 267.114 seconds**, no skips;
+  **862 named audits**, **1,684 namespace declarations**, **114 library roots**,
+  **47 fresh semantic fixtures**, audit rejection controls and pinned C inventory
+  comparison. The axiom allowlist is unchanged.
+- **528 local Markdown links** and `git diff --check` pass.
+- Added direction-sensitive interleaved slots, repeated operands, failures in both
+  phases and duplicate-slot controls. All four addition results remain required.
+
+Finite scheduling equivalence is now proved, rather than assumed. Refinement of
+an actual C executor, storage and environmental behavior remains outside scope.
+No C integration, benchmark, runtime changes or new FP assumptions. The native
+suite was not rerun for this proof-only change. This receipt is the only addition
+following the successful full gate.

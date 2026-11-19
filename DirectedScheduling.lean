@@ -49,6 +49,45 @@ theorem reassemble_eq_of_outcomes {S F : Type} (denote : Request F → Option F)
   | down => simp [reassemble,h,hd s h]
   | up => simp [reassemble,h,hu s h]
 
+/-- A finite, sequential traversal writing outcomes to stable slots. -/
+def execute {S F : Type} [DecidableEq S] (denote : Request F → Option F)
+    (requests : S → Request F) : List S → (S → Option (Option F)) → S → Option (Option F)
+  | [], out => out
+  | s :: rest, out => execute denote requests rest
+      (Function.update out s (some (denote (requests s))))
+
+theorem execute_lookup {S F : Type} [DecidableEq S] (denote : Request F → Option F)
+    (requests : S → Request F) (slots : List S) (out : S → Option (Option F)) (s : S) :
+    execute denote requests slots out s = if s ∈ slots then some (denote (requests s)) else out s := by
+  induction slots generalizing out with
+  | nil => rfl
+  | cons a rest ih =>
+    rw [execute,ih]
+    by_cases hr : s ∈ rest
+    · simp [hr]
+    · by_cases ha : s = a
+      · subst a; simp [hr]
+      · simp [hr,ha,Function.update_apply]
+
+def groupedPhase {S F : Type} [DecidableEq S] (denote : Request F → Option F)
+    (requests : S → Request F) (slots : List S) (direction : Direction) : S → Option (Option F) :=
+  execute denote requests (slots.filter fun s => decide ((requests s).direction = direction)) (fun _ => none)
+
+/-- Actual finite filtering/traversal realizes the abstract indexed phase. -/
+theorem groupedPhase_eq {S F : Type} [DecidableEq S] (denote : Request F → Option F)
+    (requests : S → Request F) (slots : List S) (complete : ∀ s, s ∈ slots) (direction : Direction) :
+    groupedPhase denote requests slots direction = phase denote requests direction := by
+  funext s
+  simp [groupedPhase,execute_lookup,List.mem_filter,complete s,phase]
+
+theorem grouped_reassembly_eq {S F : Type} [DecidableEq S] (denote : Request F → Option F)
+    (requests : S → Request F) (slots : List S) (complete : ∀ s, s ∈ slots) :
+    reassemble requests (groupedPhase denote requests slots .down)
+      (groupedPhase denote requests slots .up) = fun s => denote (requests s) := by
+  rw [groupedPhase_eq denote requests slots complete .down,
+    groupedPhase_eq denote requests slots complete .up]
+  exact scheduled_eq denote requests
+
 inductive AddSlot where
   | lowerDown | lowerUp | upperDown | upperUp
   deriving DecidableEq, Repr
@@ -85,6 +124,14 @@ theorem observed_add_eq {F : Type} (denote : Request F → Option F) (I J : Boun
     (hu : ∀ s, (addRequests I J s).direction = .up → up s = some (denote (addRequests I J s))) :
     assembleSlots (reassemble (addRequests I J) down up) = scalarAdd denote I J := by
   rw [reassemble_eq_of_outcomes denote (addRequests I J) down up hd hu]
+  rfl
+
+theorem grouped_add_eq {F : Type} (denote : Request F → Option F) (I J : Bounds F)
+    (slots : List AddSlot) (complete : ∀ s, s ∈ slots) :
+    assembleSlots (reassemble (addRequests I J)
+      (groupedPhase denote (addRequests I J) slots .down)
+      (groupedPhase denote (addRequests I J) slots .up)) = scalarAdd denote I J := by
+  rw [grouped_reassembly_eq denote (addRequests I J) slots complete]
   rfl
 
 theorem any_failure {F : Type} (results : AddSlot → Option F) (slot : AddSlot)
