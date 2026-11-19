@@ -3264,3 +3264,24 @@ conservative and may discard local improvements. See [scope](AFFINE_UNARY.md).
 Full gate log: `/workspace/gia-affine-unary-full.log`. Only documentation and this
 receipt were added after launching the complete gate; mathematical code and test
 registration were included in the successful run.
+
+## 2026-11-19 — unary propagation integrated after platform qualification
+
+The unary milestone applied without conflicts to merged platform PR #16 at
+`31d13c238a2571cf15e657d4c492504a29d10444`. Mathematical source and fixtures are
+unchanged from the preceding unary receipt; both milestones are retained.
+
+- Complete `./check.sh`: **29 tests in 257.558 seconds**, no skips; **838 named
+  audits**, **1,629 namespace declarations**, **111 library roots**, **44 fresh
+  semantic fixtures**, native-oracle negative controls and pinned C API comparison.
+- Complete Linux x86 `./hardware/check.sh`: passed through the actual Lean FFI,
+  including **59,520 shared-core calls**, fault/instruction controls, all existing
+  trigonometric and affine suites, 66 dual-evaluator and 84 guarded-quotient cases.
+- Focused independent source review found no blocking issue. Whole-hull totality
+  and conservative selection remain explicit limitations. No new FP assumptions.
+- **502 local Markdown links** and diff checks passed. Hardware, native contracts,
+  dependency pins and axiom policy are unchanged from merged #16. The Mac
+  end-to-end Lean/FFI path remains unqualified; this run is Linux x86 evidence.
+
+Only this documentation receipt was added after validation. No hosted CI was
+introduced or manually dispatched.
