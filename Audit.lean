@@ -1,3 +1,4 @@
+import ResidueInference
 import IntegerResidue
 import DirectedScheduling
 import PartialRealArithmetic
@@ -1008,4 +1009,8 @@ import SegmentSearchExamples
 #audit_axioms GeneralizedIntervalArithmetic.IntegerResidue.window_exclusion
 #audit_axioms GeneralizedIntervalArithmetic.IntegerResidue.relation_exclusion
 #audit_axioms GeneralizedIntervalArithmetic.IntegerResidue.enclosure_window_exclusion
+#audit_axioms GeneralizedIntervalArithmetic.ResidueInference.integer_sound
+#audit_axioms GeneralizedIntervalArithmetic.ResidueInference.infer_sound
+#audit_axioms GeneralizedIntervalArithmetic.ResidueInference.exclude
+#audit_axioms GeneralizedIntervalArithmetic.ResidueInference.exclude_enclosure
 #audit_namespace GeneralizedIntervalArithmetic
