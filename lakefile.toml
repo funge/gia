@@ -333,3 +333,6 @@ name = "HardwareQuotientProgram"
 
 [[lean_lib]]
 name = "HardwareQuotient"
+
+[[lean_lib]]
+name = "TangentBounds"

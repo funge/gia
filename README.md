@@ -73,6 +73,10 @@ Outward-certified endpoint soundness is kept separate from optimality.
 polynomial blocks and adds partial division and interval arithmetic around them.
 Successful bounds certify defined values; zero-crossing guards remain unknown.
 
+[Finite-domain tangent bounds](TANGENT_BOUNDS.md) complement the chords with
+concave upper tangents and convex lower tangents under explicit derivative
+certificates, without claiming pointwise optimality across contact choices.
+
 ## Start here
 
 | Question | Read |

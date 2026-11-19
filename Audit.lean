@@ -1,3 +1,4 @@
+import TangentBounds
 import EndpointChords
 import HardwareQuotient
 import HardwareEvaluator
@@ -947,4 +948,13 @@ import SegmentSearchExamples
 #audit_axioms GeneralizedIntervalArithmetic.HardwareQuotient.eval_preserves
 #audit_axioms GeneralizedIntervalArithmetic.HardwareQuotient.polynomial_leaf_cert
 #audit_axioms GeneralizedIntervalArithmetic.HardwareQuotient.success_defined
+#audit_axioms GeneralizedIntervalArithmetic.TangentBounds.tangent_at
+#audit_axioms GeneralizedIntervalArithmetic.TangentBounds.tangent_blend
+#audit_axioms GeneralizedIntervalArithmetic.TangentBounds.convex_lower
+#audit_axioms GeneralizedIntervalArithmetic.TangentBounds.concave_upper
+#audit_axioms GeneralizedIntervalArithmetic.TangentBounds.singleton
+#audit_axioms GeneralizedIntervalArithmetic.TangentBounds.outward_lower
+#audit_axioms GeneralizedIntervalArithmetic.TangentBounds.outward_upper
+#audit_axioms GeneralizedIntervalArithmetic.TangentBounds.convex_sandwich
+#audit_axioms GeneralizedIntervalArithmetic.TangentBounds.concave_sandwich
 #audit_namespace GeneralizedIntervalArithmetic
