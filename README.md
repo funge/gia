@@ -61,6 +61,10 @@ inductives, their reductions and all existing evaluator algorithms.
 Down/Up requests reassemble to the scalar result under the same per-request
 denotation, including failures. It is a proof model, not production batching.
 
+[Integer residue certificates](INTEGER_RESIDUE.md) retain discrete information
+alongside real enclosures. This local proof foundation excludes closed windows
+using certified integer provenance; it does not change runtime or ASTs.
+
 [Smaller-angle refinement](HARDWARE_SINE_HALVING.md) reconstructs sine/cosine
 with proved double-angle identities and intersects with the previous result,
 improving tested narrow-input accuracy without widening existing enclosures.
