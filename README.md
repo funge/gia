@@ -49,6 +49,10 @@ no trusted quotient-to-integer conversion or new floating-point assumptions.
 separate until coarse cancellation finishes, improving tested narrow-input
 bounds near magnitude one trillion under the same floating-point contract.
 
+[Pure binary64 decoding](BINARY64.md) proves exact rational values and pi/tail
+enclosures for the four raw constant words. Native Float bit conversions remain
+trusted/empirical; no rational arithmetic is added to the hardware runtime.
+
 [Smaller-angle refinement](HARDWARE_SINE_HALVING.md) reconstructs sine/cosine
 with proved double-angle identities and intersects with the previous result,
 improving tested narrow-input accuracy without widening existing enclosures.

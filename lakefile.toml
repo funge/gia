@@ -339,3 +339,6 @@ name = "TangentBounds"
 
 [[lean_lib]]
 name = "AffineUnary"
+
+[[lean_lib]]
+name = "Binary64"

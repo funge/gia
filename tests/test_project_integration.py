@@ -11,6 +11,7 @@ import unittest
 PROJECT = pathlib.Path(__file__).resolve().parents[1]
 EXECUTABLE_CLIENTS = {"hardware/Main.lean"}
 SEMANTIC_FIXTURES = {
+    "Binary64.lean": "GeneralizedIntervalArithmetic.Binary64Checks",
     "AffineUnary.lean": "GeneralizedIntervalArithmetic.AffineUnaryChecks",
     "TangentBounds.lean": "GeneralizedIntervalArithmetic.TangentChecks",
     "EndpointChords.lean": "GeneralizedIntervalArithmetic.EndpointChordChecks",

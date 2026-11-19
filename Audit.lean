@@ -1,3 +1,4 @@
+import Binary64
 import AffineUnary
 import TangentBounds
 import EndpointChords
@@ -968,4 +969,15 @@ import SegmentSearchExamples
 #audit_axioms GeneralizedIntervalArithmetic.AffineUnary.square_sound
 #audit_axioms GeneralizedIntervalArithmetic.AffineUnary.square_preserves_ordinary
 #audit_axioms GeneralizedIntervalArithmetic.AffineUnary.square_domain_sound
+#audit_axioms GeneralizedIntervalArithmetic.Binary64.nonfinite
+#audit_axioms GeneralizedIntervalArithmetic.Binary64.finite
+#audit_axioms GeneralizedIntervalArithmetic.Binary64.out_of_range
+#audit_axioms GeneralizedIntervalArithmetic.Binary64.no_value_iff
+#audit_axioms GeneralizedIntervalArithmetic.Binary64.fields_bounded
+#audit_axioms GeneralizedIntervalArithmetic.Binary64.pi_lower
+#audit_axioms GeneralizedIntervalArithmetic.Binary64.pi_upper
+#audit_axioms GeneralizedIntervalArithmetic.Binary64.tail_lower
+#audit_axioms GeneralizedIntervalArithmetic.Binary64.tail_upper
+#audit_axioms GeneralizedIntervalArithmetic.Binary64.pi_contains
+#audit_axioms GeneralizedIntervalArithmetic.Binary64.tail_contains
 #audit_namespace GeneralizedIntervalArithmetic

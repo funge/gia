@@ -25,7 +25,9 @@ more than 40,000 times narrower than the previous `2^-51` bracket; a Lean contro
 checks that comparison. This is **not** a full double-double precision pi
 constant: its useful enclosure precision is limited by the twenty-decimal source
 bounds. Decoding the three specified finite constants remains an instance of the
-existing trusted constant-decoding boundary.
+existing trusted native constant-decoding boundary. The [pure raw-word
+decoder](BINARY64.md) separately proves both tail words and their enclosure; it
+does not verify native Float conversions.
 
 ## Reduction and proof invariant
 
