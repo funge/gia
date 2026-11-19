@@ -3285,3 +3285,33 @@ unchanged from the preceding unary receipt; both milestones are retained.
 
 Only this documentation receipt was added after validation. No hosted CI was
 introduced or manually dispatched.
+
+## 2026-11-19 — pure binary64 word decoding
+
+Local foundation milestone based on merged #17 main
+`c095880d4cda35d1c862dad450b00cb1a32eaf2b`, branch `proof/binary64-decoder`.
+No push or PR publication is part of this qualification.
+
+- Focused `lake build Binary64` and `lake env lean tests/Binary64.lean` passed;
+  the new fixture audits **12 theorem/axiom declarations**. Four exact raw-word
+  decoding equalities and direct pi/tail enclosure instantiations are kernel
+  checked without native evaluation.
+- Complete `./check.sh` passed: **29 tests in 252.800 seconds**, no skips;
+  **849 named audits**, **1,645 namespace declarations**, **112 library roots**,
+  **45 fresh semantic fixtures**, audit rejection controls, native-oracle negative
+  controls and explicit pinned C API comparison. Both audit passes retain the
+  unchanged `propext`, `Classical.choice`, `Quot.sound` allowlist.
+- Local source/specification review checked the 52-bit fraction, 11-bit exponent,
+  sign, 1023 bias, subnormal scaling, scaling branch boundary, both signs of zero
+  and extreme finite values, all-ones-exponent rejection and oversized-input
+  rejection. Fixtures exercise the normal transition and nonfinite payloads.
+  No separate independent review is claimed.
+- **514 local Markdown links** and diff checks passed. Hardware core, FFI, batching,
+  AST semantics, dependency pins and audit policy are unchanged. The native suite
+  was not rerun because no native execution path changed. No hosted CI or new FP
+  assumption was introduced.
+
+Native Float/ofBits/toBits correspondence remains trusted/empirical. Rational
+arithmetic here is a pure proof/reference decoder, never the native hot path.
+Only documentation was added after the complete gate began; mathematical source
+and test registration were included in its successful run.

@@ -826,3 +826,12 @@ and upper chord, with ordinary fallback and shared input witnesses. Domain lower
 bounds require explicit totality on the hull; external holes are retained. This
 is a derived restricted integration, not the full unary chart algorithm, optimal
 tangent selection or hardware implementation. See [scope and examples](AFFINE_UNARY.md).
+
+
+### Binary64 constant representation foundation
+
+[Pure decoding](BINARY64.md) supports the §3.1 floating-point setting with an
+explicit raw-word representation and kernel-checked pi/split-tail constants. It
+is a derived implementation foundation, not a thesis theorem or a formalization
+of all IEEE 754. Native Float conversion and arithmetic refinement remain open;
+no additional adapter assumptions are introduced.

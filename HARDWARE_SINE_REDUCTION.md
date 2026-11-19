@@ -45,8 +45,10 @@ L < π < U,       U - L = 2^-51.
 The proof derives these inequalities from mathlib's kernel-checked
 [twenty-decimal pi bounds](https://github.com/leanprover-community/mathlib4/blob/c44e0c8ee63ca166450922a373c7409c5d26b00b/Mathlib/Data/Real/Pi/Bounds.lean). It does not assume a decimal oracle or use native evaluation in a proof.
 They correspond to binary64 bit patterns `0x400921fb54442d18` and
-`0x400921fb54442d19`. Their finite decoding remains part of the existing adapter
-boundary; `decoded_contains` combines those exact-value premises with the proved
+`0x400921fb54442d19`. Their native Float decoding remains part of the existing adapter
+boundary; [pure raw-word decoding](BINARY64.md) now proves their rational values
+and directly instantiates the certificate for raw words. For native Float,
+`decoded_contains` combines those exact-value premises with the proved
 real inequalities. The pi-containment claim itself is not an adapter assumption.
 The regression `lower_singleton_misses` proves why treating the lower approximation
 as exact pi is invalid.
