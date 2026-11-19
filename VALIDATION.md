@@ -2993,3 +2993,41 @@ final `@[nospecialize]` runtime. **458 local Markdown links** and
 `/workspace/gia-evaluator-final.log` and
 `/workspace/gia-evaluator-native-qualified.log`. These receipts provide the
 results without requiring access to the executor.
+
+## 2026-11-19 — finite convex/concave endpoint chords
+
+Local branch `proof/convex-affine-chords` starts directly from merged main
+`de4e1a2fe5d3a586c82d173f0aa4b5acf7239313`, independently of guarded-division PR #13.
+No publication, renderer integration or native-path change is included.
+
+- The original graphing repository thesis PDF was visually checked at PDF pages
+  94–96 (printed 78–80): §3.3.10's upper chord and endpoint optimality argument,
+  §3.3.12's lower-bound dual, and §3.3.14's cubic example. Source SHA-256:
+  `bbee0580e763bf793f04a28fc7cac98bd5de1dffc452f5c3e7463f0d42fbecfb`.
+  The PDF confirms the lower cubic branch concave and upper branch convex;
+  Markdown curvature annotations are not relied upon.
+- Focused `lake build EndpointChords` and fresh `tests/EndpointChords.lean` passed.
+  The fixture namespace audited **12 declarations**. The local pinned mathlib
+  `Analysis.Convex.Mul` dependency was built from source already present; no
+  download, package change or new assumption was needed.
+- Complete `./check.sh` passed: **21 tests in 253.158 seconds**, no skips;
+  **807 named audits**, **1,563 namespace declarations**, **107 library roots**,
+  **41 fresh semantic fixtures**, negative audit controls and the explicit pinned
+  C API comparison (`RELGRAPH_CHECKOUT=/workspace/gia-followup/relgraph-removal`).
+  The axiom allowlist remains `propext`, `Classical.choice`, `Quot.sound`.
+- Local proof/specification review checked endpoint inclusion, nonnegative
+  interpolation weights, the division-free singleton branch, pointwise affine
+  optimality over every point of the interval, and sound outward certificates
+  without optimality. The cubic enclosure uses proved branch curvature, the
+  general chord results and cube monotonicity. Controls reject extrapolation and
+  the wrong bound direction, demonstrate outward slack, and check cubic endpoint
+  sharpness and interior slack. No separate human or agent review is claimed.
+- Native sources, hardware contracts, compiler flags, toolchain, dependency pins,
+  axiom policy and licenses are unchanged. No new FP assumptions or axioms. The
+  native suite was not rerun: this milestone adds only real mathematical proofs
+  and semantic fixtures, with no executable native path change. No hosted CI.
+  **466 local Markdown links** and `git diff --check` passed.
+
+See [scope, exact hypotheses and source correspondence](ENDPOINT_CHORDS.md).
+Full log: `/workspace/gia-endpoint-chords-full.log`. Subsequent changes only add
+this validation receipt; the complete proof and fixture files were in the run.
