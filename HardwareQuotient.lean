@@ -1,3 +1,4 @@
+import PartialRealArithmetic
 import HardwareQuotientProgram
 import HardwareEvaluator
 
@@ -5,14 +6,14 @@ namespace GeneralizedIntervalArithmetic.HardwareQuotient
 open HardwareAddition HardwareEvaluator
 
 noncomputable def meaning : Operation → ℝ → ℝ → ℝ
-  | .add => (· + ·)
-  | .sub => (· - ·)
-  | .mul => (· * ·)
-  | .div => (· / ·)
+  | .add => PartialRealArithmetic.add
+  | .sub => PartialRealArithmetic.sub
+  | .mul => PartialRealArithmetic.mul
+  | .div => PartialRealArithmetic.div
 
 def Defined : Operation → ℝ → ℝ → Prop
-  | .div, _, y => y ≠ 0
-  | _, _, _ => True
+  | .div => PartialRealArithmetic.divDefined
+  | _ => PartialRealArithmetic.totalDefined
 
 inductive Value {C : Type} (decode : C → Option ℝ) (x : ℝ) : Expression C → ℝ → Prop where
   | polynomial {p v} : HardwareEvaluator.Value decode x p v → Value decode x (.polynomial p) v

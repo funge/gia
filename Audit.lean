@@ -1,3 +1,4 @@
+import PartialRealArithmetic
 import Binary64
 import AffineUnary
 import TangentBounds
@@ -980,4 +981,6 @@ import SegmentSearchExamples
 #audit_axioms GeneralizedIntervalArithmetic.Binary64.tail_upper
 #audit_axioms GeneralizedIntervalArithmetic.Binary64.pi_contains
 #audit_axioms GeneralizedIntervalArithmetic.Binary64.tail_contains
+#audit_axioms GeneralizedIntervalArithmetic.PartialRealArithmetic.div_domain_iff
+#audit_axioms GeneralizedIntervalArithmetic.PartialRealArithmetic.div_zero
 #audit_namespace GeneralizedIntervalArithmetic
