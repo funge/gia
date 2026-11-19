@@ -816,3 +816,13 @@ midpoint optimality (with the source's §3.4.3 reference) remain open. Crossing
 tangents are an explicit counterexample to transferring chord-style pointwise
 optimality. See [scope and controls](TANGENT_BOUNDS.md). No new FP assumptions,
 renderer integration or native implementation claims are introduced.
+
+
+### Derived unary affine composition
+
+[AffineUnary.lean](AffineUnary.lean) composes the §§3.3.10–3.3.12 finite chord/
+tangent bounds with uncertain endpoint forms. Square uses a proved lower tangent
+and upper chord, with ordinary fallback and shared input witnesses. Domain lower
+bounds require explicit totality on the hull; external holes are retained. This
+is a derived restricted integration, not the full unary chart algorithm, optimal
+tangent selection or hardware implementation. See [scope and examples](AFFINE_UNARY.md).

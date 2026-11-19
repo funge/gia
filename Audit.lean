@@ -1,3 +1,4 @@
+import AffineUnary
 import TangentBounds
 import EndpointChords
 import HardwareQuotient
@@ -957,4 +958,14 @@ import SegmentSearchExamples
 #audit_axioms GeneralizedIntervalArithmetic.TangentBounds.outward_upper
 #audit_axioms GeneralizedIntervalArithmetic.TangentBounds.convex_sandwich
 #audit_axioms GeneralizedIntervalArithmetic.TangentBounds.concave_sandwich
+#audit_axioms GeneralizedIntervalArithmetic.AffineUnary.image_sound
+#audit_axioms GeneralizedIntervalArithmetic.AffineUnary.propagate_sound
+#audit_axioms GeneralizedIntervalArithmetic.AffineUnary.select_sound
+#audit_axioms GeneralizedIntervalArithmetic.AffineUnary.ordinary_preserved
+#audit_axioms GeneralizedIntervalArithmetic.AffineUnary.domain_sound
+#audit_axioms GeneralizedIntervalArithmetic.AffineUnary.square_support
+#audit_axioms GeneralizedIntervalArithmetic.AffineUnary.squareCandidate_sound
+#audit_axioms GeneralizedIntervalArithmetic.AffineUnary.square_sound
+#audit_axioms GeneralizedIntervalArithmetic.AffineUnary.square_preserves_ordinary
+#audit_axioms GeneralizedIntervalArithmetic.AffineUnary.square_domain_sound
 #audit_namespace GeneralizedIntervalArithmetic

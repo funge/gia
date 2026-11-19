@@ -77,6 +77,11 @@ Successful bounds certify defined values; zero-crossing guards remain unknown.
 concave upper tangents and convex lower tangents under explicit derivative
 certificates, without claiming pointwise optimality across contact choices.
 
+[Unary affine propagation](AFFINE_UNARY.md) composes certified chord/tangent
+lines with uncertain affine inputs, preserves ordinary fallback and explicit
+domains, and demonstrates nested squaring. This is a portable theorem/reference
+layer; hardware unary integration remains future work.
+
 ## Start here
 
 | Question | Read |
