@@ -796,3 +796,23 @@ must be strictly separated from zero and every returned endpoint finite.
 Successful bounds certify defined relational values under explicit leaf and
 operation contracts. Unknown is inconclusive; no quotient correlation, external
 domain inference, extended-real range or new IEEE assumption is introduced.
+
+
+### Finite-domain tangents (§3.3.11 and lower-bound dual)
+
+[TangentBounds.lean](TangentBounds.lean) proves concave upper and convex lower
+tangent bounds on real finite closed intervals. A derivative certificate within
+the interval at the contact is sufficient, including endpoint contacts; singleton
+behavior needs neither curvature nor derivative. The same normalized parameter
+combines tangents with the previously proved chord bounds. Outward certificates
+for tangent endpoint values retain soundness without postulating a hardware oracle.
+
+**Restricted differentiable counterpart.** The original PDF's printed p.79 /
+PDF page 95 was checked: §3.3.11 describes matching value and derivative as the
+limiting tangent case. The proof here uses mathlib secant-slope inequalities,
+not a formal infinitesimal construction or full relational chart equivalence.
+Finite secants outside sample points, discrete-neighbor bounds, and weighted
+midpoint optimality (with the source's §3.4.3 reference) remain open. Crossing
+tangents are an explicit counterexample to transferring chord-style pointwise
+optimality. See [scope and controls](TANGENT_BOUNDS.md). No new FP assumptions,
+renderer integration or native implementation claims are introduced.

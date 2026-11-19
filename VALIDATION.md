@@ -3154,3 +3154,83 @@ line for preservation, then the full qualification below was restarted.
 Final qualification logs: `/workspace/gia-reconcile13-final-full.log` and
 `/workspace/gia-reconcile13-native.log`. The earlier failed run is retained at
 `/workspace/gia-reconcile13-full.log`. Subsequent edits only append this receipt.
+
+## 2026-11-19 — local finite-domain tangent foundation
+
+Chord PR #14 was verified at qualified head
+`b50ac96f59d913d6b1efc637cb8959172ddc6934` against unchanged main, then merged as
+`e05f18c0c8e153023dc03467eb9cbd0a4ac5e34d`. The merged tree
+`c570e7f7d026cc8d8534415a5b9705fce4b0fc43` exactly matches the qualified chord tree.
+This local branch `proof/finite-tangent-bounds` starts at that merge; guarded
+quotient PR #13 and its head were not changed. No tangent publication is included.
+
+- Rechecked the existing source PDF at printed p.79 / PDF page 95, §3.3.11:
+  the differentiable construction matches value and derivative at the contact.
+  The weighted midpoint-optimality and finite-secant/discrete-neighbor claims
+  remain outside this milestone. Source checksum is recorded in the chord receipt.
+- Focused `lake build TangentBounds` passed. Fresh semantic fixtures audit
+  **10 declarations**: square/chord sandwich, concave upper dual, endpoint contact,
+  singleton, outward endpoint pair, crossing tangents and invalid one-direction
+  slope-rounding controls. An initially missing derivative-power import was
+  corrected; the enforced audit rejected the failed fixture before that correction.
+- Complete `./check.sh` passed: **21 tests in 255.487 seconds**, no skips;
+  **816 named audits**, **1,573 namespace declarations**, **108 library roots**,
+  **42 fresh semantic fixtures**, audit rejection controls and the explicit
+  pinned C API comparison (`RELGRAPH_CHECKOUT=/workspace/gia-followup/relgraph-removal`).
+  Both audit passes use the unchanged `propext`, `Classical.choice`, `Quot.sound`
+  allowlist. Final fixture formatting/imports were included in the complete run.
+- Local source/proof review checked both signs of the secant displacement,
+  within-domain derivatives at endpoints, equality at the contact and singleton,
+  shared-parameter tangent/chord composition, and outward endpoint certificates.
+  The counterexamples rule out unproved pointwise tangent optimality and naive
+  derivative rounding. No separate human or agent review is claimed.
+- **475 local Markdown links** and `git diff --check` passed. Native sources,
+  hardware contracts, compiler flags, toolchain, dependency pins, licenses and
+  axiom policy are unchanged. No new FP assumption, axiom, renderer integration,
+  hardware implementation claim or hosted CI. Native suite not rerun because no
+  executable native path changed.
+
+See [source scope and theorem assumptions](TANGENT_BOUNDS.md).
+Complete log: `/workspace/gia-tangent-full.log`. Subsequent edits only add this
+receipt; all proof and semantic fixture content was included in the full run.
+
+## 2026-11-19 — tangent PR readiness on guarded-division main
+
+Local branch `readiness/tangent-on-guarded-main` applies the original tangent
+milestone `f03d117f9335c1dbf5a9fdfe922066b28e61bf2b` to current main
+`b624d5b596f88bd1e080f42573a0f92ded82aef4`. The original
+`proof/finite-tangent-bounds` branch is preserved unchanged. No push, PR creation
+or merge is part of this readiness check.
+
+Five shared files had additive conflicts: `Audit.lean`, `README.md`,
+`THESIS_CONCORDANCE.md`, `VALIDATION.md` and `lakefile.toml`. Both sides' imports,
+audit lists, library roots, documentation and historical receipts were retained.
+The fixture registration merged automatically. Explicit line-preservation checks
+confirmed both inputs' substantive shared-file content remains. There are 110
+unique library roots and both milestones' independent fixtures remain registered.
+Tangent proofs, fixture and scope guide are byte-for-byte identical to the original
+qualified milestone. Chord/quotient proofs, their fixtures and native code match
+main exactly. The nine-file diff contains only the tangent milestone and receipts.
+
+- Complete `./check.sh` passed on the combined tree: **21 tests in 253.534 seconds**,
+  no skips; **828 named audits**, **1,613 namespace declarations**, **110 library
+  roots**, **43 fresh semantic fixtures**, audit rejection controls and explicit
+  pinned C API comparison. Both audit passes retained the unchanged allowlist.
+- Complete `./hardware/check.sh` passed, including primitive, square-root,
+  trigonometric, affine, evaluator and all **84 guarded-quotient cases**. The
+  quotient oracle again reports **42 ordinary successes preserved**, **55 refined
+  successes**, **29 unknown**, with [2,4] acceptance, genuine pole and correlation
+  loss controls passing. No native implementation changes were needed.
+- **489 local Markdown links** and diff checks passed. No new FP assumptions,
+  axiom-policy/toolchain/dependency/license changes or hosted CI. Local integration
+  and scope review completed; no separate human/agent review is claimed.
+
+Readiness is for the documented finite-domain tangent theorem and its dual,
+endpoint/singleton behavior, outward endpoint certificates and chord composition.
+It does not add a hardware derivative implementation or prove weighted optimal
+contact selection, finite-secant/discrete-neighbor bounds or pointwise optimality
+among all tangents. These remain explicit scope limitations, not failed checks.
+
+Logs: `/workspace/gia-tangent-readiness-full.log` and
+`/workspace/gia-tangent-readiness-native.log`. Only this receipt was added after
+the successful complete runs; proof, native and fixture files are unchanged.
