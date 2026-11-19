@@ -3396,3 +3396,37 @@ an actual C executor, storage and environmental behavior remains outside scope.
 No C integration, benchmark, runtime changes or new FP assumptions. The native
 suite was not rerun for this proof-only change. This receipt is the only addition
 following the successful full gate.
+
+## 2026-11-19 — local integer-residue research foundation
+
+Based on merged scheduling main `13eae8eb99af1033b37a16b374745c1a6af95a74`.
+This separate milestone is local and pending independent review; it is not
+published or adopted by an evaluator.
+
+- `lake build IntegerResidue` and `lake env lean tests/IntegerResidue.lean` pass;
+  the fixture audits **18 theorem/axiom declarations**.
+- Complete `./check.sh` passes: **29 tests in 292.346 seconds**, no skips;
+  **874 named audits**, **1,696 namespace declarations**, **115 library roots**,
+  **48 fresh semantic fixtures**, rejection controls and explicit pinned C API
+  comparison. The unchanged allowlist admits only the existing foundational
+  axioms; no `sorry`, new axiom or `native_decide` was introduced.
+- **534 local Markdown links** and `git diff --check` pass.
+- Semantic controls prove the exact hull and parity exclusion, a real-valued
+  falsifier, nonintegrality of one half, negative and closed-boundary cases,
+  checked affine divisibility, composite residues and arbitrary external holes.
+
+No C/FFI, AST, evaluator algorithm, renderer or widening changes. No new FP
+assumptions. The native hardware suite and benchmarks were not run: this is a
+pure mathematical certificate layer, not qualification of a native checker.
+This validation receipt is the only addition after the successful full gate.
+
+## 2026-11-19 — integer-residue independent semantic review
+
+Independent read-only review of `b084f8c5a9da8992241f2357621739edc0336ac1`
+found no blockers: same-value/domain use, strict closed-window boundaries,
+integer provenance and the least-hull comparison are sound. Audit and fixture
+registration were checked. The reviewer did not repeat the full gate.
+
+The proof and tests are unchanged from the complete qualification above. Only
+current documentation status and this receipt changed afterward. Local links
+and diff checks pass; there is still no runtime or hardware integration.

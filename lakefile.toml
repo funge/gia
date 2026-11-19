@@ -348,3 +348,6 @@ name = "PartialRealArithmetic"
 
 [[lean_lib]]
 name = "DirectedScheduling"
+
+[[lean_lib]]
+name = "IntegerResidue"
