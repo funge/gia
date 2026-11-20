@@ -153,5 +153,103 @@ theorem exact_query_counts :
   norm_num [grid,rejects,ratValue,add,kept,candidate,ordinary,twice,LinearInterval.constant,
     LinearInterval.add,LinearInterval.exact,QAffine.add]
 
+-- Positive-domain control: both ordinary strength and a midpoint tangent matter.
+def positiveSeed : LinearInterval := .exact ⟨1/2,1⟩
+def positiveOrdinary : QInterval := ⟨1/4,1,by norm_num⟩
+def midpointCandidate : LinearInterval := ⟨⟨3/16,15/16⟩,⟨1/4,1⟩,by norm_num,by norm_num⟩
+def positiveKept : List LinearInterval := [.constant positiveOrdinary,midpointCandidate]
+def shift : LinearInterval := .exact ⟨-1/8,-7/8⟩
+
+macro "positive_model" : tactic => `(tactic|
+  norm_num [positiveSeed,positiveOrdinary,midpointCandidate,positiveKept,shift,
+    AffineUnary.propagate,AffineUnary.image,AffineUnary.select,retain,
+    LinearInterval.exact,LinearInterval.hull,LinearInterval.constant,LinearInterval.mul,
+    LinearInterval.join,LinearInterval.add,QInterval.point,QInterval.mul,
+    QAffine.productBounds,QAffine.productChord,QAffine.curvature,QAffine.add])
+
+theorem positive_ordinary_result : positiveSeed.hull.mul positiveSeed.hull = positiveOrdinary := by
+  positive_model
+
+theorem midpoint_result : AffineUnary.propagate positiveSeed (3/2) (-9/16) (3/2) (-1/2) =
+    some midpointCandidate := by positive_model
+
+theorem positive_retained : retain (some positiveOrdinary) (some midpointCandidate) =
+    some positiveKept := rfl
+
+theorem positive_old_selected : AffineUnary.select (some positiveOrdinary)
+    (some midpointCandidate) = some (.constant positiveOrdinary) := by positive_model
+
+theorem midpoint_sound {t x : ℝ} (ht : t ∈ Set.Icc (0:ℝ) 1)
+    (hx : positiveSeed.Contains t x) : midpointCandidate.Contains t (x^2) := by
+  apply AffineUnary.propagate_sound (F := fun x z => z=x^2) ?_ midpoint_result ht hx rfl
+  intro y z hy hz
+  subst z
+  have hy' : (1/2:ℝ) ≤ y ∧ y ≤ 1 := by
+    norm_num [positiveSeed,LinearInterval.exact,LinearInterval.hull,QInterval.Contains] at hy
+    exact hy
+  have hu := (AffineUnary.square_support hy').2
+  norm_num at *
+  constructor
+  · nlinarith [sq_nonneg (y-3/4)]
+  · nlinarith
+
+theorem positive_retained_sound {t x : ℝ} (ht : t ∈ Set.Icc (0:ℝ) 1)
+    (hx : positiveSeed.Contains t x) : Contains positiveKept t (x^2) := by
+  apply retain_sound ?_ ?_ positive_retained
+  · intro B hB
+    cases hB
+    rw [← positive_ordinary_result]
+    simpa [pow_two] using mul_encloses (linear_hull_encloses ht hx) (linear_hull_encloses ht hx)
+  · intro A hA
+    cases hA
+    exact midpoint_sound ht hx
+
+theorem positive_excludes_fifth (t : ℝ) : ¬ Contains positiveKept t (1/5) := by
+  intro h
+  have ho := (linear_constant_contains positiveOrdinary t (1/5)).mp
+    (h (.constant positiveOrdinary) (by simp [positiveKept]))
+  norm_num [positiveOrdinary,QInterval.Contains] at ho
+
+theorem shift_result : AffineUnary.image positiveSeed (-3/2) (5/8) = shift := by positive_model
+
+theorem positive_shift_bounds {t z : ℝ} (hz : Contains (add positiveKept shift) t z) :
+    (1/16:ℝ) ≤ z ∧ z ≤ 1/8 := by
+  have h := hz (midpointCandidate.add shift) (by simp [add,positiveKept])
+  norm_num [midpointCandidate,shift,LinearInterval.exact,LinearInterval.add,
+    LinearInterval.Contains,QAffine.add,QAffine.value] at h
+  constructor <;> nlinarith [h.1,h.2]
+
+theorem positive_shift_actual {t x : ℝ} (ht : t ∈ Set.Icc (0:ℝ) 1)
+    (hx : positiveSeed.Contains t x) :
+    Contains (add positiveKept shift) t (x^2-3*x/2+5/8) := by
+  have hs := AffineUnary.image_sound (-3/2) (5/8) ht hx
+  rw [shift_result] at hs
+  convert add_sound (positive_retained_sound ht hx) hs using 1; ring
+
+theorem positive_actual_range {t x : ℝ} (ht : t ∈ Set.Icc (0:ℝ) 1)
+    (hx : positiveSeed.Contains t x) :
+    (1/16:ℝ) ≤ x^2-3*x/2+5/8 ∧ x^2-3*x/2+5/8 ≤ 1/8 :=
+  positive_shift_bounds (positive_shift_actual ht hx)
+
+theorem midpoint_attained : ∃ x : ℝ, positiveSeed.Contains (1/2) x ∧
+    x^2-3*x/2+5/8 = 1/16 ∧ Contains (add positiveKept shift) (1/2) (1/16) := by
+  have hx : positiveSeed.Contains (1/2) (3/4) := by
+    norm_num [positiveSeed,LinearInterval.exact,LinearInterval.Contains,QAffine.value]
+  refine ⟨3/4,hx,by norm_num,?_⟩
+  convert positive_shift_actual (by norm_num : (1/2:ℝ) ∈ Set.Icc 0 1) hx using 1; norm_num
+
+theorem right_endpoint_attained : ∃ x : ℝ, positiveSeed.Contains 1 x ∧
+    x^2-3*x/2+5/8 = 1/8 ∧ Contains (add positiveKept shift) 1 (1/8) := by
+  have hx : positiveSeed.Contains 1 1 := by
+    norm_num [positiveSeed,LinearInterval.exact,LinearInterval.Contains,QAffine.value]
+  refine ⟨1,hx,by norm_num,?_⟩
+  convert positive_shift_actual (by norm_num : (1:ℝ) ∈ Set.Icc 0 1) hx using 1; norm_num
+
+theorem no_single_affine_preserves_both (m c : ℝ)
+    (hs : ∀ x ∈ Set.Icc (1/2:ℝ) 1, m*x+c ≤ x^2)
+    (hp : (1/4:ℝ) ≤ m*(1/2)+c) : ¬ 0 < m+c-3/2+5/8 := by
+  have h := (positive_square_affine_obstruction m c hs hp).2.2.2
+  linarith
+
 #audit_namespace GeneralizedIntervalArithmetic.AffineConjunctionChecks
 end GeneralizedIntervalArithmetic.AffineConjunctionChecks

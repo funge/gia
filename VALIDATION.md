@@ -3540,3 +3540,28 @@ The native executable suite was not rerun for this portable proof-only change.
 This is a local commit prepared for review, not a push or PR. Documentation was
 clarified during the gate; this receipt was appended after it. Proof and test
 sources did not change during or after the successful complete gate.
+
+## 2026-11-20 — positive-domain conjunction and single-line obstruction
+
+Supplement to local affine-conjunction commit
+`d7d21229a8e0194ceffe55a75fe1b0b0a38db1f8`; the original strict regression remains.
+The exact `[1/2,1]` seed uses actual hull multiplication, a supplied midpoint
+tangent/chord through `AffineUnary.propagate`, and existing affine addition.
+The ordinary channel excludes `1/5`; the shifted conjunction encloses
+`x²-3*x/2+5/8` in `[1/16,1/8]`, with actual midpoint/right-endpoint witnesses.
+A general theorem for real affine lower bounds proves the requested `13/16`
+right-endpoint obstruction, hence a shifted lower bound at most `-1/16`, whenever
+the line is sound for square and preserves the ordinary left-endpoint guarantee.
+
+- Complete `./check.sh` passes on the final proof and fixture sources:
+  **29 tests in 468.295 seconds**, no skips, **902 named audits**,
+  **1,759 namespace declarations**, **118 library roots**, **51 fresh fixtures**,
+  audit rejection controls and explicit pinned C API checkout comparison.
+- Focused positive fixture passes, auditing **61 theorem/axiom declarations**.
+- **561 local Markdown links** and diff checks pass.
+- No new FP assumptions, runtime/native/renderer changes or line-selection
+  algorithm. The native executable suite was not rerun for this proof-only
+  supplement. Independent review and any publication remain separate actions.
+
+The final proof/fixture sources were checked by the completed gate; this receipt
+is its only subsequent source-tree addition. No branch was pushed or PR opened.

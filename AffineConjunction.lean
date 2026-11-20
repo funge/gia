@@ -124,4 +124,17 @@ theorem exclusion_sound {C : List LinearInterval} {R : ℝ → ℝ → Prop} {t 
   rintro ⟨z,hz,hw⟩
   exact he z hw (hs z hz)
 
+/-- A single affine lower bound cannot retain the positive ordinary endpoint
+bound and also prove positivity of the shifted square at the right endpoint. -/
+theorem positive_square_affine_obstruction (m c : ℝ)
+    (hs : ∀ x ∈ Set.Icc (1/2:ℝ) 1, m*x+c ≤ x^2)
+    (hp : (1/4:ℝ) ≤ m*(1/2)+c) :
+    m*(5/8)+c ≤ (25/64:ℝ) ∧
+    m+c = 4*(m*(5/8)+c)-3*(m*(1/2)+c) ∧
+    m+c ≤ (13/16:ℝ) ∧
+    m+c-3/2+5/8 ≤ (-1/16:ℝ) := by
+  have h := hs (5/8) (by constructor <;> norm_num)
+  norm_num at h
+  refine ⟨h, by ring, ?_, ?_⟩ <;> linarith
+
 end GeneralizedIntervalArithmetic.AffineConjunction

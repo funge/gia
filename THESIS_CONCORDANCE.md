@@ -859,3 +859,8 @@ It preserves both ordinary and affine constraints at the same parameter and
 proves a strict compositional exclusion example. This is a derived reference-layer
 result, not a newly claimed literal thesis counterpart. The source foundations,
 gaps and later partial-function work remain separate; no FP assumptions change.
+
+The positive-domain supplement in [AFFINE_CONJUNCTION.md](AFFINE_CONJUNCTION.md)
+uses a supplied midpoint tangent and endpoint chord on `[1/2,1]` and proves a
+single-affine-line obstruction. It is a derived representation result, not an
+additional theorem attributed to Tupper or a new tangent-selection algorithm.

@@ -84,6 +84,34 @@ addition rule. Its ordinary baseline is intentionally conservative multiplicatio
 not sign-specialized squaring. No advantage over every ordinary interval method,
 application prover, or production C implementation is claimed.
 
+## Positive-domain control and a single-line obstruction
+
+A supplemental fixture uses the exact normalized seed `x=1/2+t/2` on `[1/2,1]`.
+Ordinary multiplication computes `[1/4,1]`, excluding `1/5`. The existing
+`AffineUnary.propagate` constructs a midpoint tangent lower bound
+`3*x/2-9/16` and an endpoint chord upper bound `3*x/2-1/2`. Retaining both
+channels preserves the ordinary exclusion. Adding the same-witness affine term
+`-3*x/2+5/8` gives `[1/16,1/8]` from the tangent/chord constraint. These are actual
+portable representations and composition rules, with numerical soundness proved
+for every input witness, not just isolated scalar inequalities. This fixture
+supplies midpoint coefficients explicitly; it does not change the existing
+left-endpoint `squareCandidate` algorithm.
+
+The stronger obstruction applies to **any real affine lower bound** `L(x)=m*x+c`
+sound for square on the whole interval. If it preserves the ordinary lower bound
+at the left endpoint, `L(1/2)≥1/4`, soundness at `5/8` gives `L(5/8)≤25/64`.
+Affineness then gives
+
+`L(1) = 4*L(5/8)-3*L(1/2) ≤ 13/16`.
+
+Consequently its shifted lower bound at `x=1` is at most `-1/16`, so that single
+line cannot certify strict positivity. The retained conjunction can preserve
+both deductions because it does not insist on a single affine lower bound.
+Actual input witnesses attain `1/16` at `x=3/4` and `1/8` at `x=1`,
+so the shifted range checks are not vacuous.
+This is a representation-level obstruction under the stated endpoint-preservation
+requirement, not a claim that an independent polynomial proof cannot show positivity.
+
 ## Tupper foundations and limits
 
 The unchanged [chord](ENDPOINT_CHORDS.md) and [tangent](TANGENT_BOUNDS.md) modules
