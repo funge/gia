@@ -850,3 +850,13 @@ ordinary hull algorithm. The repository paper PDF page6 was inspected and gives
 the general interval-set cover discussion and floor pseudocode; no unverified
 reciprocal pseudocode attribution is used. Domain/continuity flags, extended-real
 values and concrete FP execution remain separate. See [scope and controls](SPLIT_QUOTIENT.md).
+
+## Derived two-corner guarded division foundation
+
+[Two-corner division](TWO_CORNER_DIVISION.md) refines the existing finite,
+zero-excluding real specification with six numerator/denominator sign rows and
+attained exact extrema. It reuses the four-corner theorem and existing hardware
+contracts without changing execution. The source connection is the already
+checked division account (§§2.5.3, 3.2.22, 3.2.26), not attribution of this exact
+selector to a Tupper theorem. Rounded-result equality and failure preservation
+are deliberately not inferred from exact-real extrema equality.

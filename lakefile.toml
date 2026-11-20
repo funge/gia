@@ -357,3 +357,6 @@ name = "ResidueInference"
 
 [[lean_lib]]
 name = "SplitQuotient"
+
+[[lean_lib]]
+name = "TwoCornerDivision"

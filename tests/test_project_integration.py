@@ -11,6 +11,7 @@ import unittest
 PROJECT = pathlib.Path(__file__).resolve().parents[1]
 EXECUTABLE_CLIENTS = {"hardware/Main.lean"}
 SEMANTIC_FIXTURES = {
+    "TwoCornerDivision.lean": "GeneralizedIntervalArithmetic.TwoCornerDivisionChecks",
     "SplitQuotient.lean": "GeneralizedIntervalArithmetic.SplitQuotientChecks",
     "ResidueInference.lean": "GeneralizedIntervalArithmetic.ResidueInferenceChecks",
     "IntegerResidue.lean": "GeneralizedIntervalArithmetic.IntegerResidueChecks",
