@@ -850,3 +850,12 @@ ordinary hull algorithm. The repository paper PDF page6 was inspected and gives
 the general interval-set cover discussion and floor pseudocode; no unverified
 reciprocal pseudocode attribution is used. Domain/continuity flags, extended-real
 values and concrete FP execution remain separate. See [scope and controls](SPLIT_QUOTIENT.md).
+
+## Derived integration: pointwise conjunction of unary bounds
+
+[Affine conjunction](AFFINE_CONJUNCTION.md) reuses the existing endpoint-affine
+representation (§2.9.3) and square chord/tangent foundation (§§3.3.10–3.3.12).
+It preserves both ordinary and affine constraints at the same parameter and
+proves a strict compositional exclusion example. This is a derived reference-layer
+result, not a newly claimed literal thesis counterpart. The source foundations,
+gaps and later partial-function work remain separate; no FP assumptions change.

@@ -3509,3 +3509,34 @@ explicitly distinguishes one-sided bounds from exact-image iff theorems.
   assumption or widening changes. No hosted CI was triggered.
 
 This receipt is the only addition after the successful combined gate.
+
+## 2026-11-20 — pointwise ordinary/affine conjunction for square
+
+Local proof/reference milestone based on main
+`2fc1f622c50758c63fecdae138e94478211d7206`. The existing selector and evaluators
+are unchanged. `AffineConjunction` retains available constraints at the same
+parameter and value, composes existing affine addition, and proves sound square
+plus affine propagation with a shared actual input witness and external domains.
+
+- Focused library build and `lake env lean tests/AffineConjunction.lean` pass;
+  the fixture audits **39 theorem/axiom declarations**.
+- Complete `./check.sh` passes: **29 tests in 400.759 seconds**, no skips;
+  **901 named audits**, **1,758 namespace declarations**, **118 library roots**,
+  **51 fresh semantic fixtures**, audit rejection controls and the explicitly
+  supplied pinned C API checkout comparison. The axiom allowlist is unchanged.
+- **560 local Markdown links** and `git diff --check` pass.
+- The exact normalized `[-1,1]` seed exercises the existing square candidate,
+  selector and affine addition. The retained bounds exclude `[-3/2,-5/4]` for
+  `x²+2*x`; the old result admits a spurious target member at `x=-1/2`.
+  Five exact parameter queries certify **3/5** exclusions with the old bound and
+  **5/5** with the conjunction. Counts and sufficient-query soundness are
+  kernel-checked; these are not timing or renderer measurements.
+- Controls preserve ordinary-only/affine-only fallback, both-unavailable unknown,
+  explicit contradictory constraints, uncertain input witnesses and external
+  holes. Enclosure membership is distinguished from actual value occurrence.
+
+No new FP assumption, native/C/FFI, renderer, reciprocal or square-root change.
+The native executable suite was not rerun for this portable proof-only change.
+This is a local commit prepared for review, not a push or PR. Documentation was
+clarified during the gate; this receipt was appended after it. Proof and test
+sources did not change during or after the successful complete gate.

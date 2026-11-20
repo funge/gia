@@ -541,3 +541,6 @@ with the exact validated tree in `d464677`; its original receipts remain histori
 
 [Local residue inference foundation](RESIDUE_INFERENCE.md) describes a narrow
 proof-side syntax and conditional provenance inference, separate from runtime.
+
+[Pointwise affine conjunction](AFFINE_CONJUNCTION.md) retains ordinary and affine
+constraints together for square and affine addition, as a proof-side reference.
