@@ -360,3 +360,6 @@ name = "SplitQuotient"
 
 [[lean_lib]]
 name = "AffineConjunction"
+
+[[lean_lib]]
+name = "TwoCornerDivision"

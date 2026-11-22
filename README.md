@@ -544,3 +544,6 @@ proof-side syntax and conditional provenance inference, separate from runtime.
 
 [Pointwise affine conjunction](AFFINE_CONJUNCTION.md) retains ordinary and affine
 constraints together for square and affine addition, as a proof-side reference.
+
+Proof-side guarded division: [two-corner exact extrema](TWO_CORNER_DIVISION.md)
+and a conditional assembly bridge, with explicit availability/width limits.

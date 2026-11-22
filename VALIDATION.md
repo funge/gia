@@ -3565,3 +3565,34 @@ the line is sound for square and preserves the ordinary left-endpoint guarantee.
 
 The final proof/fixture sources were checked by the completed gate; this receipt
 is its only subsequent source-tree addition. No branch was pushed or PR opened.
+
+## 2026-11-20 — two-corner guarded division proof
+
+Independent local milestone based on main
+`2fc1f622c50758c63fecdae138e94478211d7206`, without the separate affine-conjunction
+branch. Six sign rows select two operand pairs for ordered finite real intervals
+whose denominator is strictly separated from zero. The proofs establish enclosure,
+actual nonzero corner witnesses attaining both extrema, and equality with the
+existing exact four-corner min/max. A conditional proof-side bridge uses the
+existing division call/comparison contracts, decoded zero, and paired assembly;
+it neither implements a native selector nor changes runtime behavior.
+
+- Focused library build and fixture pass; **21 theorem/axiom declarations** audited
+  in the fixture, including the real contract countermodels.
+- Complete `./check.sh`: **29 tests in 416.772 seconds**, no skips;
+  **903 named audits**, **1,756 namespace declarations**, **118 library roots**,
+  **51 fresh semantic fixtures**, audit rejection controls and explicit pinned
+  C API checkout comparison. The axiom allowlist is unchanged.
+- **560 local Markdown links** and `git diff --check` pass.
+- Controls cover the six rows, attained corners, zero endpoints/numerator,
+  singleton denominators, crossing/touching/singleton-zero rejection, reversed
+  intervals, decoded signed zeros, rejected intervals with defined quotients,
+  selected-pair failure, and omitted-call failure/looseness under `CallSound`.
+  For `[1,2]/[1,2]`, the omitted `(1,1)` call (not the selected `(1,2)` call)
+  supplies the failure and width counterexamples.
+
+No FP assumption, native/C/FFI, renderer, batching or widening change. No native
+executable suite was rerun for this proof-only change. Independent review and any
+publication remain separate; there was no push, PR or merge. This receipt is the
+only addition after the complete gate. The square and division branches are
+qualified separately; a later combined integration needs its own validation.

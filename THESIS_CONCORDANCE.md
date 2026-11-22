@@ -864,3 +864,13 @@ The positive-domain supplement in [AFFINE_CONJUNCTION.md](AFFINE_CONJUNCTION.md)
 uses a supplied midpoint tangent and endpoint chord on `[1/2,1]` and proves a
 single-affine-line obstruction. It is a derived representation result, not an
 additional theorem attributed to Tupper or a new tangent-selection algorithm.
+
+## Derived two-corner guarded division foundation
+
+[Two-corner division](TWO_CORNER_DIVISION.md) refines the existing finite,
+zero-excluding real specification with six numerator/denominator sign rows and
+attained exact extrema. It reuses the four-corner theorem and existing hardware
+contracts without changing execution. The source connection is the already
+checked division account (§§2.5.3, 3.2.22, 3.2.26), not attribution of this exact
+selector to a Tupper theorem. Rounded-result equality and failure preservation
+are deliberately not inferred from exact-real extrema equality.
