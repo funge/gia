@@ -3625,3 +3625,34 @@ refinement draft is not included. See [scope](FINITE_AFFINE_DEMOTION.md) and the
 - No native executable suite, timing benchmark, hosted CI, native Float/raw-word
   refinement, or new floating-point assumption is claimed. This remains a finite
   proof-side certificate and conditional outward-evaluation milestone.
+
+## 2026-11-22 — observed-outcome two-corner refinement (local)
+
+Independent local follow-on based on the two-corner milestone
+`5426879b1cef0145e86fabfa968f62900e718052`, without the square-conjunction branch.
+The structural theorem compares actual four-corner min/max assembly with two
+selected paired observations. A guarded wrapper retains finite input decoding,
+interval order, nonzero guard, real-corner agreement and observed operand/result
+associations. The weaker directional theorem requires only equality of decoded
+used Down/Up observations, not whole-pair or raw-representation equality.
+The directional transfer also preserves the proved quotient enclosure.
+
+- Focused library build and fixture pass; **26 theorem/axiom declarations** audited
+  in the fixture. Controls include changed unused pair sides, omitted-call failure,
+  wrong-direction enclosure failure, a decoded-invalid unused input endpoint,
+  and distinct abstract zero tags with equal real values.
+- Complete `./check.sh`: **29 tests in 251.168 seconds**, no skips;
+  **912 named audits**, **1,773 namespace declarations**, **119 library roots**,
+  **52 fresh semantic fixtures**, rejection controls and explicit pinned API
+  checkout comparison. No axiom-allowlist change.
+- **567 local Markdown links** and diff checks pass.
+
+These are proof/reference models, not native infinity/zero-sign or fenv tests.
+Agreement of the decoded used observations is a conditional premise; it is not
+inferred from independently conformant calls. Successful agreement entails new
+paired-result availability, but does not certify their unused output sides or a
+new backend's full CallSound contract. Production failure rules are untouched.
+No new FP assumptions, runtime/native/C/FFI, renderer, batching or benchmark changes.
+The native executable suite was not rerun. This follow-on has not been pushed or
+opened as a PR. The complete gate checked the final proof/fixture sources; only
+this qualification receipt was added afterward.

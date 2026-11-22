@@ -551,3 +551,6 @@ and a conditional assembly bridge, with explicit availability/width limits.
 The [Chapter 2 checklist](CHAPTER2_CHECKLIST.md) tracks source-numbered foundations
 and open obligations. [Finite affine storage and evaluation](FINITE_AFFINE_DEMOTION.md)
 is a restricted §2.10 proof-side certificate/evaluation layer.
+
+[Observed-outcome division refinement](TWO_CORNER_REFINEMENT.md) proves a
+conditional assembly comparison, without changing runtime or rounding contracts.
