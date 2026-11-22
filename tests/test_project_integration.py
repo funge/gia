@@ -12,6 +12,7 @@ PROJECT = pathlib.Path(__file__).resolve().parents[1]
 EXECUTABLE_CLIENTS = {"hardware/Main.lean"}
 SEMANTIC_FIXTURES = {
     "TwoCornerRefinement.lean": "GeneralizedIntervalArithmetic.TwoCornerRefinementChecks",
+    "AffineConjunction.lean": "GeneralizedIntervalArithmetic.AffineConjunctionChecks",
     "TwoCornerDivision.lean": "GeneralizedIntervalArithmetic.TwoCornerDivisionChecks",
     "SplitQuotient.lean": "GeneralizedIntervalArithmetic.SplitQuotientChecks",
     "ResidueInference.lean": "GeneralizedIntervalArithmetic.ResidueInferenceChecks",

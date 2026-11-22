@@ -359,6 +359,9 @@ name = "ResidueInference"
 name = "SplitQuotient"
 
 [[lean_lib]]
+name = "AffineConjunction"
+
+[[lean_lib]]
 name = "TwoCornerDivision"
 
 [[lean_lib]]

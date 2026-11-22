@@ -1,6 +1,6 @@
 # Observed-outcome refinement for two-corner division
 
-[TwoCornerRefinement.lean](TwoCornerRefinement.lean) is a local proof-only follow-on
+[TwoCornerRefinement.lean](TwoCornerRefinement.lean) is a proof-only follow-on
 to [two-corner extrema](TWO_CORNER_DIVISION.md). It does not change an executor,
 rounding, backend, renderer, or batching. It is independent of the square branch.
 
@@ -92,4 +92,5 @@ to the thesis or a verification of the linked C implementation.
 
 Run `lake build TwoCornerRefinement`, `lake env lean tests/TwoCornerRefinement.lean`,
 and `./check.sh` with the pinned toolchain. See [qualification](VALIDATION.md).
-This follow-on remains local; it is not part of the two candidate PR heads.
+This follow-on is reviewed separately from the square and two-corner extrema
+milestones; no runtime deployment is included.

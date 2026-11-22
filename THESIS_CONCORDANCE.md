@@ -851,6 +851,20 @@ the general interval-set cover discussion and floor pseudocode; no unverified
 reciprocal pseudocode attribution is used. Domain/continuity flags, extended-real
 values and concrete FP execution remain separate. See [scope and controls](SPLIT_QUOTIENT.md).
 
+## Derived integration: pointwise conjunction of unary bounds
+
+[Affine conjunction](AFFINE_CONJUNCTION.md) reuses the existing endpoint-affine
+representation (§2.9.3) and square chord/tangent foundation (§§3.3.10–3.3.12).
+It preserves both ordinary and affine constraints at the same parameter and
+proves a strict compositional exclusion example. This is a derived reference-layer
+result, not a newly claimed literal thesis counterpart. The source foundations,
+gaps and later partial-function work remain separate; no FP assumptions change.
+
+The positive-domain supplement in [AFFINE_CONJUNCTION.md](AFFINE_CONJUNCTION.md)
+uses a supplied midpoint tangent and endpoint chord on `[1/2,1]` and proves a
+single-affine-line obstruction. It is a derived representation result, not an
+additional theorem attributed to Tupper or a new tangent-selection algorithm.
+
 ## Derived two-corner guarded division foundation
 
 [Two-corner division](TWO_CORNER_DIVISION.md) refines the existing finite,
