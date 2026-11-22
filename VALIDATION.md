@@ -3596,3 +3596,32 @@ executable suite was rerun for this proof-only change. Independent review and an
 publication remain separate; there was no push, PR or merge. This receipt is the
 only addition after the complete gate. The square and division branches are
 qualified separately; a later combined integration needs its own validation.
+
+## Chapter 2 finite §2.10 certificate/evaluation tranche (2026-11-22)
+
+Local branch `proof/chapter2-finite-demotion`, based on merged main
+`dcda76958bc9b9523e5085c7f7e42483ea1697d9` (base tree
+`c8a6ce6fffbcb109d8e7d6bb88a7112c17c032c6`). The separate observed-direction
+refinement draft is not included. See [scope](FINITE_AFFINE_DEMOTION.md) and the
+[Chapter 2 checklist](CHAPTER2_CHECKLIST.md).
+
+- Pinned Lean 4.19.0 and existing pinned mathlib; `lake build FiniteAffineDemotion`
+  and the fresh `tests/FiniteAffineDemotion.lean` run passed. Fixture namespace:
+  27 theorem/axiom declarations.
+- Complete local `./check.sh` passed: build, 924 named axiom audits, 1,782
+  namespace declarations, and 29 Python tests in 256.217 seconds (no skips).
+  Registry: 120 libraries and 53 independently run semantic fixtures. Audit
+  rejection controls passed, including unlisted/custom/transitive axioms and
+  `sorryAx` rejection.
+- The pinned C API inventory comparison passed with an explicitly supplied
+  `RELGRAPH_CHECKOUT`. No C source, API, adapter, or native caller changed.
+- Executable Lean cold-path smoke check returned `true, false, false, false`
+  for exact acceptance, infinity rejection, inward-lower rejection and
+  oversized-word rejection. Kernel-checked persistent fixtures additionally
+  cover strict outward acceptance, inward upper, NaN, negative zero, endpoints,
+  an interior parameter, shared-witness composition and every unavailable stage.
+- Local Markdown file targets and `git diff --check` passed. This receipt was
+  appended after the full gate; no proof, fixture or registry changed afterward.
+- No native executable suite, timing benchmark, hosted CI, native Float/raw-word
+  refinement, or new floating-point assumption is claimed. This remains a finite
+  proof-side certificate and conditional outward-evaluation milestone.
