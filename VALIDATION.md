@@ -3509,3 +3509,59 @@ explicitly distinguishes one-sided bounds from exact-image iff theorems.
   assumption or widening changes. No hosted CI was triggered.
 
 This receipt is the only addition after the successful combined gate.
+
+## 2026-11-20 — pointwise ordinary/affine conjunction for square
+
+Local proof/reference milestone based on main
+`2fc1f622c50758c63fecdae138e94478211d7206`. The existing selector and evaluators
+are unchanged. `AffineConjunction` retains available constraints at the same
+parameter and value, composes existing affine addition, and proves sound square
+plus affine propagation with a shared actual input witness and external domains.
+
+- Focused library build and `lake env lean tests/AffineConjunction.lean` pass;
+  the fixture audits **39 theorem/axiom declarations**.
+- Complete `./check.sh` passes: **29 tests in 400.759 seconds**, no skips;
+  **901 named audits**, **1,758 namespace declarations**, **118 library roots**,
+  **51 fresh semantic fixtures**, audit rejection controls and the explicitly
+  supplied pinned C API checkout comparison. The axiom allowlist is unchanged.
+- **560 local Markdown links** and `git diff --check` pass.
+- The exact normalized `[-1,1]` seed exercises the existing square candidate,
+  selector and affine addition. The retained bounds exclude `[-3/2,-5/4]` for
+  `x²+2*x`; the old result admits a spurious target member at `x=-1/2`.
+  Five exact parameter queries certify **3/5** exclusions with the old bound and
+  **5/5** with the conjunction. Counts and sufficient-query soundness are
+  kernel-checked; these are not timing or renderer measurements.
+- Controls preserve ordinary-only/affine-only fallback, both-unavailable unknown,
+  explicit contradictory constraints, uncertain input witnesses and external
+  holes. Enclosure membership is distinguished from actual value occurrence.
+
+No new FP assumption, native/C/FFI, renderer, reciprocal or square-root change.
+The native executable suite was not rerun for this portable proof-only change.
+This is a local commit prepared for review, not a push or PR. Documentation was
+clarified during the gate; this receipt was appended after it. Proof and test
+sources did not change during or after the successful complete gate.
+
+## 2026-11-20 — positive-domain conjunction and single-line obstruction
+
+Supplement to local affine-conjunction commit
+`d7d21229a8e0194ceffe55a75fe1b0b0a38db1f8`; the original strict regression remains.
+The exact `[1/2,1]` seed uses actual hull multiplication, a supplied midpoint
+tangent/chord through `AffineUnary.propagate`, and existing affine addition.
+The ordinary channel excludes `1/5`; the shifted conjunction encloses
+`x²-3*x/2+5/8` in `[1/16,1/8]`, with actual midpoint/right-endpoint witnesses.
+A general theorem for real affine lower bounds proves the requested `13/16`
+right-endpoint obstruction, hence a shifted lower bound at most `-1/16`, whenever
+the line is sound for square and preserves the ordinary left-endpoint guarantee.
+
+- Complete `./check.sh` passes on the final proof and fixture sources:
+  **29 tests in 468.295 seconds**, no skips, **902 named audits**,
+  **1,759 namespace declarations**, **118 library roots**, **51 fresh fixtures**,
+  audit rejection controls and explicit pinned C API checkout comparison.
+- Focused positive fixture passes, auditing **61 theorem/axiom declarations**.
+- **561 local Markdown links** and diff checks pass.
+- No new FP assumptions, runtime/native/renderer changes or line-selection
+  algorithm. The native executable suite was not rerun for this proof-only
+  supplement. Independent review and any publication remain separate actions.
+
+The final proof/fixture sources were checked by the completed gate; this receipt
+is its only subsequent source-tree addition. No branch was pushed or PR opened.
