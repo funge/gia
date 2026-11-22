@@ -363,3 +363,6 @@ name = "AffineConjunction"
 
 [[lean_lib]]
 name = "TwoCornerDivision"
+
+[[lean_lib]]
+name = "TwoCornerRefinement"
