@@ -544,3 +544,6 @@ proof-side syntax and conditional provenance inference, separate from runtime.
 
 Proof-side guarded division: [two-corner exact extrema](TWO_CORNER_DIVISION.md)
 and a conditional assembly bridge, with explicit availability/width limits.
+
+[Observed-outcome division refinement](TWO_CORNER_REFINEMENT.md) proves a
+conditional assembly comparison, without changing runtime or rounding contracts.

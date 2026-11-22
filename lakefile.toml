@@ -360,3 +360,6 @@ name = "SplitQuotient"
 
 [[lean_lib]]
 name = "TwoCornerDivision"
+
+[[lean_lib]]
+name = "TwoCornerRefinement"
