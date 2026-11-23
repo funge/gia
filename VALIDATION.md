@@ -3814,3 +3814,29 @@ negative audit/registry controls. All 666 local Markdown file links resolve;
 `git diff --check` passes. No hosted CI or native executable rerun is claimed.
 This receipt was appended after the gate; only documentation changed afterward.
 The PR remains a draft and has not been merged.
+
+## Chapter 2 finite Boolean composition (2026-11-23)
+
+Local milestone on main `7220861b8ec1ac1c3a80d46b4dbc4bc96bf5ea92` after
+merged #31. Reuses `StrictComparison.Truth` for exact independent not/and/or
+images, joint-relation/common-witness subset soundness, comparison bridges and
+finite table algebra. The correlated complement controls have exact mixed
+marginals but singleton conjunction/disjunction images; the fixture also uses
+real comparison outcomes, empty joint domains and conservative mixed bounds.
+Source §2.9.2 was read in the existing local Markdown and visually checked on
+printed p.27 / PDF p.43. Negation is documented as derived; §2.11.4 domain
+conjunction remains deferred. The author's contents independently confirms the
+checklist correction to §§2.15.1–8, with no added coverage claim.
+
+Focused `lake build BooleanComposition` and
+`lake env lean tests/BooleanComposition.lean` passed; the fixture audits 19
+declarations. The full pinned `./check.sh` passed: 29 tests in 455.153 seconds,
+1,021 named axiom audits, 1,978 namespace declarations, 127 libraries and 60
+fresh semantic fixtures. The explicit pinned C API comparison and negative
+audit/registry controls passed. All 687 local Markdown file links resolve and
+diff checks pass. No warnings or errors occurred in the final full gate.
+
+Only the validation receipt was appended after the gate; no proof, fixture or
+registry changed afterward. No custom axioms, new FP assumptions, native/default
+changes, benchmark, hosted CI, branch push or PR for this milestone. This is not
+an exact correlated-formula interpreter or the source's full logic/domain API.

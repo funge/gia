@@ -895,6 +895,21 @@ a correlated-input counterexample are [kernel-checked fixtures](tests/StrictComp
 F/TF/T correspond to the three nonempty Boolean intervals; inclusion is the
 information order. Attainment of both outcomes is specific to this exact
 independent-input comparator, not a claim about every TF description. See
-[scope and precise criteria](STRICT_COMPARISON.md). Broader relations, Boolean
-composition, exceptional endpoints and full three-valued algebra remain deferred.
+[scope and precise criteria](STRICT_COMPARISON.md). Broader relations, exceptional endpoints and the full three-valued system remain
+deferred. Finite Boolean composition is now covered by the separate tranche below.
 No native comparison, FP assumption or evaluator change is made.
+
+## Finite Boolean composition: §2.9.2
+
+[BooleanComposition](BooleanComposition.lean) reuses the strict-comparison Truth
+type for derived not/and/or interval-image tables. The local Markdown was read
+first and the PDF checked visually at printed p.27 / PDF p.43: the source
+explicitly discusses Boolean conjunction/disjunction and maps F/TF/T to Boolean
+intervals. Negation and De Morgan are derived counterparts rather than separately
+printed algorithms on that page. Exact image equality requires independent
+admitted combinations; joint relations and common-domain witnesses receive only
+subset soundness. [Fixtures](tests/BooleanComposition.lean) show strict correlation
+loss even with exact mixed marginals, through the existing real-comparison result.
+See [scope](BOOLEAN_COMPOSITION.md). Table algebra is not a theorem that arbitrary
+correlated formulas are evaluated exactly. No empty truth element, information
+lattice, partial-expression interpreter or new FP assumptions are introduced.

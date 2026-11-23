@@ -11,6 +11,7 @@ import unittest
 PROJECT = pathlib.Path(__file__).resolve().parents[1]
 EXECUTABLE_CLIENTS = {"hardware/Main.lean", "experiments/key_two_corner/Main.lean"}
 SEMANTIC_FIXTURES = {
+    "BooleanComposition.lean": "GeneralizedIntervalArithmetic.BooleanCompositionChecks",
     "StrictComparison.lean": "GeneralizedIntervalArithmetic.StrictComparisonChecks",
 
     "ExactImageHull.lean": "GeneralizedIntervalArithmetic.ExactImageHullChecks",
