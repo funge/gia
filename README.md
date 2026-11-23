@@ -559,7 +559,9 @@ conditional assembly comparison, without changing runtime or rounding contracts.
 before dispatch and proves standalone enclosure separately from old-result refinement.
 It does not replace the native four-corner path.
 
-The [binary64 key foundation](BINARY64_KEY.md) records the local proof checkpoint
-for a cheaper selector: exact finite guards, UInt64/Nat key correspondence and
-unsigned binade order. Decoded order and full request equivalence remain pending;
-no new selector is deployed or benchmarked.
+The [proved binary64 key selector](KEY_TWO_CORNER.md) has exact ordered-request
+and explicit-trace equivalence with the rational reference, with standalone
+enclosure and conditional refinement transported. Its opt-in native experiment
+compares the actual proved route, rational reference and four-corner baseline;
+no default runtime path is changed. The [foundation record](BINARY64_KEY.md)
+preserves the earlier checkpoint and proof roadmap.

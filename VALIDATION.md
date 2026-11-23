@@ -3708,3 +3708,30 @@ This qualifies the finite guard, concrete UInt64/Nat key bridge, unsigned unit
 ordering and reference regression controls only. Decoded rational order,
 complete request equality and the faster native selector remain unproved and
 unimplemented. Selector-only/end-to-end benchmark gates therefore remain pending.
+
+## Complete key-selector continuation and native comparison (2026-11-23)
+
+Continuation of retained checkpoint `5f898703d3d79b21133bee3dfbee48c9cdf9dfa1`,
+on isolated local branch `proof/binary64-key-selector`.
+
+- Decoder scaling, signed decoded order/equality and exact ordered raw request
+  equivalence are proved. Explicit trace equality, rejection/no-call, standalone
+  enclosure and the conditional one-way refinement are kernel-checked.
+- Focused `KeyTwoCorner` build and all nine new selector fixture declarations passed.
+- Full `./check.sh`: 29 tests in 319.580 seconds, no skips; 979 named audits,
+  1,900 namespace declarations, 124 libraries, 57 fixtures; pinned C API comparison
+  passed. No `sorry`, custom axiom or `native_decide` was introduced.
+- Opt-in compiled native qualification: 1,544 direct cases, 184 invalid/no-call
+  cases and 45 kernel comparisons passed, including raw request comparisons,
+  decoded containment, signed-zero differences, mode/flag preservation and
+  recorded NaN canonicalization. Existing full hardware suite and unchanged core
+  instruction/oracle/fault gates passed.
+- Matched measured end-to-end outputs: 270,000 successful; paired-call counts
+  720,000 four-corner versus 360,000 for each selected route. Selector-only trials
+  processed 20,000 inputs per route (15,000 valid, 5,000 rejected).
+- Timings and raw evidence hashes are in
+  [the experimental results](experiments/key_two_corner/RESULTS.md). Ranges overlap
+  for several workloads; no production or cross-platform guarantee is claimed.
+- No C arithmetic, shipping/default paths, FP assumptions or existing worktrees
+  were changed. Actual signaling-NaN transport, native Float/Word correspondence
+  and C execution remain outside the formal proof. No publication or merge.

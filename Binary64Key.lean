@@ -165,4 +165,105 @@ theorem magnitude_units_strict {u v : Nat} (h : u < v) :
   have hvm := Nat.mod_lt v (by norm_num : 0 < 2^52)
   omega
 
+
+theorem decode_scaled {w : Nat} {q : ℚ} (h : Binary64.decode w = some q) :
+    q * (2:ℚ)^1074 = Binary64.sign w * (units (Binary64.exponent w) (Binary64.fraction w) : ℚ) := by
+  unfold Binary64.decode at h
+  dsimp only at h
+  split_ifs at h with bad hz he
+  · cases h
+    simp [units,hz]
+  · cases h
+    have hp : (2:ℚ)^1074 = 2^(1075-Binary64.exponent w) * 2^(Binary64.exponent w-1) := by
+      rw [← pow_add]
+      congr 1
+      omega
+    simp only [units,if_neg hz,Nat.cast_mul,Nat.cast_add,Nat.cast_pow,Nat.cast_ofNat]
+    rw [hp]
+    field_simp; ring
+  · cases h
+    have hp : (2:ℚ)^(Binary64.exponent w-1075) * 2^1074 = 2^(Binary64.exponent w-1) := by
+      rw [← pow_add]
+      congr 1
+      omega
+    simp only [units,if_neg hz,Nat.cast_mul,Nat.cast_add,Nat.cast_pow,Nat.cast_ofNat]
+    rw [mul_assoc, hp]; ring
+
+
+def unsignedUnits (m : Nat) : Nat := units (m / 2^52) (m % 2^52)
+
+theorem unsigned_strict : StrictMono unsignedUnits := fun _ _ h => magnitude_units_strict h
+
+theorem unsigned_zero : unsignedUnits 0 = 0 := by simp [unsignedUnits,units]
+
+theorem unsigned_le {a b : Nat} : unsignedUnits a ≤ unsignedUnits b ↔ a ≤ b :=
+  unsigned_strict.le_iff_le
+
+theorem unsigned_pos {a : Nat} : 0 < unsignedUnits a ↔ 0 < a := by
+  rw [← unsigned_zero]
+  exact unsigned_strict.lt_iff_lt
+
+def signedUnits (w : Nat) : ℚ :=
+  if w < signBit then unsignedUnits (magnitude w) else -(unsignedUnits (magnitude w) : ℚ)
+
+theorem fraction_magnitude (w : Nat) : Binary64.fraction w = magnitude w % 2^52 := by
+  unfold Binary64.fraction magnitude signBit
+  omega
+
+theorem decode_signed {w : Nat} {q : ℚ} (h : Binary64.decode w = some q) :
+    q * (2:ℚ)^1074 = signedUnits w := by
+  rw [decode_scaled h,exponent_magnitude,fraction_magnitude]
+  unfold signedUnits unsignedUnits Binary64.sign signBit
+  split <;> simp_all
+
+theorem key_signed_le (u v : Nat) : key u ≤ key v ↔ signedUnits u ≤ signedUnits v := by
+  have hu : magnitude u < signBit := Nat.mod_lt _ (by norm_num [signBit])
+  have hv : magnitude v < signBit := Nat.mod_lt _ (by norm_num [signBit])
+  have huv : ((unsignedUnits (magnitude u):ℚ) ≤ unsignedUnits (magnitude v)) ↔
+      magnitude u ≤ magnitude v := by exact_mod_cast (unsigned_le (a := magnitude u) (b := magnitude v))
+  have hvu : ((unsignedUnits (magnitude v):ℚ) ≤ unsignedUnits (magnitude u)) ↔
+      magnitude v ≤ magnitude u := by exact_mod_cast (unsigned_le (a := magnitude v) (b := magnitude u))
+  have hpu : 0 ≤ (unsignedUnits (magnitude u):ℚ) := Nat.cast_nonneg _
+  have hpv : 0 ≤ (unsignedUnits (magnitude v):ℚ) := Nat.cast_nonneg _
+  by_cases su : u < signBit <;> by_cases sv : v < signBit
+  · simpa [key,signedUnits,su,sv] using huv.symm
+  · simp only [key,signedUnits,if_pos su,if_neg sv]
+    by_cases zu : magnitude u = 0 <;> by_cases zv : magnitude v = 0
+    · simp [zu,zv,unsigned_zero]
+    · have hp : (0:ℚ) < unsignedUnits (magnitude v) := by
+        exact_mod_cast (unsigned_pos.mpr (by omega : 0 < magnitude v))
+      simp only [zu,unsigned_zero,Nat.cast_zero,zero_add]
+      constructor <;> intro h <;> (first | omega | linarith)
+    · have hp : (0:ℚ) < unsignedUnits (magnitude u) := by
+        exact_mod_cast (unsigned_pos.mpr (by omega : 0 < magnitude u))
+      simp only [zv,unsigned_zero,Nat.cast_zero,neg_zero,Nat.sub_zero]
+      constructor <;> intro h <;> (first | omega | linarith)
+    · have hp : (0:ℚ) < unsignedUnits (magnitude u) := by
+        exact_mod_cast (unsigned_pos.mpr (by omega : 0 < magnitude u))
+      constructor <;> intro h <;> (first | omega | linarith)
+  · simp only [key,signedUnits,if_neg su,if_pos sv]
+    constructor
+    · intro _; linarith
+    · intro _; omega
+  · simp only [key,signedUnits,if_neg su,if_neg sv,neg_le_neg_iff]
+    rw [hvu]
+    omega
+
+theorem decoded_key_le {u v : Nat} {a b : ℚ}
+    (hu : Binary64.decode u = some a) (hv : Binary64.decode v = some b) :
+    key u ≤ key v ↔ a ≤ b := by
+  rw [key_signed_le,← decode_signed hu,← decode_signed hv]
+  exact mul_le_mul_right (by positivity : (0:ℚ) < 2^1074)
+
+theorem decoded_key_lt {u v : Nat} {a b : ℚ}
+    (hu : Binary64.decode u = some a) (hv : Binary64.decode v = some b) :
+    key u < key v ↔ a < b := by
+  simp only [← not_le]
+  exact not_congr (decoded_key_le hv hu)
+
+theorem decoded_key_eq {u v : Nat} {a b : ℚ}
+    (hu : Binary64.decode u = some a) (hv : Binary64.decode v = some b) :
+    key u = key v ↔ a = b := by
+  rw [le_antisymm_iff,decoded_key_le hu hv,decoded_key_le hv hu,le_antisymm_iff]
+
 end GeneralizedIntervalArithmetic.Binary64Key

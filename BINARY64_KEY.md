@@ -1,4 +1,8 @@
-# Binary64 key foundation — local proof checkpoint
+# Binary64 key foundation — retained checkpoint record
+
+The continuation now proves decoded order and complete executable request
+equivalence; see [the current selector](KEY_TWO_CORNER.md). The checkpoint scope
+and pending-work list below describe commit `5f898703`, before that continuation.
 
 [Binary64Key.lean](Binary64Key.lean) starts the requested inexpensive selector
 correspondence. It is a **foundation checkpoint, not a qualified replacement
