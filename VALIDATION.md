@@ -3687,3 +3687,102 @@ pp. 24–26 / PDF pp. 40–42, were visually checked in the existing source copy
 - No native executable suite, benchmark, hosted CI, exact FP rounding, automatic
   success or bit/native verification is claimed. Empty/unbounded/exceptional
   images and general three-valued logic remain deferred. Work remains local.
+
+## Executable Word two-corner reference (2026-11-23)
+
+Local branch `proof/word-two-corner-selector`, based on main
+`32f5d1c8366e08e155110e99d969a16fa12fd4f2`, tree
+`c0e6eefad8d727d5260372bc2220b32559f485f2`. This branch is independent of draft
+#28 and does not contain the exact image-hull commit. See
+[scope and pending native gates](WORD_TWO_CORNER.md).
+
+- Pinned Lean 4.19.0 / existing pinned mathlib: focused `WordTwoCorner` build and
+  fresh `tests/WordTwoCorner.lean` passed. Fixture audit: 42 theorem/axiom
+  declarations. All six sign rows, every invalid endpoint position, reversed
+  intervals, zero touching/crossing/both signs, oversized words and selected
+  failure stages are covered. No-call statements quantify over arbitrary callbacks.
+- Full local `./check.sh`: 29 tests in 329.422 seconds, no skips; 942 named audits,
+  1,818 namespace declarations, 122 libraries and 55 fresh semantic fixtures.
+  Audit-rejection controls and explicit pinned C API checkout comparison passed.
+- Executable Lean smoke checks produced `([], none)` for mixed `[-2,3]/[1,+∞]`
+  and the two expected requests with `[1/2,2]` for the valid `[1,2]/[1,2]` control.
+  Kernel fixtures prove selected CallSound contracts and standalone enclosure;
+  the omitted old observation fails, so old assembly is unavailable.
+- Raw-word selection for the signed-zero and negative-minsubnormal controls is
+  checked without normalization. Native quotient bits were not measured.
+- Local Markdown file targets and diff/scope checks passed. This receipt was
+  appended after the full gate; no proof, fixture or registry changed afterward.
+- No C/core/flags/default path, native executable, caller fenv/status check,
+  benchmark, renderer, native/Word bridge proof or FP assumption change. The
+  optional native experiment and matched direct/sine/cosine measurements remain
+  pending. This is the completed local proof/reference milestone, not native
+  deployment qualification. No push or PR publication was performed.
+
+## Binary64 key foundation checkpoint (2026-11-23)
+
+Base: `b122f657caceafbfeaa2c0eeafc2dc01bdb769d6`, with public main ancestor
+`32f5d1c8366e08e155110e99d969a16fa12fd4f2`. Isolated local branch
+`proof/binary64-key-foundation`; no native or Chapter 2 changes.
+
+- `lake build Binary64Key` and `lake env lean tests/Binary64Key.lean` passed;
+  19 new named theorems and 16 kernel-checked fixture declarations.
+- Full `./check.sh` passed: 29 tests in 316.026 seconds, no skips;
+  961 named axiom audits and 1,863 namespace theorem/axiom declarations;
+  123 libraries and 56 semantic fixtures. The pinned C API comparison used an
+  explicitly supplied read-only checkout and passed.
+- 641 local Markdown file links resolved and `git diff --check` passed.
+- No `sorry`, custom axiom, `native_decide`, new FP assumption, native integration
+  or benchmark was added. The original selector, prior experiment and Chapter 2
+  worktrees remain unchanged.
+
+This qualifies the finite guard, concrete UInt64/Nat key bridge, unsigned unit
+ordering and reference regression controls only. Decoded rational order,
+complete request equality and the faster native selector remain unproved and
+unimplemented. Selector-only/end-to-end benchmark gates therefore remain pending.
+
+## Complete key-selector continuation and native comparison (2026-11-23)
+
+Continuation of retained checkpoint `5f898703d3d79b21133bee3dfbee48c9cdf9dfa1`,
+on isolated local branch `proof/binary64-key-selector`.
+
+- Decoder scaling, signed decoded order/equality and exact ordered raw request
+  equivalence are proved. Explicit trace equality, rejection/no-call, standalone
+  enclosure and the conditional one-way refinement are kernel-checked.
+- Focused `KeyTwoCorner` build and all nine new selector fixture declarations passed.
+- Full `./check.sh`: 29 tests in 319.580 seconds, no skips; 979 named audits,
+  1,900 namespace declarations, 124 libraries, 57 fixtures; pinned C API comparison
+  passed. No `sorry`, custom axiom or `native_decide` was introduced.
+- Opt-in compiled native qualification: 1,544 direct cases, 184 invalid/no-call
+  cases and 45 kernel comparisons passed, including raw request comparisons,
+  decoded containment, signed-zero differences, mode/flag preservation and
+  recorded NaN canonicalization. Existing full hardware suite and unchanged core
+  instruction/oracle/fault gates passed.
+- Matched measured end-to-end outputs: 270,000 successful; paired-call counts
+  720,000 four-corner versus 360,000 for each selected route. Selector-only trials
+  processed 20,000 inputs per route (15,000 valid, 5,000 rejected).
+- Timings and raw evidence hashes are in
+  [the experimental results](experiments/key_two_corner/RESULTS.md). Ranges overlap
+  for several workloads; no production or cross-platform guarantee is claimed.
+- No C arithmetic, shipping/default paths, FP assumptions or existing worktrees
+  were changed. Actual signaling-NaN transport, native Float/Word correspondence
+  and C execution remain outside the formal proof. No publication or merge.
+
+## PR #28 reconciliation after #29 (2026-11-23)
+
+Merged main `868c65f6ce88f9e5074136658dbbf9cddab9f1b0` into the existing
+exact-image-hull branch at `f7619bad4fc142443833bb217a8f279002200e4d`, retaining
+both parents without rewriting history. The five additive conflicts were
+`Audit.lean`, `lakefile.toml`, `tests/test_project_integration.py`, `README.md`
+and this validation log. Both registries and all historical receipts remain.
+All 23 changed files outside those overlaps were checked byte-for-byte against
+their respective reviewed source commits (five image-hull files and eighteen
+main-side files). No proof, fixture, native arithmetic or default policy changed.
+
+On the reconciled tree, the complete pinned `./check.sh` passed: 29 tests in
+454.218 seconds, 993 named axiom audits and 1,915 namespace declarations;
+125 libraries and 58 fresh semantic fixtures. The optional explicitly supplied
+C checkout comparison against the pinned API inventory passed, along with the
+negative audit/registry controls. All 666 local Markdown file links resolve;
+`git diff --check` passes. No hosted CI or native executable rerun is claimed.
+This receipt was appended after the gate; only documentation changed afterward.
+The PR remains a draft and has not been merged.

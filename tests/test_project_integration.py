@@ -9,9 +9,12 @@ import tomllib
 import unittest
 
 PROJECT = pathlib.Path(__file__).resolve().parents[1]
-EXECUTABLE_CLIENTS = {"hardware/Main.lean"}
+EXECUTABLE_CLIENTS = {"hardware/Main.lean", "experiments/key_two_corner/Main.lean"}
 SEMANTIC_FIXTURES = {
     "ExactImageHull.lean": "GeneralizedIntervalArithmetic.ExactImageHullChecks",
+    "KeyTwoCorner.lean": "GeneralizedIntervalArithmetic.KeyTwoCornerChecks",
+    "Binary64Key.lean": "GeneralizedIntervalArithmetic.Binary64KeyChecks",
+    "WordTwoCorner.lean": "GeneralizedIntervalArithmetic.WordTwoCornerChecks",
     "TwoCornerRefinement.lean": "GeneralizedIntervalArithmetic.TwoCornerRefinementChecks",
     "FiniteAffineDemotion.lean": "GeneralizedIntervalArithmetic.FiniteAffineDemotionChecks",
     "AffineConjunction.lean": "GeneralizedIntervalArithmetic.AffineConjunctionChecks",

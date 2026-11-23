@@ -557,3 +557,14 @@ conditional assembly comparison, without changing runtime or rounding contracts.
 
 [Exact image hulls](EXACT_IMAGE_HULL.md) separate actual partial output sets,
 least closed real enclosures and conditional outward addition results.
+
+[Executable Word two-corner reference](WORD_TWO_CORNER.md) validates every endpoint
+before dispatch and proves standalone enclosure separately from old-result refinement.
+It does not replace the native four-corner path.
+
+The [proved binary64 key selector](KEY_TWO_CORNER.md) has exact ordered-request
+and explicit-trace equivalence with the rational reference, with standalone
+enclosure and conditional refinement transported. Its opt-in native experiment
+compares the actual proved route, rational reference and four-corner baseline;
+no default runtime path is changed. The [foundation record](BINARY64_KEY.md)
+preserves the earlier checkpoint and proof roadmap.
