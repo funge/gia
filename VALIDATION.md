@@ -3656,3 +3656,33 @@ No new FP assumptions, runtime/native/C/FFI, renderer, batching or benchmark cha
 The native executable suite was not rerun. This follow-on has not been pushed or
 opened as a PR. The complete gate checked the final proof/fixture sources; only
 this qualification receipt was added afterward.
+
+## Executable Word two-corner reference (2026-11-23)
+
+Local branch `proof/word-two-corner-selector`, based on main
+`32f5d1c8366e08e155110e99d969a16fa12fd4f2`, tree
+`c0e6eefad8d727d5260372bc2220b32559f485f2`. This branch is independent of draft
+#28 and does not contain the exact image-hull commit. See
+[scope and pending native gates](WORD_TWO_CORNER.md).
+
+- Pinned Lean 4.19.0 / existing pinned mathlib: focused `WordTwoCorner` build and
+  fresh `tests/WordTwoCorner.lean` passed. Fixture audit: 42 theorem/axiom
+  declarations. All six sign rows, every invalid endpoint position, reversed
+  intervals, zero touching/crossing/both signs, oversized words and selected
+  failure stages are covered. No-call statements quantify over arbitrary callbacks.
+- Full local `./check.sh`: 29 tests in 329.422 seconds, no skips; 942 named audits,
+  1,818 namespace declarations, 122 libraries and 55 fresh semantic fixtures.
+  Audit-rejection controls and explicit pinned C API checkout comparison passed.
+- Executable Lean smoke checks produced `([], none)` for mixed `[-2,3]/[1,+∞]`
+  and the two expected requests with `[1/2,2]` for the valid `[1,2]/[1,2]` control.
+  Kernel fixtures prove selected CallSound contracts and standalone enclosure;
+  the omitted old observation fails, so old assembly is unavailable.
+- Raw-word selection for the signed-zero and negative-minsubnormal controls is
+  checked without normalization. Native quotient bits were not measured.
+- Local Markdown file targets and diff/scope checks passed. This receipt was
+  appended after the full gate; no proof, fixture or registry changed afterward.
+- No C/core/flags/default path, native executable, caller fenv/status check,
+  benchmark, renderer, native/Word bridge proof or FP assumption change. The
+  optional native experiment and matched direct/sine/cosine measurements remain
+  pending. This is the completed local proof/reference milestone, not native
+  deployment qualification. No push or PR publication was performed.

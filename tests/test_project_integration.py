@@ -11,6 +11,7 @@ import unittest
 PROJECT = pathlib.Path(__file__).resolve().parents[1]
 EXECUTABLE_CLIENTS = {"hardware/Main.lean"}
 SEMANTIC_FIXTURES = {
+    "WordTwoCorner.lean": "GeneralizedIntervalArithmetic.WordTwoCornerChecks",
     "TwoCornerRefinement.lean": "GeneralizedIntervalArithmetic.TwoCornerRefinementChecks",
     "FiniteAffineDemotion.lean": "GeneralizedIntervalArithmetic.FiniteAffineDemotionChecks",
     "AffineConjunction.lean": "GeneralizedIntervalArithmetic.AffineConjunctionChecks",

@@ -369,3 +369,6 @@ name = "FiniteAffineDemotion"
 
 [[lean_lib]]
 name = "TwoCornerRefinement"
+
+[[lean_lib]]
+name = "WordTwoCorner"

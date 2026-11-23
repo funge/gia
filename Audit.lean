@@ -1,3 +1,4 @@
+import WordTwoCorner
 import TwoCornerRefinement
 import FiniteAffineDemotion
 import AffineConjunction
@@ -1073,4 +1074,13 @@ import SegmentSearchExamples
 #audit_axioms GeneralizedIntervalArithmetic.TwoCornerRefinement.assemble_decoded
 #audit_axioms GeneralizedIntervalArithmetic.TwoCornerRefinement.direction_transfer
 #audit_axioms GeneralizedIntervalArithmetic.TwoCornerRefinement.directional_observations_refine
+#audit_axioms GeneralizedIntervalArithmetic.WordTwoCorner.validate_spec
+#audit_axioms GeneralizedIntervalArithmetic.WordTwoCorner.pick_decodes
+#audit_axioms GeneralizedIntervalArithmetic.WordTwoCorner.pick_select
+#audit_axioms GeneralizedIntervalArithmetic.WordTwoCorner.requests_spec
+#audit_axioms GeneralizedIntervalArithmetic.WordTwoCorner.rejected_no_calls
+#audit_axioms GeneralizedIntervalArithmetic.WordTwoCorner.invalid_no_calls
+#audit_axioms GeneralizedIntervalArithmetic.WordTwoCorner.result_eq
+#audit_axioms GeneralizedIntervalArithmetic.WordTwoCorner.run_sound
+#audit_axioms GeneralizedIntervalArithmetic.WordTwoCorner.run_refines
 #audit_namespace GeneralizedIntervalArithmetic
