@@ -565,3 +565,8 @@ enclosure and conditional refinement transported. Its opt-in native experiment
 compares the actual proved route, rational reference and four-corner baseline;
 no default runtime path is changed. The [foundation record](BINARY64_KEY.md)
 preserves the earlier checkpoint and proof roadmap.
+
+[Finite three-valued strict comparison](STRICT_COMPARISON.md) proves the exact
+Boolean outcomes for independent finite real interval operands, with explicit
+mixed-case witnesses and a correlated-input counterexample. It is a narrow
+Chapter 2 foundation, independent of the exact image-hull work.

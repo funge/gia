@@ -3735,3 +3735,31 @@ on isolated local branch `proof/binary64-key-selector`.
 - No C arithmetic, shipping/default paths, FP assumptions or existing worktrees
   were changed. Actual signaling-NaN transport, native Float/Word correspondence
   and C execution remain outside the formal proof. No publication or merge.
+
+## Chapter 2 finite strict comparison (2026-11-23)
+
+Independent local milestone based on merged main
+`868c65f6ce88f9e5074136658dbbf9cddab9f1b0`, without the exact-image-hull PR.
+`StrictComparison` proves exact Boolean image equality for independent finite
+ordered rational intervals interpreted over reals, the three iff endpoint
+criteria, explicit mixed witnesses, the Boolean interval interpretation and
+information refinement. Tupper §§2.7.2 and 2.9.2 were visually checked at printed
+pp.24 and 27 / PDF pp.40 and 43. The fixture includes both touching directions,
+equal singletons, independent versus shared-witness comparisons (both x<x and
+x<x+1 controls), and malformed raw pairs outside the ordered constructor.
+
+Focused `lake build StrictComparison` and
+`lake env lean tests/StrictComparison.lean` passed without warnings; the fixture
+namespace audits 33 declarations. The complete pinned `./check.sh` passed:
+29 tests in 467.249 seconds, 989 named axiom audits, 1,927 namespace declarations,
+125 registered libraries and 58 fresh semantic fixtures. This includes the
+explicitly supplied pinned C API checkout comparison and negative audit and
+registry controls. All 664 local Markdown file links resolve and diff checks
+pass. Only the standard allowed axioms are accepted by the enforced policy;
+there are no new axioms or floating-point assumptions.
+
+No native executable suite, benchmark, C/FFI/default change or hosted CI run is
+claimed. Boolean composition and exceptional endpoints remain deferred; mixed
+attainability is specific to the explicitly independent comparison domain.
+This receipt was appended after the full gate, with no proof/fixture/registry
+changes afterward. The milestone remains local, with no branch push or PR.
