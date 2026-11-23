@@ -883,3 +883,18 @@ contracts without changing execution. The source connection is the already
 checked division account (§§2.5.3, 3.2.22, 3.2.26), not attribution of this exact
 selector to a Tupper theorem. Rounded-result equality and failure preservation
 are deliberately not inferred from exact-real extrema equality.
+
+## Finite strict comparison: §§2.7.2 and 2.9.2
+
+[StrictComparison](StrictComparison.lean) proves exact agreement between an
+executable rational endpoint classifier and the actual Boolean image of
+independent real operands. Tupper's order examples (printed p.24 / PDF p.40)
+and Boolean-interval mapping (printed p.27 / PDF p.43) were visually checked.
+The source-shaped strict comparisons, touching endpoints, equal singletons and
+a correlated-input counterexample are [kernel-checked fixtures](tests/StrictComparison.lean).
+F/TF/T correspond to the three nonempty Boolean intervals; inclusion is the
+information order. Attainment of both outcomes is specific to this exact
+independent-input comparator, not a claim about every TF description. See
+[scope and precise criteria](STRICT_COMPARISON.md). Broader relations, Boolean
+composition, exceptional endpoints and full three-valued algebra remain deferred.
+No native comparison, FP assumption or evaluator change is made.

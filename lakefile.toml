@@ -387,3 +387,6 @@ name = "KeyTwoCorner"
 name = "keyCornerExperiment"
 root = "experiments.key_two_corner.Main"
 moreLinkArgs = ["experiments/key_two_corner/out/environment.o", "experiments/key_two_corner/out/adapter.o", "experiments/key_two_corner/out/directed_core.o", "-lm"]
+
+[[lean_lib]]
+name = "StrictComparison"

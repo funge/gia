@@ -1,3 +1,5 @@
+import StrictComparison
+
 import ExactImageHull
 import KeyTwoCorner
 import Binary64Key
@@ -1137,4 +1139,14 @@ import SegmentSearchExamples
 #audit_axioms GeneralizedIntervalArithmetic.KeyTwoCorner.rejected_no_calls
 #audit_axioms GeneralizedIntervalArithmetic.KeyTwoCorner.run_sound
 #audit_axioms GeneralizedIntervalArithmetic.KeyTwoCorner.run_refines
+#audit_axioms GeneralizedIntervalArithmetic.StrictComparison.values_eq_Icc
+#audit_axioms GeneralizedIntervalArithmetic.StrictComparison.refines_iff
+#audit_axioms GeneralizedIntervalArithmetic.StrictComparison.true_attainable
+#audit_axioms GeneralizedIntervalArithmetic.StrictComparison.false_attainable
+#audit_axioms GeneralizedIntervalArithmetic.StrictComparison.compare_exact
+#audit_axioms GeneralizedIntervalArithmetic.StrictComparison.compare_true_iff
+#audit_axioms GeneralizedIntervalArithmetic.StrictComparison.compare_false_iff
+#audit_axioms GeneralizedIntervalArithmetic.StrictComparison.compare_both_iff
+#audit_axioms GeneralizedIntervalArithmetic.StrictComparison.both_witnesses
+#audit_axioms GeneralizedIntervalArithmetic.StrictComparison.compare_refines
 #audit_namespace GeneralizedIntervalArithmetic
