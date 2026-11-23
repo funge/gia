@@ -554,3 +554,6 @@ is a restricted §2.10 proof-side certificate/evaluation layer.
 
 [Observed-outcome division refinement](TWO_CORNER_REFINEMENT.md) proves a
 conditional assembly comparison, without changing runtime or rounding contracts.
+
+[Exact image hulls](EXACT_IMAGE_HULL.md) separate actual partial output sets,
+least closed real enclosures and conditional outward addition results.

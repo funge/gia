@@ -3656,3 +3656,34 @@ No new FP assumptions, runtime/native/C/FFI, renderer, batching or benchmark cha
 The native executable suite was not rerun. This follow-on has not been pushed or
 opened as a PR. The complete gate checked the final proof/fixture sources; only
 this qualification receipt was added afterward.
+
+## Chapter 2 exact image hulls (2026-11-23)
+
+Local proof-only branch `proof/chapter2-exact-image-hull`, based on merged main
+`32f5d1c8366e08e155110e99d969a16fa12fd4f2`, tree
+`c0e6eefad8d727d5260372bc2220b32559f485f2`. PRs #26 and #27 were integrated
+before this work. Their combined qualification passed 29 tests in 283.453s,
+933 named audits, 1,799 namespace declarations, 121 libraries, 54 fixtures,
+621 local links and the pinned API comparison; actual merged main exactly
+matched that qualified tree. No prior proof/fixture was changed by this milestone.
+
+See [exact image-hull scope](EXACT_IMAGE_HULL.md) and the updated
+[Chapter 2 checklist](CHAPTER2_CHECKLIST.md). Source §§2.7.3–2.8, printed
+pp. 24–26 / PDF pp. 40–42, were visually checked in the existing source copy.
+
+- Pinned Lean 4.19.0 / existing pinned mathlib: `lake build ExactImageHull`
+  and fresh `lake env lean tests/ExactImageHull.lean` passed. The fixture audits
+  31 theorem/axiom declarations.
+- Full local `./check.sh` passed: build, 947 named axiom audits, 1,814 namespace
+  declarations and 29 Python tests in 281.205 seconds (no skips). Registry:
+  122 libraries and 55 fresh semantic fixtures. Audit-rejection controls passed.
+- Explicit `RELGRAPH_CHECKOUT` comparison against the pinned C API inventory
+  passed. No C, hardware, FFI, renderer or rounding contract changed.
+- Open-image nonattainment, disconnected-image gaps, singleton/refinement,
+  independent versus shared-input sums, guarded partial reciprocal values,
+  loose rounding and observed-result/failure controls are kernel-checked.
+- Local Markdown targets and diff/scope checks passed. This receipt was appended
+  after the complete gate; no proof, fixture or registry changed afterward.
+- No native executable suite, benchmark, hosted CI, exact FP rounding, automatic
+  success or bit/native verification is claimed. Empty/unbounded/exceptional
+  images and general three-valued logic remain deferred. Work remains local.
