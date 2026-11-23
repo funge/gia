@@ -71,6 +71,5 @@ lake env lean tests/StrictComparison.lean
 ```
 
 See [VALIDATION.md](VALIDATION.md) for the actual full gate receipt and the
-[Chapter 2 checklist](CHAPTER2_CHECKLIST.md) for deferred work. This branch is
-independent of the separate exact image-hull PR; neither proof is a prerequisite
-for the other.
+[Chapter 2 checklist](CHAPTER2_CHECKLIST.md) for deferred work. The proof is independent of the exact image-hull result now merged in main;
+neither mathematical result is a prerequisite for the other.

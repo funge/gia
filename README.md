@@ -555,6 +555,9 @@ is a restricted §2.10 proof-side certificate/evaluation layer.
 [Observed-outcome division refinement](TWO_CORNER_REFINEMENT.md) proves a
 conditional assembly comparison, without changing runtime or rounding contracts.
 
+[Exact image hulls](EXACT_IMAGE_HULL.md) separate actual partial output sets,
+least closed real enclosures and conditional outward addition results.
+
 [Executable Word two-corner reference](WORD_TWO_CORNER.md) validates every endpoint
 before dispatch and proves standalone enclosure separately from old-result refinement.
 It does not replace the native four-corner path.

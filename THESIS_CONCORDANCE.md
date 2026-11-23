@@ -62,6 +62,10 @@ and chapter 5 supplies research directions, not completed implementation goals.
 
 ### Chapter 2: numbers, representations, and domains
 
+The [exact image-hull tranche](EXACT_IMAGE_HULL.md) covers nonempty bounded
+real outputs for §§2.7.3–2.8, leastness/refinement, and independent addition
+with conditional outward containment. It does not assert general image attainment.
+
 The maintained [section-by-section Chapter 2 checklist](CHAPTER2_CHECKLIST.md)
 records current restricted coverage and remaining obligations. The new
 [finite §2.10 tranche](FINITE_AFFINE_DEMOTION.md) separates storage certification

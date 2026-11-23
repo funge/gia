@@ -371,6 +371,9 @@ name = "FiniteAffineDemotion"
 name = "TwoCornerRefinement"
 
 [[lean_lib]]
+name = "ExactImageHull"
+
+[[lean_lib]]
 name = "WordTwoCorner"
 
 [[lean_lib]]

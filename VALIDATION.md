@@ -3657,6 +3657,37 @@ The native executable suite was not rerun. This follow-on has not been pushed or
 opened as a PR. The complete gate checked the final proof/fixture sources; only
 this qualification receipt was added afterward.
 
+## Chapter 2 exact image hulls (2026-11-23)
+
+Local proof-only branch `proof/chapter2-exact-image-hull`, based on merged main
+`32f5d1c8366e08e155110e99d969a16fa12fd4f2`, tree
+`c0e6eefad8d727d5260372bc2220b32559f485f2`. PRs #26 and #27 were integrated
+before this work. Their combined qualification passed 29 tests in 283.453s,
+933 named audits, 1,799 namespace declarations, 121 libraries, 54 fixtures,
+621 local links and the pinned API comparison; actual merged main exactly
+matched that qualified tree. No prior proof/fixture was changed by this milestone.
+
+See [exact image-hull scope](EXACT_IMAGE_HULL.md) and the updated
+[Chapter 2 checklist](CHAPTER2_CHECKLIST.md). Source §§2.7.3–2.8, printed
+pp. 24–26 / PDF pp. 40–42, were visually checked in the existing source copy.
+
+- Pinned Lean 4.19.0 / existing pinned mathlib: `lake build ExactImageHull`
+  and fresh `lake env lean tests/ExactImageHull.lean` passed. The fixture audits
+  31 theorem/axiom declarations.
+- Full local `./check.sh` passed: build, 947 named axiom audits, 1,814 namespace
+  declarations and 29 Python tests in 281.205 seconds (no skips). Registry:
+  122 libraries and 55 fresh semantic fixtures. Audit-rejection controls passed.
+- Explicit `RELGRAPH_CHECKOUT` comparison against the pinned C API inventory
+  passed. No C, hardware, FFI, renderer or rounding contract changed.
+- Open-image nonattainment, disconnected-image gaps, singleton/refinement,
+  independent versus shared-input sums, guarded partial reciprocal values,
+  loose rounding and observed-result/failure controls are kernel-checked.
+- Local Markdown targets and diff/scope checks passed. This receipt was appended
+  after the complete gate; no proof, fixture or registry changed afterward.
+- No native executable suite, benchmark, hosted CI, exact FP rounding, automatic
+  success or bit/native verification is claimed. Empty/unbounded/exceptional
+  images and general three-valued logic remain deferred. Work remains local.
+
 ## Executable Word two-corner reference (2026-11-23)
 
 Local branch `proof/word-two-corner-selector`, based on main
@@ -3763,3 +3794,23 @@ claimed. Boolean composition and exceptional endpoints remain deferred; mixed
 attainability is specific to the explicitly independent comparison domain.
 This receipt was appended after the full gate, with no proof/fixture/registry
 changes afterward. The milestone remains local, with no branch push or PR.
+
+## PR #28 reconciliation after #29 (2026-11-23)
+
+Merged main `868c65f6ce88f9e5074136658dbbf9cddab9f1b0` into the existing
+exact-image-hull branch at `f7619bad4fc142443833bb217a8f279002200e4d`, retaining
+both parents without rewriting history. The five additive conflicts were
+`Audit.lean`, `lakefile.toml`, `tests/test_project_integration.py`, `README.md`
+and this validation log. Both registries and all historical receipts remain.
+All 23 changed files outside those overlaps were checked byte-for-byte against
+their respective reviewed source commits (five image-hull files and eighteen
+main-side files). No proof, fixture, native arithmetic or default policy changed.
+
+On the reconciled tree, the complete pinned `./check.sh` passed: 29 tests in
+454.218 seconds, 993 named axiom audits and 1,915 namespace declarations;
+125 libraries and 58 fresh semantic fixtures. The optional explicitly supplied
+C checkout comparison against the pinned API inventory passed, along with the
+negative audit/registry controls. All 666 local Markdown file links resolve;
+`git diff --check` passes. No hosted CI or native executable rerun is claimed.
+This receipt was appended after the gate; only documentation changed afterward.
+The PR remains a draft and has not been merged.
