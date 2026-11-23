@@ -369,3 +369,18 @@ name = "FiniteAffineDemotion"
 
 [[lean_lib]]
 name = "TwoCornerRefinement"
+
+[[lean_lib]]
+name = "WordTwoCorner"
+
+[[lean_lib]]
+name = "Binary64Key"
+
+[[lean_lib]]
+name = "KeyTwoCorner"
+
+# Opt-in experimental executable, not a default target.
+[[lean_exe]]
+name = "keyCornerExperiment"
+root = "experiments.key_two_corner.Main"
+moreLinkArgs = ["experiments/key_two_corner/out/environment.o", "experiments/key_two_corner/out/adapter.o", "experiments/key_two_corner/out/directed_core.o", "-lm"]
