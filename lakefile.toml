@@ -372,3 +372,6 @@ name = "TwoCornerRefinement"
 
 [[lean_lib]]
 name = "WordTwoCorner"
+
+[[lean_lib]]
+name = "Binary64Key"

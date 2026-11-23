@@ -558,3 +558,8 @@ conditional assembly comparison, without changing runtime or rounding contracts.
 [Executable Word two-corner reference](WORD_TWO_CORNER.md) validates every endpoint
 before dispatch and proves standalone enclosure separately from old-result refinement.
 It does not replace the native four-corner path.
+
+The [binary64 key foundation](BINARY64_KEY.md) records the local proof checkpoint
+for a cheaper selector: exact finite guards, UInt64/Nat key correspondence and
+unsigned binade order. Decoded order and full request equivalence remain pending;
+no new selector is deployed or benchmarked.

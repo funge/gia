@@ -3686,3 +3686,25 @@ Local branch `proof/word-two-corner-selector`, based on main
   optional native experiment and matched direct/sine/cosine measurements remain
   pending. This is the completed local proof/reference milestone, not native
   deployment qualification. No push or PR publication was performed.
+
+## Binary64 key foundation checkpoint (2026-11-23)
+
+Base: `b122f657caceafbfeaa2c0eeafc2dc01bdb769d6`, with public main ancestor
+`32f5d1c8366e08e155110e99d969a16fa12fd4f2`. Isolated local branch
+`proof/binary64-key-foundation`; no native or Chapter 2 changes.
+
+- `lake build Binary64Key` and `lake env lean tests/Binary64Key.lean` passed;
+  19 new named theorems and 16 kernel-checked fixture declarations.
+- Full `./check.sh` passed: 29 tests in 316.026 seconds, no skips;
+  961 named axiom audits and 1,863 namespace theorem/axiom declarations;
+  123 libraries and 56 semantic fixtures. The pinned C API comparison used an
+  explicitly supplied read-only checkout and passed.
+- 641 local Markdown file links resolved and `git diff --check` passed.
+- No `sorry`, custom axiom, `native_decide`, new FP assumption, native integration
+  or benchmark was added. The original selector, prior experiment and Chapter 2
+  worktrees remain unchanged.
+
+This qualifies the finite guard, concrete UInt64/Nat key bridge, unsigned unit
+ordering and reference regression controls only. Decoded rational order,
+complete request equality and the faster native selector remain unproved and
+unimplemented. Selector-only/end-to-end benchmark gates therefore remain pending.
