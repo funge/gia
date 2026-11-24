@@ -3949,3 +3949,22 @@ local recovery bundle preserves the final candidate. No new project axioms,
 placeholders or floating-point premises; the existing axiom allowlist remains
 unchanged. No exceptional observation row, native arithmetic or default path
 changed. No native executable run, benchmark or hosted CI is claimed.
+
+## Partial square-root hull transfer
+
+Focused `RootTransfer` build and kernel fixture passed; the fixture audit covers
+21 declarations. The complete pinned `./check.sh` with the explicit pinned C
+checkout passed: 30 tests in 522.265 seconds, 1,588 named axiom audits,
+2,913 namespace declarations, 174 libraries and 107 fresh semantic fixtures.
+Pinned API comparison and negative audit/registry controls passed. All 1,077
+local Markdown links resolve and `git diff --check` passes. No warnings or
+errors were reported by the completed gate.
+
+Proof, fixtures and registries are unchanged from checkpoint
+c5034f5d0393471cc7af99aae0efda8f6ff71fa7; only this receipt was appended after
+the gate. A verified local recovery bundle preserves the candidate. No new
+project axioms, placeholders, FP assumptions or exceptional observation rows.
+The existing axiom allowlist remains unchanged. No native/default changes,
+hardware execution, benchmark or hosted CI is claimed. Exactness uses the
+proved no-new-nonnegative-input criterion; unconditional commutation is refuted
+by the checked open-negative-boundary example.

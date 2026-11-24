@@ -277,3 +277,13 @@ conversion. It preserves the exact observation image, including missing coverage
 and proves successful-result commutation at the same parameter. No exceptional
 arithmetic row is added. Lambda-left and opposite-infinity semantics remain
 unresolved here; nonconstant operations require separate transfer proofs.
+
+## Partial square-root conversion
+
+[Root transfer](ROOT_TRANSFER.md) proves sound same-input transfer and exact
+observation equality iff input hull conversion admits no new nonnegative finite
+values. It separately preserves λ-result existence and unmodeled exceptional
+input observations. The checked `(-1,0)` counterexample refutes unconditional
+commutation by introducing zero; a disconnected input shows hole filling.
+No exceptional arithmetic row or FP premise changes. Automatic criteria and
+other partial operations remain separate work.
