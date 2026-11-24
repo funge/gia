@@ -1,0 +1,15 @@
+# Finite Hansen interval coefficients
+
+Tupper §2.14, printed p.40 / [PDF p.56](https://www.dgp.toronto.edu/~mooncake/thesis.pdf#page=56), displays the Hansen family with interval-valued offset and slope coefficients and parameters in the two-point sets `{−cᵢ,cᵢ}`. The braces are not a closed continuous interval. This module specializes the displayed formula to finitely many coefficients with finite closed rational bounds interpreted over the reals. It does not formalize the entire Hansen system or its original publication.
+
+[HansenCoefficients.lean](HansenCoefficients.lean) proves `exact_interval`: at each fixed real parameter vector, the attainable values are exactly the closed interval computed by choosing the lower or upper coefficient according to the sign of that coordinate. `attained` supplies both endpoint witnesses; intermediate values follow by interpolating admissible coefficient choices. `signed_exact` specializes to the printed two-point parameter domain. No positivity assumption on the radii is needed; zero radii collapse to one point.
+
+Concretely, for coefficient intervals `P=[pₗ,pᵤ]`, `Qᵢ=[qᵢₗ,qᵢᵤ]` and fixed `t`, the lower endpoint is `pₗ + Σ (if 0 ≤ tᵢ then qᵢₗ else qᵢᵤ) * tᵢ`; the upper endpoint reverses the coefficient choices and uses `pᵤ`. The exact image quantifies one admissible real coefficient tuple for each attained value. The intervals themselves carry their endpoint-order proofs.
+
+`realizes` retains one offset and one complete coefficient vector across all parameter uses. `realized_pointwise` gives the resulting enclosure, and `one_parameter` connects this semantics to the existing [coefficient witness model](COEFFICIENT_WITNESSES.md). Persistent coefficient choice is an explicit model for repeated uses, not a claim that the printed passage uniquely specifies that convention. Independent choices at different parameter vectors need not define one member of this family.
+
+The [kernel-checked controls](tests/HansenCoefficients.lean) cover mixed signs with exact range [−16,−5], attained endpoints and interior, zero coordinates/radii, zero-dimensional and singleton-coefficient cases. A slope-one example projects to {−1,1} on the printed two-point domain, not its convex hull. A symmetric slope can attain the pointwise maximum at either sign separately but cannot attain both with one coefficient witness. These distinguish pointwise tightness, projected image, and joint realizability.
+
+The existing mixed-endpoint conversion remains separate: this tranche uses closed coefficients and does not introduce new open-boundary conventions. Exceptional or unbounded coefficient carriers, arithmetic and demotion for the full Hansen system, and a general projected multivariate hull algorithm remain open. There is no native implementation, changed floating-point contract, rounding optimality or performance claim.
+
+Run `./check.sh` with the repository's pinned Lean environment. This includes the named and namespace axiom audits and registered semantic fixture. See [VALIDATION.md](VALIDATION.md) for the actual qualification receipt.

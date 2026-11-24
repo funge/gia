@@ -3872,3 +3872,21 @@ Only this receipt was appended after that gate. No proof, fixture or registry
 changed afterward. No custom axioms, new FP assumptions, native/default changes,
 benchmark or hosted CI run. No native executable rerun is claimed. This follow-on
 remains local for review, with its dependency on #32 explicit; no merge occurred.
+
+## Finite Hansen interval coefficients (§2.14)
+
+The finite coefficient proof and fixture were focused-checked, then the complete
+pinned `./check.sh` passed with `RELGRAPH_CHECKOUT` supplied: 30 tests in
+488.032 seconds, 1,544 named axiom audits, 2,859 namespace declarations,
+170 libraries and 103 fresh semantic fixtures. The pinned C API comparison,
+negative audit/registry controls, 1,041 local Markdown links and `git diff
+--check` passed. The new fixture's namespace audit covers 30 declarations.
+
+The proof uses only the existing axiom allowlist (`propext`, `Classical.choice`,
+`Quot.sound`); no project axiom, placeholder or FP premise was added. No native
+backend, default or hardware contract changed, and no native executable rerun
+or hosted CI run is claimed. After the gate, only documentation and this receipt
+were finalized; proofs, fixtures and registries remained unchanged. The original
+executor briefly disconnected before registration, then recovered; no failed
+or partial gate is counted as qualification. A local Git bundle preserves the
+checkpoint and final candidate.
