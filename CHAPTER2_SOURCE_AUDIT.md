@@ -216,3 +216,14 @@ and keeps the same parameter/value witness, external restrictions and empty
 fibers. This closes a concrete finite-code gap beyond point tables; it is not
 a source-prescribed grammar, arbitrary-function representation, automatic
 demotion or a full open/exceptional endpoint model. No FP assumption changes.
+
+## Fixed coefficient witnesses and heterogeneous decoding
+
+[Coefficient witnesses](COEFFICIENT_WITNESSES.md) proves exact conversion of
+admissible heterogeneous code pairs into real coefficient pairs, retaining one
+witness across uses and any joint pair constraint. With 0 and 1 in the parameter
+domain, recovery is exactly `(f 0, f 1-f 0)` plus the affine identity. A mixed
+integer/rational instance and a strict marginal-versus-joint counterexample are
+checked. The existing pointwise coefficient theorem remains unchanged; §2.14's
+equality notation alone does not settle persistence of real choices. No new FP
+premise or general heterogeneous exceptional endpoint claim is made.
