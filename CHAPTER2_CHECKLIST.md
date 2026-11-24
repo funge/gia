@@ -236,9 +236,10 @@ premise or general heterogeneous exceptional endpoint claim is made.
 Chapter 2 remains incomplete. Beyond these rows, the explicit literal/repaired
 format distinction and §2.12 weak/strong tracking interpretation still require
 source-level decisions; adding finite examples does not resolve them. The mixed-endpoint milestone below addresses that bounded opportunity without
-choosing a persistent-witness convention for the source. The next source-facing
-proof task is the full printed Hansen interval-coefficient variant at its stated
-parameter choices; reuse the existing shared-vector affine foundations.
+choosing a persistent-witness convention for the source. The finite Hansen correspondence below now closes the fixed-vector coefficient
+case. The next source-facing task should address a specified arithmetic or
+demotion operation on that family, with its joint witnesses and exceptional
+carrier restrictions made explicit, rather than repeat pointwise enclosure.
 
 ## Mixed affine endpoints and boundary flags
 
