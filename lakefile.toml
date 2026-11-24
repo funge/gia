@@ -531,3 +531,6 @@ name = "FormatNormalization"
 
 [[lean_lib]]
 name = "InfiniteAdditionTransfer"
+
+[[lean_lib]]
+name = "RootTransfer"
