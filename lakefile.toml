@@ -519,3 +519,6 @@ name = "CoefficientWitnesses"
 
 [[lean_lib]]
 name = "MixedEndpoints"
+
+[[lean_lib]]
+name = "HansenCoefficients"

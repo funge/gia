@@ -751,3 +751,12 @@ concrete finite mixed-carrier task from the preceding checklist; irrational,
 extended/undefined carriers and the full Hansen variant remain separate. The
 flags and persistent-choice interpretation are explicit model conventions, not
 claims inferred from §2.14. No new FP assumptions or chapter-completion claim.
+
+## Finite Hansen coefficient correspondence
+
+[Finite Hansen coefficients](HANSEN_COEFFICIENTS.md) establishes exact fixed-vector
+denotation and attained endpoints for finite closed rational coefficient intervals,
+including the printed §2.14 two-point parameter sets. A shared coefficient vector
+is retained across repeated uses. Pointwise tightness does not imply a convex
+projected image or joint attainment of pointwise extrema. Exceptional/unbounded
+carriers and the full system's arithmetic/demotion remain open; Chapter 2 is not complete.

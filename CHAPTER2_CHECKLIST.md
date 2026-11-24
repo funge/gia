@@ -228,7 +228,7 @@ premise or general heterogeneous exceptional endpoint claim is made.
 | Kind | Residual item | Current boundary / next evidence |
 | --- | --- | --- |
 | Proof task | Mixed endpoint carriers and boundary types | Finite rational strict/closed bands are compiled exactly; total real coefficient maps now preserve joint witnesses. The subsequent mixed-endpoint milestone closes a concrete integer/rational-to-real conversion with exact open/closed and empty cases; arbitrary real coefficient encodings and the general variant remain open. Infinite bounds and literal exceptional values must stay separate. |
-| Proof task | Hansen's full stated multi-parameter coefficient variant | Existing finite shared-vector affine results do not by themselves establish the whole interval-coefficient variant with the printed parameter restrictions. State the actual joint coefficient/parameter relation and discharge its correspondence, reusing the current witness rules. |
+| Proof task | Hansen's full stated multi-parameter coefficient variant | Finite closed-coefficient pointwise denotation, endpoint attainment and shared-use correspondence are now checked in HansenCoefficients. Exceptional/unbounded carriers and the full system arithmetic/demotion remain open. |
 | Source/specification ambiguity | Persistent choices for repeated interval descriptions | Equality of descriptions does not alone determine equality of chosen real witnesses. Both models now have exact mathematics and a strict separating example; do not mark one as the author's intended convention without evidence. |
 | Source/specification boundary | Finite guards and perfect demotion | The printed infinite point construction and finite/unmanageable-description discussion do not supply a general finite input grammar or generation algorithm. The chosen rational affine grammar is a restricted result, not a resolution of that omission. |
 | Broader research | General finite realization, optimal demotion and bumpy classification | No universal finite description algorithm, minimal-piece procedure, or all-function classification follows. Specify a source-backed family and representability constraints before treating any such task as a bounded proof obligation. |
@@ -251,3 +251,12 @@ concrete finite mixed-carrier task from the preceding checklist; irrational,
 extended/undefined carriers and the full Hansen variant remain separate. The
 flags and persistent-choice interpretation are explicit model conventions, not
 claims inferred from §2.14. No new FP assumptions or chapter-completion claim.
+
+## Finite Hansen coefficient correspondence
+
+[Finite Hansen coefficients](HANSEN_COEFFICIENTS.md) establishes exact fixed-vector
+denotation and attained endpoints for finite closed rational coefficient intervals,
+including the printed §2.14 two-point parameter sets. A shared coefficient vector
+is retained across repeated uses. Pointwise tightness does not imply a convex
+projected image or joint attainment of pointwise extrema. Exceptional/unbounded
+carriers and the full system's arithmetic/demotion remain open; Chapter 2 is not complete.
