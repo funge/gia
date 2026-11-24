@@ -412,15 +412,25 @@ name = "HyperrealInfinitesimal"
 [[lean_lib]]
 name = "ExceptionalComparisons"
 
+[[lean_lib]]
+name = "FamilyDemotion"
 
+[[lean_lib]]
+name = "GeneralFamilyDemotion"
 
 
 
 [[lean_lib]]
 name = "NumberPromotion"
 
+[[lean_lib]]
+name = "IntervalSetDenotation"
 
+[[lean_lib]]
+name = "IntervalCoefficientVariants"
 
+[[lean_lib]]
+name = "AffineDemotionLimits"
 
 
 
@@ -435,10 +445,20 @@ name = "DiscreteDemotion"
 name = "InfinityStreams"
 
 
+[[lean_lib]]
+name = "LinearFamilyEquality"
 
+[[lean_lib]]
+name = "MultiAffineFamilies"
 
+[[lean_lib]]
+name = "QuadraticFamilies"
 
+[[lean_lib]]
+name = "IntervalSetExtension"
 
+[[lean_lib]]
+name = "FinitePointDescriptions"
 
 [[lean_lib]]
 name = "DedekindBoundary"
@@ -452,9 +472,14 @@ name = "SequenceRepresentations"
 [[lean_lib]]
 name = "DigitRepresentations"
 
+[[lean_lib]]
+name = "FiniteFamilyChain"
 
 [[lean_lib]]
 name = "ExceptionalFamilies"
 
 [[lean_lib]]
 name = "ContinuedFractionConversion"
+
+[[lean_lib]]
+name = "DescriptorDemotion"

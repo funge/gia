@@ -103,3 +103,26 @@ distinct. Mixed exceptional comparison directions, full source-carrier promotion
 unspecified arithmetic rows and arbitrary infinite coefficient reconstruction
 remain open. Later family conversion and property-tracking units are not included.
 No floating-point premise or hardware implementation changes.
+
+
+## Families, sets and domain-compatible demotion
+
+[Family demotion](FAMILY_DEMOTION.md) and its
+[general partial-domain rule](GENERAL_FAMILY_DEMOTION.md) preserve shared witnesses
+and separate enclosure from classification. Concrete instances cover
+[linear equality and its source qualification](LINEAR_FAMILY_EQUALITY.md),
+[multiple affine parameters](MULTI_AFFINE_FAMILIES.md),
+[quadratic families](QUADRATIC_FAMILIES.md), and the
+[finite promotion chain](FINITE_FAMILY_CHAIN.md).
+[Interval sets](INTERVAL_SET_DENOTATION.md),
+[set-valued extension](INTERVAL_SET_EXTENSION.md),
+[coefficient variants](INTERVAL_COEFFICIENT_VARIANTS.md), and
+[finite descriptions](FINITE_DESCRIPTIONS_AND_CUTS.md) retain their explicit
+representation restrictions. [Descriptor demotion](DESCRIPTOR_DEMOTION.md) proves
+a whole-set conversion and preserves external holes and original tags.
+
+These results do not establish a universal finite family syntax, arbitrary bumpy
+functions, or the full source exceptional algebra. Inclusion is not exactness;
+projected range containment is not pointwise containment at a shared parameter.
+Property tracking and expression accuracy remain separate. No native/default
+change or new floating-point premise is included; Chapter 2 remains incomplete.
