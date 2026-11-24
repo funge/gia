@@ -228,7 +228,7 @@ premise or general heterogeneous exceptional endpoint claim is made.
 | Kind | Residual item | Current boundary / next evidence |
 | --- | --- | --- |
 | Proof task | Mixed endpoint carriers and boundary types | Finite rational strict/closed bands are compiled exactly; total real coefficient maps now preserve joint witnesses. The subsequent mixed-endpoint milestone closes a concrete integer/rational-to-real conversion with exact open/closed and empty cases; arbitrary real coefficient encodings and the general variant remain open. Infinite bounds and literal exceptional values must stay separate. |
-| Proof task | Hansen's full stated multi-parameter coefficient variant | Finite closed-coefficient pointwise denotation, endpoint attainment and shared-use correspondence are now checked in HansenCoefficients. Exceptional/unbounded carriers and the full system arithmetic/demotion remain open. |
+| Proof task | Hansen's full stated multi-parameter coefficient variant | Finite closed-coefficient pointwise denotation, endpoint attainment and shared-use correspondence are now checked in HansenCoefficients. Unbounded sets of finite real coefficients now have the exact convex-image and boundary correspondence in HansenRealSets. Literal exceptional coefficient arithmetic and the full system arithmetic/demotion remain open. |
 | Source/specification ambiguity | Persistent choices for repeated interval descriptions | Equality of descriptions does not alone determine equality of chosen real witnesses. Both models now have exact mathematics and a strict separating example; do not mark one as the author's intended convention without evidence. |
 | Source/specification boundary | Finite guards and perfect demotion | The printed infinite point construction and finite/unmanageable-description discussion do not supply a general finite input grammar or generation algorithm. The chosen rational affine grammar is a restricted result, not a resolution of that omission. |
 | Broader research | General finite realization, optimal demotion and bumpy classification | No universal finite description algorithm, minimal-piece procedure, or all-function classification follows. Specify a source-backed family and representability constraints before treating any such task as a bounded proof obligation. |
@@ -261,3 +261,14 @@ including the printed §2.14 two-point parameter sets. A shared coefficient vect
 is retained across repeated uses. Pointwise tightness does not imply a convex
 projected image or joint attainment of pointwise extrema. Exceptional/unbounded
 carriers and the full system's arithmetic/demotion remain open; Chapter 2 is not complete.
+
+## Possibly unbounded finite-real Hansen coefficients
+
+[Coefficient-set correspondence](HANSEN_REAL_SETS.md) now covers arbitrary sets
+of finite real coefficients, strict empty-tuple behavior and zero weights. For
+convex coefficient sets it proves exact open-interior membership and a precise
+finite-boundary attainment criterion; the existing extended hull is least, but
+need not equal the image. Same-parameter demotion and tag-preserving conversion
+reuse existing results. Literal infinite/λ coefficient arithmetic and whole-system
+operations remain open. These are derived set-model results, not extra printed
+Hansen conventions or new IEEE assumptions.

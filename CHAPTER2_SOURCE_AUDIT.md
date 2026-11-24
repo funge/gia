@@ -248,3 +248,14 @@ including the printed §2.14 two-point parameter sets. A shared coefficient vect
 is retained across repeated uses. Pointwise tightness does not imply a convex
 projected image or joint attainment of pointwise extrema. Exceptional/unbounded
 carriers and the full system's arithmetic/demotion remain open; Chapter 2 is not complete.
+
+## Possibly unbounded finite-real Hansen coefficients
+
+[Coefficient-set correspondence](HANSEN_REAL_SETS.md) now covers arbitrary sets
+of finite real coefficients, strict empty-tuple behavior and zero weights. For
+convex coefficient sets it proves exact open-interior membership and a precise
+finite-boundary attainment criterion; the existing extended hull is least, but
+need not equal the image. Same-parameter demotion and tag-preserving conversion
+reuse existing results. Literal infinite/λ coefficient arithmetic and whole-system
+operations remain open. These are derived set-model results, not extra printed
+Hansen conventions or new IEEE assumptions.
