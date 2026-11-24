@@ -1,3 +1,4 @@
+import FiniteFormat
 import TaggedConversion
 import DescriptorDemotion
 import ContinuedFractionConversion
@@ -1634,4 +1635,11 @@ import SegmentSearchExamples
 #audit_axioms GeneralizedIntervalArithmetic.TaggedConversion.definedness_exact
 #audit_axioms GeneralizedIntervalArithmetic.TaggedConversion.hull_chain
 #audit_axioms GeneralizedIntervalArithmetic.TaggedConversion.finite_only_loss
+#audit_axioms GeneralizedIntervalArithmetic.FiniteFormat.mem_values
+#audit_axioms GeneralizedIntervalArithmetic.FiniteFormat.zero_mem
+#audit_axioms GeneralizedIntervalArithmetic.FiniteFormat.finite_directed
+#audit_axioms GeneralizedIntervalArithmetic.FiniteFormat.enclosure_least
+#audit_axioms GeneralizedIntervalArithmetic.FiniteFormat.rational_down
+#audit_axioms GeneralizedIntervalArithmetic.FiniteFormat.rational_up
+#audit_axioms GeneralizedIntervalArithmetic.FiniteFormat.word_enclosure
 #audit_namespace GeneralizedIntervalArithmetic

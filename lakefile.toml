@@ -498,3 +498,6 @@ name = "DescriptorDemotion"
 
 [[lean_lib]]
 name = "TaggedConversion"
+
+[[lean_lib]]
+name = "FiniteFormat"
