@@ -504,3 +504,6 @@ name = "FiniteFormat"
 
 [[lean_lib]]
 name = "FormatDigits"
+
+[[lean_lib]]
+name = "Binary64Format"

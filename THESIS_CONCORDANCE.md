@@ -1040,3 +1040,14 @@ labeled external-sign / `b^A` coefficient repair is proved; the original model
 is unchanged. Authorial intent, full normalization and IEEE identification remain
 open. This refines the earlier “digit correspondence open” entry, not Chapter 2
 completion or a new FP assumption.
+
+## Repaired binary64 value correspondence
+
+[Binary64 format bridge](BINARY64_FORMAT.md) proves the full iff between the
+repaired `(2,53,-1022,1023)` family and successful finite `Binary64.decode`
+values, including normal/subnormal cases and both signed zeros. Bounded exact
+normalization and raw-word packing discharge the converse, and identify the
+existing mathematical demotion target. This closes the repaired-family bridge
+previously deferred above; the literal printed coefficient model is unchanged.
+No native transport, exceptional rounding, new FP premise or chapter-completion
+claim follows.
