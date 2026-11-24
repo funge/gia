@@ -1009,3 +1009,14 @@ The [consolidated source audit](CHAPTER2_SOURCE_AUDIT.md) is the current finish-
 map. Full source-carrier/exceptional promotion, the weak-tracking interpretation,
 and general finite guard/piece representations remain substantive gaps.
 Newer tagged conversion remains separate. Chapter 2 is not declared complete.
+
+## Tagged family conversion preservation
+
+[Tagged conversion](TAGGED_CONVERSION.md) proves exact composition of lifted
+real-set converters while retaining literal negative infinity, positive infinity
+and lambda separately. Sound empty-preserving converters give arbitrary-predicate
+classification refinement and exact represented definedness bits. The real-hull
+then integer-hull instance discharges these premises with existing proofs.
+This is a derived semantic preservation theorem, not the full source F-to-R*
+promotion, an exceptional operation table, or a native implementation. Those
+concrete carrier/operation gaps remain in the [source audit](CHAPTER2_SOURCE_AUDIT.md).
