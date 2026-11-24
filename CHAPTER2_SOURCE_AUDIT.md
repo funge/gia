@@ -173,3 +173,14 @@ then integer-hull instance discharges these premises with existing proofs.
 This is a derived semantic preservation theorem, not the full source F-to-R*
 promotion, an exceptional operation table, or a native implementation. Those
 concrete carrier/operation gaps remain in the [source audit](CHAPTER2_SOURCE_AUDIT.md).
+
+## Coefficient/digit distinction
+
+[Format digits](FORMAT_DIGITS.md) checks the §2.5 printed pp.18–19 displays:
+exact digit-list correspondence, normalized magnitude bounds, literal
+nonnegative reindexing and a minimum-exponent obstruction. A checked decimal
+counterexample rules out unconditional equality of the displays. An explicitly
+labeled external-sign / `b^A` coefficient repair is proved; the original model
+is unchanged. Authorial intent, full normalization and IEEE identification remain
+open. This refines the earlier “digit correspondence open” entry, not Chapter 2
+completion or a new FP assumption.
