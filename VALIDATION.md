@@ -3994,3 +3994,25 @@ This receipt was appended after the successful gate; proofs, fixtures and
 registration files are unchanged from that checked checkpoint. See
 [scope and limitations](PARTIAL_IMAGE_TRANSFER.md), especially the distinction
 between exact image transfer and universal definedness.
+
+## Constructive finite value/domain conversion
+
+Qualified proof checkpoint `cfb56e0c4e217bcf7bc129251c19252ad41954a5` against
+merged #51 (`e04842e628873e6e90ecf89bea3d64cd9bf41cbd`), using Lean 4.19.0
+and pinned mathlib `c44e0c8ee63ca166450922a373c7409c5d26b00b`.
+
+- Full `./check.sh` passed: build, 1,619 named axiom audits, 2,973 namespace
+  declarations, and 30 Python tests in 493.440 seconds. No warnings or errors.
+- 109 semantic fixtures ran in fresh Lean processes, including 25 new
+  kernel-audited fixture declarations. A nine-case `#eval` control executed the
+  same pure rational reference checks; it is not hardware interval execution.
+- Module/dependency regression passed independently before the full gate;
+  176 libraries registered. Explicit pinned C API comparison passed.
+- 1,106 local Markdown links passed before this receipt; `git diff --check`
+  passed. No new axioms, unproved placeholders, FP premises or native/default
+  changes. Existing proof axiom allowlisting remains enforced.
+
+Only this receipt is appended after qualification; proofs, fixtures and registry
+entries are unchanged. [Scope](PIECE_DOMAIN_CONVERSION.md) distinguishes exact
+per-choice domain classification from conservative numerical closure. The
+closeout matrix records the remaining constructive-composition and source gaps.
