@@ -9,7 +9,7 @@ import tomllib
 import unittest
 
 PROJECT = pathlib.Path(__file__).resolve().parents[1]
-EXECUTABLE_CLIENTS = {"hardware/Main.lean", "experiments/key_two_corner/Main.lean"}
+EXECUTABLE_CLIENTS = {"hardware/Main.lean", "experiments/accuracy_search/Main.lean", "experiments/key_two_corner/Main.lean"}
 SEMANTIC_FIXTURES = {
     "DescriptorDemotion.lean": "GeneralizedIntervalArithmetic.DescriptorDemotionChecks",
     "ContinuedFractionConversion.lean": "GeneralizedIntervalArithmetic.ContinuedFractionConversionChecks",
@@ -24,13 +24,19 @@ SEMANTIC_FIXTURES = {
     "QuadraticFamilies.lean": "GeneralizedIntervalArithmetic.QuadraticFamiliesChecks",
     "MultiAffineFamilies.lean": "GeneralizedIntervalArithmetic.MultiAffineFamiliesChecks",
     "LinearFamilyEquality.lean": "GeneralizedIntervalArithmetic.LinearFamilyEqualityChecks",
+    "TrackingCertificates.lean": "GeneralizedIntervalArithmetic.TrackingCertificatesChecks",
     "InfinityStreams.lean": "GeneralizedIntervalArithmetic.InfinityStreamsChecks",
     "DiscreteDemotion.lean": "GeneralizedIntervalArithmetic.DiscreteDemotionChecks",
     "IntervalAlgebra.lean": "GeneralizedIntervalArithmetic.IntervalAlgebraChecks",
+    "AccuracySearchExample.lean": "GeneralizedIntervalArithmetic.AccuracySearchExampleChecks",
+    "ExpressionStreams.lean": "GeneralizedIntervalArithmetic.ExpressionStreamsChecks",
+    "ReciprocalStreams.lean": "GeneralizedIntervalArithmetic.ReciprocalStreamsChecks",
     "AffineDemotionLimits.lean": "GeneralizedIntervalArithmetic.AffineDemotionLimitsChecks",
     "IntervalCoefficientVariants.lean": "GeneralizedIntervalArithmetic.IntervalCoefficientVariantsChecks",
     "IntervalSetDenotation.lean": "GeneralizedIntervalArithmetic.IntervalSetDenotationChecks",
     "NumberPromotion.lean": "GeneralizedIntervalArithmetic.NumberPromotionChecks",
+    "FiniteProperties.lean": "GeneralizedIntervalArithmetic.FinitePropertiesChecks",
+    "PartialProperties.lean": "GeneralizedIntervalArithmetic.PartialPropertiesChecks",
     "GeneralFamilyDemotion.lean": "GeneralizedIntervalArithmetic.GeneralFamilyDemotionChecks",
     "FamilyDemotion.lean": "GeneralizedIntervalArithmetic.FamilyDemotionChecks",
     "ExceptionalComparisons.lean": "GeneralizedIntervalArithmetic.ExceptionalComparisonsChecks",

@@ -1,3 +1,4 @@
+import TrackingCertificates
 import SemanticContinuity
 import AuditPolicy
 
@@ -48,6 +49,38 @@ theorem printed_weak_direction_counterexample :
 /-- The obstruction already uses total real functions and true leaf flags;
 partiality and floating-point behavior are not involved. -/
 theorem constant_composite (x : ℝ) : ((fun _ : ℝ => (0:ℝ)) ∘ jump) x = 0 := rfl
+
+theorem square_jump (x : ℝ) : (jump x)^2 = 1 := by
+  unfold jump
+  split <;> norm_num
+
+/-- Nonconstant outer operation: cancellation of the jump is not limited to
+constant functions. The existing source-arrow counterexample is preserved. -/
+theorem square_masks_discontinuity :
+    (∃ a b : ℝ, a^2 ≠ b^2) ∧
+    ∃ x ∈ Set.Icc (0:ℝ) 1,
+      CheckContinuous ((fun t : ℝ => t^2) ∘ jump) x True ∧
+      ¬ CheckContinuous (fun t : ℝ => t^2) (jump x) (CheckContinuous jump x True) := by
+  refine ⟨⟨0, 1, by norm_num⟩, ?_⟩
+  obtain ⟨x, hx, hn⟩ := jump_has_discontinuous_point
+  have he : (fun t : ℝ => t^2) ∘ jump = fun _ => (1:ℝ) := funext square_jump
+  refine ⟨x, hx, ?_, fun h => hn h.2.1⟩
+  rw [he]
+  exact ⟨continuousAt_const, trivial⟩
+
+/-- Actual semantic continuity can be true when the recursive certificate is
+false. Keeping its possible=false bit would make the property description wrong. -/
+theorem masked_check_requires_unknown :
+    ∃ x ∈ Set.Icc (0:ℝ) 1,
+      let C := CheckContinuous (fun t : ℝ => t^2) (jump x) (CheckContinuous jump x True)
+      let P := CheckContinuous ((fun t : ℝ => t^2) ∘ jump) x True
+      ¬ C ∧ P ∧
+      ¬ (DomainConstraints.exactDomain (fun _ : Unit => C)).Compatible () P ∧
+      (TrackingCertificates.sufficient (DomainConstraints.exactDomain (fun _ : Unit => C))).Compatible () P := by
+  obtain ⟨x, hx, hp, hn⟩ := square_masks_discontinuity.2
+  refine ⟨x, hx, hn, hp, fun h => hn (h.2 hp), ?_⟩
+  exact TrackingCertificates.sufficient_compatible ⟨id, id⟩
+    (fun hc => recursive_checks_suffice _ _ _ _ hc)
 
 end GeneralizedIntervalArithmetic.PropertyCompositionChecks
 #audit_namespace GeneralizedIntervalArithmetic.PropertyCompositionChecks

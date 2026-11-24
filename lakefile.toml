@@ -418,7 +418,11 @@ name = "FamilyDemotion"
 [[lean_lib]]
 name = "GeneralFamilyDemotion"
 
+[[lean_lib]]
+name = "PartialProperties"
 
+[[lean_lib]]
+name = "FiniteProperties"
 
 [[lean_lib]]
 name = "NumberPromotion"
@@ -432,8 +436,14 @@ name = "IntervalCoefficientVariants"
 [[lean_lib]]
 name = "AffineDemotionLimits"
 
+[[lean_lib]]
+name = "ReciprocalStreams"
 
+[[lean_lib]]
+name = "ExpressionStreams"
 
+[[lean_lib]]
+name = "AccuracySearchExample"
 
 [[lean_lib]]
 name = "IntervalAlgebra"
@@ -444,6 +454,8 @@ name = "DiscreteDemotion"
 [[lean_lib]]
 name = "InfinityStreams"
 
+[[lean_lib]]
+name = "TrackingCertificates"
 
 [[lean_lib]]
 name = "LinearFamilyEquality"
