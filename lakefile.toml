@@ -507,3 +507,6 @@ name = "FormatDigits"
 
 [[lean_lib]]
 name = "Binary64Format"
+
+[[lean_lib]]
+name = "EndpointOptimality"
