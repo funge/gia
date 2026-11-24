@@ -51,8 +51,10 @@ choice; it does not redefine `FiniteFormat` or establish an IEEE correspondence.
 `NormalOrMinimum` is a separately labeled convention allowing leading-zero
 magnitudes only at `m`. The theorem `minimum_admitted` shows what it admits;
 we do not attribute this restriction to the printed display (which allows
-leading zeros at other exponents too), as source intent. The later [general-radix theorem](FORMAT_NORMALIZATION.md)
-proves equality of the repaired value sets, while preserving this distinction. No IEEE subnormal/overflow/tie behavior is inferred.
+leading zeros at other exponents too). The later
+[general-radix theorem](FORMAT_NORMALIZATION.md) proves equality of the repaired
+value sets, while preserving this distinction. No IEEE subnormal/overflow/tie
+behavior is inferred.
 
 ## Sharp controls and limits
 
