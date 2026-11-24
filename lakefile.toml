@@ -513,3 +513,6 @@ name = "EndpointOptimality"
 
 [[lean_lib]]
 name = "FiniteGuardPieces"
+
+[[lean_lib]]
+name = "CoefficientWitnesses"

@@ -211,3 +211,30 @@ and keeps the same parameter/value witness, external restrictions and empty
 fibers. This closes a concrete finite-code gap beyond point tables; it is not
 a source-prescribed grammar, arbitrary-function representation, automatic
 demotion or a full open/exceptional endpoint model. No FP assumption changes.
+
+## Fixed coefficient witnesses and heterogeneous decoding
+
+[Coefficient witnesses](COEFFICIENT_WITNESSES.md) proves exact conversion of
+admissible heterogeneous code pairs into real coefficient pairs, retaining one
+witness across uses and any joint pair constraint. With 0 and 1 in the parameter
+domain, recovery is exactly `(f 0, f 1-f 0)` plus the affine identity. A mixed
+integer/rational instance and a strict marginal-versus-joint counterexample are
+checked. The existing pointwise coefficient theorem remains unchanged; §2.14's
+equality notation alone does not settle persistence of real choices. No new FP
+premise or general heterogeneous exceptional endpoint claim is made.
+
+### Residual §§2.13–2.14 work, classified
+
+| Kind | Residual item | Current boundary / next evidence |
+| --- | --- | --- |
+| Proof task | Mixed endpoint carriers and boundary types | Finite rational strict/closed bands are compiled exactly; total real coefficient maps now preserve joint witnesses. A common decoded-endpoint theorem for mixed integer/rational/real bounds, with explicit open/closed and empty cases, is still needed before claiming the general variant. Infinite bounds and literal exceptional values must stay separate. |
+| Proof task | Hansen's full stated multi-parameter coefficient variant | Existing finite shared-vector affine results do not by themselves establish the whole interval-coefficient variant with the printed parameter restrictions. State the actual joint coefficient/parameter relation and discharge its correspondence, reusing the current witness rules. |
+| Source/specification ambiguity | Persistent choices for repeated interval descriptions | Equality of descriptions does not alone determine equality of chosen real witnesses. Both models now have exact mathematics and a strict separating example; do not mark one as the author's intended convention without evidence. |
+| Source/specification boundary | Finite guards and perfect demotion | The printed infinite point construction and finite/unmanageable-description discussion do not supply a general finite input grammar or generation algorithm. The chosen rational affine grammar is a restricted result, not a resolution of that omission. |
+| Broader research | General finite realization, optimal demotion and bumpy classification | No universal finite description algorithm, minimal-piece procedure, or all-function classification follows. Specify a source-backed family and representability constraints before treating any such task as a bounded proof obligation. |
+
+Chapter 2 remains incomplete. Beyond these rows, the explicit literal/repaired
+format distinction and §2.12 weak/strong tracking interpretation still require
+source-level decisions; adding finite examples does not resolve them. The next
+bounded proof opportunity here is mixed endpoint denotation with explicit
+boundary flags, rather than choosing a persistent-witness convention silently.
