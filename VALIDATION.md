@@ -3910,3 +3910,24 @@ allowlist. Convexity is an explicit mathematical premise of the exact interior
 and boundary characterization, not a new floating-point assumption. No native
 executable rerun, hardware execution, benchmark or hosted CI is claimed. A local
 verified recovery bundle preserves the candidate.
+
+## Uniform source-format separation and general-radix normalization
+
+Focused `FormatNormalization` build and fixture passed, including 24 audited
+fixture declarations. The full pinned `./check.sh` with the explicitly supplied
+pinned C checkout passed: 30 tests in 493.306 seconds, 1,565 named axiom audits,
+2,890 namespace declarations, 172 libraries and 105 fresh semantic fixtures.
+Pinned API comparison and negative audit/registry controls passed. All 1,061
+local Markdown links resolve and `git diff --check` passes. The completed gate
+reported no warnings or errors.
+
+The exact proof and fixtures are in checkpoint
+1cfcd9e490679fe9f4b3bc12366909d0a8762525. Only documentation wording and this
+receipt were finalized afterward; proof, fixture and registry content did not
+change. The local recovery bundle preserves the final candidate. The source
+images on printed pp.18–19 / PDF pp.34–35 were inspected directly; external
+feedback was used as a lead, not as evidence replacing the source or kernel.
+
+No new project axioms, placeholders or FP premises. The existing allowlist
+(`propext`, `Classical.choice`, `Quot.sound`) remains unchanged. No native/default
+changes, hardware execution, executable normalizer, benchmark or hosted CI claim.

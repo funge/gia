@@ -259,3 +259,12 @@ need not equal the image. Same-parameter demotion and tag-preserving conversion
 reuse existing results. Literal infinite/λ coefficient arithmetic and whole-system
 operations remain open. These are derived set-model results, not extra printed
 Hansen conventions or new IEEE assumptions.
+
+## Uniform §2.5 separation and repaired normalization
+
+[Format normalization](FORMAT_NORMALIZATION.md) proves that `b^M` separates the
+printed unsigned digit display from the literal coefficient format for every
+`b ≥ 2`, `A ≥ 1`, `m ≤ M`. It also proves equality of the separately labeled
+unrestricted repaired and normal-or-minimum value sets at arbitrary radix.
+This closes the value-set normalization proof gap, not authorial intent,
+exceptional rounding or hardware semantics. The literal definition is unchanged.
