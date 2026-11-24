@@ -402,3 +402,59 @@ name = "DomainProjections"
 
 [[lean_lib]]
 name = "FiniteEquality"
+
+[[lean_lib]]
+name = "ExtendedImageHull"
+
+[[lean_lib]]
+name = "HyperrealInfinitesimal"
+
+[[lean_lib]]
+name = "ExceptionalComparisons"
+
+
+
+
+
+[[lean_lib]]
+name = "NumberPromotion"
+
+
+
+
+
+
+
+[[lean_lib]]
+name = "IntervalAlgebra"
+
+[[lean_lib]]
+name = "DiscreteDemotion"
+
+[[lean_lib]]
+name = "InfinityStreams"
+
+
+
+
+
+
+
+[[lean_lib]]
+name = "DedekindBoundary"
+
+[[lean_lib]]
+name = "CutArithmetic"
+
+[[lean_lib]]
+name = "SequenceRepresentations"
+
+[[lean_lib]]
+name = "DigitRepresentations"
+
+
+[[lean_lib]]
+name = "ExceptionalFamilies"
+
+[[lean_lib]]
+name = "ContinuedFractionConversion"

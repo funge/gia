@@ -11,6 +11,19 @@ import unittest
 PROJECT = pathlib.Path(__file__).resolve().parents[1]
 EXECUTABLE_CLIENTS = {"hardware/Main.lean", "experiments/key_two_corner/Main.lean"}
 SEMANTIC_FIXTURES = {
+    "ContinuedFractionConversion.lean": "GeneralizedIntervalArithmetic.ContinuedFractionConversionChecks",
+    "ExceptionalFamilies.lean": "GeneralizedIntervalArithmetic.ExceptionalFamiliesChecks",
+    "SequenceRepresentations.lean": "GeneralizedIntervalArithmetic.SequenceRepresentationsChecks",
+    "DigitRepresentations.lean": "GeneralizedIntervalArithmetic.DigitRepresentationsChecks",
+    "CutArithmetic.lean": "GeneralizedIntervalArithmetic.CutArithmeticChecks",
+    "DedekindBoundary.lean": "GeneralizedIntervalArithmetic.DedekindBoundaryChecks",
+    "InfinityStreams.lean": "GeneralizedIntervalArithmetic.InfinityStreamsChecks",
+    "DiscreteDemotion.lean": "GeneralizedIntervalArithmetic.DiscreteDemotionChecks",
+    "IntervalAlgebra.lean": "GeneralizedIntervalArithmetic.IntervalAlgebraChecks",
+    "NumberPromotion.lean": "GeneralizedIntervalArithmetic.NumberPromotionChecks",
+    "ExceptionalComparisons.lean": "GeneralizedIntervalArithmetic.ExceptionalComparisonsChecks",
+    "ExtendedImageHull.lean": "GeneralizedIntervalArithmetic.ExtendedImageHullChecks",
+    "HyperrealInfinitesimal.lean": "GeneralizedIntervalArithmetic.HyperrealInfinitesimalChecks",
     "FiniteEquality.lean": "GeneralizedIntervalArithmetic.FiniteEqualityChecks",
     "DomainProjections.lean": "GeneralizedIntervalArithmetic.DomainProjectionsChecks",
     "DomainConstraints.lean": "GeneralizedIntervalArithmetic.DomainConstraintsChecks",
