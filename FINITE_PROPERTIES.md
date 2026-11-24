@@ -75,4 +75,3 @@ RELGRAPH_CHECKOUT=/path/to/pinned/relgraph ./check.sh
 
 See [validation](VALIDATION.md), [ledger](CHAPTER2_COMPLETION.md),
 [concordance](THESIS_CONCORDANCE.md).
-
