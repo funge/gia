@@ -525,3 +525,6 @@ name = "HansenCoefficients"
 
 [[lean_lib]]
 name = "HansenRealSets"
+
+[[lean_lib]]
+name = "FormatNormalization"

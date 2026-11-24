@@ -38,7 +38,7 @@ At minimum exponent `m`, every normalized presentation with exponent at least
 `m` has value at least `b^m`. Therefore a leading-zero presentation at `m`
 cannot be replaced by any such normalized presentation (`minimum_not_normalizable`).
 The fixture `0.1 × 10^1 = 1.0 × 10^0` shows why exponent freedom matters above
-that boundary. No full normalization algorithm is claimed.
+that boundary. The later [general-radix normalization proof](FORMAT_NORMALIZATION.md) establishes existence and value-set equality; no executable normalizer is claimed.
 
 ## A labeled repair, not authorial intent
 
@@ -51,8 +51,8 @@ choice; it does not redefine `FiniteFormat` or establish an IEEE correspondence.
 `NormalOrMinimum` is a separately labeled convention allowing leading-zero
 magnitudes only at `m`. The theorem `minimum_admitted` shows what it admits;
 we do not attribute this restriction to the printed display (which allows
-leading zeros at other exponents too), or claim equivalence of their projected
-sets. No IEEE subnormal/overflow/tie behavior is inferred.
+leading zeros at other exponents too), as source intent. The later [general-radix theorem](FORMAT_NORMALIZATION.md)
+proves equality of the repaired value sets, while preserving this distinction. No IEEE subnormal/overflow/tie behavior is inferred.
 
 ## Sharp controls and limits
 
