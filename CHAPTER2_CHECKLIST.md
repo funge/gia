@@ -67,3 +67,17 @@ modules are library dependencies, not newly claimed Chapter 2 constructions.
 3. Address extended-real and multi-parameter representation choices explicitly
    before claiming the general Chapter 2 system. Keep native refinement and
    exceptional floating-point behavior as separate, approved work.
+
+## Finite logical and numeric-domain interfaces
+
+The [finite comparison package](FINITE_COMPARISONS.md) and
+[domain projections](DOMAIN_PROJECTIONS.md) cover optimistic/pessimistic
+projections, exact independent finite comparison images, threshold/nonzero
+classifiers and same-witness partial sqrt/division domain bridges. Numeric
+re-encoding preserves classifications under explicit whole-image and transport
+premises. Touching/equal-singleton, correlation, holes, nonmonotone predicates
+and unsafe re-encoding controls are kernel-checked. Source: Tupper §2.7.2
+(printed p.24 / PDF p.40) and §2.11 (printed pp.34–36 / PDF pp.50–52).
+Exceptional endpoints, general descriptor generation and full family demotion
+remain outside this milestone; Chapter 2 is not complete. No native or FP
+contract change is made.
