@@ -573,3 +573,8 @@ preserves the earlier checkpoint and proof roadmap.
 Boolean outcomes for independent finite real interval operands, with explicit
 mixed-case witnesses and a correlated-input counterexample. It is a narrow
 Chapter 2 foundation, independent of the exact image-hull work.
+
+[Finite Boolean composition](BOOLEAN_COMPOSITION.md) extends the existing
+three-valued descriptions with exact independent not/and/or images and sound
+common-witness enclosures. Correlation controls distinguish those guarantees;
+this remains a proof-side Chapter 2 foundation.

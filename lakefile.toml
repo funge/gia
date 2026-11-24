@@ -390,3 +390,6 @@ moreLinkArgs = ["experiments/key_two_corner/out/environment.o", "experiments/key
 
 [[lean_lib]]
 name = "StrictComparison"
+
+[[lean_lib]]
+name = "BooleanComposition"
