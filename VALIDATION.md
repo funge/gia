@@ -3968,3 +3968,29 @@ The existing axiom allowlist remains unchanged. No native/default changes,
 hardware execution, benchmark or hosted CI is claimed. Exactness uses the
 proved no-new-nonnegative-input criterion; unconditional commutation is refuted
 by the checked open-negative-boundary example.
+
+## Exact partial-image transfer and finite-gap certification
+
+Qualified proof checkpoint `6312041ea5018511d2d7df1e80f3b013d547fd02`, based on
+merged #50 (`063524a39110d154054c06b3697ee8eee747514f`), with pinned Lean 4.19.0
+and mathlib `c44e0c8ee63ca166450922a373c7409c5d26b00b`.
+
+- Full `./check.sh`: build passed; 1,602 named axiom audits and 2,929 namespace
+  declarations passed; 30 Python tests passed in 496.466 seconds, including
+  108 fresh semantic fixtures and the explicit pinned C API comparison.
+- All 15 new fixture declarations passed the kernel audit. The finite rational
+  gap checks use kernel reduction; no `native_decide`, new axiom or placeholder.
+- 175 library registrations; 1,086 local Markdown links checked, none broken;
+  `git diff --check` passed. Full log contains no warnings/errors.
+- Initial gate exposed an example-library dependency in the new fixture. It was
+  stopped, the reciprocal specialization changed to core `divRel 1`, and the
+  dependency test plus the complete gate above rerun successfully.
+- A cloud reconnect interrupted the tool session handle, not the final gate
+  process; its surviving log records every test passing and the final `OK`.
+- No FP contract, hardware/default path or native integration changed; no new
+  native benchmark or hardware qualification is claimed.
+
+This receipt was appended after the successful gate; proofs, fixtures and
+registration files are unchanged from that checked checkpoint. See
+[scope and limitations](PARTIAL_IMAGE_TRANSFER.md), especially the distinction
+between exact image transfer and universal definedness.
