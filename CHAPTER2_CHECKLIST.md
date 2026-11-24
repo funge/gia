@@ -126,3 +126,25 @@ functions, or the full source exceptional algebra. Inclusion is not exactness;
 projected range containment is not pointwise containment at a shared parameter.
 Property tracking and expression accuracy remain separate. No native/default
 change or new floating-point premise is included; Chapter 2 remains incomplete.
+
+
+## Partial properties and accuracy: integrated scope
+
+[Partial properties](PARTIAL_PROPERTIES.md), [finite-arity composition](FINITE_PROPERTIES.md)
+and [tracking certificates](TRACKING_CERTIFICATES.md) prove exact strict
+definedness and sufficient continuity/local-constancy transport on actual shared
+tuples. The literal source weak-continuity implication remains refuted by the
+constant and square masking controls; sufficient certificates are not silently
+substituted for that source claim. Failure of a certificate remains inconclusive.
+
+[Expression streams](EXPRESSION_STREAMS.md) prove eventual success, enclosure and
+convergence for the existing finite rational arithmetic evaluator when its limit
+has a strict semantic value. Endpoint containment is an additional premise for
+a limit-value error certificate. The compiled proof-backed search example rejects
+two initial stages and returns a certified interval; it is not a new native FP
+backend, a rate bound, or an implementation of arbitrary real inputs.
+
+The [consolidated source audit](CHAPTER2_SOURCE_AUDIT.md) is the current finish-line
+map. Full source-carrier/exceptional promotion, the weak-tracking interpretation,
+and general finite guard/piece representations remain substantive gaps.
+Newer tagged conversion remains separate. Chapter 2 is not declared complete.
