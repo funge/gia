@@ -1020,3 +1020,12 @@ then integer-hull instance discharges these premises with existing proofs.
 This is a derived semantic preservation theorem, not the full source F-to-R*
 promotion, an exceptional operation table, or a native implementation. Those
 concrete carrier/operation gaps remain in the [source audit](CHAPTER2_SOURCE_AUDIT.md).
+
+## Literal finite-format enclosure
+
+[Finite formats](FINITE_FORMAT.md) proves exact representation of the §2.5
+printed p.18 coefficient formula for arbitrary radix at least two, positive
+precision and ordered exponent bounds, with least finite in-range directed
+enclosure. Its Word bridge requires separate format membership. The adjacent
+digit presentation and IEEE identification remain open; no new FP premise or
+implementation is introduced, and Chapter 2 remains incomplete.
