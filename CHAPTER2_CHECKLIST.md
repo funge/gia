@@ -309,3 +309,14 @@ instantiated by square root and guarded reciprocal. Exact output images preserve
 possible definedness, not universal input-domain classification. This advances
 the derived §§2.7/2.11 conversion bridge without claiming the full constructive
 numeric/domain-description demotion or adding exceptional arithmetic rows.
+
+## Constructive finite value/domain conversion
+
+[Piece-domain conversion](PIECE_DOMAIN_CONVERSION.md) constructs a closed value
+enclosure and explicit feasibility code for the existing guarded mixed bands,
+preserving each choice's definedness and the family's definite/possible flags.
+It does not claim numerical image equality or arbitrary descriptor synthesis.
+The [current closeout matrix](CHAPTER2_CLOSEOUT.md) consolidates covered results,
+remaining proof gaps, source inconsistencies under stated readings, and
+unspecified semantics; it supersedes older residual lists where later proofs
+have closed an item. Chapter 2 remains incomplete.
