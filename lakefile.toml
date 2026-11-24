@@ -522,3 +522,6 @@ name = "MixedEndpoints"
 
 [[lean_lib]]
 name = "HansenCoefficients"
+
+[[lean_lib]]
+name = "HansenRealSets"
