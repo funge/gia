@@ -578,3 +578,9 @@ Chapter 2 foundation, independent of the exact image-hull work.
 three-valued descriptions with exact independent not/and/or images and sound
 common-witness enclosures. Correlation controls distinguish those guarantees;
 this remains a proof-side Chapter 2 foundation.
+
+The [Chapter 2 completion criteria](CHAPTER2_COMPLETION.md) separates proved
+finite models, library foundations and unresolved source obligations, with a
+dependency-ordered plan. [Same-parameter domain constraints](DOMAIN_CONSTRAINTS.md)
+connect finite conjunction/classification weakening to the existing universal
+domain semantics; full numeric domain demotion remains open.

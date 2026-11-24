@@ -3840,3 +3840,35 @@ Only the validation receipt was appended after the gate; no proof, fixture or
 registry changed afterward. No custom axioms, new FP assumptions, native/default
 changes, benchmark, hosted CI, branch push or PR for this milestone. This is not
 an exact correlated-formula interpreter or the source's full logic/domain API.
+
+## Chapter 2 same-parameter domain constraints (2026-11-24)
+
+Local follow-on based on Boolean composition commit
+`db15a70d89e0a870c6b70f8bb1deb916d1bdc03d` (regular open PR #32), with main
+still `7220861b8ec1ac1c3a80d46b4dbc4bc96bf5ea92`. The original prerequisite
+worktree and public PR are unchanged. The source transcription and original PDF
+printed pp.35–36 / PDF pp.51–52 were checked for §2.11.4.
+
+The finite predicate-level bridge proves same-parameter constraint conjunction,
+F/TF/T classification compatibility, classification-preserving weakening, and
+composition into existing universal partial-enclosure semantics. An existing
+reciprocal-sum domain theorem supplies a concrete expression instance. The
+fixtures cover incompatible shared witnesses, shared closed boundaries, a hole,
+an actual pole, partial guards, empty constraints, order/repetition invariance,
+and the empty-input-fiber limitation. This is not the full numeric description
+language or a domain-demotion generator. The completion ledger records the
+remaining section-by-section source obligations without marking Chapter 2 done.
+
+Focused `lake build DomainConstraints` and
+`lake env lean tests/DomainConstraints.lean` passed; the new fixture's enforced
+namespace audit covers 28 declarations. The complete pinned `./check.sh` passed:
+29 tests in 287.851 seconds, 1,035 named axiom audits, 1,997 namespace
+declarations, 128 libraries and 61 fresh semantic fixtures. The explicitly
+supplied pinned C API comparison and negative audit/registry controls passed.
+All 702 local Markdown file links resolve and `git diff --check` passes. The
+final full gate reported no warnings or errors.
+
+Only this receipt was appended after that gate. No proof, fixture or registry
+changed afterward. No custom axioms, new FP assumptions, native/default changes,
+benchmark or hosted CI run. No native executable rerun is claimed. This follow-on
+remains local for review, with its dependency on #32 explicit; no merge occurred.
