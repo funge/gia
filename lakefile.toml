@@ -495,3 +495,6 @@ name = "ContinuedFractionConversion"
 
 [[lean_lib]]
 name = "DescriptorDemotion"
+
+[[lean_lib]]
+name = "TaggedConversion"

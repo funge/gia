@@ -5,8 +5,8 @@ finite logic/domain, representations/bounds/exceptions, families/sets/demotion,
 and properties/accuracy. **Chapter 2 is not complete.** It records current
 source scope, not a claim that every sentence has been formalized. The
 [completion plan](CHAPTER2_COMPLETION.md) and [checklist](CHAPTER2_CHECKLIST.md)
-retain the acceptance criteria and detailed historical scope. Newer tagged
-conversion is separate and is not included in this checkpoint.
+retain the acceptance criteria and detailed historical scope. Tagged conversion adds the separately scoped preservation result below; it
+does not close the source-wide conversion and exceptional-operation gaps.
 
 Evidence: the original [thesis PDF](https://www.dgp.toronto.edu/~mooncake/thesis.pdf),
 printed pp.13–43 (PDF pp.29–59), inspected page by page, including all eight
@@ -162,3 +162,14 @@ Loss of lambda during successful-bound projection has a checked counterexample;
 retaining the original domain restores same-tag compatibility. This checks a
 specific conversion and general semantic criterion, not every source carrier,
 exceptional arithmetic table or arbitrary classifier implementation.
+
+## Tagged family conversion preservation
+
+[Tagged conversion](TAGGED_CONVERSION.md) proves exact composition of lifted
+real-set converters while retaining literal negative infinity, positive infinity
+and lambda separately. Sound empty-preserving converters give arbitrary-predicate
+classification refinement and exact represented definedness bits. The real-hull
+then integer-hull instance discharges these premises with existing proofs.
+This is a derived semantic preservation theorem, not the full source F-to-R*
+promotion, an exceptional operation table, or a native implementation. Those
+concrete carrier/operation gaps remain in the [source audit](CHAPTER2_SOURCE_AUDIT.md).
