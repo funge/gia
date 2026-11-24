@@ -540,3 +540,6 @@ name = "PartialImageTransfer"
 
 [[lean_lib]]
 name = "PieceDomainConversion"
+
+[[lean_lib]]
+name = "GuardedPieceComposition"

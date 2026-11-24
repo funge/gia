@@ -819,3 +819,13 @@ The [current closeout matrix](CHAPTER2_CLOSEOUT.md) consolidates covered results
 remaining proof gaps, source inconsistencies under stated readings, and
 unspecified semantics; it supersedes older residual lists where later proofs
 have closed an item. Chapter 2 remains incomplete.
+
+## Guarded composition with generated domains
+
+[Guarded piece composition](GUARDED_PIECE_COMPOSITION.md) connects generated
+finite-band descriptors to the existing expression evaluator, with exact domain
+classification and sound values on checked success at one parameter and choice.
+Failed whole-hull guards remain unknown. The [closeout matrix](CHAPTER2_CLOSEOUT.md)
+now distinguishes this covered bridge from missing operation-generated splitting
+and output representation for inconclusive guards. No exceptional rows or FP
+premises change.
