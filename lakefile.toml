@@ -510,3 +510,6 @@ name = "Binary64Format"
 
 [[lean_lib]]
 name = "EndpointOptimality"
+
+[[lean_lib]]
+name = "FiniteGuardPieces"
