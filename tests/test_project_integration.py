@@ -11,6 +11,7 @@ import unittest
 PROJECT = pathlib.Path(__file__).resolve().parents[1]
 EXECUTABLE_CLIENTS = {"hardware/Main.lean", "experiments/accuracy_search/Main.lean", "experiments/key_two_corner/Main.lean"}
 SEMANTIC_FIXTURES = {
+    "Binary64Format.lean": "GeneralizedIntervalArithmetic.Binary64FormatChecks",
     "FormatDigits.lean": "GeneralizedIntervalArithmetic.FormatDigitsChecks",
     "FiniteFormat.lean": "GeneralizedIntervalArithmetic.FiniteFormatChecks",
     "TaggedConversion.lean": "GeneralizedIntervalArithmetic.TaggedConversionChecks",
