@@ -77,6 +77,16 @@ theorem disconnected : values {(-1:ℝ),1} free (fun _=>0) = {(-1:ℝ),1} :=
 
 theorem gap : (0:ℝ) ∉ values {(-1:ℝ),1} free (fun _=>0) := by rw [disconnected]; norm_num
 
+theorem gap_strictly_inside_bounds :
+    ExtendedImageHull.lower (values {(-1:ℝ),1} free (fun _=>0)) < (0:ℝ) ∧
+    (0:ℝ) < ExtendedImageHull.upper (values {(-1:ℝ),1} free (fun _=>0)) := by
+  have hl := (ExtendedImageHull.sound _
+    (show (-1:ℝ) ∈ values {(-1:ℝ),1} free (fun _=>0) by rw [disconnected]; simp)).1
+  have hu := (ExtendedImageHull.sound _
+    (show (1:ℝ) ∈ values {(-1:ℝ),1} free (fun _=>0) by rw [disconnected]; simp)).2
+  exact ⟨lt_of_le_of_lt hl (EReal.coe_lt_coe_iff.mpr (by norm_num)),
+    lt_of_lt_of_le (EReal.coe_lt_coe_iff.mpr (by norm_num)) hu⟩
+
 theorem free_negative_slope : values {0} free (fun _=>-2) = Set.univ := by
   ext z; simp only [Set.mem_univ,iff_true]
   refine ⟨(0,fun _=>-z/2),⟨rfl,fun _=>Set.mem_univ _⟩,?_⟩
