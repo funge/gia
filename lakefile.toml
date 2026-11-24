@@ -396,3 +396,9 @@ name = "BooleanComposition"
 
 [[lean_lib]]
 name = "DomainConstraints"
+
+[[lean_lib]]
+name = "DomainProjections"
+
+[[lean_lib]]
+name = "FiniteEquality"

@@ -93,3 +93,17 @@ subject to explicit dependencies; broad ownership does not authorize merges.
 
 These do not block A/B or the library/source mappings. They do prevent an honest
 claim that finishing a few more finite APIs alone completes Chapter 2.
+
+## Finite logical and numeric-domain interfaces
+
+The [finite comparison package](FINITE_COMPARISONS.md) and
+[domain projections](DOMAIN_PROJECTIONS.md) cover optimistic/pessimistic
+projections, exact independent finite comparison images, threshold/nonzero
+classifiers and same-witness partial sqrt/division domain bridges. Numeric
+re-encoding preserves classifications under explicit whole-image and transport
+premises. Touching/equal-singleton, correlation, holes, nonmonotone predicates
+and unsafe re-encoding controls are kernel-checked. Source: Tupper §2.7.2
+(printed p.24 / PDF p.40) and §2.11 (printed pp.34–36 / PDF pp.50–52).
+Exceptional endpoints, general descriptor generation and full family demotion
+remain outside this milestone; Chapter 2 is not complete. No native or FP
+contract change is made.
