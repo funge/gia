@@ -79,8 +79,8 @@ theorem one_digit_literal : ∀ q ∈ values oneDigit, q = 0 := by
 theorem zero_word_bridge : ∀ x ∈ DiscreteDemotion.hull (values decimal) {0},
     HardwareAddition.Contains Binary64.real ⟨0,0⟩ x := by
   apply word_enclosure decimal (a:=0) (b:=0)
-  · norm_num [Binary64.decode, Binary64.exponent, Binary64.fraction, Binary64.sign]
-  · norm_num [Binary64.decode, Binary64.exponent, Binary64.fraction, Binary64.sign]
+  · simp [Binary64.decode, Binary64.exponent, Binary64.fraction, Binary64.sign]
+  · simp [Binary64.decode, Binary64.exponent, Binary64.fraction, Binary64.sign]
   · exact zero_mem decimal
   · exact zero_mem decimal
   · intro x hx
