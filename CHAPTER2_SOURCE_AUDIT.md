@@ -287,3 +287,12 @@ input observations. The checked `(-1,0)` counterexample refutes unconditional
 commutation by introducing zero; a disconnected input shows hole filling.
 No exceptional arithmetic row or FP premise changes. Automatic criteria and
 other partial operations remain separate work.
+
+## Exact partial-operation transfer
+
+[Partial image transfer](PARTIAL_IMAGE_TRANSFER.md) proves a common exactness
+criterion for injective partial real graphs and a checked finite-gap certificate,
+instantiated by square root and guarded reciprocal. Exact output images preserve
+possible definedness, not universal input-domain classification. This advances
+the derived §§2.7/2.11 conversion bridge without claiming the full constructive
+numeric/domain-description demotion or adding exceptional arithmetic rows.

@@ -216,3 +216,12 @@ existing mathematical demotion target. This closes the repaired-family bridge
 previously deferred above; the literal printed coefficient model is unchanged.
 No native transport, exceptional rounding, new FP premise or chapter-completion
 claim follows.
+
+## Exact partial-operation transfer
+
+[Partial image transfer](PARTIAL_IMAGE_TRANSFER.md) proves a common exactness
+criterion for injective partial real graphs and a checked finite-gap certificate,
+instantiated by square root and guarded reciprocal. Exact output images preserve
+possible definedness, not universal input-domain classification. This advances
+the derived §§2.7/2.11 conversion bridge without claiming the full constructive
+numeric/domain-description demotion or adding exceptional arithmetic rows.

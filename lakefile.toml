@@ -534,3 +534,6 @@ name = "InfiniteAdditionTransfer"
 
 [[lean_lib]]
 name = "RootTransfer"
+
+[[lean_lib]]
+name = "PartialImageTransfer"
