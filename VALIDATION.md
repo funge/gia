@@ -3931,3 +3931,21 @@ feedback was used as a lead, not as evidence replacing the source or kernel.
 No new project axioms, placeholders or FP premises. The existing allowlist
 (`propext`, `Classical.choice`, `Quot.sound`) remains unchanged. No native/default
 changes, hardware execution, executable normalizer, benchmark or hosted CI claim.
+
+## Exceptional right-infinity addition family transfer
+
+Focused `InfiniteAdditionTransfer` build and fixture passed; the fixture audit
+covers 15 declarations. The complete pinned `./check.sh` with the explicit
+pinned C checkout passed: 30 tests in 513.258 seconds, 1,574 named axiom audits,
+2,899 namespace declarations, 173 libraries and 106 fresh semantic fixtures.
+Pinned API comparison and negative audit/registry controls passed. All 1,069
+local Markdown links resolve and `git diff --check` passes; the completed gate
+reported no warnings or errors.
+
+The proof, fixtures and registries are in checkpoint
+e2039583744063fe26014d9e336b0f22147455ed and did not change during qualification.
+Only source-scope wording and this receipt were finalized afterward. A verified
+local recovery bundle preserves the final candidate. No new project axioms,
+placeholders or floating-point premises; the existing axiom allowlist remains
+unchanged. No exceptional observation row, native arithmetic or default path
+changed. No native executable run, benchmark or hosted CI is claimed.

@@ -528,3 +528,6 @@ name = "HansenRealSets"
 
 [[lean_lib]]
 name = "FormatNormalization"
+
+[[lean_lib]]
+name = "InfiniteAdditionTransfer"

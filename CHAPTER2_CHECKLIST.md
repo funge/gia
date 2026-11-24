@@ -281,3 +281,12 @@ printed unsigned digit display from the literal coefficient format for every
 unrestricted repaired and normal-or-minimum value sets at arbitrary radix.
 This closes the value-set normalization proof gap, not authorial intent,
 exceptional rounding or hardware semantics. The literal definition is unchanged.
+
+## Exceptional right-infinity addition conversion
+
+[Exact family transfer](INFINITE_ADDITION_TRANSFER.md) now connects the existing
+source-supported finite/positive-infinity-left addition rows to tagged finite-hull
+conversion. It preserves the exact observation image, including missing coverage,
+and proves successful-result commutation at the same parameter. No exceptional
+arithmetic row is added. Lambda-left and opposite-infinity semantics remain
+unresolved here; nonconstant operations require separate transfer proofs.
