@@ -12,7 +12,7 @@ The precise unresolved source boundary remains the lambda-left reading of the gu
 - `none` occurs exactly when a negative-infinity or lambda input is admitted by the family;
 - no other observation occurs.
 
-The second row reports missing model coverage, not undefinedness of the source operation. An empty input family has no observations, and a mixed family can have both successful and missing observations. The graph keeps actual input witnesses; no Cartesian independence assumption is introduced.
+All equalities here are structural result/set equalities, not the source numerical equality observation on infinities. The second row reports missing model coverage, not undefinedness of the source operation. An empty input family has no observations, and a mixed family can have both successful and missing observations. The graph keeps actual input witnesses; no Cartesian independence assumption is introduced.
 
 `conversion_exact` proves a sufficient general conversion theorem: a conversion that preserves nonemptiness of the finite part and retains the exceptional tags has exactly the same observation image. This does not assert equality of the individual operand witnesses or preservation of all cross-parameter correlations. It works because every supported finite input has the same result for this particular operation.
 
