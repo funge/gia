@@ -942,3 +942,25 @@ and unsafe re-encoding controls are kernel-checked. Source: Tupper §2.7.2
 Exceptional endpoints, general descriptor generation and full family demotion
 remain outside this milestone; Chapter 2 is not complete. No native or FP
 contract change is made.
+
+
+## Mathematical representations, bounds and exceptions
+
+The representation unit adds [extended actual-real-image hulls](EXTENDED_IMAGE_HULL.md),
+[source-scoped exceptional comparisons](EXCEPTIONAL_COMPARISONS.md) and
+[arithmetic](EXCEPTIONAL_ARITHMETIC.md), [literal-infinity controls](EXCEPTIONAL_FAMILIES.md),
+[signed divergence correspondence](INFINITY_STREAMS.md),
+[integer promotion/demotion](NUMBER_PROMOTION.md), and
+[finite-family extremal demotion](DISCRETE_DEMOTION.md).
+The independent positive-infinitesimal leaf reuses pinned mathlib.
+[Finite interval algebra](INTERVAL_ALGEBRA.md), [nonnegative cut arithmetic](CUT_ARITHMETIC.md),
+[rational sequences/digits](SEQUENCE_AND_DIGIT_REPRESENTATIONS.md) and
+[canonical continued-fraction conversion](CONTINUED_FRACTION_CONVERSION.md)
+record their exact source correspondences and boundary controls.
+
+These are mathematical proofs, not native deployment or a completion of Chapter 2.
+Empty actual-real images, infinite bounds, literal infinity tags and lambda are
+distinct. Mixed exceptional comparison directions, full source-carrier promotion,
+unspecified arithmetic rows and arbitrary infinite coefficient reconstruction
+remain open. Later family conversion and property-tracking units are not included.
+No floating-point premise or hardware implementation changes.
