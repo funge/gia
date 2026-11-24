@@ -913,3 +913,18 @@ loss even with exact mixed marginals, through the existing real-comparison resul
 See [scope](BOOLEAN_COMPOSITION.md). Table algebra is not a theorem that arbitrary
 correlated formulas are evaluated exactly. No empty truth element, information
 lattice, partial-expression interpreter or new FP assumptions are introduced.
+
+## Same-parameter domain constraints: §2.11.4
+
+[DomainConstraints](DomainConstraints.lean) formalizes finite constraint families
+as existing DomainBounds intersections at one parameter, with a proved bridge
+to the existing three-valued description and Compatible semantics. The local
+transcription and original PDF (printed pp.35–36 / PDF pp.51–52) were checked.
+Componentwise classification weakening preserves conjunction and universal
+soundness; an actual operation-domain equivalence remains an explicit premise.
+The existing affine reciprocal-sum equivalence supplies a concrete partial
+expression instance. Empty fibers, separate witnesses, holes and shared boundaries
+are [fixture controls](tests/DomainConstraints.lean). This is a predicate-level
+interpretation, not the full numeric f_i(d_i) language or a domain-demotion
+generator. See [scope](DOMAIN_CONSTRAINTS.md) and the
+[section-by-section completion criteria](CHAPTER2_COMPLETION.md).
