@@ -3890,3 +3890,23 @@ were finalized; proofs, fixtures and registries remained unchanged. The original
 executor briefly disconnected before registration, then recovered; no failed
 or partial gate is counted as qualification. A local Git bundle preserves the
 checkpoint and final candidate.
+
+## Hansen sets of finite real coefficients
+
+The focused `HansenRealSets` build and kernel fixture passed; the fixture audit
+covers 23 declarations. The complete pinned `./check.sh` with the explicit
+pinned C checkout passed: 30 tests in 487.763 seconds, 1,556 named axiom audits,
+2,871 namespace declarations, 171 libraries and 104 fresh semantic fixtures.
+The disconnected-image control was finalized before the full gate reached its
+fixture phase. The pinned C API comparison, negative audit/registry controls,
+1,051 local Markdown links and `git diff --check` passed. No warnings or errors
+were reported by the completed gate. Candidate code/fixtures/registries were
+committed at d56ca66b4b3c31ce81b7ab372f5a27f02dfee7da; only this receipt was
+added afterward.
+
+No project axioms, placeholders, expanded FP contract or native/default changes.
+The proofs use only the existing `propext`, `Classical.choice`, `Quot.sound`
+allowlist. Convexity is an explicit mathematical premise of the exact interior
+and boundary characterization, not a new floating-point assumption. No native
+executable rerun, hardware execution, benchmark or hosted CI is claimed. A local
+verified recovery bundle preserves the candidate.
