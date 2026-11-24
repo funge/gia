@@ -717,3 +717,14 @@ endpoint checker supplies inequalities, not this extra property; a checked
 accepted-but-loose example demonstrates the distinction. Closed intervals and
 same-parameter partial families inherit the correspondence, preserving empty
 fibers. No native rounding, affine-interior optimality or new FP premise follows.
+
+## Finite guarded piece compilation
+
+[Finite guarded pieces](FINITE_GUARD_PIECES.md) supplies a derived restricted
+subclass for §§2.13–2.14: rational affine constraints with strict/closed
+boundaries, exact union/intersection compilation to finite conjunction pieces,
+and an exact rational membership test. It reuses existential piece denotation
+and keeps the same parameter/value witness, external restrictions and empty
+fibers. This closes a concrete finite-code gap beyond point tables; it is not
+a source-prescribed grammar, arbitrary-function representation, automatic
+demotion or a full open/exceptional endpoint model. No FP assumption changes.
