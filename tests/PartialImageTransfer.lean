@@ -42,16 +42,16 @@ theorem reciprocal_pole_closed : image reciprocal (Set.Icc (-1) 1) =
 theorem reciprocal_missing_tip : (1 : ℝ) ∈ image reciprocal (Set.Icc 1 2) ∧
     (1 : ℝ) ∉ image reciprocal (Set.Ioc 1 2) := by
   constructor
-  · exact ⟨1,by norm_num,by norm_num [reciprocal,GeneralizedExamples.ReciprocalValue]⟩
+  · exact ⟨1,by norm_num,by norm_num [reciprocal,PartialRealArithmetic.divRel]⟩
   · rintro ⟨x,hx,hn,he⟩
-    have h : x = 1 := inv_injective (show x⁻¹ = (1:ℝ)⁻¹ by simpa using he.symm)
+    have h : x = 1 := inv_injective (show x⁻¹ = (1:ℝ)⁻¹ by simpa only [one_div, inv_one] using he.symm)
     subst x
     exact (lt_irrefl _ hx.1)
 
 theorem reciprocal_missing_interior : (1 : ℝ) ∉
     image reciprocal (Set.Icc (-2) 2 \ {1}) := by
   rintro ⟨x,hx,hn,he⟩
-  have h : x = 1 := inv_injective (show x⁻¹ = (1:ℝ)⁻¹ by simpa using he.symm)
+  have h : x = 1 := inv_injective (show x⁻¹ = (1:ℝ)⁻¹ by simpa only [one_div, inv_one] using he.symm)
   exact hx.2 h
 
 theorem root_new_zero : (0 : ℝ) ∈ image root (Set.Icc (-1) 0) ∧
@@ -79,7 +79,7 @@ theorem empty_image (R : ℝ → ℝ → Prop) : image R ∅ = ∅ := by
 
 theorem zero_only_empty : image reciprocal {0} = ∅ := by
   ext z
-  simp [image,GeneralFamilyDemotion.outputs,reciprocal,GeneralizedExamples.ReciprocalValue]
+  simp [image,GeneralFamilyDemotion.outputs,reciprocal,PartialRealArithmetic.divRel]
 
 /-- Same output image does not preserve universal definedness of input sets. -/
 theorem totality_not_preserved :

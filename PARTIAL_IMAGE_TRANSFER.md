@@ -1,6 +1,6 @@
 # Exact image transfer through partial operations
 
-This is a derived mathematical bridge for Tupper's inclusion and domain framework, not a new exceptional arithmetic table. The source distinguishes value inclusion from domain classification in §2.11.1–2, printed p.34 / [PDF p.50](https://www.dgp.toronto.edu/~mooncake/thesis.pdf#page=50) (visually checked), building on §§2.7.3–4, printed pp.24–25 / [PDF p.40](https://www.dgp.toronto.edu/~mooncake/thesis.pdf#page=40). The existing [root interpretation](ROOT_TRANSFER.md) and guarded reciprocal are reused. The reciprocal relation is the existing `GeneralizedExamples.ReciprocalValue`; its zero guard is not mathlib's totalized inverse at zero.
+This is a derived mathematical bridge for Tupper's inclusion and domain framework, not a new exceptional arithmetic table. The source distinguishes value inclusion from domain classification in §2.11.1–2, printed p.34 / [PDF p.50](https://www.dgp.toronto.edu/~mooncake/thesis.pdf#page=50) (visually checked), building on §§2.7.3–4, printed pp.24–25 / [PDF p.40](https://www.dgp.toronto.edu/~mooncake/thesis.pdf#page=40). The existing [root interpretation](ROOT_TRANSFER.md) and guarded reciprocal are reused. The reciprocal relation is the existing core `PartialRealArithmetic.divRel 1`; its zero guard is not mathlib's totalized inverse at zero.
 
 ## Common exactness rule
 

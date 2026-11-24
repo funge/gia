@@ -1,6 +1,6 @@
 import GeneralFamilyDemotion
 import RootTransfer
-import GeneralizedExamples
+import PartialRealArithmetic
 
 /-! Exact transfer through injective partial real operations. The image reuses
 `GeneralFamilyDemotion.outputs`; finite certificates check domains, not geometry. -/
@@ -89,14 +89,14 @@ theorem root_injective : Injective root := by
   have := congrArg (fun r : ℝ => r^2) he
   simpa [Real.sq_sqrt hx,Real.sq_sqrt hy] using this
 
-abbrev reciprocal := GeneralizedExamples.ReciprocalValue
+abbrev reciprocal := PartialRealArithmetic.divRel 1
 
 theorem reciprocal_domain (x : ℝ) : Defined reciprocal x ↔ x ≠ 0 := by
-  exact ⟨fun ⟨_,h,_⟩ => h, fun h => ⟨x⁻¹,h,rfl⟩⟩
+  exact ⟨fun ⟨_,h,_⟩ => h, fun h => ⟨1/x,h,rfl⟩⟩
 
 theorem reciprocal_injective : Injective reciprocal := by
   rintro x y z ⟨_,hx⟩ ⟨_,hy⟩
-  exact inv_injective (hx.symm.trans hy)
+  exact inv_injective (by simpa only [one_div] using hx.symm.trans hy)
 
 /-- Closing the zero hole adds no reciprocal value; other missing nonzero
 points do matter, including missing closed boundary points. -/
