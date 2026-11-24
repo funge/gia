@@ -227,7 +227,7 @@ premise or general heterogeneous exceptional endpoint claim is made.
 
 | Kind | Residual item | Current boundary / next evidence |
 | --- | --- | --- |
-| Proof task | Mixed endpoint carriers and boundary types | Finite rational strict/closed bands are compiled exactly; total real coefficient maps now preserve joint witnesses. A common decoded-endpoint theorem for mixed integer/rational/real bounds, with explicit open/closed and empty cases, is still needed before claiming the general variant. Infinite bounds and literal exceptional values must stay separate. |
+| Proof task | Mixed endpoint carriers and boundary types | Finite rational strict/closed bands are compiled exactly; total real coefficient maps now preserve joint witnesses. The subsequent mixed-endpoint milestone closes a concrete integer/rational-to-real conversion with exact open/closed and empty cases; arbitrary real coefficient encodings and the general variant remain open. Infinite bounds and literal exceptional values must stay separate. |
 | Proof task | Hansen's full stated multi-parameter coefficient variant | Existing finite shared-vector affine results do not by themselves establish the whole interval-coefficient variant with the printed parameter restrictions. State the actual joint coefficient/parameter relation and discharge its correspondence, reusing the current witness rules. |
 | Source/specification ambiguity | Persistent choices for repeated interval descriptions | Equality of descriptions does not alone determine equality of chosen real witnesses. Both models now have exact mathematics and a strict separating example; do not mark one as the author's intended convention without evidence. |
 | Source/specification boundary | Finite guards and perfect demotion | The printed infinite point construction and finite/unmanageable-description discussion do not supply a general finite input grammar or generation algorithm. The chosen rational affine grammar is a restricted result, not a resolution of that omission. |
@@ -235,6 +235,19 @@ premise or general heterogeneous exceptional endpoint claim is made.
 
 Chapter 2 remains incomplete. Beyond these rows, the explicit literal/repaired
 format distinction and §2.12 weak/strong tracking interpretation still require
-source-level decisions; adding finite examples does not resolve them. The next
-bounded proof opportunity here is mixed endpoint denotation with explicit
-boundary flags, rather than choosing a persistent-witness convention silently.
+source-level decisions; adding finite examples does not resolve them. The mixed-endpoint milestone below addresses that bounded opportunity without
+choosing a persistent-witness convention for the source. The next source-facing
+proof task is the full printed Hansen interval-coefficient variant at its stated
+parameter choices; reuse the existing shared-vector affine foundations.
+
+## Mixed affine endpoints and boundary flags
+
+[Mixed endpoints](MIXED_ENDPOINTS.md) proves an exact concrete conversion from
+integer/rational lower coefficients and rational/integer upper coefficients to
+the existing guarded rational pieces. It preserves open/closed flags, guards,
+empty fibers and one band/coefficient witness across uses. A full nonemptiness
+criterion distinguishes strict and closed equal endpoints. This closes the
+concrete finite mixed-carrier task from the preceding checklist; irrational,
+extended/undefined carriers and the full Hansen variant remain separate. The
+flags and persistent-choice interpretation are explicit model conventions, not
+claims inferred from §2.14. No new FP assumptions or chapter-completion claim.

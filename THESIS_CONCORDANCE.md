@@ -1083,3 +1083,15 @@ integer/rational instance and a strict marginal-versus-joint counterexample are
 checked. The existing pointwise coefficient theorem remains unchanged; §2.14's
 equality notation alone does not settle persistence of real choices. No new FP
 premise or general heterogeneous exceptional endpoint claim is made.
+
+## Mixed affine endpoints and boundary flags
+
+[Mixed endpoints](MIXED_ENDPOINTS.md) proves an exact concrete conversion from
+integer/rational lower coefficients and rational/integer upper coefficients to
+the existing guarded rational pieces. It preserves open/closed flags, guards,
+empty fibers and one band/coefficient witness across uses. A full nonemptiness
+criterion distinguishes strict and closed equal endpoints. This closes the
+concrete finite mixed-carrier task from the preceding checklist; irrational,
+extended/undefined carriers and the full Hansen variant remain separate. The
+flags and persistent-choice interpretation are explicit model conventions, not
+claims inferred from §2.14. No new FP assumptions or chapter-completion claim.

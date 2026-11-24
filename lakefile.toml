@@ -516,3 +516,6 @@ name = "FiniteGuardPieces"
 
 [[lean_lib]]
 name = "CoefficientWitnesses"
+
+[[lean_lib]]
+name = "MixedEndpoints"
