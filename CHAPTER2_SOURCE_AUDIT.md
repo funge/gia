@@ -195,3 +195,13 @@ existing mathematical demotion target. This closes the repaired-family bridge
 previously deferred above; the literal printed coefficient model is unchanged.
 No native transport, exceptional rounding, new FP premise or chapter-completion
 claim follows.
+
+## Endpoint certificates and optimality
+
+[Endpoint optimality](ENDPOINT_OPTIMALITY.md) proves that a sound finite decoded
+Word certificate equals the least repaired-binary64 hull of a nonempty actual
+image iff its endpoints are extremal representable bounds. The existing affine
+endpoint checker supplies inequalities, not this extra property; a checked
+accepted-but-loose example demonstrates the distinction. Closed intervals and
+same-parameter partial families inherit the correspondence, preserving empty
+fibers. No native rounding, affine-interior optimality or new FP premise follows.
