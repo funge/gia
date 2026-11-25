@@ -65,9 +65,9 @@ interval `(0,1)`; using the closed bounds alone would add its two endpoints.
 
 GIA proves what a conversion must preserve and can supply executable reference
 code for supported cases. Not every general theorem needs an implementation for
-every case. relgraph needs production code only for conversions its renderer
-actually uses; it has no runtime dependency on GIA. Universal conversion is not
-required for this Chapter 2 milestone.
+every case. The relgraph interval core can implement conversions useful to the
+applications it supports, with the renderer as one client. It has no runtime
+dependency on GIA, and need not implement every mathematically possible conversion.
 
 ## What the proofs cover
 
