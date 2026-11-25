@@ -51,7 +51,7 @@ from our derived constructions. An E beside a row does not erase its R/U part.
 | §2.9.1 ([26–27](https://www.dgp.toronto.edu/~mooncake/thesis.pdf#page=42)) | Changing the endpoint number system | **E/R** | [NumberPromotion](NumberPromotion.lean): `down_greatest; up_least` | Integer and finite-rational target projectors are constructed. An arbitrary endpoint system needs representability/extremality premises; source supplies no universal projector. |
 | §2.9.2 ([27](https://www.dgp.toronto.edu/~mooncake/thesis.pdf#page=43)) | Boolean interval isomorphism and description inclusion | **E** | [BooleanComposition](BooleanComposition.lean): `conj_exact; disj_exact` | StrictComparison gives the three nonempty truth intervals. Independent images differ from correlated truth sets; no empty truth case/full lattice is asserted. |
 | §2.9.3 ([27–30](https://www.dgp.toronto.edu/~mooncake/thesis.pdf#page=43)) | Linear shared-parameter families and demotion | **E/C/R** | [LinearFamilyEquality](LinearFamilyEquality.lean): `canonical_or_full_fiber_of_range` | Finite affine correspondence/cancellation are proved. Pointwise forward-or-reverse assertion is refuted and repaired with a full-fiber alternative. AffineDemotionLimits.no_greatest_minorant closes the nonoptimality claim. Full exceptional coefficients remain unmodeled. |
-| §2.9.4 ([30](https://www.dgp.toronto.edu/~mooncake/thesis.pdf#page=46)) | Constant embedding and stated homomorphism | **E/R/U** | [FiniteFamilyChain](FiniteFamilyChain.lean): `affine_round_trip` | Exact representation embedding is checked. Operation equality requires compatible, constant-preserving demotion choices; inclusion alone does not establish the full printed homomorphism for arbitrary choices. |
+| §2.9.4 ([30](https://www.dgp.toronto.edu/~mooncake/thesis.pdf#page=46)) | Constant embedding and stated homomorphism | **E/R/U** | [LinearIntervals](LinearIntervals.lean): `linear_constant_add; linear_constant_sub; linear_constant_mul` | Concrete constant add/sub/mul and the success-conditioned evaluator correspondence are checked, including tests/ConstantEmbedding.lean. Extending this to arbitrary family/demotion choices needs compatibility, not mere inclusion. |
 | §2.9.5 ([30](https://www.dgp.toronto.edu/~mooncake/thesis.pdf#page=46)) | Quadratic bounds and invalid infinite-coefficient example | **E/R** | [QuadraticFamilies](QuadraticFamilies.lean): `one_parameter_representation; product_value` | ExceptionalFamilies checks the midpoint-to-lambda example. General literal exceptional coefficient arithmetic is not specified here; demotion implementation is explicitly deferred to later sections. |
 | §2.9.6 ([30–31](https://www.dgp.toronto.edu/~mooncake/thesis.pdf#page=46)) | Finite vectors of independent parameters, shared within each value | **E/R** | [MultiAffineFamilies](MultiAffineFamilies.lean): `hull_endpoints_attained` | Finite rational coefficient representation and exact extrema are covered; arbitrary real/exceptional coefficient system is a carrier generalization, not yet a full formal implementation. |
 | §2.9.7 ([31](https://www.dgp.toronto.edu/~mooncake/thesis.pdf#page=47)) | Coefficient function schema, noncollapse and inclusion | **E/R** | [GeneralFamilyDemotion](GeneralFamilyDemotion.lean): `model_demotion` | FunctionalBounds and arbitrary parameter/witness relations realize the semantic core. An arbitrary function family is a schema with operator/demotion obligations, not a supplied grammar or algorithm. |
@@ -111,11 +111,12 @@ This does not refute the existing exact real/rational interval theorem.
    extended-real carrier. Weak semantic continuity contradicts checked masking
    examples. These need an explicit interpretation/errata decision, not an axiom.
 2. **Precise correspondence still missing:** the literal symbolic sin/root
-   trace of §2.9.8, and operation-preserving constant embedding under explicit
-   compatible demotion choices (§2.9.4). Generic singleton/relational semantics
-   are present, but that is not an audited concrete trace or a proof that any
-   inclusion-preserving demoter is a homomorphism. Full exceptional coefficient
-   evaluations depend on item 1. These are finite source-facing proof tasks.
+   trace of §2.9.8. Generic singleton/relational semantics are present, but that
+   is not an audited concrete trace. Constant embedding for add/sub/mul and the
+   existing linear evaluator is already proved; do not list that as missing.
+   A universal claim for arbitrary inclusion-preserving demoters would need
+   additional compatibility and is not implied by those concrete results. Full exceptional coefficient
+   evaluations depend on item 1. The symbolic trace is a finite source-facing proof task.
 3. **Restricted operator coverage:** §2.15.5 convergence is established for the
    finite strict arithmetic grammar, not every operator supplied later in the
    thesis. Additional operators belong to the operation/theory coverage plan;

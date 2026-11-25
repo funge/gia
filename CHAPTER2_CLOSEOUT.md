@@ -12,7 +12,7 @@ It is the authoritative source-to-Lean map; older receipts in the
 | Concrete representation coverage | Finite formats and their repaired binary64 correspondence, finite affine/quadratic/Hansen variants, unbounded sets of finite choices, cuts, rational sequences, radix digits with explicit floating normalization, and simple/signed continued fractions have scoped proofs. |
 | Checked source obstructions | Literal coefficient/digit format disagreement; literal decimal rounding/reassociation discrepancies; pointwise forward-or-reverse affine claim; semantic weak-continuity implication; unconditional staged floating-interval subdistributivity. Each has a checked control and a separate valid scope or repair. |
 | Unresolved source interpretation | Full exceptional arithmetic/carrier promotion, weak-tracking meaning, and compatible operation/demotion choices in claimed homomorphisms. Missing rows are not filled from IEEE. |
-| Concrete proof correspondence still missing | The displayed symbolic sin/root trace and constant-embedding operation compatibility under explicit demotion premises. Generic singleton semantics alone do not prove these concrete assertions. |
+| Concrete proof correspondence still missing | The displayed symbolic sin/root trace. Concrete constant add/sub/mul and linear-evaluator compatibility are already proved; only a generalization to arbitrary demotion choices would require new compatibility premises. |
 | Restricted later operator coverage | Interval-stream convergence covers the existing strict finite arithmetic grammar; operators introduced later need their own correspondence proofs. |
 | Not new universal Chapter 2 obligations | General nonlinear quantifier elimination, automatic bumpy classification, arbitrary optimal demoters, unspecified online circuits/interval Euclidean extraction, and uniform performance claims. These are definitions, references or optional implementations rather than supplied universal algorithms. |
 
@@ -33,7 +33,7 @@ This does not change any arithmetic backend or trusted premise.
 ## Finish-line recommendation
 
 Stop growing the chapter through optional nonlinear or representation algorithms.
-Close the two concrete correspondence tasks above, then explicitly decide how
+Close the concrete symbolic correspondence above, then explicitly decide how
 errata and unspecified source semantics are recorded. The most consequential
 blocker to claiming every printed statement is proved is **source interpretation,
 not a missing solver**. Do not introduce an axiom to settle it.
