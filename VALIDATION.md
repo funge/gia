@@ -4279,3 +4279,30 @@ elimination, the effective certified rational query, and closed-hull
 approximation. General projection, output interval enumeration and source
 exceptional semantics are not inferred. A verified recovery bundle and full
 gate log are retained outside the repository.
+
+## Finite monotone union projection (2026-11-25)
+
+Qualified proof checkpoint `3ae7be89c52bfb596077cf57579919b6f2d594c4`, based on
+merged #61 (`c6664a7e848b2548f80793bfacf7fd447f243ab8`). This receipt is the only
+subsequent tracked change; the proof, fixtures, registries and source-scope notes
+are unchanged from the full gate.
+
+- Full `./check.sh` passed: library build, direct audit, and **30 tests in
+  554.810 seconds**, including the explicitly supplied pinned C checkout
+  comparison and all **119** fresh-process semantic fixtures.
+- **1,791 named axiom audits**, **3,346 namespace declarations**, **186 libraries**;
+  no warnings or errors. The focused new fixture audited **24** declarations.
+- Kernel controls cover square's noninjectivity, decreasing open/closed flags,
+  disjoint union exclusion, empty and singleton inputs, retained parameter
+  guards, missing strictness/continuity and a pole endpoint counterexample.
+- The actual rational reference query returned `[true, false, false, true]`,
+  matching separate kernel-checked assertions.
+- **1,213 local file links** passed before this receipt; final links and
+  `git diff --check` were rerun. The recovery bundle was independently verified.
+- No new project axioms, placeholders, unsafe/native-decide proof shortcuts,
+  FP assumptions, dependency pins, native/C/default edits or hosted CI dispatch.
+  The allowlist remains `propext`, `Classical.choice`, `Quot.sound`.
+
+[Source scope and exact premises](MONOTONE_UNIONS.md) distinguish finite monotone
+branch projection, effective square-piece construction and pole-aware inverse
+descriptions from general branch discovery or arbitrary closure algorithms.

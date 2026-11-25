@@ -1217,3 +1217,9 @@ input witness exactly under a checked regular polynomial identity, retaining
 original pieces and cancellation guards. Its rational membership query reuses
 the existing singleton evaluator; general projection and output-piece
 enumeration remain separate obligations.
+
+[Finite monotone unions](MONOTONE_UNIONS.md) give exact branch-image projection with
+open/closed flags, a proved rational square-piece converter and retained guards.
+Fractional branches reuse existing pole-aware elimination. Branch discovery and
+general nonlinear output conversion remain separate; no arbitrary closure
+algorithm or Chapter 2 completion is claimed.
