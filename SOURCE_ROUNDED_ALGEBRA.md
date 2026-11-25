@@ -88,9 +88,9 @@ or a guessed IEEE result. No unspecified exceptional arithmetic was added.
 The decimal comparisons, derived multiplication nonassociativity and the stated
 five-site mixed-distributivity refutations are now checked, with explicit source
 mismatches. This does **not** settle the author's intended format or fix the
-printed downward row. Nearest existence/selection over the full format,
-implementation tie policy, broad ULP assertions and any remaining inverse-law
-interpretation are separate. Exceptional rows without sufficient source rules
+printed downward row. The later [nearest-minimizer package](NEAREST_MINIMIZERS.md) closes global finite
+existence, uniqueness and ties, and qualifies the inverse-law scope with checked
+examples. Implementation tie selection and broad ULP assertions remain separate. Exceptional rows without sufficient source rules
 remain specification gaps. Family/operator closure and §2.15 survey obligations
 remain on the [Chapter 2 closeout matrix](CHAPTER2_CLOSEOUT.md).
 

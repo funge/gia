@@ -558,3 +558,6 @@ name = "DirectedOperationAlgebra"
 
 [[lean_lib]]
 name = "SourceRoundedAlgebra"
+
+[[lean_lib]]
+name = "NearestMinimizers"
