@@ -4156,3 +4156,34 @@ The [source scope and discrete residuals](DIRECTED_OPERATION_ALGEBRA.md) retain
 printed decimal/multiplication examples, nearest rounding and mixed distributive
 laws as distinct tasks. A verified recovery bundle and full gate log are
 retained outside the repository.
+
+## Source-rounded algebra — 2026-11-25
+
+Proof checkpoint `529575617a61b16749ccd1e2f0b7ba9965ceeaf9`, based on merged
+#57 main `c71df0ef066b4529adeb3bc2a1bb16128dc83da4`, passed the complete local
+`./check.sh` with pinned Lean 4.19.0/mathlib and explicit `RELGRAPH_CHECKOUT`
+comparison. This receipt is the only subsequent change; all proof, fixture,
+registry and source-scope bytes are unchanged.
+
+- **30 tests passed in 538.647s**, including pinned C API comparison,
+  audit-rejection controls, registration and fresh semantic fixtures.
+- **1,732 named audits**, **3,217 namespace declarations**, **182 libraries**,
+  **115 semantic fixtures**. The new library has **41** named theorem audits;
+  its focused fixture audit passed for **23** declarations, without warnings.
+- Kernel controls cover the literal/repaired decimal discrepancy, downward
+  reassociation's zero result versus printed 10000, all three multiplication
+  modes and all five independently quantified distributive mode sites,
+  represented inputs, an unresolved nearest tie, conservative exceptional
+  observation extension, and numerical versus structural infinity equality.
+- **1,177 local links**, none broken before this receipt; links and
+  `git diff --check` rerun on the final tree.
+- No new project axioms, placeholders, unsafe/native-decide proof shortcuts,
+  FP premises, native/C/default changes or hosted CI dispatch. Existing axiom
+  allowlist unchanged: `propext`, `Classical.choice`, `Quot.sound`.
+- The local rational observation table is certified only at the theorem's
+  required sites; it is not a general rounder or a native arithmetic experiment.
+
+The [source report](SOURCE_ROUNDED_ALGEBRA.md) distinguishes the original
+coefficient model, separately labeled digit repair, reproduced calculations,
+checked discrepancies and remaining conventions. Verified recovery bundle and
+full gate log are retained outside the repository.
