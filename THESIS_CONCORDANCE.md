@@ -1,5 +1,11 @@
 # Thesis-to-formalization concordance
 
+Current chapter-wide status: [printed-source closeout audit](CHAPTER2_CHECKLIST.md).
+It records every subsection, the all-real floating-digit correspondence, and
+the staged-rounding subdistributivity counterexample. Earlier milestone receipts
+below remain historical; the current audit distinguishes missing proofs from
+unspecified algorithms and optional research.
+
 This is a reading map for Jeffrey Allen Tupper's *Graphing Equations with
 Generalized Interval Arithmetic*, not a claim that the thesis has been fully
 formalized. Start with the [project README](README.md), then use this document

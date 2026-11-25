@@ -1,5 +1,11 @@
 # Chapter 2: claim audit and finish line
 
+Current chapter-wide status: [printed-source closeout audit](CHAPTER2_CHECKLIST.md).
+It records every subsection, the all-real floating-digit correspondence, and
+the staged-rounding subdistributivity counterexample. Earlier milestone receipts
+below remain historical; the current audit distinguishes missing proofs from
+unspecified algorithms and optional research.
+
 This is the consolidated source audit for the four integrated Chapter 2 units:
 finite logic/domain, representations/bounds/exceptions, families/sets/demotion,
 and properties/accuracy. **Chapter 2 is not complete.** It records current

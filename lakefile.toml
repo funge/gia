@@ -585,3 +585,9 @@ name = "FiniteQuery"
 
 [[lean_lib]]
 name = "SignedExtraction"
+
+[[lean_lib]]
+name = "FloatingDigits"
+
+[[lean_lib]]
+name = "RoundedIntervalControl"
