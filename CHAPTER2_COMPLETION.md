@@ -256,3 +256,7 @@ premises change.
 The [scalar numeric-foundations correspondence](NUMERIC_FOUNDATIONS.md) maps
 explicit §§2.2–2.4 claims to actual scalar embeddings, guarded domains and
 root/sequence existence. It leaves rounding and exceptional residuals explicit.
+
+[Finite directed-operation algebra](DIRECTED_OPERATION_ALGEBRA.md) supplies exact
+in-range success, extremality and partial-domain preservation for least directed
+demotion, with source-rounded algebra and exceptional residuals listed separately.

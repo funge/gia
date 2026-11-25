@@ -4124,3 +4124,35 @@ A verified recovery Git bundle and full local log are retained outside the
 repository. The [source scope](NUMERIC_FOUNDATIONS.md) and
 [closeout matrix](CHAPTER2_CLOSEOUT.md) retain the remaining rounded-algebra,
 exceptional-semantics and broader Chapter 2 obligations explicitly.
+
+## Finite directed-operation algebra — 2026-11-25
+
+Proof checkpoint `13b9bf671eb080af65cc5a30bc814fbb649bdb9a` on merged #56 main
+`b2d8318c0b2cf0d0e86b85ac40beb9e73c0efb46` passed the complete local
+`./check.sh` with pinned Lean 4.19.0/mathlib and explicit `RELGRAPH_CHECKOUT`
+comparison. This receipt is the only subsequent change; the qualified proof,
+fixture, registry and source-scope bytes are unchanged.
+
+- Build and direct audit passed: **1,691 named audits**, **3,087 namespace
+  declarations**, **181 libraries**, **114 fresh semantic fixtures**.
+- **30 tests passed in 519.690s**, including pinned C API comparison, audit
+  rejection controls, module registration and semantic-fixture integration.
+- Focused new fixture: **13 audited declarations**. **15** new named library
+  theorems cover finite success/extremality, leastness, uniqueness, actual
+  partial-operation domains, functionality-qualified soundness, commutativity
+  and represented identities/cancellation.
+- The fixtures distinguish a zero denominator from an out-of-range quotient,
+  check directed nonassociativity without overflow, reject loose nonoptimal
+  endpoints and empty families, and separate enclosure from attainment.
+- **1,168 local links**, none broken before this receipt; local links and
+  `git diff --check` rerun on the final tree.
+- No new project axioms, placeholders, unsafe/native-decide proof shortcuts,
+  FP assumptions, native/C/default changes or hosted CI dispatch. Audit
+  allowlist unchanged: `propext`, `Classical.choice`, `Quot.sound`.
+- This is a proof-only partial mathematical operation graph. No executable
+  native integration, runtime performance or exceptional IEEE behavior claimed.
+
+The [source scope and discrete residuals](DIRECTED_OPERATION_ALGEBRA.md) retain
+printed decimal/multiplication examples, nearest rounding and mixed distributive
+laws as distinct tasks. A verified recovery bundle and full gate log are
+retained outside the repository.
