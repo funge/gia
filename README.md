@@ -1,5 +1,10 @@
 Original project sources are licensed under MIT by John Funge; dependencies retain their own licenses. See [migration provenance](MIGRATION.md).
 
+The [symbolic sine/root trace](SYMBOLIC_TRACE.md) closes the final concrete
+Chapter 2 example identified by the audit. See the [conditional scoped completion
+verdict](CHAPTER2_CLOSEOUT.md); this is not a claim that every printed assertion
+is true or that arbitrary exceptional semantics have been specified.
+
 Current chapter-wide status: [printed-source closeout audit](CHAPTER2_CHECKLIST.md).
 It records every subsection, the all-real floating-digit correspondence, and
 the staged-rounding subdistributivity counterexample. Earlier milestone receipts

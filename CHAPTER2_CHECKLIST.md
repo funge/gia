@@ -1,6 +1,6 @@
 # Chapter 2: source-to-Lean closeout audit
 
-Current audit after #67, checked against **all printed pp.13–43 / PDF pp.29–59**
+Current audit after #68 and the concrete symbolic-trace proof, checked against **all printed pp.13–43 / PDF pp.29–59**
 of [Tupper’s 1996 thesis](https://www.dgp.toronto.edu/~mooncake/thesis.pdf),
 including every numbered subsection below. The repository transcription was used
 only as an index; formulas and ambiguities were read from page images. This
@@ -55,7 +55,7 @@ from our derived constructions. An E beside a row does not erase its R/U part.
 | §2.9.5 ([30](https://www.dgp.toronto.edu/~mooncake/thesis.pdf#page=46)) | Quadratic bounds and invalid infinite-coefficient example | **E/R** | [QuadraticFamilies](QuadraticFamilies.lean): `one_parameter_representation; product_value` | ExceptionalFamilies checks the midpoint-to-lambda example. General literal exceptional coefficient arithmetic is not specified here; demotion implementation is explicitly deferred to later sections. |
 | §2.9.6 ([30–31](https://www.dgp.toronto.edu/~mooncake/thesis.pdf#page=46)) | Finite vectors of independent parameters, shared within each value | **E/R** | [MultiAffineFamilies](MultiAffineFamilies.lean): `hull_endpoints_attained` | Finite rational coefficient representation and exact extrema are covered; arbitrary real/exceptional coefficient system is a carrier generalization, not yet a full formal implementation. |
 | §2.9.7 ([31](https://www.dgp.toronto.edu/~mooncake/thesis.pdf#page=47)) | Coefficient function schema, noncollapse and inclusion | **E/R** | [GeneralFamilyDemotion](GeneralFamilyDemotion.lean): `model_demotion` | FunctionalBounds and arbitrary parameter/witness relations realize the semantic core. An arbitrary function family is a schema with operator/demotion obligations, not a supplied grammar or algorithm. |
-| §2.9.8 ([32](https://www.dgp.toronto.edu/~mooncake/thesis.pdf#page=48)) | Symbolic singleton bounds and finite expressions | **R/D** | [IntervalSetExtension](IntervalSetExtension.lean): `guarded_points_exact` | Exact graph/point semantics and finite arithmetic syntax exist. The displayed sin/root symbolic trace and a universal symbolic grammar are not directly formalized. The ellipsis is not an algorithmic specification. |
+| §2.9.8 ([32](https://www.dgp.toronto.edu/~mooncake/thesis.pdf#page=48)) | Symbolic singleton bounds and finite expressions | **E/D** | [SymbolicTrace](SymbolicTrace.lean): `trace_iff; source_trace; source_projection` | The printed sine/root trace is exact with one shared parameter and strict partial guards; tightness is pointwise. The universal function ellipsis is not an algorithmic grammar. See [scope](SYMBOLIC_TRACE.md). |
 | §2.10 ([32–33](https://www.dgp.toronto.edu/~mooncake/thesis.pdf#page=48)) | Ideal-to-stored and stored-to-evaluated outward bounds | **E/R/U** | [FiniteAffineDemotion](FiniteAffineDemotion.lean): `certified_enclosure; certified_evaluation` | Finite endpoint-basis certificate is proved, distinct from arbitrary coefficient demotion. The “order of machine precision” sentence lacks a norm/constant/conditioning hypothesis; it is not an established uniform error theorem. |
 | §2.11 ([33–34](https://www.dgp.toronto.edu/~mooncake/thesis.pdf#page=49)) | Value intervals with separate three-valued domain descriptions | **E/R** | [PartialEnclosures](PartialEnclosures.lean): `DomainBounds; PartialEnclosure` | Explicit definite/possible domains and same-witness partial semantics are covered. This is not a complete concrete syntax for every numeric descriptor. |
 | §2.11.1 ([34](https://www.dgp.toronto.edu/~mooncake/thesis.pdf#page=50)) | Value and domain inclusion | **E** | [GeneralFamilyDemotion](GeneralFamilyDemotion.lean): `sound_partial_iff; sound_demote` | Value obligations apply to actual outputs. No value is invented at an absent input or collapsed fiber. |
@@ -102,37 +102,47 @@ then I·(J+K)=[200,220]; the other route gives I·J=[200,200], I·K=[2,2], then
 extra widening. The actual real answer 202 remains enclosed by both routes.
 This does not refute the existing exact real/rational interval theorem.
 
-## Remaining work, ranked by actual source obligation
+## Scoped completion verdict
 
-1. **Unresolved semantics:** §§2.5–2.6 exceptional carrier/promotion and
-   §2.12 weak-tracking interpretation. The five comparison predicates and
-   specified operation rows are formalized; the source does not supply a
-   complete exceptional operation table or a map for lambda into its displayed
-   extended-real carrier. Weak semantic continuity contradicts checked masking
-   examples. These need an explicit interpretation/errata decision, not an axiom.
-2. **Precise correspondence still missing:** the literal symbolic sin/root
-   trace of §2.9.8. Generic singleton/relational semantics are present, but that
-   is not an audited concrete trace. Constant embedding for add/sub/mul and the
-   existing linear evaluator is already proved; do not list that as missing.
-   A universal claim for arbitrary inclusion-preserving demoters would need
-   additional compatibility and is not implied by those concrete results. Full exceptional coefficient
-   evaluations depend on item 1. The symbolic trace is a finite source-facing proof task.
-3. **Restricted operator coverage:** §2.15.5 convergence is established for the
-   finite strict arithmetic grammar, not every operator supplied later in the
-   thesis. Additional operators belong to the operation/theory coverage plan;
-   the source does not assert convergence for arbitrary discontinuous functions.
+The last identified concrete trace is now proved in [SymbolicTrace](SymbolicTrace.lean).
+The audit currently identifies **no remaining clearly stated, feasible proof
+obligation within this scoped Chapter 2 milestone**. This is not a claim that
+every printed assertion is true or that every representation is implemented.
+The R labels above continue to record finite/restricted models rather than
+silently upgrading them to a full arbitrary exceptional calculus.
 
-General quantifier elimination, automatic bumpy classification, arbitrary
-optimal family demoters, online digit circuits, interval Euclidean extraction,
-and uniform performance/ULP bounds are **not unproved universal Chapter 2
-algorithms**: the chapter supplies definitions, references or qualitative claims,
-not those specifications. They must not indefinitely enlarge this finish line.
-The real V guarded-point collection on p.39 is infinite; the following finite
-U description is a different floating family, not a direct self-contradiction.
+Completion is expressly conditional on the following treatment of source text:
 
-**Defensible completion wording:** “Chapter 2 has a subsection-by-subsection
-printed-source audit and a formalized core of real-valued inclusion, domain,
-representation and conversion results. Imported foundations, restricted models,
-checked counterexamples and underspecified claims are explicitly catalogued.”
-Do not yet replace this with “every Chapter 2 claim is proved”: the concrete
-correspondences above and the identified interpretation decisions remain.
+- **Exceptional-carrier interpretation:** use the explicit finite/±∞/lambda
+  tagged model and only justified operation rows. [ExceptionalComparisons](ExceptionalComparisons.lean)
+  and [TaggedConversion](TaggedConversion.lean) prove the supported observations,
+  preservation and composition. `finite_only_loss` shows why erasing tags is not
+  an exact conversion. A full lambda-to-extended-real homomorphism or unspecified
+  exceptional arithmetic is not inferred; no IEEE semantics fills the gaps.
+- **Weak-tracking interpretation:** exact strict definedness and sufficient
+  continuity/local-constancy certificates are the proved common core.
+  [FiniteProperties](FiniteProperties.lean) and [TrackingCertificates](TrackingCertificates.lean)
+  state the premises. [Existing counterexamples](tests/PropertyComposition.lean)
+  refute the printed reverse implication when read as semantic continuity.
+  A structural-certificate reading remains an alternative, not asserted authorial
+  intent. Failed certificates remain inconclusive; no new variant is added here.
+- **Errata and restricted correspondences:** preserve the checked format,
+  decimal, affine-orientation and rounded-subdistributivity counterexamples,
+  alongside their valid restricted or repaired results. Concrete constant
+  add/sub/mul compatibility is already proved. No universal operation-preserving
+  homomorphism follows merely from inclusion-preserving demotion.
+
+Operators introduced later in the thesis remain in the operation coverage plan:
+§2.15.5's interval-stream convergence theorem covers its stated finite strict
+arithmetic grammar, not arbitrary discontinuous operators. General nonlinear
+elimination, automatic bumpy classification, arbitrary optimal demoters, online
+digit circuits, interval Euclidean extraction and uniform performance bounds
+are descriptions, references or additional research without a supplied general
+Chapter 2 algorithm. They do not extend this milestone indefinitely.
+
+**Recommended wording:** “The scoped Chapter 2 source-to-Lean milestone is
+complete: every subsection is audited, the identified concrete mathematical
+claims are proved or linked at their stated scopes, and restricted models,
+checked counterexamples and unspecified semantics are explicit. Completion uses
+the documented interpretation/errata policy; it does not mean every literal
+printed assertion is proved or every number-family algorithm is implemented.”
