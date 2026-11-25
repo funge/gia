@@ -546,3 +546,6 @@ name = "GuardedPieceComposition"
 
 [[lean_lib]]
 name = "AffinePoleSplit"
+
+[[lean_lib]]
+name = "UnboundedPieceComposition"
