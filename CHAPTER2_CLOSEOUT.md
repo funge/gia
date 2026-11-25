@@ -3,8 +3,9 @@
 We have finished the scoped Chapter 2 formalization. Lean checks the mathematical
 results listed in the [section-by-section checklist](CHAPTER2_CHECKLIST.md),
 including the conditions under which they hold. This does **not** mean that every
-sentence in the thesis is true as printed, or that every representation has an
-implemented converter. Some printed examples disagree with the definitions;
+sentence in the thesis is true as printed, or that every representation has
+code that converts it to another representation. Some printed examples disagree
+with the definitions;
 other claims depend on how they are read. Those limits are part of this closeout.
 
 The checklist was checked against printed pp.13–43, including the formulas in
@@ -56,12 +57,24 @@ that every possible interpretation of the source is false.
   format. Both contain the true result 202. The
   [exact rational interval law](IntervalAlgebra.lean) is still valid.
 
+## What conversion code means
+
+A converter is code that changes how a set of values is represented. For example,
+closed bounds `[0,1]` plus the condition `0 < x < 1` preserve the original open
+interval `(0,1)`; using the closed bounds alone would add its two endpoints.
+
+GIA proves what a conversion must preserve and can supply executable reference
+code for supported cases. Not every general theorem needs an implementation for
+every case. The relgraph interval core can implement conversions useful to the
+applications it supports, with the renderer as one client. It has no runtime
+dependency on GIA, and need not implement every mathematically possible conversion.
+
 ## What the proofs cover
 
 | Area | What is checked |
 | --- | --- |
 | Mathematical foundations | Integer, rational, real, complex and positive-infinitesimal constructions reuse pinned mathlib, with explicit correspondence theorems. |
-| Bounds and domains | Least interval hulls of actual output sets; inclusion and demotion with a shared witness; finite comparisons and Boolean composition; strict partial-operation domains; guarded value/domain conversion. General theorems do not automatically construct converters. |
+| Bounds and domains | Least interval hulls of actual output sets; inclusion and demotion with a shared witness; finite comparisons and Boolean composition; strict partial-operation domains; guarded value/domain conversion. General proofs do not automatically supply code for every conversion. |
 | Number representations | Finite formats and the repaired binary64 correspondence; finite affine, quadratic and Hansen families; unbounded sets of finite coefficient choices; cuts, rational sequences, radix digits, and simple/signed continued fractions. Each proof states its supported class. |
 | Families and sets | Finite family/set representations preserve the stated parameter and coefficient choices. Exact representations are distinguished from enclosures that lose information. |
 | Accuracy | Stream arithmetic, convergence and search are proved for the supported strict finite arithmetic grammar. Later operators need their own proofs. |
