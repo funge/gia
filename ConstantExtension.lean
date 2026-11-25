@@ -7,7 +7,7 @@ namespace GeneralizedIntervalArithmetic.ConstantExtension
 open GeneralFamilyDemotion
 
 abbrev Bounds (P : Type*) := (P → EReal) × (P → EReal)
-def constant {P : Type*} (b : EReal × EReal) : Bounds P :=
+noncomputable def constant {P : Type*} (b : EReal × EReal) : Bounds P :=
   (fun _ => b.1,fun _ => b.2)
 
 theorem constant_injective {P : Type*} [Nonempty P] :
