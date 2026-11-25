@@ -68,8 +68,8 @@ The general `terminating_value` and `repeating_value` theorems prove the exact
 infinite identity 0.100… = 0.0(b−1)(b−1)… = 1/b for all b≥2. This is not a
 finite approximation. The source explicitly favors the zero-tail form. We do
 not infer a contradiction from its “second form” phrasing: the displayed equation
-also includes 0.1. Digit extraction and proof of a canonical representation's
-existence/uniqueness remain open.
+also includes 0.1. The later [digit-extraction milestone](DIGIT_EXTRACTION.md) proves canonical
+ordinary existence and reconstruction/uniqueness under explicit normalization.
 
 [Digit controls](tests/DigitRepresentations.lean) instantiate base 10's duplicate
 expansion, zero, the all-negative expansion of −1, an alternating signed stream,
@@ -88,8 +88,9 @@ semantics, partial-sum convergence, arithmetic before carrying, signed conventio
 and the explicit duplicate-expansion identity. The truncation bound is a derived
 result, not a claim that Tupper states a rate for arbitrary rational streams.
 
-Still open: canonical ordinary digit generation/uniqueness, carrying algorithm,
-place/exponent normalization for all reals, signed-digit online algorithms and
+Now proved mathematically: ordinary canonical extraction/uniqueness and an
+all-real integer-part representation; see [digit extraction](DIGIT_EXTRACTION.md).
+Still open: executable carrying, floating-place/sign normalization, signed-digit online algorithms and
 circuit-delay claims, and redundant continued-fraction claims (§2.15.7). The supported §2.15.4
 canonical conversion and its remaining limits are in
 [continued-fraction conversion](CONTINUED_FRACTION_CONVERSION.md).

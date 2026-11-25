@@ -879,3 +879,9 @@ open/closed flags, a proved rational square-piece converter and retained guards.
 Fractional branches reuse existing pole-aware elimination. Branch discovery and
 general nonlinear output conversion remain separate; no arbitrary closure
 algorithm or Chapter 2 completion is claimed.
+
+[The §2.15 page-and-claim ledger](SECTION215_LEDGER.md) separates mathematical
+correspondences from algorithmic/expository claims across all eight subsections.
+[Ordinary digit extraction](DIGIT_EXTRACTION.md) now proves canonical stream
+reconstruction and uniqueness, plus all-real integer-part representation,
+without an executable arbitrary-real digit oracle or new FP assumptions.
