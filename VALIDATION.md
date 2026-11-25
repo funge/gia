@@ -4333,3 +4333,31 @@ contents are unchanged from the full gate.
 extraction and arbitrary canonical-stream reconstruction from executable online
 algorithms. The eight-subsection ledger keeps the infinite continued-fraction
 converse and other remaining source obligations explicit.
+
+## Arbitrary infinite simple continued fractions (2026-11-25)
+
+Qualified proof checkpoint `57749e2de9e5b855256192d6028ee072589f8ebe`, based on
+merged #63 (`06ca77feb08420112beab5d1bc9d2a828c27a629`). This receipt is the only
+subsequent tracked change; proofs, fixtures, registries and source notes remain
+identical to the full-gate revision.
+
+- Full `./check.sh` passed: build, direct audit, and **30 tests in 583.129
+  seconds**, all **121** fresh-process fixtures, and the explicit pinned C API
+  checkout comparison.
+- **1,839 named axiom audits**, **3,413 namespace declarations**, **188 libraries**;
+  no warnings or errors. The new focused fixture audited **14** declarations.
+- Kernel controls cover all-one infinite tails, unbounded positive coefficients,
+  exact reconstruction/uniqueness, finite-evaluation correspondence, a concrete
+  error bound and failure of dropping admissibility. The actual rational prefix
+  evaluation returned `[0, 1, 1/2, 2/3, 3/5]` as independently proved.
+- **1,253 local file links** passed before this receipt; final links and
+  `git diff --check` rerun. The local recovery bundle verified successfully.
+- No new project axioms, placeholders, unsafe/native-decide shortcuts, FP
+  premises, native/C/default changes, dependency changes or hosted CI dispatch.
+  The allowlist remains `propext`, `Classical.choice`, `Quot.sound`.
+
+[Source scope and proof chain](INFINITE_SIMPLE_CF.md) record that suffix-limit
+existence is proved from admissibility before canonical recovery. Simple
+fractions (§2.15.4), redundant fractions (§2.15.7) and GIA representations
+(§2.15.8) are distinct; no signed/generalized converse or real-input oracle is
+inferred from this theorem.
