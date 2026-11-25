@@ -552,3 +552,6 @@ name = "UnboundedPieceComposition"
 
 [[lean_lib]]
 name = "NumericFoundations"
+
+[[lean_lib]]
+name = "DirectedOperationAlgebra"
