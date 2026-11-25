@@ -4384,3 +4384,27 @@ are unchanged from the full-gate candidate.
   convergence, finite syntax limitations and the qualitative §2.15.8 discussion
   are distinguished in `REDUNDANT_CF.md` and the section/closeout ledgers.
 - A verified local Git bundle preserves the committed checkpoint and ancestry.
+
+## Finite-query canonical first-digit obstruction (§2.15.5)
+
+Qualified proof checkpoint `0a1e793c16c559cfebe5d173f8e78a71bc7ec47e`
+against main `32e0a188f4f3b4419952bff5c7129494501234d2`.
+The subsequent commit adds only this receipt; proofs, fixtures and registries
+remain identical to the full-gate candidate.
+
+- Full `./check.sh` passed: 30 tests in 609.329 seconds.
+- 1,878 named axiom audits; 3,471 namespace declarations; 190 libraries;
+  all 123 fresh-process semantic fixtures passed.
+- Focused fixture: 17 audited declarations. Executed trace `[4,0,4]`,
+  paired outputs `(some 1,some 1)`, and exact alternate singleton `507/5120`,
+  with matching kernel proofs and a different canonical digit.
+- Explicit pinned C API comparison passed. No native integration or runtime
+  changes were made or claimed.
+- All 1,271 tracked Markdown local links resolved before this link-free receipt;
+  final diff checks passed. No warnings/errors appeared in the gate log.
+- No new project axioms, proof placeholders, unsafe shortcuts, FP premises,
+  dependency or assumption-allowlist changes.
+- Original PDF images checked at printed pp.42–43 / PDF pp.58–59. The precise
+  deterministic interval-oracle model and exclusions for enriched/tagged names
+  and redundant targets are documented in `FINITE_QUERY.md` and the ledgers.
+- A verified local Git bundle preserves the checkpoint and ancestry.
