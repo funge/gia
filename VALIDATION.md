@@ -4187,3 +4187,31 @@ The [source report](SOURCE_ROUNDED_ALGEBRA.md) distinguishes the original
 coefficient model, separately labeled digit repair, reproduced calculations,
 checked discrepancies and remaining conventions. Verified recovery bundle and
 full gate log are retained outside the repository.
+
+## Global nearest minimizers — 2026-11-25
+
+Proof checkpoint `986657249882a1b65d6bf395ee2ceb67a2c3a85b`, based on merged
+#58 main `207146bf296dc896831e050903a6446ed780b6d8`, passed the complete local
+`./check.sh` with pinned Lean 4.19.0/mathlib and explicit `RELGRAPH_CHECKOUT`.
+The final changes after that checkpoint are this receipt and a closeout wording
+correction distinguishing proved tie characterization from unselected tie policy;
+proof, fixture and registry bytes are unchanged.
+
+- **30 tests passed in 540.962s**, including the pinned C API comparison,
+  audit-rejection controls, registration and fresh semantic fixtures.
+- **1,749 named audits**, **3,241 namespace declarations**, **183 libraries**,
+  **116 semantic fixtures**. All **17** new named theorems are audited; the
+  focused fixture audit passed for **13** declarations without warnings.
+- Controls cover irrational inputs, empty/singleton families, adjacent midpoint
+  ties, equal-distance non-minimizers, out-of-range mathematical minimization,
+  rational correspondence, both decimal inverse failures and positive controls.
+- **1,188 local links**, none broken before this receipt; links and
+  `git diff --check` rerun on the final documentation tree.
+- No new project axioms, placeholders, unsafe/native-decide proof shortcuts,
+  FP premises, native/C/default changes or hosted CI dispatch. The allowlist
+  remains `propext`, `Classical.choice`, `Quot.sound`.
+
+The [source scope](NEAREST_MINIMIZERS.md) distinguishes mathematical finite
+minimization from tie selection and overflow, and literal from repaired decimal
+families. The printed format parameter conventions were visually rechecked.
+A verified recovery bundle and full gate log are retained outside the repository.

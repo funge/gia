@@ -41,8 +41,9 @@ small PRs:
    for the already specified mathematical carriers, and connect their domains
    to the existing exceptional tags. Separate mathematical rounding from native
    execution. Exit evidence is a declaration-level mapping for every explicit
-   source rule, with no guessed exceptional rows. Nearest-rounding/tie claims
-   need the precise source convention before any proof is claimed.
+   source rule, with no guessed exceptional rows. Finite nearest existence and
+   tie characterization are now proved without selection; any selected tie or
+   exceptional overflow result still needs an explicit convention.
 2. **Family/operator closure (§§2.9–2.14).** Audit the printed operator and
    conversion claims against the generic same-witness family theorems, then
    discharge missing concrete premises for the source-supported families in one
