@@ -1234,3 +1234,8 @@ without an executable arbitrary-real digit oracle or new FP assumptions.
 §2.15.4 converse: admissibility implies suffix convergence, irrational value,
 canonical coefficient recovery and uniqueness. Redundant fractions (§2.15.7)
 and GIA representations (§2.15.8) remain distinct; no FP assumptions change.
+
+The [redundant signed-fraction milestone](REDUNDANT_CF.md) proves convergence
+for the full printed infinite class in §2.15.7, with explicit defined suffixes
+and finite nonuniqueness controls. Extraction/coverage remains open; §2.15.8
+describes GIA convergence possibilities rather than a universal rate.
