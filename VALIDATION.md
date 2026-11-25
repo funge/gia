@@ -4246,3 +4246,36 @@ and limits of the mathematical polynomial representation. The translator uses
 noncomputable mathlib polynomial operations; no executable solver or native
 integration is claimed. A verified recovery bundle and full gate log are
 retained outside the repository.
+
+## Guarded fractional-linear output projection — 2026-11-25
+
+Proof checkpoint `00ae8ec86d6b92a78ee61f0fcb73b0c41cd7effd`, based on merged
+#60 main `e30ee011daff740034fd02d9ca3326700410a261`, passed the complete local
+`./check.sh` with pinned Lean 4.19.0/mathlib and explicit `RELGRAPH_CHECKOUT`.
+This receipt is the only subsequent change; all proof, fixture, registry and
+source-scope bytes are unchanged.
+
+- **30 tests passed in 573.629s**, including pinned C API comparison,
+  audit-rejection controls, registration and fresh semantic fixtures.
+- **1,773 named audits**, **3,314 namespace declarations**, **185 libraries**,
+  **118 semantic fixtures**. All **14** new named theorems are audited; the
+  focused fixture audit passed for **43** declarations. No warnings or errors
+  were reported by the full gate.
+- Kernel controls cover exact reciprocal rays versus the hull, open input
+  boundaries, canceled and parameter-only holes, missing asymptotic values,
+  empty inputs and the necessity of the nonzero determinant certificate.
+- The actual reference `#eval` query vectors returned `[false, true, false,
+  true]` and `[true, false, false, true]`, matching separately kernel-proved
+  decisions. These are rational reference executions, not native FP tests or
+  timings; the old singleton evaluator and default paths are unchanged.
+- **1,205 local links**, none broken before this receipt; local links and
+  `git diff --check` rerun on the final tree.
+- No new project axioms, placeholders, unsafe/native-decide proof shortcuts,
+  FP premises, native/C/default changes, dependency changes or hosted CI
+  dispatch. The allowlist remains `propext`, `Classical.choice`, `Quot.sound`.
+
+The [source scope](FRACTIONAL_PROJECTION.md) distinguishes exact real witness
+elimination, the effective certified rational query, and closed-hull
+approximation. General projection, output interval enumeration and source
+exceptional semantics are not inferred. A verified recovery bundle and full
+gate log are retained outside the repository.
