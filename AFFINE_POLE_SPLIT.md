@@ -45,9 +45,11 @@ Tupper [thesis §2.11.4, printed pp.35–36 / PDF pp.51–52](https://www.dgp.to
 says a partial operation introduces its own domain constraint in addition to the
 input conjunction. The three finite affine pieces here are a derived constructive
 instance using the project's explicit guard grammar, not a claim that the thesis
-specifies this compiler. §2.13 motivates retaining sets. The direct two-ray
-reciprocal source is [SIGGRAPH 2001 §11, p.82 / PDF p.6](https://www.dgp.toronto.edu/papers/jtupper_SIGGRAPH2001.pdf#page=6);
-the thesis's crossing-zero reciprocal display instead uses the whole hull.
+specifies this compiler. §2.13 motivates retaining sets. The disconnected
+reciprocal refinement is motivated by [SIGGRAPH 2001 §11 and Figure 10(b), PDF p.6](https://www.dgp.toronto.edu/papers/jtupper_SIGGRAPH2001.pdf#page=6);
+the visually checked page gives floor pseudocode and a general union-cover
+discussion, not a reciprocal listing. The thesis's crossing-zero reciprocal
+display instead uses the whole hull.
 See [the existing split-quotient source distinction](SPLIT_QUOTIENT.md).
 
 This closes a restricted operation-generated domain split. General composition of
