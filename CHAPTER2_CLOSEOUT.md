@@ -1,69 +1,121 @@
-# Chapter 2 closeout matrix
+# Chapter 2: what is proved and what needs qualification
 
-The current [subsection-by-subsection audit](CHAPTER2_CHECKLIST.md) was checked
-against printed pp.13–43, including the formulas rather than only transcription.
-It is the authoritative source-to-Lean map; older receipts in the
-[source audit](CHAPTER2_SOURCE_AUDIT.md) remain historical evidence.
+We have finished the scoped Chapter 2 formalization. Lean checks the mathematical
+results listed in the [section-by-section checklist](CHAPTER2_CHECKLIST.md),
+including the conditions under which they hold. This does **not** mean that every
+sentence in the thesis is true as printed, or that every representation has an
+implemented converter. Some printed examples disagree with the definitions;
+other claims depend on how they are read. Those limits are part of this closeout.
 
-| Classification | Current position |
+The checklist was checked against printed pp.13–43, including the formulas in
+the PDF. It is the main source-to-Lean map. The older
+[source audit](CHAPTER2_SOURCE_AUDIT.md) records earlier checks and is retained
+for reference.
+
+## Apparent errors and claims that need qualification
+
+The first two bullets are literal disagreements between printed definitions or
+examples. The other three fail under the stated reading; they are not claims
+that every possible interpretation of the source is false.
+
+- **The two floating-point format definitions disagree.** In
+  [§2.5, pp.18–19](https://www.dgp.toronto.edu/~mooncake/thesis.pdf#page=34),
+  the digit form admits `b^M` at the maximum exponent, but every value in the
+  literal coefficient form is smaller. Lean proves this in
+  [FormatNormalization.upper_digit_witness](FormatNormalization.lean).
+  The [separately labeled repair](FORMAT_DIGITS.md) is not attributed to Tupper.
+- **The decimal rounding examples do not all follow the printed format.** In
+  [§§2.5.3–2.5.4, pp.20–21](https://www.dgp.toronto.edu/~mooncake/thesis.pdf#page=36),
+  upward rounding of 1001 is printed as 1010; the literal coefficient definition
+  gives 1100. The printed downward reassociation result is 10000; the checked
+  computation gives 0. See
+  [SourceRoundedAlgebra.literal_up_not_printed and printed_reassociation](SourceRoundedAlgebra.lean)
+  and the [comparison table](SOURCE_ROUNDED_ALGEBRA.md). Changing to the repaired
+  format does not make all the printed rows agree.
+- **The affine containment claim fails if containment must hold at the same parameter.**
+  In [§2.9.3, p.29](https://www.dgp.toronto.edu/~mooncake/thesis.pdf#page=45),
+  the forward-or-reverse claim misses a family such as `[t/4, 1−t/4]` on `[0,1]`.
+  Its total range is `[0,1]`, but it contains neither orientation pointwise.
+  [LinearFamilyEquality](LinearFamilyEquality.lean) proves the counterexample
+  and a corrected alternative allowing a full endpoint fiber. The
+  [scope note](LINEAR_FAMILY_EQUALITY.md) distinguishes pointwise containment
+  from containment of total ranges.
+- **The weak-tracking implication fails when read as semantic continuity.** In
+  [§2.12, pp.36–37](https://www.dgp.toronto.edu/~mooncake/thesis.pdf#page=52),
+  continuity of a composite does not force continuity of its children: squaring
+  a jump between −1 and 1 gives the constant 1. The
+  [checked counterexamples](tests/PropertyComposition.lean) refute that reading.
+  [Sufficient tracking certificates](TRACKING_CERTIFICATES.md) remain sound;
+  they are not a claim to have resolved the author's intended meaning.
+- **Exact interval subdistributivity does not carry over unchanged to staged rounding.**
+  For the floating-interval reading of
+  [§2.7.5, p.25](https://www.dgp.toronto.edu/~mooncake/thesis.pdf#page=41),
+  [RoundedIntervalControl.staged](RoundedIntervalControl.lean) gives
+  `I·(J+K) = [200,220]` but `I·J+I·K = [200,210]`, with least outward rounding
+  at every stage. Here `I=[2,2]`, `J=[100,100]`, `K=[1,1]` in the literal decimal
+  format. Both contain the true result 202. The
+  [exact rational interval law](IntervalAlgebra.lean) is still valid.
+
+## What the proofs cover
+
+| Area | What is checked |
 | --- | --- |
-| Imported foundations | Integer, rational, real, complex and positive-infinitesimal constructions use pinned mathlib with explicit correspondence theorems. |
-| Core mathematical coverage | Actual-image least hulls, same-witness inclusion and demotion, finite exact comparisons/Boolean composition, strict domain factorization, guarded value/domain conversion, finite family/set representations, and supported stream arithmetic/search are proved. Generic relational theorems do not synthesize arbitrary converters. |
-| Concrete representation coverage | Finite formats and their repaired binary64 correspondence, finite affine/quadratic/Hansen variants, unbounded sets of finite choices, cuts, rational sequences, radix digits with explicit floating normalization, and simple/signed continued fractions have scoped proofs. |
-| Checked source obstructions | Literal coefficient/digit format disagreement; literal decimal rounding/reassociation discrepancies; pointwise forward-or-reverse affine claim; semantic weak-continuity implication; unconditional staged floating-interval subdistributivity. Each has a checked control and a separate valid scope or repair. |
-| Unresolved source interpretation | Full exceptional arithmetic/carrier promotion, weak-tracking meaning, and compatible operation/demotion choices in claimed homomorphisms. Missing rows are not filled from IEEE. |
-| Concrete trace closed | [Symbolic sine/root trace](SYMBOLIC_TRACE.md) now proves the printed composition, exact partial domain, pointwise singleton bounds and projected-image correspondence. Concrete constant-operation compatibility was already proved. |
-| Restricted later operator coverage | Interval-stream convergence covers the existing strict finite arithmetic grammar; operators introduced later need their own correspondence proofs. |
-| Not new universal Chapter 2 obligations | General nonlinear quantifier elimination, automatic bumpy classification, arbitrary optimal demoters, unspecified online circuits/interval Euclidean extraction, and uniform performance claims. These are definitions, references or optional implementations rather than supplied universal algorithms. |
+| Mathematical foundations | Integer, rational, real, complex and positive-infinitesimal constructions reuse pinned mathlib, with explicit correspondence theorems. |
+| Bounds and domains | Least interval hulls of actual output sets; inclusion and demotion with a shared witness; finite comparisons and Boolean composition; strict partial-operation domains; guarded value/domain conversion. General theorems do not automatically construct converters. |
+| Number representations | Finite formats and the repaired binary64 correspondence; finite affine, quadratic and Hansen families; unbounded sets of finite coefficient choices; cuts, rational sequences, radix digits, and simple/signed continued fractions. Each proof states its supported class. |
+| Families and sets | Finite family/set representations preserve the stated parameter and coefficient choices. Exact representations are distinguished from enclosures that lose information. |
+| Accuracy | Stream arithmetic, convergence and search are proved for the supported strict finite arithmetic grammar. Later operators need their own proofs. |
+| Symbolic composition | The [sine/root trace](SYMBOLIC_TRACE.md) proves the printed composition, its partial domain, pointwise singleton bounds and the corresponding projected image. The image remains an unevaluated set, not a computed numerical range. |
 
-## What changed in this closeout
+The [FloatingDigits proof](FloatingDigits.lean) covers every real and every radix
+at least two. Its uniqueness theorem uses canonical fractional digits and an
+explicit half-open mantissa convention `[1/b,1)`, with zero handled separately.
+The source's zero-tail condition alone does not fix the scale.
 
-[FloatingDigits](FloatingDigits.lean) closes all-real sign/scale/digit coverage
-for every radix at least two. Uniqueness is proved with canonical fractional
-digits and the explicitly chosen half-open normalization [1/b,1); the source's
-zero-tail condition alone does not fix scale. Zero is handled separately.
+## The §2.9.4 follow-up: constant embedding
 
-[RoundedIntervalControl](RoundedIntervalControl.lean) proves that exact rational
-interval subdistributivity does not survive arbitrary staged least outward
-rounding: in the existing literal decimal format, I=[2,2], J=[100,100], K=[1,1]
-give left enclosure [200,220] and right enclosure [200,210]. Every rounding stage
-is certified least, and the true answer 202 is enclosed on both routes.
-This does not change any arithmetic backend or trusted premise.
+A later source/Lean review found that the generic constant-embedding theorem
+was missing, even though concrete constant operations were already proved.
+[ConstantExtension](CONSTANT_EXTENSION.md) now closes that conditional gap.
+It derives preservation of constants from sufficient inequalities on demotion,
+then proves that constant embedding commutes with interval extension for
+partial real operations of any finite arity.
 
-## Conditional constant-extension follow-up
+Constructed infimum/supremum demoters satisfy those conditions. Merely rounding
+outward does not suffice: a checked counterexample shows why. Each concrete
+affine or machine demoter must still prove its own compatibility. The same
+review confirms existing finite-real multiparameter denotation and the scoped
+positive-infinity addition rule; it does not add missing exceptional cases.
 
-The later source/Lean check found a genuine generic gap beyond concrete
-constant operations. [ConstantExtension](CONSTANT_EXTENSION.md) now derives
-constant fixing from sufficient demotion inequalities and proves arbitrary-arity
-partial real-output interval-extension commutation. Constructed infimum/supremum
-demoters satisfy the premises; merely outward widening does not. Concrete
-affine/machine implementations must still establish their own compatibility.
-The same review checks the finite-real multiparameter denotation and scoped
-positive-infinity guard without adding exceptional rows.
+## What the source leaves unsettled
 
-## Consolidated completion verdict
+These are specification or interpretation limits, separate from the apparent
+errors above:
 
-The **scoped Chapter 2 source-to-Lean milestone is complete**, conditional on
-the explicit interpretation/errata treatment in the [subsection audit](CHAPTER2_CHECKLIST.md).
-No remaining clearly stated and feasible proof obligation is currently identified
-inside that scope. This does not promote restricted representations into a
-complete exceptional calculus or assert every printed statement literally.
+- **Exceptional values.** [ExceptionalComparisons](ExceptionalComparisons.lean)
+  and [TaggedConversion](TaggedConversion.lean) cover the justified tagged cases
+  and state conversion conditions. They do not supply a complete arithmetic
+  table for infinities and λ. Unspecified rows are not filled in from IEEE.
+- **Weak tracking.** [FiniteProperties](FiniteProperties.lean) and
+  [TrackingCertificates](TrackingCertificates.lean) prove strict-domain rules
+  and sufficient certificates. The alternative readings and counterexamples
+  remain explicit; failure of a certificate is not a proof that a property fails.
+- **Algorithms not supplied by the chapter.** General nonlinear elimination,
+  automatic bumpy-function classification, arbitrary optimal demoters, and
+  unspecified online or interval-Euclidean extraction algorithms are not proved
+  merely because the chapter describes related representations. Nor does the
+  symbolic ellipsis provide an algorithm for every operation.
 
-The [symbolic trace](SYMBOLIC_TRACE.md) closes the final concrete example:
-x sin(x)+sqrt(x)/(x+π), one parameter throughout, exact root/division guards,
-and pointwise least bounds. Its exact projected image remains an unevaluated
-set; it is not a numerical range computation.
+## Where this leaves Chapter 2
 
-Exceptional clauses are covered only by the source-justified tagged rows and
-proved conversion premises in [ExceptionalComparisons](ExceptionalComparisons.lean)
-and [TaggedConversion](TaggedConversion.lean). Weak tracking is covered by exact
-strict domains and sufficient certificates in [FiniteProperties](FiniteProperties.lean)
-and [TrackingCertificates](TrackingCertificates.lean), with the contrary semantic
-reading refuted by [existing examples](tests/PropertyComposition.lean). These
-alternatives are linked, not resolved by inventing semantics or adding axioms.
+The scoped milestone is complete **with the qualifications above**. We currently
+know of no further clearly stated, feasible proof obligation inside that scope.
+That assessment is open to correction: the §2.9.4 follow-up shows why the
+[checklist and proof links](CHAPTER2_CHECKLIST.md) matter more than a blanket
+claim that the chapter is done.
 
-The literal contradictions remain reported as contradictions. Unspecified
-exceptional operations, generalized online/extraction algorithms and the
-universal symbolic ellipsis remain unspecified. Later-chapter operator proofs,
-native implementation verification and general solver research are separate
-milestones, not hidden prerequisites for this closeout.
+In plain terms: the supported mathematics is checked, apparent printed errors
+have counterexamples, and unresolved meanings are labeled rather than guessed.
+This is not a complete exceptional-value calculus, a numerical symbolic solver,
+or verification of a native implementation. Later-chapter operator proofs and
+implementation work remain separate tasks.
