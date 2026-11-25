@@ -4361,3 +4361,26 @@ existence is proved from admissibility before canonical recovery. Simple
 fractions (§2.15.4), redundant fractions (§2.15.7) and GIA representations
 (§2.15.8) are distinct; no signed/generalized converse or real-input oracle is
 inferred from this theorem.
+
+## Redundant signed continued fractions (§2.15.7)
+
+Qualified proof checkpoint `4d93f6745d2d87d403476651717ba5d03cba2017`
+against main `362761b6d852b17cde788a3d7a7d61fc1d7dd2ec`.
+The subsequent commit adds only this receipt; proof, fixtures and registries
+are unchanged from the full-gate candidate.
+
+- Full `./check.sh`: passed, 30 tests in 574.437 seconds.
+- 1,855 named axiom audits; 3,435 namespace declarations; 189 libraries;
+  all 122 fresh-process semantic fixtures passed.
+- Focused signed-fraction fixture: 19 audited declarations and executable
+  prefix `0, -1/3, -3/8, -8/21`, matching the kernel proofs.
+- Explicit pinned C API checkout comparison passed; no native integration or
+  hardware changes were made or claimed.
+- All 1,261 tracked Markdown local links resolved before this link-free receipt;
+  final `git diff --check` passed. No warnings/errors in the full gate.
+- No new project axioms, placeholders, unsafe proof shortcuts, floating-point
+  premises, dependency changes or assumption-allowlist changes.
+- Original PDF image checked at printed p.43 / PDF p.59. Infinite signed
+  convergence, finite syntax limitations and the qualitative §2.15.8 discussion
+  are distinguished in `REDUNDANT_CF.md` and the section/closeout ledgers.
+- A verified local Git bundle preserves the committed checkpoint and ancestry.
