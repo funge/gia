@@ -4065,3 +4065,33 @@ fixture, registry or build input changed. The final commit adds this receipt.
 See [scope and source correspondence](AFFINE_POLE_SPLIT.md) and the updated
 [closeout matrix](CHAPTER2_CLOSEOUT.md). The recovery bundle and complete local
 log are retained outside the repository; neither contains a public runtime change.
+
+## Guarded unbounded-piece composition — 2026-11-25
+
+Full qualification ran on proof checkpoint
+`4c8d53f8f0e001ec0a247508df6904f4227c6807`, tree
+`67ccd5104100a73000fe7d6195f97867094c78e0`, based on merged #54
+`ec6962410ce6a7a178e10a061add99691c30fa29`. Only this receipt is added afterward;
+proofs, fixtures, registries and other documentation are unchanged.
+
+- Pinned full `./check.sh`: build and audit passed; **30 tests in 532.786s, OK**.
+- **1,653** named axiom audits, **3,047** namespace declarations,
+  **112** fresh semantic fixtures, **179** libraries.
+- New fixture: **37** audited declarations; compiled rational controls return
+  `[true,true,true,false,false,false]`. Source reciprocal rays, pole/empty/open
+  boundaries, the convex-hull gap, non-attainment and absence of exceptional
+  members are kernel checked.
+- Focused registry/dependency check: one test passed in 121.262s.
+- Explicit pinned C API comparison passed using the existing checkout. No
+  native code or executable hardware path changed or ran for this milestone.
+- Local links before this receipt: **1,149**, no broken links; links and
+  `git diff --check` rerun on the final documentation tree.
+- No new project axioms, placeholders, unsafe/native-decide proof shortcuts,
+  FP assumptions or default-path changes. Existing allowlist unchanged:
+  `propext`, `Classical.choice`, `Quot.sound`. No hosted CI dispatched.
+
+The [scope note](UNBOUNDED_PIECE_COMPOSITION.md) separates exact representation
+translation, sound reciprocal enclosure and exact domain preservation. The
+[closeout matrix](CHAPTER2_CLOSEOUT.md) records the recommended substantial
+remaining packages without claiming chapter completion. A verified local Git
+bundle and complete log are retained outside the repository.
