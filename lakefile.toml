@@ -543,3 +543,6 @@ name = "PieceDomainConversion"
 
 [[lean_lib]]
 name = "GuardedPieceComposition"
+
+[[lean_lib]]
+name = "AffinePoleSplit"

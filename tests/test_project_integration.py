@@ -11,6 +11,7 @@ import unittest
 PROJECT = pathlib.Path(__file__).resolve().parents[1]
 EXECUTABLE_CLIENTS = {"hardware/Main.lean", "experiments/accuracy_search/Main.lean", "experiments/key_two_corner/Main.lean"}
 SEMANTIC_FIXTURES = {
+    "AffinePoleSplit.lean": "GeneralizedIntervalArithmetic.AffinePoleSplitChecks",
     "GuardedPieceComposition.lean": "GeneralizedIntervalArithmetic.GuardedPieceCompositionChecks",
     "PieceDomainConversion.lean": "GeneralizedIntervalArithmetic.PieceDomainConversionChecks",
     "PartialImageTransfer.lean": "GeneralizedIntervalArithmetic.PartialImageTransferChecks",

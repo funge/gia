@@ -1173,3 +1173,11 @@ Failed whole-hull guards remain unknown. The [closeout matrix](CHAPTER2_CLOSEOUT
 now distinguishes this covered bridge from missing operation-generated splitting
 and output representation for inconclusive guards. No exceptional rows or FP
 premises change.
+
+### Affine reciprocal domain splitting
+
+[Generated affine pole pieces](AFFINE_POLE_SPLIT.md) construct exact same-parameter
+negative/zero/positive guards for a fixed rational affine denominator (§2.11.4).
+The zero piece is explicitly undefined; exact domain testing does not supply a
+finite range near a pole. General nonlinear splitting and unbounded value-piece
+composition remain open.

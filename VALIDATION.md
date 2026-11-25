@@ -4039,3 +4039,29 @@ registries remain unchanged from the checkpoint. See
 [scope and failure controls](GUARDED_PIECE_COMPOSITION.md): success preserves
 same-choice classification; whole-hull guard failure remains unknown, and
 independent coordinate witnesses cannot justify an existence claim.
+
+## Affine reciprocal domain splitting — 2026-11-25
+
+Qualified proof checkpoint `2b68b595eae52140ef27822a251f375489a38ce9`
+against merged #53, `518a2922d92bf313a0df18351bd2209a2bc81f2f`.
+During qualification, documentation-only checkpoint
+`a87d391` clarified the visually checked SIGGRAPH source wording; no proof,
+fixture, registry or build input changed. The final commit adds this receipt.
+
+- Full pinned `./check.sh`: build and audit passed; **30 tests in 521.534s, OK**.
+- **1,639** named axiom audits; **3,022** namespace declarations; **111**
+  fresh registered semantic fixtures; **178** libraries.
+- New fixture: **32** audited declarations and the executable rational control
+  `[true,true,false,true,true,false]` at `[0,1/4,1/2,3/4,1,2]`.
+- Pinned C API comparison used the explicit existing relgraph checkout and passed.
+- Local link check before this receipt: **1,133**, none broken; final link and
+  `git diff --check` rerun after adding the receipt.
+- No new project axioms, placeholders, native-decide proofs, FP premises,
+  native/backend files or default path changes. The established axiom allowlist
+  remains `propext`, `Classical.choice`, `Quot.sound`.
+- No hosted CI dispatched or native split implementation run. This is a
+  mathematical/reference descriptor construction with exact rational tests.
+
+See [scope and source correspondence](AFFINE_POLE_SPLIT.md) and the updated
+[closeout matrix](CHAPTER2_CLOSEOUT.md). The recovery bundle and complete local
+log are retained outside the repository; neither contains a public runtime change.
