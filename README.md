@@ -857,3 +857,7 @@ demotion, with source-rounded algebra and exceptional residuals listed separatel
 [Source-rounded algebra](SOURCE_ROUNDED_ALGEBRA.md) checks the printed decimal
 rows under separate literal/repaired conventions, conditional multiplication
 and five-site mixed laws, and the justified reversed positive-infinity row.
+
+[Nearest minimizers](NEAREST_MINIMIZERS.md) closes finite real-input existence,
+uniqueness and tie characterization without selecting a convention, and makes
+zero, decimal nonzero, and arbitrary-format inverse claims distinct.
