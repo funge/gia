@@ -895,3 +895,8 @@ The [redundant signed-fraction milestone](REDUNDANT_CF.md) proves convergence
 for the full printed infinite class in §2.15.7, with explicit defined suffixes
 and finite nonuniqueness controls. Extraction/coverage remains open; §2.15.8
 describes GIA convergence possibilities rather than a universal rate.
+
+The [finite-query first-digit limitation](FINITE_QUERY.md) formalizes §2.15.5
+for plain nested rational interval names, with adaptive query traces and
+constructive decimal/continued-fraction boundary counterexamples. Tagged names
+and redundant outputs are explicitly outside the negative result.
