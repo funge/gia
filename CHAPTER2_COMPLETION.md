@@ -252,3 +252,7 @@ Failed whole-hull guards remain unknown. The [closeout matrix](CHAPTER2_CLOSEOUT
 now distinguishes this covered bridge from missing operation-generated splitting
 and output representation for inconclusive guards. No exceptional rows or FP
 premises change.
+
+The [scalar numeric-foundations correspondence](NUMERIC_FOUNDATIONS.md) maps
+explicit §§2.2–2.4 claims to actual scalar embeddings, guarded domains and
+root/sequence existence. It leaves rounding and exceptional residuals explicit.
