@@ -4215,3 +4215,34 @@ The [source scope](NEAREST_MINIMIZERS.md) distinguishes mathematical finite
 minimization from tie selection and overflow, and literal from repaired decimal
 families. The printed format parameter conventions were visually rechecked.
 A verified recovery bundle and full gate log are retained outside the repository.
+
+## Rational-expression family closure — 2026-11-25
+
+Proof checkpoint `ebeea793ab2d614a5e97909c63bff53f26154438`, based on merged
+#59 main `3f43c9a39a648ff482d2f65c8772835c7fe1422b`, passed the complete local
+`./check.sh` with pinned Lean 4.19.0/mathlib and explicit `RELGRAPH_CHECKOUT`.
+This receipt is the only subsequent change; proof, fixture, registry and
+source-scope bytes are unchanged.
+
+- **30 tests passed in 563.562s**, including pinned C API comparison,
+  audit-rejection controls, registration and fresh semantic fixtures.
+- **1,759 named audits**, **3,288 namespace declarations**, **184 libraries**,
+  **117 semantic fixtures**. All **10** new named theorems are audited; the
+  focused fixture audit passed for **25** declarations. No warnings or errors
+  were reported by the full gate.
+- Controls cover inherited cancellation holes, zero times an undefined child,
+  nonlinear divisor guards, shared versus independent coefficient choices,
+  open finite-piece boundaries, empty and mixed domain classifications, and
+  failure of exact square representation by a single affine function.
+- **1,196 local links**, none broken before this receipt; local links and
+  `git diff --check` rerun on the final tree.
+- No new project axioms, placeholders, unsafe/native-decide proof shortcuts,
+  FP premises, native/C/default changes or hosted CI dispatch. The audit
+  allowlist remains `propext`, `Classical.choice`, `Quot.sound`.
+
+The [source scope](RATIONAL_FAMILY_CLOSURE.md) records the visually checked
+§2.11.4 constraint rule, exact same-witness graph/classification correspondence,
+and limits of the mathematical polynomial representation. The translator uses
+noncomputable mathlib polynomial operations; no executable solver or native
+integration is claimed. A verified recovery bundle and full gate log are
+retained outside the repository.

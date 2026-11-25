@@ -861,3 +861,9 @@ and five-site mixed laws, and the justified reversed positive-infinity row.
 [Nearest minimizers](NEAREST_MINIMIZERS.md) closes finite real-input existence,
 uniqueness and tie characterization without selecting a convention, and makes
 zero, decimal nonzero, and arbitrary-format inverse claims distinct.
+
+[Rational-expression family closure](RATIONAL_FAMILY_CLOSURE.md) constructs exact
+polynomial value graphs and retained nonzero guards for the existing strict
+arithmetic grammar. It preserves same-choice domain classifications and input
+piece boundaries; it does not eliminate output witnesses into affine pieces or
+provide an executable/native solver.
