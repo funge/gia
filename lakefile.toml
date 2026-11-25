@@ -591,3 +591,6 @@ name = "FloatingDigits"
 
 [[lean_lib]]
 name = "RoundedIntervalControl"
+
+[[lean_lib]]
+name = "SymbolicTrace"

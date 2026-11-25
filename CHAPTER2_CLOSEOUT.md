@@ -12,7 +12,7 @@ It is the authoritative source-to-Lean map; older receipts in the
 | Concrete representation coverage | Finite formats and their repaired binary64 correspondence, finite affine/quadratic/Hansen variants, unbounded sets of finite choices, cuts, rational sequences, radix digits with explicit floating normalization, and simple/signed continued fractions have scoped proofs. |
 | Checked source obstructions | Literal coefficient/digit format disagreement; literal decimal rounding/reassociation discrepancies; pointwise forward-or-reverse affine claim; semantic weak-continuity implication; unconditional staged floating-interval subdistributivity. Each has a checked control and a separate valid scope or repair. |
 | Unresolved source interpretation | Full exceptional arithmetic/carrier promotion, weak-tracking meaning, and compatible operation/demotion choices in claimed homomorphisms. Missing rows are not filled from IEEE. |
-| Concrete proof correspondence still missing | The displayed symbolic sin/root trace. Concrete constant add/sub/mul and linear-evaluator compatibility are already proved; only a generalization to arbitrary demotion choices would require new compatibility premises. |
+| Concrete trace closed | [Symbolic sine/root trace](SYMBOLIC_TRACE.md) now proves the printed composition, exact partial domain, pointwise singleton bounds and projected-image correspondence. Concrete constant-operation compatibility was already proved. |
 | Restricted later operator coverage | Interval-stream convergence covers the existing strict finite arithmetic grammar; operators introduced later need their own correspondence proofs. |
 | Not new universal Chapter 2 obligations | General nonlinear quantifier elimination, automatic bumpy classification, arbitrary optimal demoters, unspecified online circuits/interval Euclidean extraction, and uniform performance claims. These are definitions, references or optional implementations rather than supplied universal algorithms. |
 
@@ -30,15 +30,29 @@ give left enclosure [200,220] and right enclosure [200,210]. Every rounding stag
 is certified least, and the true answer 202 is enclosed on both routes.
 This does not change any arithmetic backend or trusted premise.
 
-## Finish-line recommendation
+## Consolidated completion verdict
 
-Stop growing the chapter through optional nonlinear or representation algorithms.
-Close the concrete symbolic correspondence above, then explicitly decide how
-errata and unspecified source semantics are recorded. The most consequential
-blocker to claiming every printed statement is proved is **source interpretation,
-not a missing solver**. Do not introduce an axiom to settle it.
+The **scoped Chapter 2 source-to-Lean milestone is complete**, conditional on
+the explicit interpretation/errata treatment in the [subsection audit](CHAPTER2_CHECKLIST.md).
+No remaining clearly stated and feasible proof obligation is currently identified
+inside that scope. This does not promote restricted representations into a
+complete exceptional calculus or assert every printed statement literally.
 
-A defensible current description is: “Chapter 2 has a complete subsection audit
-and a formalized core at explicitly stated scopes, with imported foundations,
-restricted counterparts, checked counterexamples and unspecified claims
-catalogued.” This is not an unconditional declaration that Chapter 2 is complete.
+The [symbolic trace](SYMBOLIC_TRACE.md) closes the final concrete example:
+x sin(x)+sqrt(x)/(x+π), one parameter throughout, exact root/division guards,
+and pointwise least bounds. Its exact projected image remains an unevaluated
+set; it is not a numerical range computation.
+
+Exceptional clauses are covered only by the source-justified tagged rows and
+proved conversion premises in [ExceptionalComparisons](ExceptionalComparisons.lean)
+and [TaggedConversion](TaggedConversion.lean). Weak tracking is covered by exact
+strict domains and sufficient certificates in [FiniteProperties](FiniteProperties.lean)
+and [TrackingCertificates](TrackingCertificates.lean), with the contrary semantic
+reading refuted by [existing examples](tests/PropertyComposition.lean). These
+alternatives are linked, not resolved by inventing semantics or adding axioms.
+
+The literal contradictions remain reported as contradictions. Unspecified
+exceptional operations, generalized online/extraction algorithms and the
+universal symbolic ellipsis remain unspecified. Later-chapter operator proofs,
+native implementation verification and general solver research are separate
+milestones, not hidden prerequisites for this closeout.
