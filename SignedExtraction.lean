@@ -11,14 +11,21 @@ open scoped Topology
 section Ordered
 variable {K : Type*} [Field K] [LinearOrder K] [IsStrictOrderedRing K] [FloorRing K]
 
+-- Keep executable specializations from introducing opaque compiler declarations
+-- into the proof-audited namespace; the mathematical definitions are unchanged.
+@[nospecialize]
 def digit (x : K) : ℤ := ⌈x-1/2⌉
+@[nospecialize]
 def residual (x : K) : K := x-(digit x:K)
+@[nospecialize]
 def next (x : K) : K := 1/residual x
 
+@[nospecialize]
 def orbit (x : K) : ℕ → K
   | 0 => x
   | n+1 => next (orbit x n)
 
+@[nospecialize]
 def coeff (x : K) (n : ℕ) : ℤ := digit (orbit x n)
 
 theorem residual_bounds (x : K) : -(1/2:K) < residual x ∧ residual x ≤ 1/2 := by
