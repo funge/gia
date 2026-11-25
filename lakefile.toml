@@ -582,3 +582,6 @@ name = "RedundantCF"
 
 [[lean_lib]]
 name = "FiniteQuery"
+
+[[lean_lib]]
+name = "SignedExtraction"

@@ -4408,3 +4408,29 @@ remain identical to the full-gate candidate.
   deterministic interval-oracle model and exclusions for enriched/tagged names
   and redundant targets are documented in `FINITE_QUERY.md` and the ledgers.
 - A verified local Git bundle preserves the checkpoint and ancestry.
+
+## Signed continued-fraction coverage and extraction (§2.15.7)
+
+Qualified proof checkpoint `f9e1ec4f86dd11049362e4101a6605c392fa5617`
+against main `f9229192cf4d9bae8bef5153a7e0e5f4a7ee7188`.
+The subsequent commit adds only this receipt; proofs, fixtures and registries
+remain identical to the full-gate candidate.
+
+- Full `./check.sh` passed: 30 tests in 619.028 seconds.
+- 1,910 named axiom audits; 3,544 namespace declarations; 191 libraries;
+  all 124 fresh-process semantic fixtures passed.
+- Focused fixture: 14 audited declarations. Executed positive/negative rational
+  expansions, integer termination and denominator descent matched kernel proofs.
+- An initial full-gate attempt rejected a compiler-generated opaque specialization.
+  Existing `nospecialize` practice fixed the executable generic definitions;
+  the audit policy was not weakened, and the full gate above was rerun cleanly.
+- Explicit pinned C API comparison passed. No native integration or hardware
+  change was made or claimed.
+- All 1,283 tracked Markdown local links resolved before this link-free receipt;
+  final diff checks passed. No warnings/errors appeared in the successful log.
+- No new project axioms, proof placeholders, unsafe shortcuts, FP premises,
+  dependencies or assumption-allowlist changes.
+- Original PDF image rechecked at printed p.43 / PDF p.59. The labeled lower-tie
+  construction closes all-real coverage and rational extraction, not uniqueness
+  of redundant syntax or the unspecified interval Euclidean algorithm.
+- A verified local Git bundle preserves the committed checkpoint and ancestry.
