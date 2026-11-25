@@ -23,7 +23,8 @@
 | §§2.15.3, 2.15.6 digit streams | Covered ordinary canonical construction and signed sums; algorithm gaps | [Digit extraction](DIGIT_EXTRACTION.md) now proves ordinary canonical reconstruction/uniqueness and all-real integer-part representations. Floating-place normalization, effective carrying and source online/delay claims remain distinct from this noncomputable correspondence. |
 | §2.15.4 continued fractions | Covered finite and arbitrary infinite simple correspondence | [Infinite simple fractions](INFINITE_SIMPLE_CF.md) now prove arbitrary admissible stream convergence, canonical recovery, irrationality and coefficient uniqueness, complementing the finite reconstruction and rational-termination proofs. Generalized numerators are not part of this displayed source claim. |
 | §2.15.5 interval streams / accuracy | Covered finite strict arithmetic grammar; proof gaps | Same-stream convergence and executable certified search are proved under computable-stream/containment premises. Remaining source operators and extraction obstructions require correspondence; no rate or arbitrary-precision hardware implementation follows. |
-| §§2.15.7–8 redundant/symbolic alternatives | Proof/specification gaps; some later-chapter research | The [page ledger](SECTION215_LEDGER.md) records the actual signed coefficient/sign restrictions and separates redundant-CF correspondence from referenced online algorithms and later convergence advantages. Later performance narrative is not discharged by a finite example or a speed assertion. |
+| §2.15.7 redundant fractions | Covered infinite convergence; extraction/coverage gaps | [Redundant signed fractions](REDUNDANT_CF.md) prove existence/unique limit, defined suffixes and recurrence for every printed-admissible infinite stream. Positive overlap recovers canonical simple digits. Finite nonunique presentations and a terminal-zero syntax limitation are checked. Coverage/extraction for every real, signed irrationality/recovery and sufficient finite definedness remain explicit. |
+| §2.15.8 GIA representations | Expository correspondence; later-chapter quantitative claims | The source says improved convergence can occur and gives symbolic intervals as an immediate but unproductive example; it states no uniform improvement theorem or rate. Same-witness functional semantics are established; specified operation advantages and later graphing claims remain distinct. |
 
 ## Recommended finite closeout program
 
@@ -83,7 +84,9 @@ or a constructive claim remains. Chapter 2 remains incomplete.
 The [page-and-claim ledger](SECTION215_LEDGER.md) now covers all eight subsections.
 The ordinary canonical digit converse is proved, not merely another example.
 The arbitrary admissible infinite simple-stream converse is now proved.
-The next mathematical representation obligation is the source-restricted
-redundant continued fractions (§2.15.7), with different sign conditions. A finite-information extraction impossibility theorem needs
+The printed-admissible redundant infinite class (§2.15.7) now has a proved
+convergent, defined suffix interpretation. The remaining representation obligation
+is signed coverage/extraction, with a precise finite terminal-zero limitation;
+it is not another convergence theorem for a selected periodic example. A finite-information extraction impossibility theorem needs
 an explicit computation model. No arbitrary nonlinear closure implementation is
 added to the chapter finish line merely because finite projection tools exist.

@@ -576,3 +576,6 @@ name = "DigitExtraction"
 
 [[lean_lib]]
 name = "InfiniteSimpleCF"
+
+[[lean_lib]]
+name = "RedundantCF"
