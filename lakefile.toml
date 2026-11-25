@@ -567,3 +567,6 @@ name = "RationalFamilyClosure"
 
 [[lean_lib]]
 name = "FractionalProjection"
+
+[[lean_lib]]
+name = "MonotoneUnions"
