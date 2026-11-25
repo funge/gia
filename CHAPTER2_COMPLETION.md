@@ -307,3 +307,8 @@ The [finite-query first-digit limitation](FINITE_QUERY.md) formalizes §2.15.5
 for plain nested rational interval names, with adaptive query traces and
 constructive decimal/continued-fraction boundary counterexamples. Tagged names
 and redundant outputs are explicitly outside the negative result.
+
+The [signed-fraction coverage construction](SIGNED_EXTRACTION.md) closes
+§2.15.7 mathematical coverage with a labeled nearest-integer tie convention,
+exact finite/infinite recovery and terminating rational extraction. It does not
+identify that construction with the unspecified interval Euclidean algorithm.

@@ -67,8 +67,10 @@ The page says an interval variant of Euclid's algorithm determines terms and
 references software, but supplies no extraction pseudocode or rewrite system.
 This milestone does **not** prove that every real has a signed representation,
 a complete extraction algorithm, irrationality of every signed infinite stream,
-or uniqueness/recovery of all signed digits. Those remain separately stated
-correspondence obligations. It also does not cover arbitrary signed streams:
+or uniqueness/recovery of all signed digits. The later [signed extraction construction](SIGNED_EXTRACTION.md) now closes
+every-real coverage and exact-rational extraction with a labeled tie choice.
+The interval-driven algorithm and arbitrary signed digit recovery remain distinct
+from this earlier convergence theorem. It also does not cover arbitrary signed streams:
 the fixture with leading `2,-2` violates the adjacent-sign condition and
 already exceeds the proved half-unit invariant.
 

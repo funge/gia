@@ -23,7 +23,7 @@
 | §§2.15.3, 2.15.6 digit streams | Covered ordinary canonical construction and signed sums; algorithm gaps | [Digit extraction](DIGIT_EXTRACTION.md) now proves ordinary canonical reconstruction/uniqueness and all-real integer-part representations. Floating-place normalization, effective carrying and source online/delay claims remain distinct from this noncomputable correspondence. |
 | §2.15.4 continued fractions | Covered finite and arbitrary infinite simple correspondence | [Infinite simple fractions](INFINITE_SIMPLE_CF.md) now prove arbitrary admissible stream convergence, canonical recovery, irrationality and coefficient uniqueness, complementing the finite reconstruction and rational-termination proofs. Generalized numerators are not part of this displayed source claim. |
 | §2.15.5 interval streams / accuracy | Covered finite strict arithmetic grammar; proof gaps | Same-stream convergence and executable certified search are proved under computable-stream/containment premises. [Finite-query obstruction](FINITE_QUERY.md) now closes the canonical decimal/CF first-term limitation for plain nested rational interval oracles, with constructive indistinguishable names and actual adaptive traces. Remaining source operators and richer computation models require separate correspondence; no arbitrary-precision hardware implementation follows. |
-| §2.15.7 redundant fractions | Covered infinite convergence; extraction/coverage gaps | [Redundant signed fractions](REDUNDANT_CF.md) prove existence/unique limit, defined suffixes and recurrence for every printed-admissible infinite stream. Positive overlap recovers canonical simple digits. Finite nonunique presentations and a terminal-zero syntax limitation are checked. Coverage/extraction for every real, signed irrationality/recovery and sufficient finite definedness remain explicit. |
+| §2.15.7 redundant fractions | Covered mathematical coverage and rational constructor; interval algorithm unspecified | [Signed extraction](SIGNED_EXTRACTION.md) constructs valid finite/infinite expansions of every real with exact recovery and proves rational termination plus an executable bounded rational constructor. A labeled lower-tie convention satisfies every generated suffix restriction, including the finite last term. Earlier arbitrary infinite convergence and finite nonuniqueness remain. The source mentions but does not specify interval Euclidean extraction; arbitrary redundant uniqueness and invalid finite syntax are not silently repaired. |
 | §2.15.8 GIA representations | Expository correspondence; later-chapter quantitative claims | The source says improved convergence can occur and gives symbolic intervals as an immediate but unproductive example; it states no uniform improvement theorem or rate. Same-witness functional semantics are established; specified operation advantages and later graphing claims remain distinct. |
 
 ## Recommended finite closeout program
@@ -85,9 +85,11 @@ The [page-and-claim ledger](SECTION215_LEDGER.md) now covers all eight subsectio
 The ordinary canonical digit converse is proved, not merely another example.
 The arbitrary admissible infinite simple-stream converse is now proved.
 The printed-admissible redundant infinite class (§2.15.7) now has a proved
-convergent, defined suffix interpretation. The remaining representation obligation
-is signed coverage/extraction, with a precise finite terminal-zero limitation;
-it is not another convergence theorem for a selected periodic example. The first-digit finite-information obstruction now has an explicit deterministic
+convergent, defined suffix interpretation. The signed coverage and exact-rational extraction obligation is now closed by a
+source-compatible nearest-integer construction with an explicitly labeled tie
+choice. Its generated finite suffixes are all defined. The remaining interval
+Euclidean algorithm needs an operational specification; the arbitrary finite
+terminal-zero syntax limitation remains separate. The first-digit finite-information obstruction now has an explicit deterministic
 indexed-oracle model and constructive rational counterexamples. Enriched names
 and redundant output are outside that theorem. No arbitrary nonlinear closure implementation is
 added to the chapter finish line merely because finite projection tools exist.
