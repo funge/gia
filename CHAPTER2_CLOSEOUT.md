@@ -3,8 +3,9 @@
 We have finished the scoped Chapter 2 formalization. Lean checks the mathematical
 results listed in the [section-by-section checklist](CHAPTER2_CHECKLIST.md),
 including the conditions under which they hold. This does **not** mean that every
-sentence in the thesis is true as printed, or that every representation has an
-code that converts it to another representation. Some printed examples disagree with the definitions;
+sentence in the thesis is true as printed, or that every representation has
+code that converts it to another representation. Some printed examples disagree
+with the definitions;
 other claims depend on how they are read. Those limits are part of this closeout.
 
 The checklist was checked against printed pp.13–43, including the formulas in
