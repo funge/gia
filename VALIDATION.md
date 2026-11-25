@@ -4306,3 +4306,30 @@ are unchanged from the full gate.
 [Source scope and exact premises](MONOTONE_UNIONS.md) distinguish finite monotone
 branch projection, effective square-piece construction and pole-aware inverse
 descriptions from general branch discovery or arbitrary closure algorithms.
+
+## Canonical ordinary digit correspondence (2026-11-25)
+
+Qualified proof checkpoint `0e527c46c7b14d966432f073da9060aa71a37891`, based on
+merged #62 (`0d0fa61ee3d256e9873bae4be3355d9940158a20`). Only this validation
+receipt was added afterward; proofs, fixtures, registries and source-ledger
+contents are unchanged from the full gate.
+
+- Full `./check.sh` passed: build, direct audit, and **30 tests in 614.690
+  seconds**, including all **120** fresh-process semantic fixtures and the
+  explicitly supplied pinned C API checkout comparison.
+- **1,812 named axiom audits**, **3,377 namespace declarations**, **187 libraries**.
+  No warnings or errors. The focused new fixture audited **16** declarations.
+- Kernel controls check terminating and repeating decimal behavior, rational
+  prefixes, negative integer parts, zero/one, invalid alphabets, canonical
+  uniqueness and non-normalized place ambiguity. No arbitrary-real digit
+  oracle or new native execution is claimed.
+- **1,242 local file links**, none broken before this receipt; final links and
+  `git diff --check` rerun. Recovery bundle verification passed.
+- No new project axioms, placeholders, unsafe/native-decide proof shortcuts,
+  FP premises, native/C/default changes, dependency changes or hosted CI.
+  The existing allowlist remains `propext`, `Classical.choice`, `Quot.sound`.
+
+[The proof scope](DIGIT_EXTRACTION.md) distinguishes mathematical floor-based
+extraction and arbitrary canonical-stream reconstruction from executable online
+algorithms. The eight-subsection ledger keeps the infinite continued-fraction
+converse and other remaining source obligations explicit.

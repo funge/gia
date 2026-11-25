@@ -570,3 +570,6 @@ name = "FractionalProjection"
 
 [[lean_lib]]
 name = "MonotoneUnions"
+
+[[lean_lib]]
+name = "DigitExtraction"
