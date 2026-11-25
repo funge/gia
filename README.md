@@ -867,3 +867,9 @@ polynomial value graphs and retained nonzero guards for the existing strict
 arithmetic grammar. It preserves same-choice domain classifications and input
 piece boundaries; it does not eliminate output witnesses into affine pieces or
 provide an executable/native solver.
+
+[Fractional-linear output projection](FRACTIONAL_PROJECTION.md) eliminates the
+input witness exactly under a checked regular polynomial identity, retaining
+original pieces and cancellation guards. Its rational membership query reuses
+the existing singleton evaluator; general projection and output-piece
+enumeration remain separate obligations.

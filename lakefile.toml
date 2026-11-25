@@ -564,3 +564,6 @@ name = "NearestMinimizers"
 
 [[lean_lib]]
 name = "RationalFamilyClosure"
+
+[[lean_lib]]
+name = "FractionalProjection"
