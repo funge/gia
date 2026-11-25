@@ -195,13 +195,12 @@ nonexactness of every finite truncation; its converted stream cannot converge
 to 2. An epsilon=1/1000 control and the eventually-exact rational zero boundary
 are included. No floating-point execution or bit behavior is involved.
 
-Remaining §2.15.4 gap: characterization/reconstruction and uniqueness for
-ARBITRARY admissible infinite simple-coefficient streams, rather than those
-already known to be constructor outputs. Generalized numerators, redundant
-continued fractions (§2.15.7) and algorithms on those presentations remain
-separate. Earlier references above to infinite uniqueness being open refer to
-this arbitrary-stream claim; canonical-input convergence and injectivity are
-now explicitly checked.
+The former arbitrary infinite-stream gap is now closed by
+[InfiniteSimpleCF](INFINITE_SIMPLE_CF.md): suffix convergence is proved from
+admissibility, followed by canonical recovery, irrationality and uniqueness.
+Earlier open-gap statements in this milestone history refer to that later
+result. Generalized numerators, redundant continued fractions (§2.15.7) and
+algorithms on those presentations remain separate.
 
 Pinned dependency proof references:
 [canonical convergence and epsilon recovery](https://github.com/leanprover-community/mathlib4/blob/c44e0c8ee63ca166450922a373c7409c5d26b00b/Mathlib/Algebra/ContinuedFractions/Computation/ApproximationCorollaries.lean#L70),
