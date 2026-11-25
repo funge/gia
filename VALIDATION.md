@@ -4016,3 +4016,26 @@ Only this receipt is appended after qualification; proofs, fixtures and registry
 entries are unchanged. [Scope](PIECE_DOMAIN_CONVERSION.md) distinguishes exact
 per-choice domain classification from conservative numerical closure. The
 closeout matrix records the remaining constructive-composition and source gaps.
+
+## Guarded composition of generated piece domains
+
+Qualified proof checkpoint `cc35eb41dc1571a0853d7cacce8a96b048031510`, based on
+merged #52 (`3ebd93c661d74bb33c5aacc2fd65efe0cd668f2a`), using Lean 4.19.0
+and mathlib `c44e0c8ee63ca166450922a373c7409c5d26b00b`.
+
+- Full `./check.sh` passed: build, 1,629 named axiom audits, 3,001 namespace
+  declarations, and 30 Python tests in 511.076 seconds; no warnings/errors.
+- 110 fresh semantic fixtures, including 35 new kernel-audited declarations.
+  Six pure reference cases also executed through `#eval`; no hardware execution
+  or native performance qualification is claimed.
+- 177 libraries registered; the dependency regression passed before the full
+  gate, and the explicit pinned C API comparison passed in the full gate.
+- 1,123 local Markdown links checked before this receipt, no broken links;
+  `git diff --check` passed. No new axiom, placeholder, FP premise, native or
+  default-path change.
+
+Only this receipt was appended after qualification. Proofs, fixtures and
+registries remain unchanged from the checkpoint. See
+[scope and failure controls](GUARDED_PIECE_COMPOSITION.md): success preserves
+same-choice classification; whole-hull guard failure remains unknown, and
+independent coordinate witnesses cannot justify an existence claim.
