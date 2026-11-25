@@ -555,3 +555,6 @@ name = "NumericFoundations"
 
 [[lean_lib]]
 name = "DirectedOperationAlgebra"
+
+[[lean_lib]]
+name = "SourceRoundedAlgebra"
