@@ -1,5 +1,10 @@
 # Thesis-to-formalization concordance
 
+[Constant-extension compatibility](CONSTANT_EXTENSION.md) now gives the general
+conditional real-output theorem for §2.9.4, beyond concrete add/sub/mul. It also
+records source-checked finite-real coefficient and positive-infinity guard scope;
+no native contract or unrelated §3.1 overview is changed.
+
 The [symbolic sine/root trace](SYMBOLIC_TRACE.md) closes the final concrete
 Chapter 2 example identified by the audit. See the [conditional scoped completion
 verdict](CHAPTER2_CLOSEOUT.md); this is not a claim that every printed assertion
