@@ -30,7 +30,13 @@ with an explicit account of any unmatched conventions. It does not mean rebuildi
 mathlib or implementing every surveyed real-number representation as a runtime.
 An unmatched proof-bearing obligation cannot be closed merely as a survey.
 
-## Section-by-section exit criteria
+## Original planning snapshot: section-by-section exit criteria
+
+The rows and dependency sequence below preserve the initial planning snapshot;
+references to open/local #32/#33 work are historical, not current PR status.
+Use [the maintained closeout matrix and three-package program](CHAPTER2_CLOSEOUT.md)
+for current evidence and remaining obligations. The acceptance rule above remains
+in force.
 
 | Section | Kind and current position | Required exit evidence |
 | --- | --- | --- |

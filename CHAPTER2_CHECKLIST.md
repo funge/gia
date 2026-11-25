@@ -338,3 +338,11 @@ negative/zero/positive guards for a fixed rational affine denominator (§2.11.4)
 The zero piece is explicitly undefined; exact domain testing does not supply a
 finite range near a pole. General nonlinear splitting and unbounded value-piece
 composition remain open.
+
+### Guarded unbounded pieces through a total operation
+
+[Unbounded piece composition](UNBOUNDED_PIECE_COMPOSITION.md) gives exact affine
+translation in the existing half-space representation, then proves sound
+reciprocal-plus-affine enclosure and exact domain preservation at one parameter.
+This closes a constructive §2.11.4/§2.13 slice, not arbitrary operator closure
+or literal-infinity arithmetic. See the [closeout program](CHAPTER2_CLOSEOUT.md).
