@@ -4,7 +4,8 @@ This proof-only package maps the explicit scalar claims in Tupper's Chapter 2
 onto the pinned mathlib types and the project's existing partial arithmetic.
 It does not construct new number systems, change a hardware contract, or finish
 Chapter 2. The original [thesis PDF](https://www.dgp.toronto.edu/~mooncake/thesis.pdf)
-is the source; its printed pp. 16–18 (PDF pp. 32–34) were visually checked.
+is the source; its printed pp. 15–22 (PDF pp. 31–38) were visually checked,
+including the surrounding rounding and exceptional-value conventions.
 The repository Markdown transcription is an index, not authority for equations.
 
 ## Exact correspondence
