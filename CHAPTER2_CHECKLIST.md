@@ -1,348 +1,138 @@
-# Chapter 2: source-numbered proof checklist
+# Chapter 2: source-to-Lean closeout audit
 
-This is the maintained Chapter 2 roadmap, beginning with the finite §2.10
-milestone. **Chapter 2 is not complete.** The [completion criteria and dependency plan](CHAPTER2_COMPLETION.md) defines the section-by-section exit evidence. A restricted counterpart is not a
-formalization of the entire source section. The project proves GIA foundations;
-graphing remains one application. See the [concordance](THESIS_CONCORDANCE.md)
-for Chapter 3 and later consumers, and the [FP roadmap](FLOATING_POINT_ROADMAP.md)
-for the implementation trust boundary.
+Current audit after #67, checked against **all printed pp.13–43 / PDF pp.29–59**
+of [Tupper’s 1996 thesis](https://www.dgp.toronto.edu/~mooncake/thesis.pdf),
+including every numbered subsection below. The repository transcription was used
+only as an index; formulas and ambiguities were read from page images. This
+replaces the stale initial-milestone table. Historical proof receipts remain in
+[the source audit](CHAPTER2_SOURCE_AUDIT.md), [validation](VALIDATION.md), and
+individual scope documents. The [closeout matrix](CHAPTER2_CLOSEOUT.md) is the
+short summary; it must not turn each imaginable generalization into a new source
+obligation.
 
-Source: Jeffrey Allen Tupper, *Graphing Equations with Generalized Interval
-Arithmetic* (1996), [contents](https://www.dgp.toronto.edu/~mooncake/thesis/node1.html)
-and [original PDF](https://www.dgp.toronto.edu/~mooncake/thesis.pdf).
-For the exact image-hull milestone, §§2.7.3–2.8 were also visually checked on
-printed pp. 24–26 (PDF pp. 40–42); see [scope](EXACT_IMAGE_HULL.md).
-Section headings were cross-checked against the available transcription and
-existing source records. For this milestone, §2.10 was additionally read visually
-on printed pp. 32–33 (PDF pp. 48–49) in the existing repository source copy;
-no source copies are added or needed by the build. The HTML §2.10 fetch failed
-in this session, so that link is a citation, not a fresh accessibility claim.
-The strict-comparison milestone additionally checked §§2.7.2 and 2.9.2 visually
-on printed pp.24 and 27 (PDF pp.40 and 43); see [scope](STRICT_COMPARISON.md).
-The Boolean-composition tranche rechecked §2.9.2 on printed p.27 / PDF p.43.
-The author's linked contents also confirms §§2.15.1–8 (the local transcription
-only labels the first three); this numbering correction adds no proof coverage.
-Other rows inventory current code and carry forward the concordance's source
-qualifications; they are not claims of a fresh line-by-line proof audit of each
-section. Ambiguous formulas must be checked against the PDF before implementation.
+**Status keys:** E = exact mathematical result at the named scope; B = imported
+mathematical foundation; R = deliberately restricted counterpart / remaining
+correspondence proof; C = checked contradiction under the specified reading;
+U = genuinely unspecified semantics/algorithm or unresolved interpretation;
+D = description, cited background, or optional research beyond an explicit
+Chapter 2 theorem. Mixed labels are intentional. A set denotation theorem is not
+an executable converter. No row claims native, C, or IEEE implementation proof.
+The mathlib pin is `c44e0c8ee63ca166450922a373c7409c5d26b00b`.
 
-Use the remaining-work column as the checklist; no row below is marked complete.
-Update the relevant row with each source-led milestone rather than duplicating
-historical test counts here.
+## Every section and subsection
 
-| Source section | Current evidence / restricted coverage | Remaining work and precise boundary |
-| --- | --- | --- |
-| §2.1 Integers | Lean/mathlib `ℤ`, arithmetic/order; [IntegerResidue](IntegerResidue.lean) and [ResidueInference](ResidueInference.lean) are applications. | Map required source operations/order to library declarations as used; do not rebuild integers or count residue applications as a proof of the section. |
-| §2.2 Rational Numbers | mathlib `ℚ`; [Intervals](Intervals.lean), [LinearIntervals](LinearIntervals.lean) use exact rational endpoints/coefficients. | Library foundation, not a substitute for hardware arithmetic; no independent source algebra reconstruction is claimed. |
-| §2.3 Real Numbers | mathlib `ℝ`, ordered-field reasoning and analysis underlie enclosure proofs. | Record imported foundations as dependencies; not a new construction of the reals. |
-| §2.4 Complex Numbers | mathlib has complex numbers; current GIA bounds target real values. | Complex interval representations, order conventions and arithmetic are not implemented. Availability in mathlib is not project coverage. |
-| §2.5 Floating Point (§§2.5.1–4 infinity, NAN, rounding, algebra) | [Binary64](Binary64.lean) decodes finite raw words exactly to rationals, rejects nonfinite/out-of-range words, identifies both zeros with real zero. [HardwareAddition](HardwareAddition.lean), [HardwareSubtraction](HardwareSubtraction.lean), [HardwareMultiplication](HardwareMultiplication.lean), [HardwareDivision](HardwareDivision.lean) prove conditional directed-operation enclosure. | Full source rounding/order/exception algebra, closest-representable rounding, signed-zero behavior and native Float/raw-word refinement remain separate. Rejecting infinities/NaNs does not formalize their source arithmetic. Existing adapter/compiler/hardware contracts remain trusted; no new FP assumptions here. |
-| §2.6 Extended Real Numbers (§§2.6.1–3) | Partial real relations avoid totalized division; split rays can describe unbounded sets without extended endpoints. | Tupper's extended-real, hyperreal, conversion and infinity conventions are not a project number system. Do not equate absent decoded values with a verified infinity convention. |
-| §2.7 Interval Arithmetic (§§2.7.1–5) | [IntervalOps](IntervalOps.lean), [Evaluator](Evaluator.lean): finite real containment, rational arithmetic enclosure and restricted compositional evaluation. [StrictComparison](StrictComparison.lean) proves the exact Boolean image for strict comparison of independent finite operands. [ExactImageHull](ExactImageHull.lean) adds nonempty bounded actual-image inclusion, least closed hull and refinement; independent interval addition agrees with that hull and successful outward results contain it. | General n-ary computational extension/demotion, other source interval relations and algebra, generalized coefficient systems remain open. Mere enclosure does not imply exact image membership or leastness. |
-| §2.8 Real Interval Arithmetic | Nonempty bounded real output sets now have a proved least closed hull in [ExactImageHull](ExactImageHull.lean), without a general attainment claim. Finite endpoint inequalities and rational instances; [EndpointChords](EndpointChords.lean) and [TangentBounds](TangentBounds.lean) provide later-chapter restricted bounds. | Empty/unbounded output semantics, general demotion algorithms, extended endpoints and full order/algebra remain open. The hull theorem is a specification, not an arbitrary extrema algorithm. |
-| §2.9 Generalized Interval Arithmetic (§§2.9.1–8) | [BooleanComposition](BooleanComposition.lean) gives exact independent not/and/or images on the existing finite Truth type, subset soundness for joint/common-witness inputs, finite table algebra and strict correlation controls; see [scope](BOOLEAN_COMPOSITION.md). [StrictComparison](StrictComparison.lean) maps F/TF/T to the three nonempty Boolean intervals, with inclusion as information refinement; only independent finite strict comparison is implemented. [LinearIntervals](LinearIntervals.lean): one shared parameter, coefficient/endpoint correspondence, pointwise noncollapse, constant embedding; [LinearMultiplication](LinearMultiplication.lean): quadratic remainder enclosure. [PartialEnclosures](PartialEnclosures.lean) permits arbitrary parameter types for functional bounds; [HardwareAffine](HardwareAffine.lean) retains shared endpoint witnesses. | No full unification/family calculus or recursive three-valued system (projections and partial-expression integration remain deferred), general quadratic-bound representation, multidimensional affine coefficient family, or symbolic interval system. Polynomial expression syntax and a quadratic product theorem are not the full quadratic interval representation. Arbitrary-parameter semantic predicates are not executable multi-parameter arithmetic. |
-| §2.10 Generalized Floating Point Interval Arithmetic | **Current finite tranche:** [FiniteAffineDemotion](FiniteAffineDemotion.lean), documented [below](FINITE_AFFINE_DEMOTION.md): certify four supplied binary64 endpoint words; reuse `linear_bridge`; prove pointwise enclosure/noncollapse; conditionally evaluate stored bounds outward at one shared parameter. | Endpoint-basis finite specialization only. No arbitrary-family/extended-real/multiple-parameter demotion, source p,q coefficient-rounding implementation, automatic converter, exact rounding, optimality, ULP bound or native Float/Word proof. Ideal-to-stored certification and stored-to-evaluated enclosure are distinct. |
-| §2.11 Interval Function Domains (§§2.11.1–5) | [DomainConstraints](DomainConstraints.lean) proves a finite predicate-level same-parameter conjunction and classification-weakening bridge, reusing universal soundness and affine reciprocal guards; numeric descriptions/demotion remain separate. [PartialEnclosures](PartialEnclosures.lean): `FunctionalBounds`, `DomainBounds`, `Sound`, definite/possible domains, restriction, collapse exclusion. [DomainEvaluator](DomainEvaluator.lean), [GuardedEvaluator](GuardedEvaluator.lean), [SquareRootDomains](SquareRootDomains.lean) provide restricted guards/partial semantics. | General source value/domain description systems and extensions remain open. `Contains` alone proves no actual value exists; bounds may collapse outside a certified domain. Guard failure stays unknown except explicitly proved completeness cases. |
-| §2.12 Property Tracking (§§2.12.1–3) | [SemanticContinuity](SemanticContinuity.lean), [ConditionalContinuity](ConditionalContinuity.lean), [CellContinuity](CellContinuity.lean): conditional continuity/gluing. [PropertyComposition control](tests/PropertyComposition.lean) records source-specialization counterexamples. | General recursive weak/strong property tracking is unresolved; see the concordance's §2.12 source tension before adopting a generic API. Do not silently reverse the printed implication or conflate sufficient structural certificates with semantic equivalence. |
-| §2.13 Interval Sets (§§2.13.1–2) | [FiniteLinearCovers](FiniteLinearCovers.lean), [CoverArithmetic](CoverArithmetic.lean): finite union coverage and operations; [SplitQuotient](SplitQuotient.lean): restricted exact reciprocal image and same-valuation expression enclosure. | General set extensions/demotion, perfect or infinite representations and source bumpy-function classification remain open. Split quotient is not full domain/continuity flag tracking; arbitrary expression enclosure need not be exact image. |
-| §2.14 Variants | `LinearInterval.exact` is an equal-bound instance; `HardwareAffine.Form` stores interval-valued endpoint uncertainty. | General mixed coefficient systems, source equal-bound variants and Hansen-style multi-parameter family need separate correspondence proofs. Current instances do not establish the full section. |
-| §2.15 Real Representations (§§2.15.1–8) | See the maintained [page-and-claim ledger](SECTION215_LEDGER.md) for cuts, streams, canonical ordinary digits, continued fractions and accuracy proofs. | Arbitrary infinite CF converses, redundant CFs and specified algorithmic correspondences remain separate. No verified alternative real-computation backend is claimed. |
+The Lean anchors name declarations within the linked module; scope documents
+provide the longer hypotheses. Printed page anchors distinguish source evidence
+from our derived constructions. An E beside a row does not erase its R/U part.
 
-## Imported foundations, not rebuilt number systems
+| Section / printed page | Explicit claim or definition | Status | Lean anchor | Exact residual / classification |
+| --- | --- | --- | --- | --- |
+| §2.1 ([13–15](https://www.dgp.toronto.edu/~mooncake/thesis.pdf#page=29)) | Integers; operation graphs, partiality, rings/order | **B/E** | [NumericFoundations](NumericFoundations.lean): `integer_rational_embedding; integer_division_not_closed; integer_alternative_distributivity_fails` | Int and ordered-ring laws are imported. Generic function notation is a definition, not a requested new type theory. |
+| §2.2 ([15–16](https://www.dgp.toronto.edu/~mooncake/thesis.pdf#page=31)) | Rational promotion and lack of a total square root | **B/E** | [NumericFoundations](NumericFoundations.lean): `integer_rational_injective; no_total_rational_root` | Nonzero denominator is essential. Earlier audit “unmapped root/embedding” entries are superseded. |
+| §2.3 ([17](https://www.dgp.toronto.edu/~mooncake/thesis.pdf#page=33)) | Real sequence representation and partial real root | **B/E** | [NumericFoundations](NumericFoundations.lean): `rational_sequence_exists; real_root_domain` | Real construction and field laws use pinned mathlib; bare totalized Real.sqrt is not the source partial root. |
+| §2.4 ([17–18](https://www.dgp.toronto.edu/~mooncake/thesis.pdf#page=33)) | Complex embedding, total root, no compatible field order | **B/E/D** | [NumericFoundations](NumericFoundations.lean): `real_complex_embedding; complex_root_total; no_complex_ordered_ring` | Doubling/quaternions and computing resources are a cited survey, not a complex interval implementation specification. |
+| §2.5 ([18–19](https://www.dgp.toronto.edu/~mooncake/thesis.pdf#page=34)) | Coefficient and digit presentations of a finite format | **E/C** | [FormatNormalization](FormatNormalization.lean): `upper_digit_witness; repaired_iff_normal_or_minimum` | The printed displays have different value sets. Repaired binary64 iff is Binary64Format.repaired_iff_decode, not a proof of the literal IEEE identification. |
+| §2.5.1 ([19](https://www.dgp.toronto.edu/~mooncake/thesis.pdf#page=35)) | Signed infinity tags and specified addition/comparison rows | **R/U** | [ExceptionalComparisons](ExceptionalComparisons.lean): `same_sign_infinities; add_positive_infinity_cases` | Same-sign numerical equality differs from structural equality. Full mixed/undefined-input arithmetic is not determined by these rows; the quantified addition example needs an explicit reading of its exceptional guard. |
+| §2.5.2 ([19](https://www.dgp.toronto.edu/~mooncake/thesis.pdf#page=35)) | Lambda, negative-root example and unordered comparisons | **E/U** | [ExceptionalComparisons](ExceptionalComparisons.lean): `undefined_left; undefined_right; sqrt_negative` | The five named comparisons exclude numerical not-equal; sentinel definedness tests are separate. Missing operation cases must not be supplied from IEEE. |
+| §2.5.3 ([20](https://www.dgp.toronto.edu/~mooncake/thesis.pdf#page=36)) | Directed extrema, nearest rounding and decimal examples | **E/C/U** | [SourceRoundedAlgebra](SourceRoundedAlgebra.lean): `decimal_literal; decimal_repaired; literal_up_not_printed` | NearestMinimizers.exists_iff/tie_iff give selection-free facts. Tie choice, exceptional overflow and the illustrative 40-ULP sine implementation are not specified algorithms or proved native behavior. |
+| §2.5.4 ([21](https://www.dgp.toronto.edu/~mooncake/thesis.pdf#page=37)) | Rounded algebra, identities, failures of associativity/distributivity | **E/C/R** | [SourceRoundedAlgebra](SourceRoundedAlgebra.lean): `multiplication_nonassoc; mixed_distributivity; printed_reassociation` | DirectedOperationAlgebra proves finite in-range identities. Printed decimal reassociation rows require correction; universal exceptional identity/inverse laws are not inferred from finite laws. |
+| §2.6 ([21](https://www.dgp.toronto.edu/~mooncake/thesis.pdf#page=37)) | Extended-real carrier and claimed natural homomorphisms | **R/U** | [NumberPromotion](NumberPromotion.lean): `promotion_coherent` | Finite exact embeddings and tagged conversion are covered. A map out of F containing lambda is not specified into R plus signed infinities; preservation of rounded addition cannot be assumed. |
+| §2.6.1 ([21–22](https://www.dgp.toronto.edu/~mooncake/thesis.pdf#page=37)) | Positive infinitesimal and nonstandard-analysis discussion | **B/E/D** | [HyperrealInfinitesimal](HyperrealInfinitesimal.lean): `source_positive_infinitesimal` | The concrete inequality uses pinned mathlib. General transfer, smooth analysis and the signed-zero analogy are background discussion, not a verified IEEE conversion. |
+| §2.6.2 ([22](https://www.dgp.toronto.edu/~mooncake/thesis.pdf#page=38)) | Promotion versus demotion, explicit rounding stages | **E/R/U** | [DiscreteDemotion](DiscreteDemotion.lean): `down_greatest; up_least` | FiniteFormat.finite_directed and EndpointOptimality.certificate_exact_iff discharge actual finite-family extrema. General exceptional conversion and operation preservation still need semantics. |
+| §2.6.3 ([22](https://www.dgp.toronto.edu/~mooncake/thesis.pdf#page=38)) | Signed divergence with eventually-above/below quantifiers | **E** | [InfinityStreams](InfinityStreams.lean): `up_iff_extended_limit; down_iff_extended_limit; spikes_not_up` | This is exact sequence/limit correspondence, not a construction of a full quotient or transfer principle. |
+| §2.7 ([23](https://www.dgp.toronto.edu/~mooncake/thesis.pdf#page=39)) | An interval represents any enclosed fixed real | **E/R** | [ExactImageHull](ExactImageHull.lean): `sound` | HardwarePi supplies much stronger rational pi bounds. Native correctness and arbitrary exceptional numerical membership are separate. |
+| §2.7.1 ([23](https://www.dgp.toronto.edu/~mooncake/thesis.pdf#page=39)) | Ordered endpoints, width and real membership | **E/R** | [Intervals](Intervals.lean): `QInterval` | Ordered finite rational interval structure and real-set extended hulls are covered. Width of undefined/literal-infinite endpoint expressions is not silently EReal subtraction. |
+| §2.7.2 ([24](https://www.dgp.toronto.edu/~mooncake/thesis.pdf#page=40)) | Independent three-valued comparisons and Boolean projections | **E** | [StrictComparison](StrictComparison.lean): `compare_exact` | FiniteEquality.compareEQ_exact and DomainProjections.compareLE_exact/pessimistic_iff/optimistic_iff complete the finite named comparisons. Same-witness correlation does not imply both outcomes occur. |
+| §2.7.3 ([24](https://www.dgp.toronto.edu/~mooncake/thesis.pdf#page=40)) | Inclusion for arbitrary arity | **E/R** | [GeneralFamilyDemotion](GeneralFamilyDemotion.lean): `model_demotion; sound_demote` | Generic relational theorem retains actual witnesses. Concrete operator premises still require proof; this definition does not promise a universal operator synthesizer. |
+| §2.7.4 ([25](https://www.dgp.toronto.edu/~mooncake/thesis.pdf#page=41)) | Least image enclosure and outward endpoint demotion | **E** | [ExtendedImageHull](ExtendedImageHull.lean): `enclosure_iff; least; empty_hull` | Actual real images, including unbounded/empty, are handled; exact finite-family outward bounds are connected by EndpointOptimality. Printed text explicitly says extension is not a construction method. |
+| §2.7.5 ([25](https://www.dgp.toronto.edu/~mooncake/thesis.pdf#page=41)) | Subdistributivity, associative trails and singleton embedding | **E/C/R** | [RoundedIntervalControl](RoundedIntervalControl.lean): `staged` | IntervalAlgebra.subdistributive proves exact rational interval law. Least staged rounding refutes its unconditional floating-interval version. The singleton map alone is not an operation-preserving isomorphism of a nonclosed subtype; trail inclusion remains sound. |
+| §2.8 ([26](https://www.dgp.toronto.edu/~mooncake/thesis.pdf#page=42)) | Real-interval best enclosure | **E** | [ExtendedImageHull](ExtendedImageHull.lean): `sound; least; finite_agreement` | Bounds on real outputs are not genuine infinity members. No extrema-computation algorithm is claimed. |
+| §2.9 ([26](https://www.dgp.toronto.edu/~mooncake/thesis.pdf#page=42)) | Generalization by parameterized number descriptions | **E/R** | [GeneralFamilyDemotion](GeneralFamilyDemotion.lean): `exact_hull_sound` | Semantic framework and concrete families are proved; this is not one executable implementation of every possible family. |
+| §2.9.1 ([26–27](https://www.dgp.toronto.edu/~mooncake/thesis.pdf#page=42)) | Changing the endpoint number system | **E/R** | [NumberPromotion](NumberPromotion.lean): `down_greatest; up_least` | Integer and finite-rational target projectors are constructed. An arbitrary endpoint system needs representability/extremality premises; source supplies no universal projector. |
+| §2.9.2 ([27](https://www.dgp.toronto.edu/~mooncake/thesis.pdf#page=43)) | Boolean interval isomorphism and description inclusion | **E** | [BooleanComposition](BooleanComposition.lean): `conj_exact; disj_exact` | StrictComparison gives the three nonempty truth intervals. Independent images differ from correlated truth sets; no empty truth case/full lattice is asserted. |
+| §2.9.3 ([27–30](https://www.dgp.toronto.edu/~mooncake/thesis.pdf#page=43)) | Linear shared-parameter families and demotion | **E/C/R** | [LinearFamilyEquality](LinearFamilyEquality.lean): `canonical_or_full_fiber_of_range` | Finite affine correspondence/cancellation are proved. Pointwise forward-or-reverse assertion is refuted and repaired with a full-fiber alternative. AffineDemotionLimits.no_greatest_minorant closes the nonoptimality claim. Full exceptional coefficients remain unmodeled. |
+| §2.9.4 ([30](https://www.dgp.toronto.edu/~mooncake/thesis.pdf#page=46)) | Constant embedding and stated homomorphism | **E/R/U** | [LinearIntervals](LinearIntervals.lean): `linear_constant_add; linear_constant_sub`; [LinearMultiplication](LinearMultiplication.lean): `linear_constant_mul` | Concrete constant add/sub/mul and the success-conditioned evaluator correspondence are checked, including tests/ConstantEmbedding.lean. Extending this to arbitrary family/demotion choices needs compatibility, not mere inclusion. |
+| §2.9.5 ([30](https://www.dgp.toronto.edu/~mooncake/thesis.pdf#page=46)) | Quadratic bounds and invalid infinite-coefficient example | **E/R** | [QuadraticFamilies](QuadraticFamilies.lean): `one_parameter_representation; product_value` | ExceptionalFamilies checks the midpoint-to-lambda example. General literal exceptional coefficient arithmetic is not specified here; demotion implementation is explicitly deferred to later sections. |
+| §2.9.6 ([30–31](https://www.dgp.toronto.edu/~mooncake/thesis.pdf#page=46)) | Finite vectors of independent parameters, shared within each value | **E/R** | [MultiAffineFamilies](MultiAffineFamilies.lean): `hull_endpoints_attained` | Finite rational coefficient representation and exact extrema are covered; arbitrary real/exceptional coefficient system is a carrier generalization, not yet a full formal implementation. |
+| §2.9.7 ([31](https://www.dgp.toronto.edu/~mooncake/thesis.pdf#page=47)) | Coefficient function schema, noncollapse and inclusion | **E/R** | [GeneralFamilyDemotion](GeneralFamilyDemotion.lean): `model_demotion` | FunctionalBounds and arbitrary parameter/witness relations realize the semantic core. An arbitrary function family is a schema with operator/demotion obligations, not a supplied grammar or algorithm. |
+| §2.9.8 ([32](https://www.dgp.toronto.edu/~mooncake/thesis.pdf#page=48)) | Symbolic singleton bounds and finite expressions | **R/D** | [IntervalSetExtension](IntervalSetExtension.lean): `guarded_points_exact` | Exact graph/point semantics and finite arithmetic syntax exist. The displayed sin/root symbolic trace and a universal symbolic grammar are not directly formalized. The ellipsis is not an algorithmic specification. |
+| §2.10 ([32–33](https://www.dgp.toronto.edu/~mooncake/thesis.pdf#page=48)) | Ideal-to-stored and stored-to-evaluated outward bounds | **E/R/U** | [FiniteAffineDemotion](FiniteAffineDemotion.lean): `certified_enclosure; certified_evaluation` | Finite endpoint-basis certificate is proved, distinct from arbitrary coefficient demotion. The “order of machine precision” sentence lacks a norm/constant/conditioning hypothesis; it is not an established uniform error theorem. |
+| §2.11 ([33–34](https://www.dgp.toronto.edu/~mooncake/thesis.pdf#page=49)) | Value intervals with separate three-valued domain descriptions | **E/R** | [PartialEnclosures](PartialEnclosures.lean): `DomainBounds; PartialEnclosure` | Explicit definite/possible domains and same-witness partial semantics are covered. This is not a complete concrete syntax for every numeric descriptor. |
+| §2.11.1 ([34](https://www.dgp.toronto.edu/~mooncake/thesis.pdf#page=50)) | Value and domain inclusion | **E** | [GeneralFamilyDemotion](GeneralFamilyDemotion.lean): `sound_partial_iff; sound_demote` | Value obligations apply to actual outputs. No value is invented at an absent input or collapsed fiber. |
+| §2.11.2 ([34–35](https://www.dgp.toronto.edu/~mooncake/thesis.pdf#page=50)) | Value/domain extension and classification-preserving demotion | **E/R** | [DescriptorDemotion](DescriptorDemotion.lean): `integer_hull_refines` | Semantic criterion and real-to-integer-hull converter are proved. PieceDomainConversion provides an effective finite subclass; arbitrary classifier synthesis is not given by the source. |
+| §2.11.3 ([35](https://www.dgp.toronto.edu/~mooncake/thesis.pdf#page=51)) | Several domain classifiers with the same semantics | **E/R** | [DomainProjections](DomainProjections.lean): `numeric_refines; numeric_domain_refines` | Threshold/nonzero instances and tagged composition preserve classification. A common grammar for all classifiers is optional beyond the stated semantic interface. |
+| §2.11.4 ([35–36](https://www.dgp.toronto.edu/~mooncake/thesis.pdf#page=51)) | Conjunction of input domains plus partial-operation guard | **E/R** | [DomainConstraints](DomainConstraints.lean): `all_compatible; partial_guard_compatible` | FiniteProperties.composeN_defined is the exact strict domain factorization. RationalFamilyClosure proves generated finite arithmetic guards; arbitrary operations still need their guard. |
+| §2.11.5 ([36](https://www.dgp.toronto.edu/~mooncake/thesis.pdf#page=52)) | Simple flags and partial square-root examples | **E** | [SquareRootDomains](SquareRootDomains.lean): `sqrt_values_defined_iff` | Printed negative singleton with mixed domain is a loose sound enclosure, not a false statement. Precise classification is stronger than source permits here. |
+| §2.12 ([36–37](https://www.dgp.toronto.edu/~mooncake/thesis.pdf#page=52)) | Recursive weak/strong checking | **E/C/U** | [PropertyComposition fixtures](tests/PropertyComposition.lean): `printed_weak_direction_counterexample` | Strict definedness is compositional. Semantic-continuity reading of the printed weak arrow is refuted; structural certificates are a possible distinct interpretation, not an inferred correction. |
+| §2.12.1 ([37](https://www.dgp.toronto.edu/~mooncake/thesis.pdf#page=53)) | Definedness, continuity and coordinate-frozen local constancy | **E/R/C** | [FiniteProperties](FiniteProperties.lean): `composeN_defined; continuous_composeN` | TrackingCertificates.frozen_composeN is sufficient. Converse/necessity cannot be asserted; partial-domain hypotheses remain explicit. |
+| §2.12.2 ([37–38](https://www.dgp.toronto.edu/~mooncake/thesis.pdf#page=53)) | Value/property inclusion and description extension | **E/R/U** | [TrackingCertificates](TrackingCertificates.lean): `continuous_description` | Success-only certificate transport and exact domain descriptions are covered. Full literal weak-tracking recursion cannot be claimed until the source interpretation is resolved. |
+| §2.12.3 ([38](https://www.dgp.toronto.edu/~mooncake/thesis.pdf#page=54)) | Combining property systems and notation | **R/D** | [TrackingCertificates](TrackingCertificates.lean): `defined_description` | Separate domain/property obligations can be conjoined. Source notation and historical implementation claims do not specify a new algorithm requiring reconstruction. |
+| §2.13 ([38–39](https://www.dgp.toronto.edu/~mooncake/thesis.pdf#page=54)) | Interval sets as union denotation | **E** | [IntervalSetDenotation](IntervalSetDenotation.lean): `union` | Finite and arbitrary semantic piece sets retain one parameter; different pieces are not replaced by a single hull. |
+| §2.13.1 ([39](https://www.dgp.toronto.edu/~mooncake/thesis.pdf#page=55)) | Set extension, perfect guarded points and reciprocal rays | **E/R/U** | [IntervalSetExtension](IntervalSetExtension.lean): `extension_exact; lift_exact; guarded_points_exact` | SplitQuotient and finite output projection cover actual examples. Printed real V point collection is infinite; the following finite-description sentence refers to floating U, not the same object. General optimal finite-machine-family selection is not constructed. |
+| §2.13.2 ([39](https://www.dgp.toronto.edu/~mooncake/thesis.pdf#page=55)) | Definition of bumpy via strict improvement against all single models | **E/R** | [IntervalSetExtension](IntervalSetExtension.lean): `strict_against_every_interval` | The exact gap criterion and a finite witness are proved. No universal automatic bumpy classifier is stated or needed by this definition. |
+| §2.14 ([40](https://www.dgp.toronto.edu/~mooncake/thesis.pdf#page=56)) | Heterogeneous/equal interval coefficients and Hansen family | **E/R/U** | [HansenCoefficients](HansenCoefficients.lean): `signed_exact; exact_interval` | CoefficientWitnesses.coded_exact and MixedEndpoints compile concrete variants. HansenRealSets covers unbounded sets of finite choices. Literal infinite coefficients and cross-use choice convention are separate from pointwise exactness. |
+| §2.15 ([40](https://www.dgp.toronto.edu/~mooncake/thesis.pdf#page=56)) | Survey of real representations | **B/D** | [SECTION215_LEDGER.md](SECTION215_LEDGER.md): `page-and-claim ledger` | The source explicitly lets interval-only readers skip this survey. Imported constructions count as mathematical evidence, not newly verified implementations. |
+| §2.15.1 ([40–41](https://www.dgp.toronto.edu/~mooncake/thesis.pdf#page=56)) | Nonnegative cuts and pointwise rational arithmetic | **E/R** | [CutArithmetic](CutArithmetic.lean): `add_lub; mul_lub; operations_representation_independent` | Nonnegative inhabited proper cuts are handled, plus boundary conventions and signed-product failure. A signed-cut algorithm is not specified. |
+| §2.15.2 ([41](https://www.dgp.toronto.edu/~mooncake/thesis.pdf#page=57)) | Termwise rational-sequence arithmetic, representative independence | **E/R** | [SequenceRepresentations](SequenceRepresentations.lean): `add; mul; div` | Convergent sequences and guarded division are covered; no universal convergence rate is asserted in the source. |
+| §2.15.3 ([41](https://www.dgp.toronto.edu/~mooncake/thesis.pdf#page=57)) | Radix digits, floating place/sign, unique zero-tail convention | **E/U** | [FloatingDigits](FloatingDigits.lean): `coverage; normalized_representation_unique` | New scale normalization discharges all-real floating-place existence. DigitExtraction supplies canonical fractional uniqueness. Scale uniqueness needs the explicit leading-nonzero convention; carrying algorithm is not specified. Printed “second form” disagrees with its “tail of 0” wording. |
+| §2.15.4 ([42](https://www.dgp.toronto.edu/~mooncake/thesis.pdf#page=58)) | Finite/infinite simple fractions, recovery and rational termination | **E** | [InfiniteSimpleCF](InfiniteSimpleCF.lean): `admissible_reconstruction; representation_unique` | ContinuedFractionConversion covers finite normalization and actual mathlib Euclidean extraction. No arbitrary exact-real executable oracle follows. |
+| §2.15.5 ([42–43](https://www.dgp.toronto.edu/~mooncake/thesis.pdf#page=58)) | Converging interval arithmetic and accuracy search; first-digit obstruction | **E/R** | [ExpressionStreams](ExpressionStreams.lean): `eval_converges_encloses` | AccuracySearch gives executable supplied-stream search; FiniteQuery.no_total_decimal_reader/no_total_cf_reader proves the plain interval-oracle obstruction. The phrase “provided operators” refers onward to Chapter 3; proving every such operator is separate operator coverage, not a generic discontinuous composition theorem. |
+| §2.15.6 ([43](https://www.dgp.toronto.edu/~mooncake/thesis.pdf#page=59)) | Signed digit representation and cited online arithmetic | **E/R/D/U** | [DigitRepresentations](DigitRepresentations.lean): `signed_condition; partial_represents; addition` | Ordinary digits plus sign/scale embed in the signed alphabet. A fixed-delay carrying circuit is referenced but not specified; no implementation/rate result is proved here. |
+| §2.15.7 ([43](https://www.dgp.toronto.edu/~mooncake/thesis.pdf#page=59)) | Signed continued fractions, coverage and interval Euclidean extraction | **E/U** | [SignedExtraction](SignedExtraction.lean): `coverage; rational_extracts; finite_divisors_nonzero` | RedundantCF proves arbitrary admissible infinite convergence; generated all-real recovery/rational termination are closed. The interval extraction algorithm is unspecified; no uniqueness of redundant syntax is claimed. |
+| §2.15.8 ([43](https://www.dgp.toronto.edu/~mooncake/thesis.pdf#page=59)) | GIA can improve convergence and retains parameter information | **E/R/D** | [GeneralFamilyDemotion](GeneralFamilyDemotion.lean): `sound_demote` | Shared-parameter cancellation and symbolic singleton semantics support the qualitative examples. Source promises no universal speedup/rate or complete nonlinear solver. |
 
-The finite layer uses mathlib's integers/rationals/reals, their coercions,
-`+`, `-`, `*`, `/`, `≤` and `<`. For example, `affine_order` in
-[LinearIntervals](LinearIntervals.lean) uses `add_le_add` and
-`mul_le_mul_of_nonneg_left`; endpoint certification uses order transitivity
-and exact rational-to-real coercion. Polynomial identities use the existing
-`ring`/`norm_num` infrastructure. Real continuity and convexity in later
-modules are library dependencies, not newly claimed Chapter 2 constructions.
+## What moved in this audit
 
-## Next source-led obligations
+The all-real floating-place statement in §2.15.3 now has a direct proof in
+[FloatingDigits](FloatingDigits.lean). For every radix b ≥ 2, a nonzero real has
+sign, integer exponent and canonical ordinary fractional digits with mantissa
+in [1/b,1). Under this **explicit normalization convention**, sign, exponent and
+digits are unique. Zero has a separately chosen representation. The source's
+zero-tail convention by itself does not fix scale: 0.1 × 10 and 0.01 × 100
+both represent 1. This is a noncomputable mathematical correspondence, not
+extraction from a finite interval oracle or a hardware routine.
 
-1. Review the finite §2.10 certificate/evaluation interface before extending it.
-2. Specify a finite §2.7/§2.9 family inclusion and demotion relation if needed by
-   subsequent operations; reuse the existing pointwise semantics and avoid
-   asserting leastness from containment alone.
-3. Address extended-real and multi-parameter representation choices explicitly
-   before claiming the general Chapter 2 system. Keep native refinement and
-   exceptional floating-point behavior as separate, approved work.
+A second result closes a false proof target. In §2.7.5, exact interval
+subdistributivity cannot be transferred unconditionally to staged floating
+interval arithmetic. In the existing **literal** decimal format (10,3,−9,9),
+use I=[2,2], J=[100,100], K=[1,1]. Least outward rounding gives J+K=[100,110],
+then I·(J+K)=[200,220]; the other route gives I·J=[200,200], I·K=[2,2], then
+[200,210]. The first contains 220 and the second does not.
+`RoundedIntervalControl.staged` checks every least-rounded stage, not arbitrary
+extra widening. The actual real answer 202 remains enclosed by both routes.
+This does not refute the existing exact real/rational interval theorem.
 
-## Finite logical and numeric-domain interfaces
+## Remaining work, ranked by actual source obligation
 
-The [finite comparison package](FINITE_COMPARISONS.md) and
-[domain projections](DOMAIN_PROJECTIONS.md) cover optimistic/pessimistic
-projections, exact independent finite comparison images, threshold/nonzero
-classifiers and same-witness partial sqrt/division domain bridges. Numeric
-re-encoding preserves classifications under explicit whole-image and transport
-premises. Touching/equal-singleton, correlation, holes, nonmonotone predicates
-and unsafe re-encoding controls are kernel-checked. Source: Tupper §2.7.2
-(printed p.24 / PDF p.40) and §2.11 (printed pp.34–36 / PDF pp.50–52).
-Exceptional endpoints, general descriptor generation and full family demotion
-remain outside this milestone; Chapter 2 is not complete. No native or FP
-contract change is made.
+1. **Unresolved semantics:** §§2.5–2.6 exceptional carrier/promotion and
+   §2.12 weak-tracking interpretation. The five comparison predicates and
+   specified operation rows are formalized; the source does not supply a
+   complete exceptional operation table or a map for lambda into its displayed
+   extended-real carrier. Weak semantic continuity contradicts checked masking
+   examples. These need an explicit interpretation/errata decision, not an axiom.
+2. **Precise correspondence still missing:** the literal symbolic sin/root
+   trace of §2.9.8. Generic singleton/relational semantics are present, but that
+   is not an audited concrete trace. Constant embedding for add/sub/mul and the
+   existing linear evaluator is already proved; do not list that as missing.
+   A universal claim for arbitrary inclusion-preserving demoters would need
+   additional compatibility and is not implied by those concrete results. Full exceptional coefficient
+   evaluations depend on item 1. The symbolic trace is a finite source-facing proof task.
+3. **Restricted operator coverage:** §2.15.5 convergence is established for the
+   finite strict arithmetic grammar, not every operator supplied later in the
+   thesis. Additional operators belong to the operation/theory coverage plan;
+   the source does not assert convergence for arbitrary discontinuous functions.
 
+General quantifier elimination, automatic bumpy classification, arbitrary
+optimal family demoters, online digit circuits, interval Euclidean extraction,
+and uniform performance/ULP bounds are **not unproved universal Chapter 2
+algorithms**: the chapter supplies definitions, references or qualitative claims,
+not those specifications. They must not indefinitely enlarge this finish line.
+The real V guarded-point collection on p.39 is infinite; the following finite
+U description is a different floating family, not a direct self-contradiction.
 
-## Mathematical representations, bounds and exceptions
-
-The representation unit adds [extended actual-real-image hulls](EXTENDED_IMAGE_HULL.md),
-[source-scoped exceptional comparisons](EXCEPTIONAL_COMPARISONS.md) and
-[arithmetic](EXCEPTIONAL_ARITHMETIC.md), [literal-infinity controls](EXCEPTIONAL_FAMILIES.md),
-[signed divergence correspondence](INFINITY_STREAMS.md),
-[integer promotion/demotion](NUMBER_PROMOTION.md), and
-[finite-family extremal demotion](DISCRETE_DEMOTION.md).
-The independent positive-infinitesimal leaf reuses pinned mathlib.
-[Finite interval algebra](INTERVAL_ALGEBRA.md), [nonnegative cut arithmetic](CUT_ARITHMETIC.md),
-[rational sequences/digits](SEQUENCE_AND_DIGIT_REPRESENTATIONS.md) and
-[canonical continued-fraction conversion](CONTINUED_FRACTION_CONVERSION.md)
-record their exact source correspondences and boundary controls.
-
-These are mathematical proofs, not native deployment or a completion of Chapter 2.
-Empty actual-real images, infinite bounds, literal infinity tags and lambda are
-distinct. Mixed exceptional comparison directions, full source-carrier promotion,
-unspecified arithmetic rows and arbitrary infinite coefficient reconstruction
-remain open. Later family conversion and property-tracking units are not included.
-No floating-point premise or hardware implementation changes.
-
-
-## Families, sets and domain-compatible demotion
-
-[Family demotion](FAMILY_DEMOTION.md) and its
-[general partial-domain rule](GENERAL_FAMILY_DEMOTION.md) preserve shared witnesses
-and separate enclosure from classification. Concrete instances cover
-[linear equality and its source qualification](LINEAR_FAMILY_EQUALITY.md),
-[multiple affine parameters](MULTI_AFFINE_FAMILIES.md),
-[quadratic families](QUADRATIC_FAMILIES.md), and the
-[finite promotion chain](FINITE_FAMILY_CHAIN.md).
-[Interval sets](INTERVAL_SET_DENOTATION.md),
-[set-valued extension](INTERVAL_SET_EXTENSION.md),
-[coefficient variants](INTERVAL_COEFFICIENT_VARIANTS.md), and
-[finite descriptions](FINITE_DESCRIPTIONS_AND_CUTS.md) retain their explicit
-representation restrictions. [Descriptor demotion](DESCRIPTOR_DEMOTION.md) proves
-a whole-set conversion and preserves external holes and original tags.
-
-These results do not establish a universal finite family syntax, arbitrary bumpy
-functions, or the full source exceptional algebra. Inclusion is not exactness;
-projected range containment is not pointwise containment at a shared parameter.
-Property tracking and expression accuracy remain separate. No native/default
-change or new floating-point premise is included; Chapter 2 remains incomplete.
-
-
-## Partial properties and accuracy: integrated scope
-
-[Partial properties](PARTIAL_PROPERTIES.md), [finite-arity composition](FINITE_PROPERTIES.md)
-and [tracking certificates](TRACKING_CERTIFICATES.md) prove exact strict
-definedness and sufficient continuity/local-constancy transport on actual shared
-tuples. The literal source weak-continuity implication remains refuted by the
-constant and square masking controls; sufficient certificates are not silently
-substituted for that source claim. Failure of a certificate remains inconclusive.
-
-[Expression streams](EXPRESSION_STREAMS.md) prove eventual success, enclosure and
-convergence for the existing finite rational arithmetic evaluator when its limit
-has a strict semantic value. Endpoint containment is an additional premise for
-a limit-value error certificate. The compiled proof-backed search example rejects
-two initial stages and returns a certified interval; it is not a new native FP
-backend, a rate bound, or an implementation of arbitrary real inputs.
-
-The [consolidated source audit](CHAPTER2_SOURCE_AUDIT.md) is the current finish-line
-map. Full source-carrier/exceptional promotion, the weak-tracking interpretation,
-and general finite guard/piece representations remain substantive gaps.
-Newer tagged conversion remains separate. Chapter 2 is not declared complete.
-
-## Tagged family conversion preservation
-
-[Tagged conversion](TAGGED_CONVERSION.md) proves exact composition of lifted
-real-set converters while retaining literal negative infinity, positive infinity
-and lambda separately. Sound empty-preserving converters give arbitrary-predicate
-classification refinement and exact represented definedness bits. The real-hull
-then integer-hull instance discharges these premises with existing proofs.
-This is a derived semantic preservation theorem, not the full source F-to-R*
-promotion, an exceptional operation table, or a native implementation. Those
-concrete carrier/operation gaps remain in the [source audit](CHAPTER2_SOURCE_AUDIT.md).
-
-## Literal finite-format enclosure
-
-[Finite formats](FINITE_FORMAT.md) proves exact representation of the §2.5
-printed p.18 coefficient formula for arbitrary radix at least two, positive
-precision and ordered exponent bounds, with least finite in-range directed
-enclosure. Its Word bridge requires separate format membership. The adjacent
-digit presentation and IEEE identification remain open; no new FP premise or
-implementation is introduced, and Chapter 2 remains incomplete.
-
-## Coefficient/digit distinction
-
-[Format digits](FORMAT_DIGITS.md) checks the §2.5 printed pp.18–19 displays:
-exact digit-list correspondence, normalized magnitude bounds, literal
-nonnegative reindexing and a minimum-exponent obstruction. A checked decimal
-counterexample rules out unconditional equality of the displays. An explicitly
-labeled external-sign / `b^A` coefficient repair is proved; the original model
-is unchanged. Authorial intent, full normalization and IEEE identification remain
-open. This refines the earlier “digit correspondence open” entry, not Chapter 2
-completion or a new FP assumption.
-
-## Repaired binary64 value correspondence
-
-[Binary64 format bridge](BINARY64_FORMAT.md) proves the full iff between the
-repaired `(2,53,-1022,1023)` family and successful finite `Binary64.decode`
-values, including normal/subnormal cases and both signed zeros. Bounded exact
-normalization and raw-word packing discharge the converse, and identify the
-existing mathematical demotion target. This closes the repaired-family bridge
-previously deferred above; the literal printed coefficient model is unchanged.
-No native transport, exceptional rounding, new FP premise or chapter-completion
-claim follows.
-
-## Endpoint certificates and optimality
-
-[Endpoint optimality](ENDPOINT_OPTIMALITY.md) proves that a sound finite decoded
-Word certificate equals the least repaired-binary64 hull of a nonempty actual
-image iff its endpoints are extremal representable bounds. The existing affine
-endpoint checker supplies inequalities, not this extra property; a checked
-accepted-but-loose example demonstrates the distinction. Closed intervals and
-same-parameter partial families inherit the correspondence, preserving empty
-fibers. No native rounding, affine-interior optimality or new FP premise follows.
-
-## Finite guarded piece compilation
-
-[Finite guarded pieces](FINITE_GUARD_PIECES.md) supplies a derived restricted
-subclass for §§2.13–2.14: rational affine constraints with strict/closed
-boundaries, exact union/intersection compilation to finite conjunction pieces,
-and an exact rational membership test. It reuses existential piece denotation
-and keeps the same parameter/value witness, external restrictions and empty
-fibers. This closes a concrete finite-code gap beyond point tables; it is not
-a source-prescribed grammar, arbitrary-function representation, automatic
-demotion or a full open/exceptional endpoint model. No FP assumption changes.
-
-## Fixed coefficient witnesses and heterogeneous decoding
-
-[Coefficient witnesses](COEFFICIENT_WITNESSES.md) proves exact conversion of
-admissible heterogeneous code pairs into real coefficient pairs, retaining one
-witness across uses and any joint pair constraint. With 0 and 1 in the parameter
-domain, recovery is exactly `(f 0, f 1-f 0)` plus the affine identity. A mixed
-integer/rational instance and a strict marginal-versus-joint counterexample are
-checked. The existing pointwise coefficient theorem remains unchanged; §2.14's
-equality notation alone does not settle persistence of real choices. No new FP
-premise or general heterogeneous exceptional endpoint claim is made.
-
-### Residual §§2.13–2.14 work, classified
-
-| Kind | Residual item | Current boundary / next evidence |
-| --- | --- | --- |
-| Proof task | Mixed endpoint carriers and boundary types | Finite rational strict/closed bands are compiled exactly; total real coefficient maps now preserve joint witnesses. The subsequent mixed-endpoint milestone closes a concrete integer/rational-to-real conversion with exact open/closed and empty cases; arbitrary real coefficient encodings and the general variant remain open. Infinite bounds and literal exceptional values must stay separate. |
-| Proof task | Hansen's full stated multi-parameter coefficient variant | Finite closed-coefficient pointwise denotation, endpoint attainment and shared-use correspondence are now checked in HansenCoefficients. Unbounded sets of finite real coefficients now have the exact convex-image and boundary correspondence in HansenRealSets. Literal exceptional coefficient arithmetic and the full system arithmetic/demotion remain open. |
-| Source/specification ambiguity | Persistent choices for repeated interval descriptions | Equality of descriptions does not alone determine equality of chosen real witnesses. Both models now have exact mathematics and a strict separating example; do not mark one as the author's intended convention without evidence. |
-| Source/specification boundary | Finite guards and perfect demotion | The printed infinite point construction and finite/unmanageable-description discussion do not supply a general finite input grammar or generation algorithm. The chosen rational affine grammar is a restricted result, not a resolution of that omission. |
-| Broader research | General finite realization, optimal demotion and bumpy classification | No universal finite description algorithm, minimal-piece procedure, or all-function classification follows. Specify a source-backed family and representability constraints before treating any such task as a bounded proof obligation. |
-
-Chapter 2 remains incomplete. Beyond these rows, the explicit literal/repaired
-format distinction and §2.12 weak/strong tracking interpretation still require
-source-level decisions; adding finite examples does not resolve them. The mixed-endpoint milestone below addresses that bounded opportunity without
-choosing a persistent-witness convention for the source. The finite Hansen correspondence below now closes the fixed-vector coefficient
-case. The next source-facing task should address a specified arithmetic or
-demotion operation on that family, with its joint witnesses and exceptional
-carrier restrictions made explicit, rather than repeat pointwise enclosure.
-
-## Mixed affine endpoints and boundary flags
-
-[Mixed endpoints](MIXED_ENDPOINTS.md) proves an exact concrete conversion from
-integer/rational lower coefficients and rational/integer upper coefficients to
-the existing guarded rational pieces. It preserves open/closed flags, guards,
-empty fibers and one band/coefficient witness across uses. A full nonemptiness
-criterion distinguishes strict and closed equal endpoints. This closes the
-concrete finite mixed-carrier task from the preceding checklist; irrational,
-extended/undefined carriers and the full Hansen variant remain separate. The
-flags and persistent-choice interpretation are explicit model conventions, not
-claims inferred from §2.14. No new FP assumptions or chapter-completion claim.
-
-## Finite Hansen coefficient correspondence
-
-[Finite Hansen coefficients](HANSEN_COEFFICIENTS.md) establishes exact fixed-vector
-denotation and attained endpoints for finite closed rational coefficient intervals,
-including the printed §2.14 two-point parameter sets. A shared coefficient vector
-is retained across repeated uses. Pointwise tightness does not imply a convex
-projected image or joint attainment of pointwise extrema. Exceptional/unbounded
-carriers and the full system's arithmetic/demotion remain open; Chapter 2 is not complete.
-
-## Possibly unbounded finite-real Hansen coefficients
-
-[Coefficient-set correspondence](HANSEN_REAL_SETS.md) now covers arbitrary sets
-of finite real coefficients, strict empty-tuple behavior and zero weights. For
-convex coefficient sets it proves exact open-interior membership and a precise
-finite-boundary attainment criterion; the existing extended hull is least, but
-need not equal the image. Same-parameter demotion and tag-preserving conversion
-reuse existing results. Literal infinite/λ coefficient arithmetic and whole-system
-operations remain open. These are derived set-model results, not extra printed
-Hansen conventions or new IEEE assumptions.
-
-## Uniform §2.5 separation and repaired normalization
-
-[Format normalization](FORMAT_NORMALIZATION.md) proves that `b^M` separates the
-printed unsigned digit display from the literal coefficient format for every
-`b ≥ 2`, `A ≥ 1`, `m ≤ M`. It also proves equality of the separately labeled
-unrestricted repaired and normal-or-minimum value sets at arbitrary radix.
-This closes the value-set normalization proof gap, not authorial intent,
-exceptional rounding or hardware semantics. The literal definition is unchanged.
-
-## Exceptional right-infinity addition conversion
-
-[Exact family transfer](INFINITE_ADDITION_TRANSFER.md) now connects the existing
-source-supported finite/positive-infinity-left addition rows to tagged finite-hull
-conversion. It preserves the exact observation image, including missing coverage,
-and proves successful-result commutation at the same parameter. No exceptional
-arithmetic row is added. Lambda-left and opposite-infinity semantics remain
-unresolved here; nonconstant operations require separate transfer proofs.
-
-## Partial square-root conversion
-
-[Root transfer](ROOT_TRANSFER.md) proves sound same-input transfer and exact
-observation equality iff input hull conversion admits no new nonnegative finite
-values. It separately preserves λ-result existence and unmodeled exceptional
-input observations. The checked `(-1,0)` counterexample refutes unconditional
-commutation by introducing zero; a disconnected input shows hole filling.
-No exceptional arithmetic row or FP premise changes. Automatic criteria and
-other partial operations remain separate work.
-
-## Exact partial-operation transfer
-
-[Partial image transfer](PARTIAL_IMAGE_TRANSFER.md) proves a common exactness
-criterion for injective partial real graphs and a checked finite-gap certificate,
-instantiated by square root and guarded reciprocal. Exact output images preserve
-possible definedness, not universal input-domain classification. This advances
-the derived §§2.7/2.11 conversion bridge without claiming the full constructive
-numeric/domain-description demotion or adding exceptional arithmetic rows.
-
-## Constructive finite value/domain conversion
-
-[Piece-domain conversion](PIECE_DOMAIN_CONVERSION.md) constructs a closed value
-enclosure and explicit feasibility code for the existing guarded mixed bands,
-preserving each choice's definedness and the family's definite/possible flags.
-It does not claim numerical image equality or arbitrary descriptor synthesis.
-The [current closeout matrix](CHAPTER2_CLOSEOUT.md) consolidates covered results,
-remaining proof gaps, source inconsistencies under stated readings, and
-unspecified semantics; it supersedes older residual lists where later proofs
-have closed an item. Chapter 2 remains incomplete.
-
-## Guarded composition with generated domains
-
-[Guarded piece composition](GUARDED_PIECE_COMPOSITION.md) connects generated
-finite-band descriptors to the existing expression evaluator, with exact domain
-classification and sound values on checked success at one parameter and choice.
-Failed whole-hull guards remain unknown. The [closeout matrix](CHAPTER2_CLOSEOUT.md)
-now distinguishes this covered bridge from missing operation-generated splitting
-and output representation for inconclusive guards. No exceptional rows or FP
-premises change.
-
-### Affine reciprocal domain splitting
-
-[Generated affine pole pieces](AFFINE_POLE_SPLIT.md) construct exact same-parameter
-negative/zero/positive guards for a fixed rational affine denominator (§2.11.4).
-The zero piece is explicitly undefined; exact domain testing does not supply a
-finite range near a pole. General nonlinear splitting and unbounded value-piece
-composition remain open.
-
-### Guarded unbounded pieces through a total operation
-
-[Unbounded piece composition](UNBOUNDED_PIECE_COMPOSITION.md) gives exact affine
-translation in the existing half-space representation, then proves sound
-reciprocal-plus-affine enclosure and exact domain preservation at one parameter.
-This closes a constructive §2.11.4/§2.13 slice, not arbitrary operator closure
-or literal-infinity arithmetic. See the [closeout program](CHAPTER2_CLOSEOUT.md).
+**Defensible completion wording:** “Chapter 2 has a subsection-by-subsection
+printed-source audit and a formalized core of real-valued inclusion, domain,
+representation and conversion results. Imported foundations, restricted models,
+checked counterexamples and underspecified claims are explicitly catalogued.”
+Do not yet replace this with “every Chapter 2 claim is proved”: the concrete
+correspondences above and the identified interpretation decisions remain.

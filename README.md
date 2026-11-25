@@ -1,5 +1,11 @@
 Original project sources are licensed under MIT by John Funge; dependencies retain their own licenses. See [migration provenance](MIGRATION.md).
 
+Current chapter-wide status: [printed-source closeout audit](CHAPTER2_CHECKLIST.md).
+It records every subsection, the all-real floating-digit correspondence, and
+the staged-rounding subdistributivity counterexample. Earlier milestone receipts
+below remain historical; the current audit distinguishes missing proofs from
+unspecified algorithms and optional research.
+
 # generalized-interval-arithmetic
 
 This project's central purpose is proving properties of **Generalized Interval

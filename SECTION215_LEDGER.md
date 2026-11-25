@@ -1,5 +1,11 @@
 # §2.15 page-and-claim ledger
 
+Current chapter-wide status: [printed-source closeout audit](CHAPTER2_CHECKLIST.md).
+It records every subsection, the all-real floating-digit correspondence, and
+the staged-rounding subdistributivity counterexample. Earlier milestone receipts
+below remain historical; the current audit distinguishes missing proofs from
+unspecified algorithms and optional research.
+
 This ledger separates descriptions, mathematical claims and algorithmic claims.
 Original PDF images were rechecked at printed pp.40–43 / PDF pp.56–59. The local
 Markdown omits §§2.15.4–8; it is not the authority for those subsections. Links
