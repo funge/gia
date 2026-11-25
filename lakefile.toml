@@ -561,3 +561,6 @@ name = "SourceRoundedAlgebra"
 
 [[lean_lib]]
 name = "NearestMinimizers"
+
+[[lean_lib]]
+name = "RationalFamilyClosure"
