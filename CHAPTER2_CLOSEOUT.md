@@ -30,6 +30,17 @@ give left enclosure [200,220] and right enclosure [200,210]. Every rounding stag
 is certified least, and the true answer 202 is enclosed on both routes.
 This does not change any arithmetic backend or trusted premise.
 
+## Conditional constant-extension follow-up
+
+The later source/Lean check found a genuine generic gap beyond concrete
+constant operations. [ConstantExtension](CONSTANT_EXTENSION.md) now derives
+constant fixing from sufficient demotion inequalities and proves arbitrary-arity
+partial real-output interval-extension commutation. Constructed infimum/supremum
+demoters satisfy the premises; merely outward widening does not. Concrete
+affine/machine implementations must still establish their own compatibility.
+The same review checks the finite-real multiparameter denotation and scoped
+positive-infinity guard without adding exceptional rows.
+
 ## Consolidated completion verdict
 
 The **scoped Chapter 2 source-to-Lean milestone is complete**, conditional on

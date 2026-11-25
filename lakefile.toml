@@ -594,3 +594,6 @@ name = "RoundedIntervalControl"
 
 [[lean_lib]]
 name = "SymbolicTrace"
+
+[[lean_lib]]
+name = "ConstantExtension"
