@@ -549,3 +549,6 @@ name = "AffinePoleSplit"
 
 [[lean_lib]]
 name = "UnboundedPieceComposition"
+
+[[lean_lib]]
+name = "NumericFoundations"

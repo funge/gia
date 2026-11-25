@@ -4095,3 +4095,32 @@ translation, sound reciprocal enclosure and exact domain preservation. The
 [closeout matrix](CHAPTER2_CLOSEOUT.md) records the recommended substantial
 remaining packages without claiming chapter completion. A verified local Git
 bundle and complete log are retained outside the repository.
+
+## Scalar numeric foundations — 2026-11-25
+
+Proof checkpoint `ed7c8c01a774a536005b91c40027a75dc6e45ecb`, based on merged
+#55 main `400606808c2d8ba893bf921fed62baeac490e67f`, passed the complete local
+`./check.sh` with the pinned Lean 4.19.0/mathlib environment and explicit
+`RELGRAPH_CHECKOUT` inventory comparison. Only source-review detail and this
+receipt were added afterward; proof, fixture and registry bytes are unchanged.
+
+- Build and direct audit passed: **1,676 named axiom audits**, **3,072 namespace
+  declarations**, **180 libraries**, **113 fresh semantic fixtures**.
+- **30 tests passed in 536.398s**, including pinned API comparison, axiom-policy
+  rejection controls, module registration and semantic-fixture integration.
+- New focused fixture passed: **13 audited declarations**; **23** new named
+  library theorem audits. Guarded zero/nonzero division, rational perfect-square
+  and irrational controls, real/complex root-domain change, zero and nonreal
+  roots, and representation existence are checked.
+- Local file links: **1,159**, no broken links before this receipt; link and
+  `git diff --check` checks rerun on the final documentation tree.
+- Existing allowlist unchanged: `propext`, `Classical.choice`, `Quot.sound`.
+  No new project axioms, placeholders, unsafe/native-decide proof shortcuts,
+  floating-point premises, native/default changes, or hosted CI dispatches.
+- No native executable qualification was required or claimed: this is a
+  proof-only correspondence using the actual existing partial-real relation.
+
+A verified recovery Git bundle and full local log are retained outside the
+repository. The [source scope](NUMERIC_FOUNDATIONS.md) and
+[closeout matrix](CHAPTER2_CLOSEOUT.md) retain the remaining rounded-algebra,
+exceptional-semantics and broader Chapter 2 obligations explicitly.

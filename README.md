@@ -845,3 +845,7 @@ translation in the existing half-space representation, then proves sound
 reciprocal-plus-affine enclosure and exact domain preservation at one parameter.
 This closes a constructive §2.11.4/§2.13 slice, not arbitrary operator closure
 or literal-infinity arithmetic. See the [closeout program](CHAPTER2_CLOSEOUT.md).
+
+The [scalar numeric-foundations correspondence](NUMERIC_FOUNDATIONS.md) maps
+explicit §§2.2–2.4 claims to actual scalar embeddings, guarded domains and
+root/sequence existence. It leaves rounding and exceptional residuals explicit.
