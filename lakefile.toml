@@ -573,3 +573,6 @@ name = "MonotoneUnions"
 
 [[lean_lib]]
 name = "DigitExtraction"
+
+[[lean_lib]]
+name = "InfiniteSimpleCF"

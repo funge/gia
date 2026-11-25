@@ -21,7 +21,7 @@
 | §2.15.1 cuts | Covered nonnegative construction/operations and signed-product warning | The source does not supply a signed-cut operation construction; that optional extension is not a missing asserted theorem. Strict/closed descriptions must not be identified structurally merely because they decode equally. See the [page-and-claim ledger](SECTION215_LEDGER.md). |
 | §2.15.2 Cauchy streams | Covered stated arithmetic slice | Rational-stream representation, arithmetic and representative independence with guarded division are proved. No generic computable real oracle is implied. |
 | §§2.15.3, 2.15.6 digit streams | Covered ordinary canonical construction and signed sums; algorithm gaps | [Digit extraction](DIGIT_EXTRACTION.md) now proves ordinary canonical reconstruction/uniqueness and all-real integer-part representations. Floating-place normalization, effective carrying and source online/delay claims remain distinct from this noncomputable correspondence. |
-| §2.15.4 continued fractions | Covered canonical and normalized finite correspondence; broader gap | Actual canonical irrational convergence and finite reconstruction are covered. Arbitrary admissible infinite simple-stream reconstruction/uniqueness remains a source proof gap. Generalized numerators are not part of this displayed source claim. |
+| §2.15.4 continued fractions | Covered finite and arbitrary infinite simple correspondence | [Infinite simple fractions](INFINITE_SIMPLE_CF.md) now prove arbitrary admissible stream convergence, canonical recovery, irrationality and coefficient uniqueness, complementing the finite reconstruction and rational-termination proofs. Generalized numerators are not part of this displayed source claim. |
 | §2.15.5 interval streams / accuracy | Covered finite strict arithmetic grammar; proof gaps | Same-stream convergence and executable certified search are proved under computable-stream/containment premises. Remaining source operators and extraction obstructions require correspondence; no rate or arbitrary-precision hardware implementation follows. |
 | §§2.15.7–8 redundant/symbolic alternatives | Proof/specification gaps; some later-chapter research | The [page ledger](SECTION215_LEDGER.md) records the actual signed coefficient/sign restrictions and separates redundant-CF correspondence from referenced online algorithms and later convergence advantages. Later performance narrative is not discharged by a finite example or a speed assertion. |
 
@@ -82,8 +82,8 @@ or a constructive claim remains. Chapter 2 remains incomplete.
 
 The [page-and-claim ledger](SECTION215_LEDGER.md) now covers all eight subsections.
 The ordinary canonical digit converse is proved, not merely another example.
-Next mathematical representation obligations are arbitrary admissible infinite
-simple continued-fraction reconstruction and the source-restricted redundant
-continued fractions. A finite-information extraction impossibility theorem needs
+The arbitrary admissible infinite simple-stream converse is now proved.
+The next mathematical representation obligation is the source-restricted
+redundant continued fractions (§2.15.7), with different sign conditions. A finite-information extraction impossibility theorem needs
 an explicit computation model. No arbitrary nonlinear closure implementation is
 added to the chapter finish line merely because finite projection tools exist.

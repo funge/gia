@@ -1229,3 +1229,8 @@ correspondences from algorithmic/expository claims across all eight subsections.
 [Ordinary digit extraction](DIGIT_EXTRACTION.md) now proves canonical stream
 reconstruction and uniqueness, plus all-real integer-part representation,
 without an executable arbitrary-real digit oracle or new FP assumptions.
+
+[Arbitrary infinite simple fractions](INFINITE_SIMPLE_CF.md) now supply the
+§2.15.4 converse: admissibility implies suffix convergence, irrational value,
+canonical coefficient recovery and uniqueness. Redundant fractions (§2.15.7)
+and GIA representations (§2.15.8) remain distinct; no FP assumptions change.
