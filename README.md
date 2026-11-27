@@ -5,6 +5,8 @@ proof track for linear models and small neural networks, with input uncertainty
 kept separate from floating-point execution. The next
 [directed composition proof](DIRECTED_DOT_PRODUCT.md) reuses existing arithmetic
 contracts; native dot-product wiring remains a separate step.
+[Fixed-weight inference with bias](LINEAR_MODEL_INFERENCE.md) adds tight feature-box
+prediction bounds and a conditional directed-program enclosure.
 
 The [symbolic sine/root trace](SYMBOLIC_TRACE.md) closes the final concrete
 Chapter 2 example identified by the audit. See the [conditional scoped completion
