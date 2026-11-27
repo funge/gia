@@ -606,3 +606,6 @@ name = "DirectedDotProduct"
 
 [[lean_lib]]
 name = "LinearModelInference"
+
+[[lean_lib]]
+name = "LogisticModelInference"
