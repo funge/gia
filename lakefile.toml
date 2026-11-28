@@ -603,3 +603,6 @@ name = "IntervalDotProduct"
 
 [[lean_lib]]
 name = "DirectedDotProduct"
+
+[[lean_lib]]
+name = "LinearModelInference"

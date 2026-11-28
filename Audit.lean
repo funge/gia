@@ -1,3 +1,4 @@
+import LinearModelInference
 import DirectedDotProduct
 import IntervalDotProduct
 import ConstantExtension
@@ -2183,4 +2184,11 @@ import SegmentSearchExamples
 #audit_axioms GeneralizedIntervalArithmetic.DirectedDotProduct.primitiveRun_encloses
 #audit_axioms GeneralizedIntervalArithmetic.DirectedDotProduct.mul_failure
 #audit_axioms GeneralizedIntervalArithmetic.DirectedDotProduct.add_failure
+#audit_axioms GeneralizedIntervalArithmetic.LinearModelInference.sound
+#audit_axioms GeneralizedIntervalArithmetic.LinearModelInference.extrema
+#audit_axioms GeneralizedIntervalArithmetic.LinearModelInference.least
+#audit_axioms GeneralizedIntervalArithmetic.LinearModelInference.above_threshold
+#audit_axioms GeneralizedIntervalArithmetic.LinearModelInference.run_encloses
+#audit_axioms GeneralizedIntervalArithmetic.LinearModelInference.dot_failure
+#audit_axioms GeneralizedIntervalArithmetic.LinearModelInference.bias_failure
 #audit_namespace GeneralizedIntervalArithmetic
