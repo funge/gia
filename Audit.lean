@@ -1,3 +1,4 @@
+import ReluNetworkInference
 import LogisticModelInference
 import LinearModelInference
 import DirectedDotProduct
@@ -2208,4 +2209,9 @@ import SegmentSearchExamples
 #audit_axioms GeneralizedIntervalArithmetic.LogisticModelInference.classify_false
 #audit_axioms GeneralizedIntervalArithmetic.LogisticModelInference.sigmoid_log_odds
 #audit_axioms GeneralizedIntervalArithmetic.LogisticModelInference.probability_threshold_iff
+#audit_axioms GeneralizedIntervalArithmetic.ReluNetworkInference.relu_monotone
+#audit_axioms GeneralizedIntervalArithmetic.ReluNetworkInference.relu_sound
+#audit_axioms GeneralizedIntervalArithmetic.ReluNetworkInference.hidden_sound
+#audit_axioms GeneralizedIntervalArithmetic.ReluNetworkInference.sound
+#audit_axioms GeneralizedIntervalArithmetic.ReluNetworkInference.extrema_of_joint_reachability
 #audit_namespace GeneralizedIntervalArithmetic

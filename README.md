@@ -9,6 +9,8 @@ contracts; native dot-product wiring remains a separate step.
 prediction bounds and a conditional directed-program enclosure.
 [Logistic inference](LOGISTIC_MODEL_INFERENCE.md) transports these bounds through
 the real sigmoid and proves classification from logit signs.
+[One-hidden-layer ReLU inference](RELU_NETWORK_INFERENCE.md) proves layerwise
+enclosure and checks the loss of shared-input correlation.
 
 The [symbolic sine/root trace](SYMBOLIC_TRACE.md) closes the final concrete
 Chapter 2 example identified by the audit. See the [conditional scoped completion

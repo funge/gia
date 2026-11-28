@@ -609,3 +609,6 @@ name = "LinearModelInference"
 
 [[lean_lib]]
 name = "LogisticModelInference"
+
+[[lean_lib]]
+name = "ReluNetworkInference"
