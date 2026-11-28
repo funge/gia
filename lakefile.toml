@@ -600,3 +600,6 @@ name = "ConstantExtension"
 
 [[lean_lib]]
 name = "IntervalDotProduct"
+
+[[lean_lib]]
+name = "DirectedDotProduct"

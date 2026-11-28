@@ -1,3 +1,4 @@
+import DirectedDotProduct
 import IntervalDotProduct
 import ConstantExtension
 import SymbolicTrace
@@ -2177,4 +2178,9 @@ import SegmentSearchExamples
 #audit_axioms GeneralizedIntervalArithmetic.IntervalDotProduct.least
 #audit_axioms GeneralizedIntervalArithmetic.IntervalDotProduct.weighted_sound
 #audit_axioms GeneralizedIntervalArithmetic.IntervalDotProduct.weighted_extrema
+#audit_axioms GeneralizedIntervalArithmetic.DirectedDotProduct.loop_encloses
+#audit_axioms GeneralizedIntervalArithmetic.DirectedDotProduct.run_encloses
+#audit_axioms GeneralizedIntervalArithmetic.DirectedDotProduct.primitiveRun_encloses
+#audit_axioms GeneralizedIntervalArithmetic.DirectedDotProduct.mul_failure
+#audit_axioms GeneralizedIntervalArithmetic.DirectedDotProduct.add_failure
 #audit_namespace GeneralizedIntervalArithmetic
