@@ -1,5 +1,9 @@
 Original project sources are licensed under MIT by John Funge; dependencies retain their own licenses. See [migration provenance](MIGRATION.md).
 
+[Exact interval dot products](INTERVAL_DOT_PRODUCT.md) begin an inference-first
+proof track for linear models and small neural networks, with input uncertainty
+kept separate from floating-point execution.
+
 The [symbolic sine/root trace](SYMBOLIC_TRACE.md) closes the final concrete
 Chapter 2 example identified by the audit. See the [conditional scoped completion
 verdict](CHAPTER2_CLOSEOUT.md); this is not a claim that every printed assertion

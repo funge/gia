@@ -597,3 +597,6 @@ name = "SymbolicTrace"
 
 [[lean_lib]]
 name = "ConstantExtension"
+
+[[lean_lib]]
+name = "IntervalDotProduct"
